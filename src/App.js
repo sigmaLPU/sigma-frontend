@@ -3,11 +3,10 @@ import './App.css';
 
 // react tools import
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-// import { Provider } from 'react-redux';
-// import {store} from './redux/store';
 
 // component imports
 import HomePage from './components/default_pages/HomePage' // default home page
+import LoginPage from './components/default_pages/LoginPage' // default home page
 import Error404 from './components/default_pages/errors/Error404' // default home page
 
 function App() {
@@ -16,8 +15,8 @@ function App() {
       <Router>
         <Routes>
           {/**/}
-          {/*Home page*/}
-          <Route exact path="/" element={<HomePage/>}/>
+          {/*First landing page*/}
+          <Route exact path="/" element={<LoginPage/>}/>
 
           {/*When page not found*/}
           <Route path="*" element={<Error404/>}/>
