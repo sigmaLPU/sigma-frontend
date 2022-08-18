@@ -13,12 +13,10 @@ export const authUserSlice = createSlice({
   reducers: {
     login : (state) => {
     	console.log("Login Slice reducers called")
-      initialState = {...initialState,loading:false}
+      state.initialState = {...state.initialState,loading:false}
     }
   }
 })
-
-console.log(authUserSlice)
 
 export const { login }  = authUserSlice.actions
 
