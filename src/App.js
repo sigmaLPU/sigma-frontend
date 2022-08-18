@@ -3,6 +3,8 @@ import './App.css';
 
 // react tools import
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+// import { Provider } from 'react-redux';
+// import {store} from './redux/store';
 
 // component imports
 import HomePage from './components/default_pages/HomePage' // default home page
