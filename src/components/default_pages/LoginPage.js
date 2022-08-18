@@ -46,7 +46,17 @@ function LoginCard(props){
 			</div>
 			<div style={{marginTop:"79px"}}>
 				<div style={{...inputCSS,marginBottom:"17px"}}>
-					<img src={MailIcon} style={{width:"23.33px",height:"18.67px"}}/>
+					<img src={MailIcon} style={{width:"24px",height:"24px",marginLeft: "15px"}}/>
+					<input type="text" placeholder="email" 
+						style={{
+								width:"90%",border: "none",
+								backgroundColor: "transparent",
+								resize: "none",
+								outline: "none",
+								fontSize:"20px",
+								padding:"4px",
+							}} 
+							onChange={(e)=>{console.log(e.target.value)}}/>
 				</div>
 				<div style={inputCSS}>
 					emailCSS
