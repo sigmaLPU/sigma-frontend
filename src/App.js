@@ -17,6 +17,7 @@ function App() {
           {/**/}
           {/*First landing page*/}
           <Route exact path="/" element={<LoginPage/>}/>
+          <Route exact path="/dashboard" element={<HomePage/>}/>
 
           {/*When page not found*/}
           <Route path="*" element={<Error404/>}/>

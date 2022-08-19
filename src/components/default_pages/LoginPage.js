@@ -1,7 +1,7 @@
 // react imports
 import React from 'react';
-
-
+import { useState } from 'react'
+import { useNavigate } from "react-router-dom";
 // component import
 
 
@@ -16,6 +16,13 @@ import LPULogo from './resource/lpu_logo.svg'
 // function defination
 
 function LoginCard(props){
+
+	// state defination
+	const [hidden,setHidden] = useState(true)
+	const [remember,setRemember] = useState(false)
+	let navigate = useNavigate();
+
+	// css defination
 	const style={
 		backgroundColor:"#ffffff",
 		width: "564.31px",
@@ -42,6 +49,12 @@ function LoginCard(props){
 		borderRadius : "4px",
 	}
 
+
+	function login(){
+		navigate("/dashboard");
+	}
+
+
 	return (
 		<div style={style}>
 			<div style={logoCSS}>
@@ -63,7 +76,7 @@ function LoginCard(props){
 				</div>
 				<div style={inputCSS}>
 					<img src={PasswordIcon} style={{width:"24px",height:"24px",marginLeft: "15px"}}/>
-					<input type="text" placeholder="Password" 
+					<input type={hidden ? "password":"text"} placeholder="Password" 
 						style={{
 								width:"90%",border: "none",
 								backgroundColor: "transparent",
@@ -73,16 +86,18 @@ function LoginCard(props){
 								padding:"4px",
 							}} 
 							onChange={(e)=>{console.log(e.target.value)}}/>
-					<img src={HideIcon} style={{width:"24px",height:"24px",marginRight: "15px"}}/>
+					<img src={HideIcon} onClick={()=>setHidden(!hidden)}  style={{width:"24px",height:"24px",marginRight: "15px",cursor:"pointer"}}/>
 				</div>
 				<div style={{marginTop:"40px",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-					<div style={{fontSize:"20px",fontWeight:"900",display:"flex",color:"#747980",alignItems:"center"}}>
-						<div style={{width:"16px",height:"16px",border: "2px solid #667085",borderRadius:"4px"}}></div>
+					<div onClick={()=>setRemember(!remember)} style={{fontSize:"20px",fontWeight:"900",display:"flex",color:"#747980",alignItems:"center",cursor:"pointer"}}>
+						<div style={{width:"16px",height:"16px",border: "2px solid #667085",borderRadius:"4px",padding:"1px"}}>
+							{remember && <div style={{background:"#667085",width:"100%",height:"100%"}} />}
+						</div>
 						<span style={{marginLeft:"8px"}}>Remember Me</span>
 					</div>
 					<div style={{color:"#3665C5",fontSize:"20px",fontWeight:"900"}}>Forget Password</div>
 				</div>
-				<div style={{marginTop:"79px",width: "460.33px",height: "56px",background:"#F07F1A",borderRadius:"6px",display:"flex",justifyContent:"center",alignItems:"center"}}>
+				<div onClick={login} style={{cursor:"pointer",marginTop:"79px",width: "460.33px",height: "56px",background:"#F07F1A",borderRadius:"6px",display:"flex",justifyContent:"center",alignItems:"center"}}>
 					<span style={{fontWeight:900,fontSize:"20px",color:"white"}}>Login</span>
 				</div>
 			</div>
