@@ -1,12 +1,9 @@
 // react imports
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
 
-//redux import
-import { login } from '../../redux/users/staff/auth'
 
 // component import
-
+import NavSideBarLayout from '../common_components/navbarSidebar' 
 
 // other imports
 
@@ -15,17 +12,12 @@ import { login } from '../../redux/users/staff/auth'
 // function defination
 
 export default function HomePage(props){
-	const loading = useSelector((state) => state.auth.loading)
-	const dispatch = useDispatch()
-
-	useEffect(()=>{
-		dispatch(login())
-		console.log(loading)
-	},[])
 
 	return (
 		<div>
-			Home Page
+			<NavSideBarLayout>
+sdasd
+			</NavSideBarLayout>
 		</div>
 	)
 }

@@ -1,7 +1,12 @@
 // react imports
 import React from 'react';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux'
+
+//redux import
+import { login } from '../../redux/users/staff/auth'
+
 // component import
 
 
@@ -20,7 +25,16 @@ function LoginCard(props){
 	// state defination
 	const [hidden,setHidden] = useState(true)
 	const [remember,setRemember] = useState(false)
+
+	const [email,setEmail] = useState("")
+	const [password,setPassword] = useState("")
+
 	let navigate = useNavigate();
+
+	const loading = useSelector((state) => state.auth.loading)
+	const dispatch = useDispatch()
+
+	
 
 	// css defination
 	const style={
@@ -50,13 +64,17 @@ function LoginCard(props){
 	}
 
 
-	function login(){
+	function submit(e){
+		// e.preventDefault()
+		// dispatch(login(email,password))
+		// console.log(loading)
 		navigate("/dashboard");
 	}
 
 
 	return (
-		<div style={style}>
+	<div style={style}>
+		<form >	
 			<div style={logoCSS}>
 				<img src={LPULogo} style={{height:"100%",width:"100%"}} />				
 			</div>
@@ -72,7 +90,7 @@ function LoginCard(props){
 								fontSize:"20px",
 								padding:"4px",
 							}} 
-							onChange={(e)=>{console.log(e.target.value)}}/>
+							onChange={(e)=>{setEmail(e.target.value)}}/>
 				</div>
 				<div style={inputCSS}>
 					<img src={PasswordIcon} style={{width:"24px",height:"24px",marginLeft: "15px"}}/>
@@ -85,7 +103,7 @@ function LoginCard(props){
 								fontSize:"20px",
 								padding:"4px",
 							}} 
-							onChange={(e)=>{console.log(e.target.value)}}/>
+							onChange={(e)=>{setPassword(e.target.value)}}/>
 					<img src={HideIcon} onClick={()=>setHidden(!hidden)}  style={{width:"24px",height:"24px",marginRight: "15px",cursor:"pointer"}}/>
 				</div>
 				<div style={{marginTop:"40px",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
@@ -97,11 +115,12 @@ function LoginCard(props){
 					</div>
 					<div style={{color:"#3665C5",fontSize:"20px",fontWeight:"900"}}>Forget Password</div>
 				</div>
-				<div onClick={login} style={{cursor:"pointer",marginTop:"79px",width: "460.33px",height: "56px",background:"#F07F1A",borderRadius:"6px",display:"flex",justifyContent:"center",alignItems:"center"}}>
+				<div onClick={(e)=>submit(e)} style={{cursor:"pointer",marginTop:"79px",width: "460.33px",height: "56px",background:"#F07F1A",borderRadius:"6px",display:"flex",justifyContent:"center",alignItems:"center"}}>
 					<span style={{fontWeight:900,fontSize:"20px",color:"white"}}>Login</span>
 				</div>
 			</div>
-		</div>
+		</form>
+	</div>
 	)
 }
 
