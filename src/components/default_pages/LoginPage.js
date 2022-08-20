@@ -66,7 +66,7 @@ function LoginCard(props){
 
 	function submit(e){
 		// e.preventDefault()
-		// dispatch(login(email,password))
+		// dispatch(login({email,password}))
 		// console.log(loading)
 		navigate("/dashboard");
 	}
