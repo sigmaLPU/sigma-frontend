@@ -74,6 +74,11 @@ export default function Table(props){
 	// },[])
 
 	return(
+		<>
+			<div style={{width:"100%",display:"flex",justifyContent:"space-between"}}>
+				<span>Showing 12 out of 1022</span>
+				<div>Pagination</div>
+			</div>
 		<div style={style}>
 			<div style={headingCSS}>
 				<div style={headingSpanCSS}>Heading</div>
@@ -99,5 +104,6 @@ export default function Table(props){
 				</table>
 			</div>
 		</div>
+		</>
 	)
 }
