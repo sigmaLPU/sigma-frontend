@@ -112,7 +112,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 export default function NavSideBar(props) {
-  const navigate = useNavigate();
+  const history = useNavigate();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -145,7 +145,7 @@ export default function NavSideBar(props) {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" style={{backgroundColor:"white",color:"black"}} open={open}>
-        <Toolbar className="d-flex justify-content-between">
+        <Toolbar style={{display:"flex",justifyContent:"space-between"}}>
 
 
           <IconButton
@@ -196,7 +196,7 @@ export default function NavSideBar(props) {
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                 }}
-                onClick={() => navigate(iconObject.url)}
+                onClick={() => history.push(iconObject.url)}
               >
                 <ListItemIcon
                   sx={{
@@ -244,3 +244,5 @@ export default function NavSideBar(props) {
     </Box>
   );
 }
+
+            // {props?.currentPageName ? props?.currentPageName : "DIVISION OF INTERNATIONAL AFFAIRS" }
