@@ -3,8 +3,8 @@ import React, { useEffect } from 'react';
 
 
 // component import
-import NavSideBarLayout from '../common_components/navbarSidebar' 
-
+import {NavSideBarLayout} from '../routes' 
+import Dashboard from './dashboardContainer'
 // other imports
 
 
@@ -15,8 +15,8 @@ export default function HomePage(props){
 
 	return (
 		<div>
-			<NavSideBarLayout>
-sdasd
+			<NavSideBarLayout childCSS={{marginTop:"3rem"}}>
+				<Dashboard />
 			</NavSideBarLayout>
 		</div>
 	)

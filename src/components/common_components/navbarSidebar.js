@@ -196,7 +196,7 @@ export default function NavSideBar(props) {
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                 }}
-                onClick={() => history.push(iconObject.url)}
+                onClick={() => history(iconObject.url)}
               >
                 <ListItemIcon
                   sx={{
@@ -238,7 +238,7 @@ export default function NavSideBar(props) {
           ))}
         </List>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }} style={{marginTop: props.marginTop ? props.marginTop :"2rem"}}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }} style={{marginTop: props.marginTop ? props.marginTop :"2rem",...props?.childCSS}}>
         {props.children}
       </Box>
     </Box>

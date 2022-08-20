@@ -5,9 +5,9 @@ import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 // component imports
-import HomePage from './components/default_pages/HomePage' // default home page
-import LoginPage from './components/default_pages/LoginPage' // default home page
-import Error404 from './components/default_pages/errors/Error404' // default home page
+import {HomePage} from './components/routes' // default home page
+import {LoginPage} from './components/routes' // default home page
+import {Error404} from './components/routes' // default home page
 
 function App() {
   return (
@@ -18,6 +18,7 @@ function App() {
           {/*First landing page*/}
           <Route exact path="/" element={<LoginPage/>}/>
           <Route exact path="/dashboard" element={<HomePage/>}/>
+          <Route exact path="/mouMaster" element={<HomePage/>}/>
 
           {/*When page not found*/}
           <Route path="*" element={<Error404/>}/>
