@@ -32,6 +32,7 @@ function LoginCard(props){
 	let navigate = useNavigate();
 
 	const loading = useSelector((state) => state.auth.loading)
+	const isAuthenticated = useSelector((state) => state.auth.isAuthenticated)
 	const dispatch = useDispatch()
 
 	
@@ -65,10 +66,15 @@ function LoginCard(props){
 
 
 	function submit(e){
-		// e.preventDefault()
-		// dispatch(login({email,password}))
+		e.preventDefault()
+		dispatch(login({email,password}))
 		// console.log(loading)
-		navigate("/dashboard");
+		// console.log(localStorage.getItem('token'))
+		if(localStorage.getItem('auth') && localStorage.getItem('token')){
+			navigate("/dashboard");			
+		}else{
+			console.log("Error")
+		}
 	}
 
 
