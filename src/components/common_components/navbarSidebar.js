@@ -163,9 +163,8 @@ export default function NavSideBar(props) {
 
 
           <Typography variant="h6" noWrap component="div">
-
+            {props?.pageTile ? props?.pageTile : "Division of international Affairs"}
           </Typography>
-
           <div>
             <IconButton>
               {props?.anyNotification ? <NotificationsActiveIcon fontSize="large"/> : <NotificationsNoneIcon fontSize="large"/> }

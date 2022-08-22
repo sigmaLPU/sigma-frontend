@@ -3,6 +3,24 @@ import {useState,useEffect} from 'react'
 
 
 export default function Table(props){	
+	const [pagenation,setPagenation] = useState("")
+	const [column,setColumn] = useState(["S.No","Name","temp1","temp1","temp1","temp1"])
+	const [rows,setRows] = useState([
+		{"S.No":"12","Name":"12","temp1":"12","temp1":"12","temp1":"12","temp1":"12"},
+		{"S.No":"12","Name":"12","temp1":"12","temp1":"12","temp1":"12","temp1":"12"},
+		{"S.No":"12","Name":"12","temp1":"12","temp1":"12","temp1":"12","temp1":"12"},
+		{"S.No":"12","Name":"12","temp1":"12","temp1":"12","temp1":"12","temp1":"12"},
+		{"S.No":"12","Name":"12","temp1":"12","temp1":"12","temp1":"12","temp1":"12"},
+		{"S.No":"12","Name":"12","temp1":"12","temp1":"12","temp1":"12","temp1":"12"},
+		{"S.No":"12","Name":"12","temp1":"12","temp1":"12","temp1":"12","temp1":"12"},
+		{"S.No":"12","Name":"12","temp1":"12","temp1":"12","temp1":"12","temp1":"12"},
+		{"S.No":"12","Name":"12","temp1":"12","temp1":"12","temp1":"12","temp1":"12"},
+		{"S.No":"12","Name":"12","temp1":"12","temp1":"12","temp1":"12","temp1":"12"},
+		{"S.No":"12","Name":"12","temp1":"12","temp1":"12","temp1":"12","temp1":"12"},
+		{"S.No":"12","Name":"12","temp1":"12","temp1":"12","temp1":"12","temp1":"12"},
+		{"S.No":"12","Name":"12","temp1":"12","temp1":"12","temp1":"12","temp1":"12"},
+	])
+	const [dataSize,setDataSize] = useState(0)
 
 	const style = {
 		borderRadius : "8px",
@@ -48,30 +66,17 @@ export default function Table(props){
 		...props?.rowCSS
 	}
 
-	const [column,setColumn] = useState(["S.No","Name","temp1","temp1","temp1","temp1"])
-
-	const [rows,setRows] = useState([
-		{"S.No":"12","Name":"12","temp1":"12","temp1":"12","temp1":"12","temp1":"12"},
-		{"S.No":"12","Name":"12","temp1":"12","temp1":"12","temp1":"12","temp1":"12"},
-		{"S.No":"12","Name":"12","temp1":"12","temp1":"12","temp1":"12","temp1":"12"},
-		{"S.No":"12","Name":"12","temp1":"12","temp1":"12","temp1":"12","temp1":"12"},
-		{"S.No":"12","Name":"12","temp1":"12","temp1":"12","temp1":"12","temp1":"12"},
-		{"S.No":"12","Name":"12","temp1":"12","temp1":"12","temp1":"12","temp1":"12"},
-		{"S.No":"12","Name":"12","temp1":"12","temp1":"12","temp1":"12","temp1":"12"},
-		{"S.No":"12","Name":"12","temp1":"12","temp1":"12","temp1":"12","temp1":"12"},
-		{"S.No":"12","Name":"12","temp1":"12","temp1":"12","temp1":"12","temp1":"12"},
-		{"S.No":"12","Name":"12","temp1":"12","temp1":"12","temp1":"12","temp1":"12"},
-		{"S.No":"12","Name":"12","temp1":"12","temp1":"12","temp1":"12","temp1":"12"},
-		{"S.No":"12","Name":"12","temp1":"12","temp1":"12","temp1":"12","temp1":"12"},
-		{"S.No":"12","Name":"12","temp1":"12","temp1":"12","temp1":"12","temp1":"12"},
-	])
-
-	// useEffect(()=>{
-	// 	if(props?.rows && props?.columns){
-	// 		setRows(props?.rows)
-	// 		setColumn(props?.columns)
-	// 	}
-	// },[])
+	
+	useEffect(()=>{
+		if(props?.getData){
+			const data = props?.getData()
+			if(!data) return
+			setPagenation(data?.pagenation_id)
+			setColumn(data?.column)
+			setRows(data?.rows)
+			setDataSize(0)
+		}
+	},[])
 
 	return(
 		<>
@@ -81,7 +86,7 @@ export default function Table(props){
 			</div>
 		<div style={style}>
 			<div style={headingCSS}>
-				<div style={headingSpanCSS}>Heading</div>
+				<div style={headingSpanCSS}>{props?.heading}</div>
 			</div>
 			<div>
 				<table style={tableCSS}>

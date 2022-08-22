@@ -27,6 +27,21 @@ export default function MouMaster(props){
 		boxShadow: "0px 0px 14px rgba(0, 0, 0, 0.25)",
 	}
 
+	function getData(){
+		return {
+			pagenation_id : "1234",
+			column : ["S.No","Name","temp1","temp1","temp1","temp1"],
+			rows : [
+				{"S.No":"12","Name":"12","temp1":"12","temp1":"12","temp1":"12","temp1":"12"},
+				{"S.No":"12","Name":"12","temp1":"12","temp1":"12","temp1":"12","temp1":"12"},
+				{"S.No":"12","Name":"12","temp1":"12","temp1":"12","temp1":"12","temp1":"12"},
+				{"S.No":"12","Name":"12","temp1":"12","temp1":"12","temp1":"12","temp1":"12"},
+				{"S.No":"12","Name":"12","temp1":"12","temp1":"12","temp1":"12","temp1":"12"},
+			]
+		}
+	}
+
+
 	return (
 		<div>
 			<NavSideBarLayout  childCSS={{marginTop:"4rem"}}>
@@ -34,7 +49,7 @@ export default function MouMaster(props){
 					{/*Left part*/}
 					<div style={{borderRight:"1px solid #D9D9D9",maxWidth:"372px"}}>
 						<div>
-							<input type="text" placeholder="Search" style={{width:"372px",fontSize:"20px",marginBottom:"48px"}}/>
+							<input type="text" placeholder="Search" style={{width:"372px",fontSize:"20px",marginBottom:"2rem"}}/>
 						</div>
 
 						<Card style={CardCSS} heading={"Your Tags"}>
@@ -46,7 +61,7 @@ export default function MouMaster(props){
 							</div>
 						</Card>
 						
-						<Card style={CardCSS} heading={"Your Tags"}>
+						<Card style={{...CardCSS,marginTop:"2rem"}} heading={"Popular Tags"}>
 							<div style={{width:"100%",height:"100%",display:"flex",flexWrap:"wrap",}}>
 								<Chip style={ChipCSS} text="asdasdasasddsfdfds" active = {true}/>
 								<Chip style={ChipCSS} active = {false}/>
@@ -58,7 +73,10 @@ export default function MouMaster(props){
 					</div>
 					{/*Right Part*/}
 					<div style={{marginLeft:"1rem",width:"100%"}}>
-						<Table/>
+						<Table 
+							heading={"Partner University"}
+							getData = {getData}
+						/>
 					</div>
 				</div>
 			</NavSideBarLayout>
