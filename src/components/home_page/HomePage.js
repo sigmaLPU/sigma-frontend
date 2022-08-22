@@ -7,12 +7,9 @@ import {NavSideBarLayout} from '../routes'
 import Dashboard from './dashboardContainer'
 // other imports
 
-
-
 // function defination
 
-export default function HomePage(props){
-
+export default function HomePage(props){	
 	return (
 		<div>
 			<NavSideBarLayout childCSS={{marginTop:"3rem"}}>

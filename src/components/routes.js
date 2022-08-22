@@ -7,6 +7,9 @@ import LoginPage from './default_pages/LoginPage'
 import Error404 from './default_pages/errors/Error404'
 // mou master
 import MouMaster from './mou_master/MouMaster'
+// loading page
+import LoadingPage from './default_pages/LoadingPage'
+
 
 /*---COMPONENT---*/
 // navbar side bar
@@ -25,7 +28,7 @@ export {
 	LoginPage,
 	Error404,
 	MouMaster,
-
+	LoadingPage,
 
 	
 	// componets
