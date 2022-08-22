@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux'
 
 //redux import
-import { login } from '../../redux/users/staff/auth'
+import { login, authUserReducer } from '../../redux/users/staff/auth'
 
 // component import
 
@@ -28,11 +28,12 @@ function LoginCard(props){
 
 	const [email,setEmail] = useState("")
 	const [password,setPassword] = useState("")
+	const [loading,setLoading] = useState(false)
 
 	let navigate = useNavigate();
 
-	const loading = useSelector((state) => state.auth.loading)
-	const isAuthenticated = useSelector((state) => state.auth.isAuthenticated)
+	// const loading = useSelector((state) => state.auth.data.loading)
+	const isAuthenticated = useSelector((state) => state.auth.data.isAuthenticated)
 	const dispatch = useDispatch()
 
 	
@@ -67,16 +68,52 @@ function LoginCard(props){
 
 	function submit(e){
 		e.preventDefault()
-		dispatch(login({email,password}))
+		console.log("on submit")
+		setLoading(true)
+		console.log(loading)
+		dispatch(authUserReducer({email,password}))
+		.unwrap().then((d)=>{
+			setLoading(false)
+			navigate('/dashboard')
+			console.log("data fron response",d)
+		}).catch((error)=>{
+			setLoading(false)
+			console.log("error occur",error)
+		}).then(()=>{
+			console.log("loading over")
+		})
+
+
+		// console.log(isAuthenticated)
+		// async function fun(){
+		// 	console.log("in fun call before dispatch")
+		// 	await dispatch(login({email,password}))
+		// 	console.log("in fun call After dispatch")
+		// 	console.log(isAuthenticated)
+		// 	return
+		// }
+
+		// fun().then(()=>{
+		// 	console.log("After fun call")
+		// 	console.log(isAuthenticated)
+		// })
+
+		// dispatch(login({email,password}))
 		// console.log(loading)
-		// console.log(localStorage.getItem('token'))
-		if(localStorage.getItem('auth') && localStorage.getItem('token')){
-			navigate("/dashboard");			
-		}else{
-			console.log("Error")
-		}
+		// console.log(isAuthenticated)
+		// // console.log(localStorage.getItem('token'))
+		// if(localStorage.getItem('auth') && localStorage.getItem('token') && !loading && isAuthenticated){
+		// 	navigate("/dashboard");			
+		// }else{
+		// 	console.log("Error")
+		// }
 	}
 
+	if(loading){
+		return(
+			<div style={{fontSize:"40rem",color:"white"}}>Loading</div>
+		)
+	}
 
 	return (
 	<div style={style}>

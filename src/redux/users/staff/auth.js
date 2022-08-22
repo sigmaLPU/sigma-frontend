@@ -1,14 +1,25 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 const BASE_URL = ""
 
 const initialState = {
-  isAuthenticated : false,
-  loading : true,
-  payload : null,
-  error : null,
+  data:{
+    isAuthenticated : false,
+    loading : true,
+    payload : null,
+    error : null,
+  }
 }
+
+const authUserReducer = createAsyncThunk('auth/authUserReducer',
+    async (data)=>{
+      return axios.post("https://sigmalpu.herokuapp.com/api/v2/user/login",data,{
+          headers: {
+            'Content-Type': 'application/json'
+          }})
+    }
+  )
 
 export const authUserSlice = createSlice({
   name: 'auth',
@@ -27,21 +38,71 @@ export const authUserSlice = createSlice({
         localStorage.setItem('email', resp?.data?.email);
         localStorage.setItem('regNo', resp?.data?.regNo);
         localStorage.setItem('token', resp?.data?.token);
-        
-        state.isAuthenticated = true
-        state.loading = false
-        state.payload = resp?.data
 
+        state.data.loading = false
+        state.data.isAuthenticated = true
+            
         console.log(resp)
-        return state
+        return "done"
       }).catch((error)=>{
-        state.error = error?.response?.data?.error
-        console.log("error",error)
+        state.data.loading = true
+        state.data.isAuthenticated = false
+
+        localStorage.setItem('auth', false)
+        return "error"
       })
     }
-  }
+  },
+  extraReducers: (builder) => {
+    builder.addCase(authUserReducer.fulfilled, (state, { payload }) => {
+      console.log("from extraReducers")
+      console.log("payload in extraReducers",payload)
+      localStorage.setItem('auth', true)
+      localStorage.setItem('name', payload?.data?.name);
+      localStorage.setItem('email', payload?.data?.email);
+      localStorage.setItem('regNo', payload?.data?.regNo);
+      localStorage.setItem('token', payload?.data?.token);
+      state.data = {
+        isAuthenticated : true,
+        loading : false,
+        payload : payload,
+        error : null,
+      }
+    });
+    builder.addCase(authUserReducer.pending, (state, { payload }) => {
+      console.log("from extraReducers pending")
+      console.log("payload in extraReducers",payload)
+      localStorage.setItem('auth', false)
+      localStorage.setItem('name', "");
+      localStorage.setItem('email', "");
+      localStorage.setItem('regNo', "");
+      localStorage.setItem('token', "");
+      state.data = {
+        isAuthenticated : false,
+        loading : true,
+        payload : payload,
+        error : null,
+      }
+    });
+    builder.addCase(authUserReducer.rejected, (state, { payload }) => {
+      console.log("from extraReducers rejected")
+      console.log("payload in extraReducers",payload)
+      localStorage.setItem('auth', false)
+      localStorage.setItem('name', "");
+      localStorage.setItem('email', "");
+      localStorage.setItem('regNo', "");
+      localStorage.setItem('token', "");
+      state.data = {
+        isAuthenticated : false,
+        loading : false,
+        payload : payload,
+        error : true,
+      }
+    });
+  },
 })
 
 export const { login }  = authUserSlice.actions
 
 export default authUserSlice.reducer
+export {authUserReducer}
