@@ -28,16 +28,15 @@ import PersonIcon from '@mui/icons-material/Person';
 import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 
 // icons for side bar
-import FindInPageIcon from '@mui/icons-material/FindInPage'; // search
-import DashboardIcon from '@mui/icons-material/Dashboard'; // dashboard
-import GroupsIcon from '@mui/icons-material/Groups'; // teams
-import BadgeIcon from '@mui/icons-material/Badge'; // Guest visit
-import VideoCameraFrontIcon from '@mui/icons-material/VideoCameraFront'; // meeting
-import FolderSharedIcon from '@mui/icons-material/FolderShared'; // shared data
-import LinkIcon from '@mui/icons-material/Link'; // Link
-import ConstructionIcon from '@mui/icons-material/Construction'; //tools
-import SettingsIcon from '@mui/icons-material/Settings'; //setting
-
+import DashboardIcon from './resource/navbar_icons/dashboard.svg'
+import GuestVisitIcon from './resource/navbar_icons/guest_visit.svg'
+import LinkIcon from './resource/navbar_icons/link.svg'
+import MeetingIcon from './resource/navbar_icons/meeting.svg'
+import SearchIcon from './resource/navbar_icons/search.svg'
+import SettingIcon from './resource/navbar_icons/setting.svg'
+import SharedDataIcon from './resource/navbar_icons/shared_data.svg'
+import TeamIcon from './resource/navbar_icons/team.svg'
+import ToolIcon from './resource/navbar_icons/tools.svg'
 
 
 
@@ -126,17 +125,17 @@ export default function NavSideBar(props) {
 
   const SideBarIcons = {
     "top":[
-      {name:"Search",icon:<FindInPageIcon fontSize="large"/>,"url":"/search"},
-      {name:"Dashbooad",icon:<DashboardIcon fontSize="large"/>,"url":"/"},
-      {name:"Team",icon:<GroupsIcon fontSize="large"/>,"url":"/team-management"},
-      {name:"Guest Visit",icon:<BadgeIcon fontSize="large"/>,"url":"/gb"},
-      {name:"Meetings",icon:<VideoCameraFrontIcon fontSize="large"/>,"url":"/meeting"},
-      {name:"Shared data",icon:<FolderSharedIcon fontSize="large"/>,"url":"/outread-data"},
-      {name:"Important Links",icon:<LinkIcon fontSize="large"/>,"url":"/li"}
+      {name:<span style={{fontSize:"22px",fontWeight:"700"}}>Search</span>,icon:<img src={SearchIcon} style={{height:"34px",width:"34px"}}/>,"url":"/search"},
+      // {name:"Dashbooad",icon:<DashboardIcon fontSize="large"/>,"url":"/"},
+      // {name:"Team",icon:<GroupsIcon fontSize="large"/>,"url":"/team-management"},
+      // {name:"Guest Visit",icon:<BadgeIcon fontSize="large"/>,"url":"/gb"},
+      // {name:"Meetings",icon:<VideoCameraFrontIcon fontSize="large"/>,"url":"/meeting"},
+      // {name:"Shared data",icon:<FolderSharedIcon fontSize="large"/>,"url":"/outread-data"},
+      // {name:"Important Links",icon:<LinkIcon fontSize="large"/>,"url":"/li"}
     ],
     "bottom":[
-      {name:"Tools",icon:<ConstructionIcon fontSize="large"/>,"url":"/tools"},
-      {name:"Settings",icon:<SettingsIcon fontSize="large"/>,"url":"/setting"}
+      // {name:"Tools",icon:<ConstructionIcon fontSize="large"/>,"url":"/tools"},
+      // {name:"Settings",icon:<SettingsIcon fontSize="large"/>,"url":"/setting"}
     ]
   }
 
