@@ -13,10 +13,11 @@ export default function ProtectedRoute(props){
 	
 	const [loading,setLoading] = useState(true)
 
-	// useEffect(()=>{
+	useEffect(()=>{
 		console.log("This is ProtectedRoute")	
 		const token = localStorage.getItem('token')
 	    const auth = localStorage.getItem('auth')
+	    console.log(token)
 	    if(token && auth){
 	      console.log("token is presented")
 	      dispatch(authenticateTokenReducer({token})).unwrap().then((d)=>{
@@ -32,10 +33,11 @@ export default function ProtectedRoute(props){
 	        navigate("/")
 	      })
 	    }else{
+	    	setLoading(false)
 			console.log("Token is not present need to login")
 			navigate("/")
 	    }	
-	// },[])
+	},[])
 
 	if(loading){
 		return(<div><LoadingPage/></div>)

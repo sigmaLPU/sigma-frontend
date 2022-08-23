@@ -9,7 +9,8 @@ import Error404 from './default_pages/errors/Error404'
 import MouMaster from './mou_master/MouMaster'
 // loading page
 import LoadingPage from './default_pages/LoadingPage'
-
+// university profile 
+import UniversityProfile from './profile/UniversityProfile'
 
 /*---COMPONENT---*/
 // navbar side bar
@@ -29,7 +30,7 @@ export {
 	Error404,
 	MouMaster,
 	LoadingPage,
-
+	UniversityProfile,
 	
 	// componets
 	NavSideBarLayout,

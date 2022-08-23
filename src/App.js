@@ -9,6 +9,7 @@ import {HomePage} from './components/routes' // default home page
 import {LoginPage} from './components/routes' // default home page
 import {Error404} from './components/routes' // default home page
 import {MouMaster} from './components/routes' // mou master
+import {UniversityProfile} from './components/routes' // UniversityProfile
 import ProtectedRoute from './ProtectedRoute'
 
 // redux
@@ -26,6 +27,7 @@ function App() {
 
           <Route exact path="/dashboard" element={<ProtectedRoute><HomePage/></ProtectedRoute>}/>
           <Route exact path="/mouMaster" element={<ProtectedRoute><MouMaster/></ProtectedRoute>}/>
+          <Route path="/university/:id" element={<ProtectedRoute><UniversityProfile/></ProtectedRoute>}/>
 
           {/*When page not found*/}
           <Route path="*" element={<Error404/>}/>

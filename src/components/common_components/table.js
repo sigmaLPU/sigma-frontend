@@ -75,6 +75,7 @@ export default function Table(props){
 			setColumn(data?.column)
 			setRows(data?.rows)
 			setDataSize(0)
+			console.log(data?.rows)
 		}
 	},[])
 

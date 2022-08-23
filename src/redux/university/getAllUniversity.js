@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-import {GET_ALL_UNIVERSITY_URL} from '../../constants'
+import {GET_ALL_UNIVERSITY_URL} from '../constants'
 
 const initialState = {
 }
@@ -21,14 +21,14 @@ export const getAllUniversitySlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(authUserReducer.fulfilled, (state, { payload }) => {
+    builder.addCase(getAllUniversityReducer.fulfilled, (state, { payload }) => {
       console.log("university list loading (fulfilled)")
       // console.log("payload in extraReducers",payload)
     });
-    builder.addCase(authUserReducer.pending, (state, { payload }) => {
+    builder.addCase(getAllUniversityReducer.pending, (state, { payload }) => {
       console.log("university list loading (pending)")
     });
-    builder.addCase(authUserReducer.rejected, (state, { payload }) => {
+    builder.addCase(getAllUniversityReducer.rejected, (state, { payload }) => {
       console.log("university list loading (failed)")
     });
   },
