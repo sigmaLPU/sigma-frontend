@@ -126,16 +126,16 @@ export default function NavSideBar(props) {
   const SideBarIcons = {
     "top":[
       {name:<span style={{fontSize:"22px",fontWeight:"700"}}>Search</span>,icon:<img src={SearchIcon} style={{height:"34px",width:"34px"}}/>,"url":"/search"},
-      // {name:"Dashbooad",icon:<DashboardIcon fontSize="large"/>,"url":"/"},
-      // {name:"Team",icon:<GroupsIcon fontSize="large"/>,"url":"/team-management"},
-      // {name:"Guest Visit",icon:<BadgeIcon fontSize="large"/>,"url":"/gb"},
-      // {name:"Meetings",icon:<VideoCameraFrontIcon fontSize="large"/>,"url":"/meeting"},
-      // {name:"Shared data",icon:<FolderSharedIcon fontSize="large"/>,"url":"/outread-data"},
-      // {name:"Important Links",icon:<LinkIcon fontSize="large"/>,"url":"/li"}
+      {name:<span style={{fontSize:"22px",fontWeight:"700"}}>Dashboard</span>,icon:<img src={DashboardIcon} style={{height:"34px",width:"34px"}}/>,"url":"/search"},
+      {name:<span style={{fontSize:"22px",fontWeight:"700"}}>Team</span>,icon:<img src={TeamIcon} style={{height:"34px",width:"34px"}}/>,"url":"/search"},
+      {name:<span style={{fontSize:"22px",fontWeight:"700"}}>Guest Visit</span>,icon:<img src={GuestVisitIcon} style={{height:"34px",width:"34px"}}/>,"url":"/search"},
+      {name:<span style={{fontSize:"22px",fontWeight:"700"}}>Meetings</span>,icon:<img src={MeetingIcon} style={{height:"34px",width:"34px"}}/>,"url":"/search"},
+      {name:<span style={{fontSize:"22px",fontWeight:"700"}}>Shared Data</span>,icon:<img src={SharedDataIcon} style={{height:"34px",width:"34px"}}/>,"url":"/search"},
+      {name:<span style={{fontSize:"22px",fontWeight:"700"}}>Links</span>,icon:<img src={LinkIcon} style={{height:"34px",width:"34px"}}/>,"url":"/search"},
     ],
     "bottom":[
-      // {name:"Tools",icon:<ConstructionIcon fontSize="large"/>,"url":"/tools"},
-      // {name:"Settings",icon:<SettingsIcon fontSize="large"/>,"url":"/setting"}
+      {name:<span style={{fontSize:"22px",fontWeight:"700"}}>Links</span>,icon:<img src={ToolIcon} style={{height:"34px",width:"34px"}}/>,"url":"/search"},
+      {name:<span style={{fontSize:"22px",fontWeight:"700"}}>Links</span>,icon:<img src={SettingIcon} style={{height:"34px",width:"34px"}}/>,"url":"/search"},
     ]
   }
 
