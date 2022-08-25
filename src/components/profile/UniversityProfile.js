@@ -1,11 +1,26 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 
 // other import
 import {NavSideBarLayout} from '../routes'
 import {Card , Table,ObjectCard,FileCard,ContactCard,RecentUpdateCard} from '../routes'
+import { useDispatch } from 'react-redux'
+
+import { getSingleUniversityReducer } from '../../redux/university/getSingleUniversity'
+
+function getUniId(url){
+	var id = ""
+	for(var i=url.length-1;i>=0;i--){
+		if(url[i]==='/') return id
+		id = url[i] + id
+	}
+	return id
+}
 
 
 export default function UniversityProfile(props){
+
+	const dispatch = useDispatch();
+
 	const [BasicDetails,setBasicDetails] = useState({
 		"name":"L",
 		"country":"india",
@@ -59,6 +74,24 @@ export default function UniversityProfile(props){
 		{"title":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text","date":"27-07-2022"},
 		{"title":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text","date":"27-07-2022"},
 	])
+
+
+	useEffect(()=>{
+		const id = getUniId(window.location.href)
+		dispatch(getSingleUniversityReducer({id})).then((data)=>{
+			console.log(data?.payload?.data)
+			var obj = {
+				"name":data?.payload?.data?.university?.name ? data?.payload?.data?.university?.name : "Not available",
+				"country":data?.payload?.data?.university?.country ? data?.payload?.data?.university?.country : "Not available",
+				"address":(data?.payload?.data?.university?.country+", "+data?.payload?.data?.university?.city) ? data?.payload?.data?.university?.country+", "+data?.payload?.data?.university?.city : "Not available",
+				"website":data?.payload?.data?.university?.website ? data?.payload?.data?.university?.website : "Not available",
+			}
+			setBasicDetails(obj)
+		}).catch((error)=>{
+			console.log(error)
+		})
+	},[])
+
 
 	return (
 		<div>
