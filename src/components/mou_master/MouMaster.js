@@ -42,6 +42,7 @@ export default function MouMaster(props){
 		width:"372px",
 		border: "1px solid #F07F1A",
 		boxShadow: "0px 0px 14px rgba(0, 0, 0, 0.25)",
+		color:"black",
 	}
 
 
@@ -104,7 +105,7 @@ export default function MouMaster(props){
 							<input type="text" placeholder="Search" style={{width:"372px",fontSize:"20px",marginBottom:"2rem"}}/>
 						</div>
 
-						<Card style={CardCSS} heading={"Your Tags"}>
+						<Card style={CardCSS} heading={"Your Tags"} styleHeading={{color:"black"}}>
 							<div style={{width:"100%",height:"100%",display:"flex",flexWrap:"wrap",}}>
 								{yourTags.map((item,key)=>(
 									<Chip style={ChipCSS} text={item.title} active = {item.active}/>

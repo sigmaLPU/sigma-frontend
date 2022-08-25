@@ -44,7 +44,7 @@ export default function Card(props){
 					<div style={{width:"90%",display:"flex",justifyContent:"center"}}>
 						<div style={{marginLeft:"10%",minWidth:"10rem",height:"2.5rem"}}>
 							<div style={{textAlign:"center",width:"100%",height:"100%",backgroundColor:"#f07f1a",color:"#ffffff",borderRadius:"0% 0% 50% 50%",position:"relative",top:"-15px"}}>
-								<span style={{paddingLeft:"4px",paddingRight:"4px"}}>{props?.heading}</span>
+								<span style={{paddingLeft:"4px",paddingRight:"4px",color:"black",fontWeight:"700"}}>{props?.heading}</span>
 							</div>
 						</div>
 					</div>
