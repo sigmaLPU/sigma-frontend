@@ -126,16 +126,16 @@ export default function NavSideBar(props) {
   const SideBarIcons = {
     "top":[
       {name:<span style={{fontSize:"22px",fontWeight:"700"}}>Search</span>,icon:<img src={SearchIcon} style={{height:"34px",width:"34px"}}/>,"url":"/search"},
-      {name:<span style={{fontSize:"22px",fontWeight:"700"}}>Dashboard</span>,icon:<img src={DashboardIcon} style={{height:"34px",width:"34px"}}/>,"url":"/search"},
-      {name:<span style={{fontSize:"22px",fontWeight:"700"}}>Team</span>,icon:<img src={TeamIcon} style={{height:"34px",width:"34px"}}/>,"url":"/search"},
-      {name:<span style={{fontSize:"22px",fontWeight:"700"}}>Guest Visit</span>,icon:<img src={GuestVisitIcon} style={{height:"34px",width:"34px"}}/>,"url":"/search"},
-      {name:<span style={{fontSize:"22px",fontWeight:"700"}}>Meetings</span>,icon:<img src={MeetingIcon} style={{height:"34px",width:"34px"}}/>,"url":"/search"},
-      {name:<span style={{fontSize:"22px",fontWeight:"700"}}>Shared Data</span>,icon:<img src={SharedDataIcon} style={{height:"34px",width:"34px"}}/>,"url":"/search"},
-      {name:<span style={{fontSize:"22px",fontWeight:"700"}}>Links</span>,icon:<img src={LinkIcon} style={{height:"34px",width:"34px"}}/>,"url":"/search"},
+      {name:<span style={{fontSize:"22px",fontWeight:"700"}}>Dashboard</span>,icon:<img src={DashboardIcon} style={{height:"34px",width:"34px"}}/>,"url":"/dashboard"},
+      {name:<span style={{fontSize:"22px",fontWeight:"700"}}>Team</span>,icon:<img src={TeamIcon} style={{height:"34px",width:"34px"}}/>,"url":"/team"},
+      {name:<span style={{fontSize:"22px",fontWeight:"700"}}>Guest Visit</span>,icon:<img src={GuestVisitIcon} style={{height:"34px",width:"34px"}}/>,"url":"/guest_visit"},
+      {name:<span style={{fontSize:"22px",fontWeight:"700"}}>Meetings</span>,icon:<img src={MeetingIcon} style={{height:"34px",width:"34px"}}/>,"url":"/meeting"},
+      {name:<span style={{fontSize:"22px",fontWeight:"700"}}>Shared Data</span>,icon:<img src={SharedDataIcon} style={{height:"34px",width:"34px"}}/>,"url":"/shared_data"},
+      {name:<span style={{fontSize:"22px",fontWeight:"700"}}>Links</span>,icon:<img src={LinkIcon} style={{height:"34px",width:"34px"}}/>,"url":"/links"},
     ],
     "bottom":[
-      {name:<span style={{fontSize:"22px",fontWeight:"700"}}>Links</span>,icon:<img src={ToolIcon} style={{height:"34px",width:"34px"}}/>,"url":"/search"},
-      {name:<span style={{fontSize:"22px",fontWeight:"700"}}>Links</span>,icon:<img src={SettingIcon} style={{height:"34px",width:"34px"}}/>,"url":"/search"},
+      {name:<span style={{fontSize:"22px",fontWeight:"700"}}>Tools</span>,icon:<img src={ToolIcon} style={{height:"34px",width:"34px"}}/>,"url":"/tools"},
+      {name:<span style={{fontSize:"22px",fontWeight:"700"}}>Settings</span>,icon:<img src={SettingIcon} style={{height:"34px",width:"34px"}}/>,"url":"/setting"},
     ]
   }
 
