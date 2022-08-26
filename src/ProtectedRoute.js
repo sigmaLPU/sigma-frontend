@@ -49,3 +49,70 @@ export default function ProtectedRoute(props){
 		</Fragment>
 	)
 };
+
+
+
+export function ProtectedRouteResetPassword(props){
+	
+	const [loading,setLoading] = useState(true)
+	const navigate = useNavigate()
+
+	function getUniId(url){
+		var id = ""
+		for(var i=url.length-1;i>=0;i--){
+			if(url[i]==='/') return id
+			id = url[i] + id
+		}
+		return id
+	}
+
+
+	useEffect(()=>{
+		const id = getUniId(window.location.href)
+		console.log(id)
+		// validate id from backend
+
+		// if not true
+		// navigate("/404")
+
+		// if valid set loading true
+		setLoading(false)
+	},[])
+
+	if(loading){
+		return(
+			<div>
+				Loading Validating
+			</div>
+		)
+	}
+
+
+	return (
+		<Fragment>
+			{props.children}
+		</Fragment>
+	)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

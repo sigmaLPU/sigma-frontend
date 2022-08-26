@@ -3,6 +3,8 @@
 import HomePage from './home_page/HomePage'
 //login page
 import LoginPage from './default_pages/LoginPage'
+//restpassword page
+import ResetRequest,{ResetPassword} from './default_pages/ResetPassword'
 // 404 error
 import Error404 from './default_pages/errors/Error404'
 // mou master
@@ -31,6 +33,7 @@ export {
 	MouMaster,
 	LoadingPage,
 	UniversityProfile,
+	ResetPassword,ResetRequest,
 	
 	// componets
 	NavSideBarLayout,

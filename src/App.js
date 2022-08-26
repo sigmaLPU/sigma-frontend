@@ -10,7 +10,8 @@ import {LoginPage} from './components/routes' // default home page
 import {Error404} from './components/routes' // default home page
 import {MouMaster} from './components/routes' // mou master
 import {UniversityProfile} from './components/routes' // UniversityProfile
-import ProtectedRoute from './ProtectedRoute'
+import {ResetPassword,ResetRequest} from './components/routes' // reset password
+import ProtectedRoute, {ProtectedRouteResetPassword} from './ProtectedRoute'
 
 // redux
 import { authenticateTokenReducer, authUserReducer } from './redux/users/authenticateToken'
@@ -25,12 +26,19 @@ function App() {
           {/*First landing page*/}
           <Route exact path="/" element={<LoginPage/>}/>
 
+          <Route exact path="/reset" element={<ResetRequest/>} />
+          <Route path="/reset/:id" element={<ProtectedRouteResetPassword><ResetPassword/></ProtectedRouteResetPassword>} />
+
+          {/*Protected route*/}
           <Route exact path="/dashboard" element={<ProtectedRoute><HomePage/></ProtectedRoute>}/>
           <Route exact path="/mouMaster" element={<ProtectedRoute><MouMaster/></ProtectedRoute>}/>
           <Route path="/university/:id" element={<ProtectedRoute><UniversityProfile/></ProtectedRoute>}/>
 
+
+
           {/*When page not found*/}
           <Route path="*" element={<Error404/>}/>
+          <Route path="/404" element={<Error404/>}/>
         </Routes>
       </Router>
     </div>
