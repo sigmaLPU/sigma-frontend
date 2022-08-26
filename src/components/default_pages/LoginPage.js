@@ -158,7 +158,18 @@ function LoginCard(props){
 					<div style={{color:"#3665C5",fontSize:"20px",fontWeight:"900"}}>Forget Password</div>
 				</div>
 				<div onClick={(e)=>submit(e)} style={{cursor:"pointer",marginTop:"79px",width: "460.33px",height: "56px",background:"#F07F1A",borderRadius:"6px",display:"flex",justifyContent:"center",alignItems:"center"}}>
-					<span style={{fontWeight:900,fontSize:"20px",color:"white"}}>Login</span>
+					
+					<button type="submit" style={{background: "none",
+	color: "inherit",
+	border: "none",
+	padding: "0",
+	font: "inherit",
+	cursor: "pointer",
+	outline: "inherit",}}>
+						<span style={{fontWeight:900,fontSize:"20px",color:"white"}}>
+						Login
+						</span>
+					</button>
 				</div>
 			</div>
 		</form>
