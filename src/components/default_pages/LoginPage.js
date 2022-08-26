@@ -13,11 +13,13 @@ import {LoadingPage} from '../routes'
 
 // other imports
 import BackgroundImage from './resource/login_background.jpg'
-import MailIcon from './resource/mail.svg'
-import PasswordIcon from './resource/lock.svg'
+import MailIcon from './resource/mail.png'
+import PasswordIcon from './resource/lock.png'
 import HideIcon from './resource/hide.svg'
+import ClosedEye from './resource/closed_eye.png'
+import OpenEye from './resource/open_eye.png'
 import CheckBoxIcon from './resource/checkbox.svg'
-import LPULogo from './resource/lpu_logo.svg'
+import LPULogo from './resource/lpu_logo.png'
 
 // function defination
 
@@ -146,7 +148,7 @@ function LoginCard(props){
 								padding:"4px",
 							}} 
 							onChange={(e)=>{setPassword(e.target.value)}}/>
-					<img src={HideIcon} onClick={()=>setHidden(!hidden)}  style={{width:"24px",height:"24px",marginRight: "15px",cursor:"pointer"}}/>
+					<img src={hidden ? ClosedEye : OpenEye} onClick={()=>setHidden(!hidden)}  style={{width:"24px",height:"24px",marginRight: "15px",cursor:"pointer"}}/>
 				</div>
 				<div style={{marginTop:"40px",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
 					<div onClick={()=>setRemember(!remember)} style={{fontSize:"20px",fontWeight:"900",display:"flex",color:"#747980",alignItems:"center",cursor:"pointer"}}>
@@ -155,19 +157,19 @@ function LoginCard(props){
 						</div>
 						<span style={{marginLeft:"8px"}}>Remember Me</span>
 					</div>
-					<div style={{color:"#3665C5",fontSize:"20px",fontWeight:"900"}}>Forget Password</div>
+					<div onClick={()=>navigate("/reset")} style={{cursor:"pointer",color:"#3665C5",fontSize:"20px",fontWeight:"900"}}>Forget Password</div>
 				</div>
 				<div onClick={(e)=>submit(e)} style={{cursor:"pointer",marginTop:"79px",width: "460.33px",height: "56px",background:"#F07F1A",borderRadius:"6px",display:"flex",justifyContent:"center",alignItems:"center"}}>
 					
 					<button type="submit" style={{background: "none",
-	color: "inherit",
-	border: "none",
-	padding: "0",
-	font: "inherit",
-	cursor: "pointer",
-	outline: "inherit",}}>
-						<span style={{fontWeight:900,fontSize:"20px",color:"white"}}>
-						Login
+						color: "inherit",
+						border: "none",
+						padding: "0",
+						font: "inherit",
+						cursor: "pointer",
+						outline: "inherit",}}>
+								<span style={{fontWeight:900,fontSize:"20px",color:"white"}}>
+									Login
 						</span>
 					</button>
 				</div>
