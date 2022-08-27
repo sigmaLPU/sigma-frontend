@@ -10,6 +10,7 @@ import CallMadeIcon from '@mui/icons-material/CallMade'; // heading pop icon
 import IconButton from '@mui/material/IconButton'; // Parent component to fit icon inside it
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import Modal from 'react-modal';
 
 // function defination
 
@@ -35,7 +36,7 @@ export default function Card(props){
 	const HeadingCSS = {
 		display: "flex",
 		justifyContent:"center",
-		fontSize: props?.heading?.fontSize ? props?.heading?.fontSize : "1.4rem",
+		fontSize: props?.heading?.fontSize ? props?.heading?.fontSize : "24px",
 		width:"100%",
 		...props?.styleHeading
 	}
@@ -46,12 +47,12 @@ export default function Card(props){
 					<div style={{width:"90%",display:"flex",justifyContent:"center"}}>
 						<div style={{marginLeft:"10%",minWidth:"10rem",height:"2.5rem"}}>
 							<div style={{textAlign:"center",width:"100%",height:"100%",backgroundColor:"#f07f1a",color:"#ffffff",borderRadius:"0% 0% 50% 50%",position:"relative",top:"-15px"}}>
-								<span style={{paddingLeft:"4px",paddingRight:"4px",color:"black",fontWeight:"700"}}>{props?.heading}</span>
+								<span style={{padding:"8px",color:"white",fontWeight:"700"}}>{props?.heading}</span>
 							</div>
 						</div>
 					</div>
-					<div style={{width:"10%"}}>
-						<IconButton color="inherit" onClick={()=>props?.setOpen(true)} aria-label="open drawer" style={{float:"right",border:"1px solid black" , borderRadius:"8px"}}>
+					<div style={{margin:"11px 8px 0px 0px"}}>
+						<IconButton color="inherit" onClick={()=>props?.setOpen(true)} aria-label="open drawer" style={{width:"30px",height:"28.54px",float:"right",border:"1px solid black" , borderRadius:"8px"}}>
 							<CallMadeIcon />
 						</IconButton>
 					</div>
@@ -161,3 +162,79 @@ export function RecentUpdateCard(props){
 		</div>
 	)
 }
+
+
+
+
+
+
+
+
+
+
+
+export function ModalPopUp(props){
+
+	const customStyles = {
+	  content: {
+	    top: '50%',
+	    left: '50%',
+	    right: 'auto',
+	    bottom: 'auto',
+	    marginRight: '-50%',
+	    transform: 'translate(-50%, -50%)',
+	  },
+	};
+
+	let subtitle;
+	const [modalIsOpen, setIsOpen] = React.useState(false);
+
+	function openModal() {
+		setIsOpen(true);
+	}
+
+	function afterOpenModal() {
+		subtitle.style.color = '#f00';
+	}
+
+	function closeModal() {
+		setIsOpen(false);
+	}
+
+
+	return (
+		<div>
+      <button onClick={openModal}>Open Modal</button>
+      <Modal
+        isOpen={modalIsOpen}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Example Modal"
+      >
+        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
+        <button onClick={closeModal}>close</button>
+        <div>I am a modal</div>
+        <form>
+          <input />
+          <button>tab navigation</button>
+          <button>stays</button>
+          <button>inside</button>
+          <button>the modal</button>
+        </form>
+      </Modal>
+    </div>
+	)
+}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react'
 
 // other import
 import {NavSideBarLayout} from '../routes'
-import {Card , Table,ObjectCard,FileCard,ContactCard,RecentUpdateCard} from '../routes'
+import {Card , Table,ObjectCard,FileCard,ContactCard,RecentUpdateCard,ModalPopUp} from '../routes'
 import { useDispatch } from 'react-redux'
 
 import { getSingleUniversityReducer } from '../../redux/university/getSingleUniversity'
@@ -96,89 +96,136 @@ export default function UniversityProfile(props){
 	return (
 		<div>
 			<NavSideBarLayout childCSS={{marginTop:"5rem"}}>
-				<div style={{display:"flex",justifyContent:"space-between"}}>
-					<div style={{display:"inline-flex",flexWrap:"wrap",gridRowGap: "50px",alignContent:"space-between"}}>
+				{/*Full screen div*/}
+				<div style={{}}>
+					{/*top screen div*/}
+					<div style={{display:"flex",justifyContent:"space-between",maxHeight:"790px"}}>
+
+						<div style={{display:"flex",flexWrap:"wrap",alignContent:"space-between"}}>
 						
-						{/* basic Details */}
-						<Card style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Basic Details">
-							<ObjectCard data={BasicDetails}/>
-						</Card>
+							{/* basic Details */}
+							<Card style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Basic Details">
+								<ObjectCard data={BasicDetails}/>
+							</Card>
 
-						{/* Mou contract */}
-						<Card style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Mou / Contract">
-							{MOUcontract.map(item=>(
-								<FileCard data={item}/>
-							))}
-						</Card>
+							{/* Mou contract */}
+							<Card style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Mou / Contract">
+								{MOUcontract.map(item=>(
+									<FileCard data={item}/>
+								))}
+							</Card>
 
-						{/* Contact Person */}
-						<Card style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Contact Person">
-							{
-								ContactData.map(item=>(
-									<ContactCard data={item}/>
-								))
-							}
-						</Card>
+							{/* Contact Person */}
+							<Card style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Contact Person">
+								{
+									ContactData.map(item=>(
+										<ContactCard data={item}/>
+									))
+								}
+							</Card>
 
-						{/* Application process*/}
-						<Card style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Contact Person">
-							<ul>
-							{
-								RecentUpdateData.map(item=>(
-									<li style={{}}>{item["title"].length<50 ? item["title"]:item["title"].substr(0,50)+"..."}</li>
-								))
-							}
-							</ul>
-						</Card>
+							{/* Application process*/}
+							<Card style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Contact Person">
+								<ul>
+								{
+									RecentUpdateData.map(item=>(
+										<li style={{}}>{item["title"].length<50 ? item["title"]:item["title"].substr(0,50)+"..."}</li>
+									))
+								}
+								</ul>
+							</Card>
 
-						{/* Student/ faculty mobility */}
-						<Card style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Student/ faculty mobility">
+							{/* Student/ faculty mobility */}
+							<Card style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Student/ faculty mobility">
+								
+							</Card>
+
+							{/* Financial Agreements */}
+							<Card style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Financial Agreements">
 							
-						</Card>
+							</Card>
 
-						{/* Financial Agreements */}
-						<Card style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Financial Agreements">
-						
-						</Card>
 
+
+
+						</div>
+
+						<div style={{position:"relative",top:"-15px"}}>
+
+							{/* RECENT UPDATE*/}
+							<Card cardDataCSS={{maxHeight:"90%"}}  heading="Recent Update" style={{width:"411px",height:"100%",border:"1px solid black"}}>
+								<ul>
+								{		RecentUpdateData.map(item=>(
+										<li><RecentUpdateCard data={item}/></li>
+								))}
+								</ul>
+							</Card>
+						</div>
+
+					</div>
+
+					{/*Middle Screeen*/}
+					
+					<div style={{display:"flex",justifyContent:"space-between",marginTop:"2rem",flexWrap:"wrap",height:"380px"}}>
 						{/* Meetings */}
-						<Card style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"641px",height:"359px"}} heading="Meetings">
-						
+						<Card style={{display:"flex",flexWrap:"wrap",alignItems:"stretch",margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"641px"}} heading="Meetings">
+
 						</Card>
 
 						{/* Guest Visit */}
-						<Card style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"641px",height:"359px"}} heading="Guest Visit">
-						
-						</Card></div>
-	
+						<Card style={{display:"flex",flexWrap:"wrap",alignItems:"stretch",margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"641px"}} heading="Guest Visit">
 
-					<div  style={{display:"flex",flexDirection:"column",gridRowGap: "45px"}}>
-					{/* RECENT UPDATE*/}
-					<Card style={{}}  cardDataCSS={{maxHeight:"90%"}}  heading="Recent Update" style={{width:"411px",height:"767px",border:"1px solid black"}}>
+						</Card>
+
+						{/* Document Required */}
+						<Card style={{display:"flex",flexWrap:"wrap",alignItems:"stretch",margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"411px",height:"100%"}} heading="Document Required">
 						<ul>
-						{		RecentUpdateData.map(item=>(
-								<li><RecentUpdateCard data={item}/></li>
-						))}
-						</ul>
-					</Card>
-					
-					{/* Document Required */}
-					<Card style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"411px",height:"352px"}} heading="Document Required">
-					
-					</Card></div></div>
+								{		RecentUpdateData.map(item=>(
+										<li><RecentUpdateCard data={item}/></li>
+								))}
+								</ul>
+						</Card>
 
+					</div>
+				
 
 					<div style={{marginTop:"2rem"}}>
-					<Table 
-						heading={"Program of colaboration"}
-						style={{
+						<Table 
+							heading={"Program of colaboration"}
+							style={{
 							minHeight:"15rem"
-						}}
-						
-					/>
-				</div>
+							}}
+						/>
+					</div>
 
+				</div>					
+				<ModalPopUp />
 			</NavSideBarLayout>
 		</div>
 	)
 }
+
+
+
+
+
+// 				<div style={{display:"flex",justifyContent:"space-between"}}>
+
+// <div style={{display:"inline-flex",flexWrap:"wrap",gridRowGap: "50px",alignContent:"space-between"}}>
+						
+						
+
+
+
+
+
+
+
+
+					
+
+						
+	
+
+// 					<div  style={{display:"flex",flexDirection:"column",gridRowGap: "45px"}}>
+					

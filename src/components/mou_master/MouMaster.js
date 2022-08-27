@@ -78,7 +78,7 @@ export default function MouMaster(props){
 						"Meetings": x?.meeting ? x?.meeting : "---",
 						"Contact Person": x?.contact[0] ? x?.contact[0] : "---",
 						"Agreement": x?.agreement ? x?.agreement : "---",
-						"Details": <div onClick={()=>redirectTo(x?._id)}>Details</div>,
+						"Details": <div style={{color:"#f07f1a",cursor:"pointer"}} onClick={()=>redirectTo(x?._id)}>Details</div>,
 					})
 				}
 				console.log(r)

@@ -18,7 +18,7 @@ import UniversityProfile from './profile/UniversityProfile'
 // navbar side bar
 import NavSideBarLayout from './common_components/navbarSidebar' 
 // card container common components
-import Card, {ObjectCard,FileCard,ContactCard,RecentUpdateCard} from './common_components/card'
+import Card, {ObjectCard,FileCard,ContactCard,RecentUpdateCard,ModalPopUp} from './common_components/card'
 // chip 
 import Chip from './common_components/chip'
 // table 
@@ -37,7 +37,7 @@ export {
 	
 	// componets
 	NavSideBarLayout,
-	Card, ObjectCard,FileCard,ContactCard,RecentUpdateCard,
+	Card, ObjectCard,FileCard,ContactCard,RecentUpdateCard,ModalPopUp,
 	Chip,
 	Table,	
 
