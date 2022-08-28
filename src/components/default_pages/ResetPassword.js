@@ -116,13 +116,13 @@ export function ResetPassword(props){
 								fontSize:"20px",
 								padding:"4px",
 							}}/> 
-						<div onClick={()=>setShow(!show)} style={{color:"#F07F1A",fontSize:"20px",fontSize:"700"}}>{show ? "show":"hide"}</div>
+						<div onClick={()=>setShow(!show)} style={{color:"#F07F1A",fontSize:"20px",fontSize:"700",cursor:"pointer"}}>{show ? "show":"hide"}</div>
 					</div>
 
 
 					<div style={{...inputCSS,marginTop:"20px",marginLeft:"50px"}}>
 						<img src={PasswordIcon} style={{width:"24px",height:"24px",marginLeft: "15px"}}/>
-						<input type="text" placeholder="Confirm Password" 
+						<input type="password" placeholder="Confirm Password" 
 						style={{
 								width:"90%",border: "none",
 								backgroundColor: "transparent",
