@@ -5,7 +5,8 @@ import {useNavigate} from 'react-router-dom'
 import LPULogo from './resource/lpu_logo.png'
 import MailIcon from './resource/mail.png'
 import PasswordIcon from './resource/lock.png'
-
+import ClosedEye from './resource/closed_eye.png'
+import OpenEye from './resource/open_eye.png'
 
 export default function ResetRequest(props){
 
@@ -77,6 +78,7 @@ export default function ResetRequest(props){
 export function ResetPassword(props){
 
 	const [show,setShow] = useState(true)
+	const [showCon,setShowCon] = useState(true)
 
 	const style={
 		width: "656px",
@@ -116,21 +118,21 @@ export function ResetPassword(props){
 								fontSize:"20px",
 								padding:"4px",
 							}}/> 
-						<div onClick={()=>setShow(!show)} style={{color:"#F07F1A",fontSize:"20px",fontSize:"700",cursor:"pointer"}}>{show ? "show":"hide"}</div>
+							<img src={show ? ClosedEye : OpenEye} onClick={()=>setShow(!show)}  style={{width:"24px",height:"24px",marginRight: "15px",cursor:"pointer"}}/>
 					</div>
-
 
 					<div style={{...inputCSS,marginTop:"20px",marginLeft:"50px"}}>
 						<img src={PasswordIcon} style={{width:"24px",height:"24px",marginLeft: "15px"}}/>
-						<input type="password" placeholder="Confirm Password" 
+						<input type={showCon ? "password":"text"} placeholder="Password" 
 						style={{
-								width:"90%",border: "none",
+								width:"80%",border: "none",
 								backgroundColor: "transparent",
 								resize: "none",
 								outline: "none",
 								fontSize:"20px",
 								padding:"4px",
 							}}/> 
+							<img src={showCon ? ClosedEye : OpenEye} onClick={()=>setShowCon(!showCon)}  style={{width:"24px",height:"24px",marginRight: "15px",cursor:"pointer"}}/>
 					</div>
 
 					<div style={{width:"100%",display:"flex",justifyContent:"center"}}>
