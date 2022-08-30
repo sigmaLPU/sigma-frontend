@@ -54,14 +54,16 @@ export default function MouMaster(props){
 		}
 	}
 
-	function onClickToggleChip(array,id){
-		array[id].active = !array[id].active
-	}
-
 	function redirectTo(id){
 		const url = `/university/${id}`
 		navigate(url)
 	}
+
+	function ToggleChip(array,setArray,id){
+		var arr = array;arr[id].active=!arr[id].active;
+		setArray(arr)
+	}
+
 	useEffect(()=>{
 		dispatch(getAllUniversityReducer({})).then((data)=>{
 			const object = data?.payload?.data
@@ -87,36 +89,7 @@ export default function MouMaster(props){
 					console.log(obj)
 					r.push(obj)
 				}
-
 				setRows(r)
-
-
-
-				// var count = object?.count
-
-				// for(var i=0;i<count;i+=1){
-				// 	var x = object?.universities[i]
-				// 	console.log(x?.name)
-
-					// r.push({
-					// 	"Name of University": x?.name ? x?.name : "---",
-					// 	"Country": x?.country ? x?.country : "---",
-					// 	"Meetings": x?.meeting ? x?.meeting : "---",
-					// 	"Contact Person": x?.contact[0] ? x?.contact[0] : "---",
-					// 	"Agreement": x?.agreement ? x?.agreement : "---",
-					// 	"Details": <div style={{color:"#f07f1a",cursor:"pointer"}} onClick={()=>redirectTo(x?._id)}>Details</div>,
-					// })
-				// }
-
-
-				// for(var i=0;i<count;i+=1){
-				// 	var x = object?.universities[i]
-				// 	console.log(object?.universities[i])
-					
-				// }
-				// console.log("Present")
-				// console.log(r)
-				// setRows(r)
 			}
 			else{
 				console.log("error")
@@ -128,6 +101,7 @@ export default function MouMaster(props){
 			// console.log(error)
 			setMessage("Error while fetching Table")
 		})
+		ToggleChip(yourTags,setYourTags,0)
 	},[])
 
 	return (

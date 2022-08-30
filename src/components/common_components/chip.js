@@ -11,6 +11,7 @@ import RemoveIcon from './resource/remove.svg'
 
 export default function Chip(props){
 
+
 	const activeCSS = {
 		background : "#F07F1A",
 		color:"white",
