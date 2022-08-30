@@ -64,33 +64,68 @@ export default function MouMaster(props){
 	}
 	useEffect(()=>{
 		dispatch(getAllUniversityReducer({})).then((data)=>{
-			console.log(data?.payload?.data)
 			const object = data?.payload?.data
 			if(object?.count===0){
+				console.log("Data is not here")
 				setMessage("No data is here")
+				setRows([{"Name of University":"-","Country":"-","Meetings":"-","Contact Person":"-","Agreement":"-","Details":<div style={{color:"#f07f1a",cursor:"pointer"}} onClick={()=>redirectTo("temp")}>Details</div>}])
 			}else if(object?.count){
+				const uni = object?.universities
 				setMessage(null)
 				var r = []
-				for(const x of object?.universities){
-					r.push({
-						"Name of University": x?.name ? x?.name : "---",
-						"Country": x?.country ? x?.country : "---",
-						"Meetings": x?.meeting ? x?.meeting : "---",
-						"Contact Person": x?.contact[0] ? x?.contact[0] : "---",
-						"Agreement": x?.agreement ? x?.agreement : "---",
-						"Details": <div style={{color:"#f07f1a",cursor:"pointer"}} onClick={()=>redirectTo(x?._id)}>Details</div>,
-					})
+
+				for(var i=0;i<uni.length;i++){
+					var x = uni[i]
+					var obj = {}
+					obj["Name of University"] = x?.name ? x?.name : "---"
+					obj["Country"] = x?.country ? x?.country : "---"
+					obj["Meetings"] =  x?.meeting ? x?.meeting : "---"
+					obj["Contact Person"] =  x?.contact ? x?.contact[0] : "---"
+					obj["Agreement"] = x?.agreement ? x?.agreement : "---"
+					obj["Details"] = <div style={{color:"#f07f1a",cursor:"pointer"}} onClick={()=>redirectTo(x?._id)}>Details</div>
+					// }
+					console.log(obj)
+					r.push(obj)
 				}
-				console.log(r)
+
 				setRows(r)
+
+
+
+				// var count = object?.count
+
+				// for(var i=0;i<count;i+=1){
+				// 	var x = object?.universities[i]
+				// 	console.log(x?.name)
+
+					// r.push({
+					// 	"Name of University": x?.name ? x?.name : "---",
+					// 	"Country": x?.country ? x?.country : "---",
+					// 	"Meetings": x?.meeting ? x?.meeting : "---",
+					// 	"Contact Person": x?.contact[0] ? x?.contact[0] : "---",
+					// 	"Agreement": x?.agreement ? x?.agreement : "---",
+					// 	"Details": <div style={{color:"#f07f1a",cursor:"pointer"}} onClick={()=>redirectTo(x?._id)}>Details</div>,
+					// })
+				// }
+
+
+				// for(var i=0;i<count;i+=1){
+				// 	var x = object?.universities[i]
+				// 	console.log(object?.universities[i])
+					
+				// }
+				// console.log("Present")
+				// console.log(r)
+				// setRows(r)
 			}
 			else{
+				console.log("error")
 				setMessage("Unable to fetch data")
 				setColumn(["message"])
 				setRows([{message}])
 			}
 		}).catch((error)=>{
-			console.log(error)
+			// console.log(error)
 			setMessage("Error while fetching Table")
 		})
 	},[])
