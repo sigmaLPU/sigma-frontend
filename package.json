@@ -1,6 +1,6 @@
 {
   "name": "sigma-frontend",
-  "proxy": "http://localhost:5000",
+  "proxy": "https://sigmalpu.herokuapp.com/api/v2",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

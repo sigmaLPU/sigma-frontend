@@ -23,7 +23,6 @@ export const getAllUniversitySlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getAllUniversityReducer.fulfilled, (state, { payload }) => {
       console.log("university list loading (fulfilled)")
-      // console.log("payload in extraReducers",payload)
     });
     builder.addCase(getAllUniversityReducer.pending, (state, { payload }) => {
       console.log("university list loading (pending)")

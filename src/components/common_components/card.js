@@ -38,16 +38,18 @@ export default function Card(props){
 		justifyContent:"center",
 		fontSize: props?.heading?.fontSize ? props?.heading?.fontSize : "24px",
 		width:"100%",
+		maxHeight:"5rem",
 		...props?.styleHeading
 	}
 
 	return (
 		<div style={CardCSS}>
+
 			<div style={HeadingCSS}>
 					<div style={{width:"90%",display:"flex",justifyContent:"center"}}>
-						<div style={{marginLeft:"10%",minWidth:"10rem",height:"2.5rem"}}>
+						<div style={{marginLeft:"10%",padding:"0%",minWidth:"10rem",height:"3.5rem"}}>
 							<div style={{textAlign:"center",width:"100%",height:"100%",backgroundColor:"#f07f1a",color:"#ffffff",borderRadius:"0% 0% 50% 50%",position:"relative",top:"-15px"}}>
-								<span style={{padding:"8px",color:"black",fontWeight:"700"}}>{props?.heading}</span>
+								<span style={{padding:"8px",color:"white",fontWeight:"700",padding:"8px"}}>{props?.heading}</span>
 							</div>
 						</div>
 					</div>
@@ -57,6 +59,7 @@ export default function Card(props){
 						</IconButton>
 					</div>
 			</div>
+			
 			<div style={CardDataCSS}>
 				{props?.children}
 			</div>
@@ -125,7 +128,7 @@ export function ContactCard(props){
 	const [bgColor,setBgColor] = useState("white")
 
 	return (
-		<div style={{display:"flex",borderBottom:"1px solid black",backgroundColor:bgColor}} onMouseEnter={()=>setBgColor("#dbdbd9")} onMouseLeave={()=>setBgColor("white")}>
+		<div onClick={()=>console.log(props?.id)} style={{display:"flex",borderBottom:"1px solid black",backgroundColor:bgColor}} onMouseEnter={()=>setBgColor("#dbdbd9")} onMouseLeave={()=>setBgColor("white")}>
 			<div><img style={{width:"90px",borderRadius:"50px",marginRight:"12px"}} src={props?.data["img"] ? props?.data["img"] : "/"} /></div>
 			<div>
 				<table style={{width:"100%",display:"flex",flexDirection:"column",justifyContent:"space-between"}}>
@@ -167,6 +170,17 @@ export function RecentUpdateCard(props){
 
 
 
+export function MeetingCard(props){
+	return (
+		<div style={{marginBottom:"1rem"}}>
+			<div>{props?.data["title"]}</div>
+			<div style={{paddingTop:"4px",display:"flex",justifyContent:"space-between"}}>
+				<span style={{color:"red",fontWeight:"700"}}>Read more...</span>
+				<span>{props?.data["date"]}</span>
+			</div>
+		</div>
+	)
+}
 
 
 
@@ -212,16 +226,7 @@ export function ModalPopUp(props){
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
-        <button onClick={closeModal}>close</button>
-        <div>I am a modal</div>
-        <form>
-          <input />
-          <button>tab navigation</button>
-          <button>stays</button>
-          <button>inside</button>
-          <button>the modal</button>
-        </form>
+       	{props?.children}
       </Modal>
     </div>
 	)

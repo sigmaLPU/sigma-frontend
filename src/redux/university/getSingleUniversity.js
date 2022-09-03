@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-import {GET_SINGLE_UNIVERSITY_URL} from '../constants'
+import {GET_SINGLE_UNIVERSITY_URL,GET_SINGLE_UNIVERSITY_CONTACT_URL} from '../constants'
 
 const initialState = {
 }
@@ -16,6 +16,20 @@ const getSingleUniversityReducer = createAsyncThunk('getSingleUniverity/getSingl
           }})
     }
   )
+
+const getSingleUniversityContactReducer = createAsyncThunk('getSingleUniverityContact/getSingleUniversityContactReducer',
+    async (data)=>{
+      console.log("Sending request to backend to get single university data for contact")
+      return axios.get(`${GET_SINGLE_UNIVERSITY_CONTACT_URL}/${data?.id}`,{
+          headers: {
+            'Content-Type': 'application/json'
+          }})
+    }
+)
+
+
+
+
 
 export const getSingleUniversitySlice = createSlice({
   name: 'getSingleUniversity',
@@ -32,8 +46,20 @@ export const getSingleUniversitySlice = createSlice({
     builder.addCase(getSingleUniversityReducer.rejected, (state, { payload }) => {
       console.log("university loading (failed)")
     });
+
+
+    builder.addCase(getSingleUniversityContactReducer.fulfilled, (state, { payload }) => {
+      console.log("university contact loading (fulfilled)")
+      // console.log("payload in extraReducers",payload)
+    });
+    builder.addCase(getSingleUniversityContactReducer.pending, (state, { payload }) => {
+      console.log("university contact loading (pending)")
+    });
+    builder.addCase(getSingleUniversityContactReducer.rejected, (state, { payload }) => {
+      console.log("university contact loading (failed)")
+    });
   },
 })
 
 export default getSingleUniversitySlice.reducer
-export {getSingleUniversityReducer}
+export {getSingleUniversityReducer,getSingleUniversityContactReducer}
