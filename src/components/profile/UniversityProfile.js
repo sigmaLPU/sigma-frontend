@@ -10,10 +10,11 @@ import { getRequestReducer } from '../../redux/getRequestAsync'
 import { GET_SINGLE_UNIVERSITY_CONTACT_URL, GET_SINGLE_UNIVERSITY_MEETING_URL,GET_SINGLE_UNIVERSITY_PROGRAM_URL } from '../../redux/constants'
 
 
-import { universityBasicDetailsReducer } from '../../redux/temp/universityBasicDetails'
-import { universityContactReducer } from '../../redux/temp/universityContactPerson'
-import { universityMeetingReducer } from '../../redux/temp/universityMeeting'
+// import { universityBasicDetailsReducer } from '../../redux/temp/universityBasicDetails'
+// import { universityContactReducer } from '../../redux/temp/universityContactPerson'
+// import { universityMeetingReducer } from '../../redux/temp/universityMeeting'
 
+import {universityBasicDetailsReducer,universityContactReducer,universityMeetingReducer} from '../../redux/routes'
 
 
 function getUniId(url){
