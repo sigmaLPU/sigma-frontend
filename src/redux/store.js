@@ -4,25 +4,25 @@ import { configureStore } from '@reduxjs/toolkit'
 import authUserReducer from './users/staff/auth.js'
 import authenticateToken from './users/staff/auth.js'
 
-import getAllUniversitySlice from './university/getAllUniversity.js'
-import getSingleUniversitySlice from './university/getSingleUniversity.js'
+import {getAllUniversitySlice} from './routes'
 
-import getRequestSlice from './getRequestAsync'
-
-import {universityBasicDetailsSlice,universityContactSlice,universityMeetingSlice} from './routes'
+import {
+  universityBasicDetailsSlice,
+  universityContactSlice,
+  universityMeetingSlice,
+  universityProgramSlice,
+} from './routes'
 
 export const store = configureStore({
   reducer: {
     auth : authUserReducer,
     authToken:authenticateToken,
   
-    getAllUniversity:getAllUniversitySlice,
-    getSingleUniversitySlice:getSingleUniversitySlice,
-    getRequestSlice:getRequestSlice,
+    getAllUniversitySlice:getAllUniversitySlice,
 
     universityBasicDetailsSlice:universityBasicDetailsSlice,
     universityContactSlice:universityContactSlice,
-    universityMeetingSlice:universityMeetingSlice
-  
+    universityMeetingSlice:universityMeetingSlice,
+    universityProgramSlice:universityProgramSlice,  
   },
 })

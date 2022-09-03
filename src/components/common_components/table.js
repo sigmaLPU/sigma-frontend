@@ -68,16 +68,15 @@ export default function Table(props){
 
 	
 	useEffect(()=>{
-		if(props?.getData){
-			const data = props?.getData()
-			if(!data) return
+		if(props?.data){
+			var data = props?.data?.data
+			console.log("Table props ---> ",props)
 			setPagenation(data?.pagenation_id)
 			setColumn(data?.column)
 			setRows(data?.rows)
-			setDataSize(0)
-			console.log(data?.rows)
+			setDataSize(data?.rows ? data?.rows.length : 0)
 		}
-	},[])
+	},[props])
 
 	return(
 		<>
@@ -92,17 +91,35 @@ export default function Table(props){
 			<div>
 				<table style={tableCSS}>
 					<tr style={tableHeadingCSS}>
-						{column.map(col=>(
-							<td style={{textAlign:"center"}}>{col}</td>
-						))}
+						{column.map(col=>{
+							var flag = true
+							if(props?.replace){
+								for(var x of props?.replace){
+									if(x.name===col){flag=true;break;}
+								}
+							}
+							if(flag)
+								return <td style={{textAlign:"center"}}>{col}</td>
+						})}
 					</tr>
 					{
 						rows.map((row,index)=>(
 							<tr style={index%2===0 ? {backgroundColor:"rgba(217,217,217,1)",...rowCSS}:{backgroundColor:"white",...rowCSS}}>
 								{
-									column.map((col,index)=>(
-										<td style={{borderLeft:"0.5px solid #000000",textAlign:"center"}}>{row[col]}</td>
-									))
+									column.map((col,index)=>{
+										var flag = true
+										if(props?.replace){
+											for(var x of props?.replace){
+												if(x.name===col){
+													return x.value(row[col])
+													flag=true;break;
+												}
+											}
+										}
+										if(flag)
+											return <td style={{borderLeft:"0.5px solid #000000",textAlign:"center"}}>{row[col]}</td>
+									}
+									)
 								}
 							</tr>
 						))

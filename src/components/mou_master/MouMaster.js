@@ -8,13 +8,29 @@ import {NavSideBarLayout} from '../routes'
 import {Card ,Chip, Table} from '../routes'
 
 // other imports
-import { getAllUniversityReducer } from '../../redux/university/getAllUniversity'
+import { getAllUniversityReducer,setRedirectFunction, updateViewDetails } from '../../redux/routes'
 
 
 // function defination
 export default function MouMaster(props){
 
 	const dispatch = useDispatch()
+
+	const rawData = useSelector((state)=>state.getAllUniversitySlice.data)
+
+	const [data,setData] = useState(rawData)
+
+	useEffect(()=>{
+		console.log("pre mou master ---> ",rawData)
+		setData(rawData)
+	},[rawData])
+
+	const replace = [{"name":"Details","value":function(id){return <div onClick={()=>redirectTo(id)} style={{color:"#F07F1A",width:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>Details</div>}}]
+
+
+	useEffect(()=>{
+		dispatch(getAllUniversityReducer({}))
+	},[])
 
 	const navigate = useNavigate()
 	// table state
@@ -65,42 +81,42 @@ export default function MouMaster(props){
 	}
 
 	useEffect(()=>{
-		dispatch(getAllUniversityReducer({})).then((data)=>{
-			const object = data?.payload?.data
-			if(object?.count===0){
-				console.log("Data is not here")
-				setMessage("No data is here")
-				setRows([{"Name of University":"-","Country":"-","Meetings":"-","Contact Person":"-","Agreement":"-","Details":<div style={{color:"#f07f1a",cursor:"pointer"}} onClick={()=>redirectTo("temp")}>Details</div>}])
-			}else if(object?.count){
-				const uni = object?.universities
-				setMessage(null)
-				var r = []
+		// dispatch(getAllUniversityReducer({})).then((data)=>{
+		// 	const object = data?.payload?.data
+		// 	if(object?.count===0){
+		// 		console.log("Data is not here")
+		// 		setMessage("No data is here")
+		// 		setRows([{"Name of University":"-","Country":"-","Meetings":"-","Contact Person":"-","Agreement":"-","Details":<div style={{color:"#f07f1a",cursor:"pointer"}} onClick={()=>redirectTo("temp")}>Details</div>}])
+		// 	}else if(object?.count){
+		// 		const uni = object?.universities
+		// 		setMessage(null)
+		// 		var r = []
 
-				for(var i=0;i<uni.length;i++){
-					var x = uni[i]
-					var obj = {}
-					obj["Name of University"] = x?.name ? x?.name : "---"
-					obj["Country"] = x?.country ? x?.country : "---"
-					obj["Meetings"] =  x?.meeting ? x?.meeting : "---"
-					obj["Contact Person"] =  x?.contact ? x?.contact[0] : "---"
-					obj["Agreement"] = x?.agreement ? x?.agreement : "---"
-					obj["Details"] = <div style={{color:"#f07f1a",cursor:"pointer"}} onClick={()=>redirectTo(x?._id)}>Details</div>
-					// }
-					console.log(obj)
-					r.push(obj)
-				}
-				setRows(r)
-			}
-			else{
-				console.log("error")
-				setMessage("Unable to fetch data")
-				setColumn(["message"])
-				setRows([{message}])
-			}
-		}).catch((error)=>{
-			// console.log(error)
-			setMessage("Error while fetching Table")
-		})
+		// 		for(var i=0;i<uni.length;i++){
+		// 			var x = uni[i]
+		// 			var obj = {}
+		// 			obj["Name of University"] = x?.name ? x?.name : "---"
+		// 			obj["Country"] = x?.country ? x?.country : "---"
+		// 			obj["Meetings"] =  x?.meeting ? x?.meeting : "---"
+		// 			obj["Contact Person"] =  x?.contact ? x?.contact[0] : "---"
+		// 			obj["Agreement"] = x?.agreement ? x?.agreement : "---"
+		// 			obj["Details"] = <div style={{color:"#f07f1a",cursor:"pointer"}} onClick={()=>redirectTo(x?._id)}>Details</div>
+		// 			// }
+		// 			console.log(obj)
+		// 			r.push(obj)
+		// 		}
+		// 		setRows(r)
+		// 	}
+		// 	else{
+		// 		console.log("error")
+		// 		setMessage("Unable to fetch data")
+		// 		setColumn(["message"])
+		// 		setRows([{message}])
+		// 	}
+		// }).catch((error)=>{
+		// 	// console.log(error)
+		// 	setMessage("Error while fetching Table")
+		// })
 		ToggleChip(yourTags,setYourTags,0)
 	},[])
 
@@ -133,10 +149,11 @@ export default function MouMaster(props){
 					</div>
 					{/*Right Part*/}
 					<div style={{marginLeft:"1rem",width:"100%"}}>
-						{ message===null && <Table 
+						<Table 
+							data={data}
 							heading={"Partner University"}
-							getData = {getData}
-						/>}
+							replace = {replace}
+						/>
 					</div>
 				</div>
 			</NavSideBarLayout>

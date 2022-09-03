@@ -5,16 +5,13 @@ import {NavSideBarLayout} from '../routes'
 import {Card , Table,ObjectCard,FileCard,MeetingCard,ContactCard,RecentUpdateCard,ModalPopUp} from '../routes'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { getSingleUniversityReducer,getSingleUniversityContactReducer } from '../../redux/university/getSingleUniversity'
-import { getRequestReducer } from '../../redux/getRequestAsync'
-import { GET_SINGLE_UNIVERSITY_CONTACT_URL, GET_SINGLE_UNIVERSITY_MEETING_URL,GET_SINGLE_UNIVERSITY_PROGRAM_URL } from '../../redux/constants'
 
-
-// import { universityBasicDetailsReducer } from '../../redux/temp/universityBasicDetails'
-// import { universityContactReducer } from '../../redux/temp/universityContactPerson'
-// import { universityMeetingReducer } from '../../redux/temp/universityMeeting'
-
-import {universityBasicDetailsReducer,universityContactReducer,universityMeetingReducer} from '../../redux/routes'
+import {
+	universityBasicDetailsReducer,
+	universityContactReducer,
+	universityMeetingReducer,
+	universityProgramReducer,
+} from '../../redux/routes'
 
 
 function getUniId(url){
@@ -34,14 +31,6 @@ export default function UniversityProfile(props){
 	const dispatch = useDispatch();
 	// default image for user contact
 	const loading_obj = {"STATUS":"LOADING"};
-
-	// contact data state
-	const [ContactData,setContactData] = useState({"data":[],"ids":[]})
-	// recent update state
-	const [RecentUpdateData,setRecentUpdateData] = useState([
-		{"title":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text","date":"27-07-2022"},
-	])
-
 
 	return (
 		<div>
@@ -74,12 +63,7 @@ export default function UniversityProfile(props){
 					</div>
 
 					<div style={{marginTop:"2rem"}}>
-						<Table 
-							heading={"Program of colaboration"}
-							style={{
-							minHeight:"15rem"
-							}}
-						/>
+						<ProgramOfColaboration/>						
 					</div>
 				</div>					
 				<ModalPopUp>
@@ -320,3 +304,22 @@ function DocumentRequired(props){
 	)
 }
 
+function ProgramOfColaboration(props){
+
+	const dispatch = useDispatch()
+
+	const meetingData = useSelector((state)=>state.universityProgramSlice.data)
+
+	useEffect(()=>{console.log("state Program ---> ",meetingData)},[meetingData])
+
+	useEffect(()=>{
+		const id = getUniId(window.location.href) // obtaining university id from url
+		dispatch(universityProgramReducer({id}))
+	},[])
+
+	return (
+		<>
+			<Table heading={"Program of colaboration"} style={{minHeight:"15rem"}}/>
+		</>
+	)
+}
