@@ -12,6 +12,7 @@ import { GET_SINGLE_UNIVERSITY_CONTACT_URL, GET_SINGLE_UNIVERSITY_MEETING_URL,GE
 
 import { universityBasicDetailsReducer } from '../../redux/temp/universityBasicDetails'
 import { universityContactReducer } from '../../redux/temp/universityContactPerson'
+import { universityMeetingReducer } from '../../redux/temp/universityMeeting'
 
 
 
@@ -142,7 +143,7 @@ function ContactPerson(props){
 
 	const dispatch = useDispatch()
 
-	const contactData = useSelector((state)=>state.universityContactSlice.data)?.data
+	const contactData = useSelector((state)=>state.universityContactSlice.data)
 
 	useEffect(()=>{console.log("state contact ---> ",contactData)},[contactData])
 
@@ -156,8 +157,8 @@ function ContactPerson(props){
 			{/* Contact Person */}
 			<Card style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Contact Person">
 				{
-					contactData?.data?.map((item,key)=>(
-						<ContactCard data={item} id={contactData?.ids[key]}/>
+					contactData?.data?.data?.map((item,key)=>(
+						<ContactCard data={item} id={contactData?.data?.ids[key]}/>
 					))
 				}
 			</Card>
@@ -252,40 +253,23 @@ function Meetings(props){
 
 	const dispatch = useDispatch()
 
-	const [meetingData,setMeetingData] = useState([
-		{"title":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text","date":"27-07-2022"},
-	])
+	const meetingData = useSelector((state)=>state.universityMeetingSlice.data)
+
+	useEffect(()=>{console.log("state meetings ---> ",meetingData)},[meetingData])
 
 	useEffect(()=>{
 		const id = getUniId(window.location.href) // obtaining university id from url
 
-		// fetching meetings details from server
-		dispatch(getRequestReducer({url:`${GET_SINGLE_UNIVERSITY_MEETING_URL}/${id}`})).then((data)=>{
-			data = data?.payload?.data?.meetings
-			if(data){
-				var temp = {}
-				var arr = []
-				for(const obj of data){
-					var temp2 = {}
-					temp2["title"] = obj?.title
-					temp2["meetingTime"] = obj?.meetingTime
-				}
-			}else{
-				console.log("No data found")
-			}
-		}).catch((error)=>{
-			console.log(error)
-		})
-		},[])
+		dispatch(universityMeetingReducer({id}))
+	},[])
 
-	useEffect(()=>{console.log(meetingData)},[meetingData])
 
 	return (
 		<>
 			{/* Meetings */}
 			<Card style={{display:"flex",alignContent:"start",flexWrap:"wrap",margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"641px"}} heading="Meetings">
 				<ul>
-					{		meetingData.map(item=>(
+					{	meetingData?.data?.data &&	meetingData?.data?.data.map(item=>(
 							<li><MeetingCard data={item}/></li>
 					))}
 				</ul>
