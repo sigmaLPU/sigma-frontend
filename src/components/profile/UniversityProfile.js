@@ -308,18 +308,32 @@ function ProgramOfColaboration(props){
 
 	const dispatch = useDispatch()
 
-	const meetingData = useSelector((state)=>state.universityProgramSlice.data)
+	const programData = useSelector((state)=>state.universityProgramSlice.data)
 
-	useEffect(()=>{console.log("state Program ---> ",meetingData)},[meetingData])
+	const [data,setData] = useState({rows:[],column:[],pagenation_id:0})
+
+	useEffect(()=>{
+		var rows = programData.data.data
+		var column = programData.data.column
+		console.log("state Program ---> ",rows,column)
+		setData({rows:rows,column:column,pagenation_id:0})
+	},[programData])
 
 	useEffect(()=>{
 		const id = getUniId(window.location.href) // obtaining university id from url
 		dispatch(universityProgramReducer({id}))
 	},[])
 
+
 	return (
 		<>
-			<Table heading={"Program of colaboration"} style={{minHeight:"15rem"}}/>
+			<Table data={data} heading={"Program of colaboration"} style={{minHeight:"15rem"}}/>
 		</>
 	)
 }
+
+
+
+
+
+

@@ -69,13 +69,18 @@ export default function Table(props){
 	
 	useEffect(()=>{
 		if(props?.data){
-			var data = props?.data?.data
-			console.log("Table props ---> ",props)
-			setPagenation(data?.pagenation_id)
-			setColumn(data?.column)
-			setRows(data?.rows)
+			var data = props?.data
+			console.log("Table props r ---> ",props?.data?.rows)
+			console.log("Table props c ---> ",props?.data?.column)
+			if(data?.pagenation_id)
+				setPagenation(data?.pagenation_id)
+			// if(data?.column)
+				setColumn(props?.data?.column ? props?.data?.column : [])
+			// if(data?.rows)
+				setRows(props?.data?.rows ? props?.data?.rows : [])
 			setDataSize(data?.rows ? data?.rows.length : 0)
 		}
+		console.log("table ---> ",rows,column)
 	},[props])
 
 	return(
@@ -91,7 +96,7 @@ export default function Table(props){
 			<div>
 				<table style={tableCSS}>
 					<tr style={tableHeadingCSS}>
-						{column.map(col=>{
+						{column && column.map(col=>{
 							var flag = true
 							if(props?.replace){
 								for(var x of props?.replace){

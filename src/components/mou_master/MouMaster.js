@@ -81,42 +81,6 @@ export default function MouMaster(props){
 	}
 
 	useEffect(()=>{
-		// dispatch(getAllUniversityReducer({})).then((data)=>{
-		// 	const object = data?.payload?.data
-		// 	if(object?.count===0){
-		// 		console.log("Data is not here")
-		// 		setMessage("No data is here")
-		// 		setRows([{"Name of University":"-","Country":"-","Meetings":"-","Contact Person":"-","Agreement":"-","Details":<div style={{color:"#f07f1a",cursor:"pointer"}} onClick={()=>redirectTo("temp")}>Details</div>}])
-		// 	}else if(object?.count){
-		// 		const uni = object?.universities
-		// 		setMessage(null)
-		// 		var r = []
-
-		// 		for(var i=0;i<uni.length;i++){
-		// 			var x = uni[i]
-		// 			var obj = {}
-		// 			obj["Name of University"] = x?.name ? x?.name : "---"
-		// 			obj["Country"] = x?.country ? x?.country : "---"
-		// 			obj["Meetings"] =  x?.meeting ? x?.meeting : "---"
-		// 			obj["Contact Person"] =  x?.contact ? x?.contact[0] : "---"
-		// 			obj["Agreement"] = x?.agreement ? x?.agreement : "---"
-		// 			obj["Details"] = <div style={{color:"#f07f1a",cursor:"pointer"}} onClick={()=>redirectTo(x?._id)}>Details</div>
-		// 			// }
-		// 			console.log(obj)
-		// 			r.push(obj)
-		// 		}
-		// 		setRows(r)
-		// 	}
-		// 	else{
-		// 		console.log("error")
-		// 		setMessage("Unable to fetch data")
-		// 		setColumn(["message"])
-		// 		setRows([{message}])
-		// 	}
-		// }).catch((error)=>{
-		// 	// console.log(error)
-		// 	setMessage("Error while fetching Table")
-		// })
 		ToggleChip(yourTags,setYourTags,0)
 	},[])
 
