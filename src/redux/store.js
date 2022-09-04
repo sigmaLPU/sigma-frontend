@@ -11,6 +11,7 @@ import {
   universityContactSlice,
   universityMeetingSlice,
   universityProgramSlice,
+  universityRecentUpdateSlice,
 } from './routes'
 
 export const store = configureStore({
@@ -24,5 +25,6 @@ export const store = configureStore({
     universityContactSlice:universityContactSlice,
     universityMeetingSlice:universityMeetingSlice,
     universityProgramSlice:universityProgramSlice,  
+    universityRecentUpdateSlice:universityRecentUpdateSlice,
   },
 })

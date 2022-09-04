@@ -11,6 +11,7 @@ import {
 	universityContactReducer,
 	universityMeetingReducer,
 	universityProgramReducer,
+	universityRecentUpdateReducer,
 } from '../../redux/routes'
 
 
@@ -219,6 +220,18 @@ function RecentUpdate(props){
 	const [data,setData] = useState([
 		{"title":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text","date":"27-07-2022"},
 	])
+
+	const recentUpdateData = useSelector((state)=>state.universityRecentUpdateSlice.data)
+
+	useEffect(()=>{
+		console.log("state recentUpdate ---> ",recentUpdateData)
+		setData(recentUpdateData?.data?.data ? recentUpdateData?.data?.data : [] )
+	},[recentUpdateData])
+
+	useEffect(()=>{
+		const id = getUniId(window.location.href) // obtaining university id from url
+		dispatch(universityRecentUpdateReducer({id}))
+	},[])
 
 	return (
 		<>

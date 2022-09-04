@@ -3,6 +3,7 @@ import {
 	universityContactSlice,universityContactReducer,
 	universityMeetingSlice,universityMeetingReducer,
 	universityProgramSlice,universityProgramReducer,
+	universityRecentUpdateSlice,universityRecentUpdateReducer,
 } from './temp/routes'
 
 import {
@@ -15,6 +16,7 @@ export {
 	universityContactSlice,universityContactReducer,
 	universityMeetingSlice,universityMeetingReducer,
 	universityProgramSlice,universityProgramReducer,
+	universityRecentUpdateSlice,universityRecentUpdateReducer,
 
 	// university list
 	getAllUniversitySlice,getAllUniversityReducer,setRedirectFunction,updateViewDetails
