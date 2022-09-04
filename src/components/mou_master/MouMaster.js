@@ -25,7 +25,7 @@ export default function MouMaster(props){
 		setData(rawData)
 	},[rawData])
 
-	const replace = [{"name":"Details","value":function(id){return <div onClick={()=>redirectTo(id)} style={{color:"#F07F1A",width:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>Details</div>}}]
+	const replace = [{"name":"Details","value":function(id){return <div style={{cursor:"pointer"}} onClick={()=>redirectTo(id)} style={{color:"#F07F1A",width:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>Details</div>}}]
 
 
 	useEffect(()=>{
