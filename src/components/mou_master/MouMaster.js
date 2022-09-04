@@ -115,6 +115,8 @@ export default function MouMaster(props){
 					<div style={{marginLeft:"1rem",width:"100%"}}>
 						<Table 
 							data={data}
+							rows = {data?.data?.rows}
+							column = {data?.data?.column}
 							heading={"Partner University"}
 							replace = {replace}
 						/>

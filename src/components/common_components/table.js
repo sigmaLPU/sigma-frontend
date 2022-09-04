@@ -68,16 +68,17 @@ export default function Table(props){
 
 	
 	useEffect(()=>{
+		console.log("table props ---> ",props)
 		if(props?.data){
 			var data = props?.data
-			console.log("Table props r ---> ",props?.data?.rows)
-			console.log("Table props c ---> ",props?.data?.column)
+			console.log("Table props r ---> ",props?.rows)
+			console.log("Table props c ---> ",props?.column)
 			if(data?.pagenation_id)
 				setPagenation(data?.pagenation_id)
 			// if(data?.column)
-				setColumn(props?.data?.column ? props?.data?.column : [])
+				setColumn(props?.column ? props?.column : [])
 			// if(data?.rows)
-				setRows(props?.data?.rows ? props?.data?.rows : [])
+				setRows(props?.rows ? props?.rows : [])
 			setDataSize(data?.rows ? data?.rows.length : 0)
 		}
 		console.log("table ---> ",rows,column)

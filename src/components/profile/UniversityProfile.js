@@ -326,8 +326,8 @@ function ProgramOfColaboration(props){
 	const [data,setData] = useState({rows:[],column:[],pagenation_id:0})
 
 	useEffect(()=>{
-		var rows = programData.data.data
-		var column = programData.data.column
+		var rows = programData.data.data ? programData.data.data : [] 
+		var column = programData.data.column ? programData.data.column : []
 		console.log("state Program ---> ",rows,column)
 		setData({rows:rows,column:column,pagenation_id:0})
 	},[programData])
@@ -340,7 +340,7 @@ function ProgramOfColaboration(props){
 
 	return (
 		<>
-			<Table data={data} heading={"Program of colaboration"} style={{minHeight:"15rem"}}/>
+			<Table data={data} rows={data.rows} column={data.column} heading={"Program of colaboration"} style={{minHeight:"15rem"}}/>
 		</>
 	)
 }
