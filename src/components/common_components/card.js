@@ -3,14 +3,13 @@ import React from 'react';
 import {useState} from 'react'
 
 // component import
-
+import {ModalPopUp} from '../routes'
 
 // other imports
 import CallMadeIcon from '@mui/icons-material/CallMade'; // heading pop icon
 import IconButton from '@mui/material/IconButton'; // Parent component to fit icon inside it
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
-import Modal from 'react-modal';
 
 // function defination
 
@@ -54,9 +53,9 @@ export default function Card(props){
 						</div>
 					</div>
 					<div style={{margin:"11px 8px 0px 0px"}}>
-						<IconButton color="inherit" onClick={()=>props?.setOpen(true)} aria-label="open drawer" style={{width:"30px",height:"28.54px",float:"right",border:"1px solid black" , borderRadius:"8px"}}>
-							<CallMadeIcon />
-						</IconButton>
+						<ModalPopUp>
+							{props?.popup ? props?.popup : "Not Available"}
+						</ModalPopUp>		
 					</div>
 			</div>
 			
@@ -181,65 +180,3 @@ export function MeetingCard(props){
 		</div>
 	)
 }
-
-
-
-
-
-
-export function ModalPopUp(props){
-
-	const customStyles = {
-	  content: {
-	    top: '50%',
-	    left: '50%',
-	    right: 'auto',
-	    bottom: 'auto',
-	    marginRight: '-50%',
-	    transform: 'translate(-50%, -50%)',
-	  },
-	};
-
-	let subtitle;
-	const [modalIsOpen, setIsOpen] = React.useState(false);
-
-	function openModal() {
-		setIsOpen(true);
-	}
-
-	function afterOpenModal() {
-		subtitle.style.color = '#f00';
-	}
-
-	function closeModal() {
-		setIsOpen(false);
-	}
-
-
-	return (
-		<div>
-      <button onClick={openModal}>Open Modal</button>
-      <Modal
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Example Modal"
-      >
-       	{props?.children}
-      </Modal>
-    </div>
-	)
-}
-
-
-
-
-
-
-
-
-
-
-
-

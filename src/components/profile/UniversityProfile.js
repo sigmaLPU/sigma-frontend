@@ -2,7 +2,15 @@ import React,{useState,useEffect} from 'react'
 
 // other import
 import {NavSideBarLayout} from '../routes'
-import {Card , Table,ObjectCard,FileCard,MeetingCard,ContactCard,RecentUpdateCard,ModalPopUp} from '../routes'
+import {
+	Card ,
+	BasicDetailsModal, 
+	Table,ObjectCard,
+	FileCard,MeetingCard,
+	ContactCard,RecentUpdateCard,
+	ModalPopUp,ContactDetailsModal,
+} from '../routes'
+
 import { useDispatch, useSelector } from 'react-redux'
 
 
@@ -42,25 +50,25 @@ export default function UniversityProfile(props){
 					<div style={{display:"flex",justifyContent:"space-between",maxHeight:"790px"}}>
 
 						<div style={{display:"flex",rowGap:"2rem",flexWrap:"wrap",alignContent:"space-between"}}>						
-							<BasicDetails/>							
-							<MOUcontract/>
-							<ContactPerson/>
-							<ApplicationProcess/>
-							<FacultyMobiliy/>								
-							<FinancialAgreements/>
+							<BasicDetails popup={<BasicDetailsModal/>}/>							
+							<MOUcontract popup={<BasicDetailsModal/>}/>
+							<ContactPerson popup={<ContactDetailsModal/>}/>
+							<ApplicationProcess popup={<BasicDetailsModal/>}/>
+							<FacultyMobiliy popup={<BasicDetailsModal/>}/>								
+							<FinancialAgreements popup={<BasicDetailsModal/>}/>
 						</div>
 
 						<div style={{position:"relative",top:"-15px"}}>
-							<RecentUpdate/>
+							<RecentUpdate popup={<BasicDetailsModal/>}/>
 						</div>
 
 					</div>
 					{/*Middle Screeen*/}
 					
 					<div style={{display:"flex",justifyContent:"space-between",marginTop:"2rem",flexWrap:"wrap",height:"380px"}}>
-						<Meetings/>
-						<GuestVisit/>
-						<DocumentRequired/>
+						<Meetings popup={<BasicDetailsModal/>}/>
+						<GuestVisit popup={<BasicDetailsModal/>}/>
+						<DocumentRequired popup={<BasicDetailsModal/>}/>
 					</div>
 
 					<div style={{marginTop:"2rem"}}>
@@ -68,7 +76,7 @@ export default function UniversityProfile(props){
 					</div>
 				</div>					
 				<ModalPopUp>
-					Hello world
+					<BasicDetailsModal />
 				</ModalPopUp>
 			</NavSideBarLayout>
 		</div>
@@ -95,7 +103,7 @@ function BasicDetails(props){
 	return (
 		<>
 			{/* basic Details */}
-			<Card style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Basic Details">
+			<Card popup={props?.popup} style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Basic Details">
 				<ObjectCard data={details.data}/>
 			</Card>
 		</>
@@ -116,7 +124,7 @@ function MOUcontract(props){
 	return (
 		<>
 			{/* Mou contract */}
-			<Card style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Mou / Contract">
+			<Card popup={props?.popup} style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Mou / Contract">
 				{data.map(item=>(
 					<FileCard data={item}/>
 				))}
@@ -141,7 +149,7 @@ function ContactPerson(props){
 	return (
 		<>
 			{/* Contact Person */}
-			<Card style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Contact Person">
+			<Card  popup={props?.popup}  style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Contact Person">
 				{
 					contactData?.data?.data?.map((item,key)=>(
 						<ContactCard data={item} id={contactData?.data?.ids[key]}/>
@@ -164,7 +172,7 @@ function ApplicationProcess(props){
 	return (
 		<>
 			{/* Application process*/}
-			<Card style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Application Process">
+			<Card  popup={props?.popup} style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Application Process">
 				<ul>
 				{
 					data.map(item=>(
@@ -188,7 +196,7 @@ function FacultyMobiliy(props){
 	return (
 		<>
 			{/* Student/ faculty mobility */}
-			<Card style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Student/ faculty mobility">
+			<Card  popup={props?.popup}  style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Student/ faculty mobility">
 				
 			</Card>
 		</>
@@ -206,7 +214,7 @@ function FinancialAgreements(props){
 	return (
 		<>
 			{/* Financial Agreements */}
-			<Card style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Financial Agreements">
+			<Card  popup={props?.popup} style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Financial Agreements">
 			
 			</Card>
 		</>
@@ -236,7 +244,7 @@ function RecentUpdate(props){
 	return (
 		<>
 			{/* RECENT UPDATE*/}
-			<Card cardDataCSS={{maxHeight:"90%"}}  heading="Recent Update" style={{width:"411px",height:"100%",border:"1px solid black"}}>
+			<Card popup={props?.popup}  cardDataCSS={{maxHeight:"90%"}}  heading="Recent Update" style={{width:"411px",height:"100%",border:"1px solid black"}}>
 				<ul>
 				{		data.map(item=>(
 						<li><RecentUpdateCard data={item}/></li>
@@ -265,7 +273,7 @@ function Meetings(props){
 	return (
 		<>
 			{/* Meetings */}
-			<Card style={{display:"flex",alignContent:"start",flexWrap:"wrap",margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"641px"}} heading="Meetings">
+			<Card  popup={props?.popup} style={{display:"flex",alignContent:"start",flexWrap:"wrap",margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"641px"}} heading="Meetings">
 				<ul>
 					{	meetingData?.data?.data &&	meetingData?.data?.data.map(item=>(
 							<li><MeetingCard data={item}/></li>
@@ -287,7 +295,7 @@ function GuestVisit(props){
 	return (
 		<>
 			{/* Guest Visit */}
-			<Card style={{display:"flex",alignContent:"start",flexWrap:"wrap",alignItems:"stretch",margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"641px"}} heading="Guest Visit">
+			<Card popup={props?.popup}  style={{display:"flex",alignContent:"start",flexWrap:"wrap",alignItems:"stretch",margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"641px"}} heading="Guest Visit">
 
 			</Card>
 		</>
@@ -305,7 +313,7 @@ function DocumentRequired(props){
 	return (
 		<>
 			{/* Document Required */}
-			<Card style={{display:"flex",alignContent:"start",flexWrap:"wrap",alignItems:"stretch",margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"411px",height:"100%"}} heading="Document Required">
+			<Card  popup={props?.popup} style={{display:"flex",alignContent:"start",flexWrap:"wrap",alignItems:"stretch",margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"411px",height:"100%"}} heading="Document Required">
 			<ul>
 					{		data.map(item=>(
 							<li><RecentUpdateCard data={item}/></li>

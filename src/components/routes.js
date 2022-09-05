@@ -18,12 +18,13 @@ import UniversityProfile from './profile/UniversityProfile'
 // navbar side bar
 import NavSideBarLayout from './common_components/navbarSidebar' 
 // card container common components
-import Card, {ObjectCard,FileCard,ContactCard,RecentUpdateCard,ModalPopUp,MeetingCard} from './common_components/card'
+import Card, {ObjectCard,FileCard,ContactCard,RecentUpdateCard,MeetingCard} from './common_components/card'
 // chip 
 import Chip from './common_components/chip'
 // table 
 import Table from './common_components/table'
-
+//modal
+import ModalPopUp, {BasicDetailsModal,ContactDetailsModal} from './common_components/modal'
 
 export {
 	//pages
@@ -37,8 +38,11 @@ export {
 	
 	// componets
 	NavSideBarLayout,
-	Card, ObjectCard,FileCard,ContactCard,RecentUpdateCard,ModalPopUp,MeetingCard,
+	Card, ObjectCard,FileCard,ContactCard,RecentUpdateCard,MeetingCard,
 	Chip,
 	Table,	
+
+	// modalpop
+	BasicDetailsModal,ModalPopUp,ContactDetailsModal,
 
 };

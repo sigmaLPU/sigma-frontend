@@ -10,6 +10,7 @@ const initialState = {
   }
 }
 
+// fetching data
 const universityContactReducer = createAsyncThunk('universityContact/universityContactReducer',
   async (data)=>{
     console.log("Fetching university contact data")
@@ -19,6 +20,25 @@ const universityContactReducer = createAsyncThunk('universityContact/universityC
     }})
   }
 )
+
+// adding data
+const universityContactAddReducer = createAsyncThunk('universityContact/universityAddContactReducer',
+  async (data)=>{
+    var config = {
+      method: 'post',
+      url: `https://sigmalpu.herokuapp.com/api/v2/university/contact/${data?.id}/add`,
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      data : data?.data
+    };
+
+    console.log("Adding university contact data ",data?.data)
+    return axios(config)
+  }
+)
+
+
 
 export const universityContactSlice = createSlice({
   name: 'getSingleUniversityContact',
@@ -64,8 +84,37 @@ export const universityContactSlice = createSlice({
       state.data.loading = false
     });
 
+
+    builder.addCase(universityContactAddReducer.fulfilled, (state, { payload }) => {
+      console.log("university contact add fulfilled payload",payload)
+      state.data.message = "Fulfilled"
+      state.data.loading = false
+      console.log(payload)
+      if(payload?.data?.universityContact){
+        var temp = {}
+        temp["name"] = payload?.data?.universityContact?.name ? payload?.data?.universityContact?.name : "Not available";
+        temp["mail"] = payload?.data?.universityContact?.email ? payload?.data?.universityContact?.email : "Not available";
+        temp["mobile"] = payload?.data?.universityContact?.phone ? payload?.data?.universityContact?.phone : "Not available";
+        temp["img"] = payload?.data?.universityContact?.img ? payload?.data?.universityContact?.img : "https://anchorandcontrol.com/wp-content/themes/cera-child/assets/images/avatars/user-avatar.png";
+        console.log("data added ----> ",temp)      
+        state.data.data.data.push(temp)
+        state.data.data.ids.push(payload?.data?.universityContact?._id ? payload?.data?.universityContact?._id : 0)
+      }
+    });
+
+    builder.addCase(universityContactAddReducer.pending, (state, { payload }) => {
+      console.log("university contact add pending payload",payload)
+      state.data.message = "Loading"
+    });
+    
+    builder.addCase(universityContactAddReducer.rejected, (state, { payload }) => {
+      console.log("university contact add  rejected payload",payload)
+      state.data.message = "Failed"
+      state.data.loading = false
+    });
+
   },
 })
 
 export default universityContactSlice.reducer
-export {universityContactReducer}
+export {universityContactReducer,universityContactAddReducer}
