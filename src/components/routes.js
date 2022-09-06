@@ -13,6 +13,9 @@ import MouMaster from './mou_master/MouMaster'
 import LoadingPage from './default_pages/LoadingPage'
 // university profile 
 import UniversityProfile from './profile/UniversityProfile'
+// meeting profile
+import MeetingProfile from './meetings/MeetingProfile'
+
 
 /*---COMPONENT---*/
 // navbar side bar
@@ -25,6 +28,8 @@ import Chip from './common_components/chip'
 import Table from './common_components/table'
 //modal
 import ModalPopUp, {BasicDetailsModal,ContactDetailsModal} from './common_components/modal'
+// meeting card objects
+import {BasicDetails} from './meetings/meetingCards'
 
 export {
 	//pages
@@ -35,6 +40,7 @@ export {
 	LoadingPage,
 	UniversityProfile,
 	ResetPassword,ResetRequest,
+	MeetingProfile,BasicDetails,
 	
 	// componets
 	NavSideBarLayout,

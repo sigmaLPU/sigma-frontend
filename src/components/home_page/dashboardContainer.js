@@ -31,7 +31,7 @@ export default function Dashboard(props){
     {name:"Credit Tranfer",url:"/credit-transfer"},
     {name:"Credit Tranfer",url:"/credit-transfer"},
     {name:"Credit Tranfer",url:"/credit-transfer"},
-    {name:"Credit Tranfer",url:"/credit-transfer"},
+    {name:"Meeting Profile",url:"/meeting/232131"},
     {name:"mou master",url:"/mouMaster"},
   ]
 
