@@ -1,15 +1,33 @@
 // react imports
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import {useNavigate} from 'react-router-dom'
-
+import axios from 'axios';
 // component import
 
 
 // other imports
-
+import sun from './resource/sun.png'
+import moon from './resource/moon.png'
+import creditTransferImg from './resource/creditTransfer.png'
+import semesterExchangeImg from './resource/semesterExchange.png'
+import mouImg from './resource/mou.png'
+import openLeadsImg from './resource/openLeads.png'
+import templateSectionImg from './resource/templateSection.png'
+import trainingModalImg from './resource/trainingModal.png'
 
 
 // function defination
+function checkTime(i) {
+  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+  return i;
+}
+
+function convertTZ(date, tzString) {
+    return new Date((typeof date === "string" ? new Date(date) : date).toLocaleString("en-US", {timeZone: tzString}));   
+}
+
+
+
 function LinkButton({url,name}){
   const navigate = useNavigate()
 
@@ -27,19 +45,117 @@ function LinkButton({url,name}){
 
 export default function Dashboard(props){
     
+  const navigate = useNavigate()
+
   const routes = [
-    {name:"Credit Tranfer",url:"/credit-transfer"},
-    {name:"Credit Tranfer",url:"/credit-transfer"},
-    {name:"Credit Tranfer",url:"/credit-transfer"},
-    {name:"Meeting Profile",url:"/meeting/232131"},
-    {name:"mou master",url:"/mouMaster"},
+    {name:"Open Leads",url:"/openLeads",img:openLeadsImg},
+    {name:"MOUs",url:"/mouMaster",img:mouImg},
+    {name:"Credit Tranfer",url:"/creditTransfer",img:creditTransferImg},
+    {name:"Semester Exchange",url:"/semesterExchange",img:semesterExchangeImg},
+    {name:"Template Section",url:"/templates",img:templateSectionImg},
+    {name:"Training Moduls",url:"/training",img:trainingModalImg},
   ]
 
+  const timeCardCSS = {
+    border: "1px solid #F07F1A",
+    minWidth:"15rem",
+    minHeight:"5rem",
+    boxShadow: "0px 0px 14px rgba(0, 0, 0, 0.25)",
+    display:"flex",
+    paddingLeft:"0.5rem",
+    paddingRight:"0.5rem",
+    borderRadius:"8px",
+  }
+
+
+  const [timeState,setTimeState] = useState([
+    {"name":"London","time":"12:03","img":sun,timeZone:"Europe/London"},
+    {"name":"Delhi","time":"12:03","img":moon,timeZone:"Asia/Kolkata"},
+    {"name":"Cairo","time":"12:03","img":sun,timeZone:"Africa/Cairo"},
+    {"name":"Melbourne","time":"12:03","img":moon,timeZone:"Australia/Melbourne"},
+  ])
+
+
+  useEffect(()=>{
+    const intervalId = setInterval(()=>{
+      var temp = timeState;
+      for(var obj of temp){
+        var today = convertTZ(new Date(),obj["timeZone"])
+        let h = today.getHours();
+        let m = today.getMinutes();
+        if(h>18 && h<6){
+          obj["img"] = moon
+        }else{
+          obj["img"] = sun
+        }
+        m = checkTime(m);
+        obj["time"] = h+":"+m
+      }
+      setTimeState(temp)
+    },1000)
+
+    return ()=>clearInterval(intervalId)
+
+  },[])
+
+
   return (
-    <div>
-      {routes.map((route)=>(
-        <LinkButton url={route.url} name={route.name}/>
-      ))}
+    <div style={{display:"flex",flexDirection:"column",height:"90vh"}}>
+      {/*Top part*/}
+      <div style={{height:"15rem"}}>
+        
+        <div style={{display:"flex",justifyContent:"space-around",}}>
+
+          {
+            timeState.map((item)=>(
+              <div style={timeCardCSS}>
+                <div><img src={item?.img} style={{height:"4rem"}} /></div>
+                <div style={{fontWeight:"800",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",flexGrow:"1"}}>
+                  <span>{item?.time}</span>
+                  <span>{item?.name}</span>
+                </div>
+              </div>
+            ))
+          }
+
+
+        </div>
+        <div>
+          <div style={{fontSize:"4rem",width:"100%",display:"flex",justifyContent:"center",marginTop:"1rem"}}><span style={{textAlign:"center"}}>Good Moring User</span></div>
+          <div style={{width:"100%",display:"flex",justifyContent:"center",fontStyle:"italic",fontWeight:"700",fontSize:"1.3rem"}}><span style={{textAlign:"center"}}>“If you only do what you can do, you will never be more than you are now.” ― Master Oogway. t</span></div>
+        </div>
+
+      </div>     
+      <div style={{marginTop:"1.5rem",borderBottom:"1px solid #F07F1A",filter:"blur(2px)"}}>
+      </div>
+
+      {/*Bottom part*/}
+      <div style={{flexGrow:"2",display:"flex",columnGap:"2rem",alignContent:"space-between",alignItems:"flex-start",marginTop:"1rem",flexWrap:"wrap",justifyContent:"center"}}>
+            
+            {routes.map((item)=>(
+              <div  onClick={()=>navigate(item?.url)}
+                    style={{display:"flex",flexDirection:"column",alignContent:"center",justifyContent:"center",cursor:"pointer"}}>
+                <img src={item?.img} style={{maxWidth: "417px",maxHeight: "240px",borderRadius:"8px",border:"1px solid #F07F1A"}}/>
+                <span style={{textAlign:"center",fontSize:"1.3rem"}}>{item?.name}</span>
+              </div>
+            ))}
+            
+
+      </div> 
     </div>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
