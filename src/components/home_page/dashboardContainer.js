@@ -104,7 +104,7 @@ export default function Dashboard(props){
       {/*Top part*/}
       <div style={{height:"15rem"}}>
         
-        <div style={{display:"flex",justifyContent:"space-around",}}>
+        <div style={{display:"flex",flexWrap:"wrap",justifyContent:"space-around",}}>
 
           {
             timeState.map((item)=>(
