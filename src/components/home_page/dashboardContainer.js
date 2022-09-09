@@ -92,6 +92,7 @@ export default function Dashboard(props){
         obj["time"] = h+":"+m
       }
       setTimeState(temp)
+      console.log(temp)
     },1000)
 
     return ()=>clearInterval(intervalId)

@@ -45,7 +45,7 @@ export default function Card(props){
 		<div style={CardCSS}>
 
 			<div style={HeadingCSS}>
-					<div style={{width:"90%",display:"flex",justifyContent:"center"}}>
+					<div style={{width:"90%",display:"flex",justifyContent:"center",...props?.headingTabCSS}}>
 						<div style={{marginLeft:"10%",padding:"0%",minWidth:"10rem",height:"3.5rem"}}>
 							<div style={{textAlign:"center",color:"white",width:"100%",height:"100%",backgroundColor:"#f07f1a",color:"#ffffff",borderRadius:"0% 0% 50% 50%",position:"relative",top:"-15px",...props?.headingComponetCSS}}>
 								<span style={{padding:"8px",fontWeight:"700",padding:"8px"}}>{props?.heading}</span>

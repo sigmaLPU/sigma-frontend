@@ -29,7 +29,7 @@ import Table from './common_components/table'
 //modal
 import ModalPopUp, {BasicDetailsModal,ContactDetailsModal} from './common_components/modal'
 // meeting card objects
-import {BasicDetails} from './meetings/meetingCards'
+import {BasicDetailsMeetingCard,AttachementCard} from './meetings/meetingCards'
 
 export {
 	//pages
@@ -40,7 +40,7 @@ export {
 	LoadingPage,
 	UniversityProfile,
 	ResetPassword,ResetRequest,
-	MeetingProfile,BasicDetails,
+	MeetingProfile,BasicDetailsMeetingCard,AttachementCard,
 	
 	// componets
 	NavSideBarLayout,
