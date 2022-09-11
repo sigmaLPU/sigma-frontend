@@ -1,18 +1,38 @@
-import React from 'react'
+import React,{useState} from 'react'
 import fileIcon from './resource/file.png'
 import visibleIcon from './resource/eye.png'
 import downloadIcon from './resource/download.png'
 
 export function BasicDetailsMeetingCard(props){
+
+	const [date,setDate] = useState("01-09-2022");
+	const [heading,setHeading] = useState("Meeting about future student exchange")
+
+	const [startTime,setStartTime] = useState("10:00 AM")
+	const [endTime,setEndTime] = useState("10:00 AM")
+
+	function cropHeading(s,l){
+		if(s.length<l){
+			return s
+		}
+		var ans = s.slice(0,l)+"...";
+		return ans;
+	}
+
+	const titleCSS = {
+		fontSize:"1rem",
+		fontWeight:"700"
+	}
+
 	return(
 		<div style={{display:"flex"}}>
 			<div style={{flexGrow:"1"}}>
-				<div>Date : </div>
-				<div>Agenda : </div>
+				<div><span style={titleCSS}>Date</span> : { date }</div>
+				<div><span style={titleCSS}>Agenda</span> : {cropHeading(heading,50)}</div>
 			</div>
 			<div style={{flexGrow:"1",display:"flex",alignItems:"flex-end",flexDirection:"column"}}>
-				<div>Start Time</div>
-				<div>End Time</div>
+				<div><span style={titleCSS}>Start Time</span> : {startTime}</div>
+				<div><span style={titleCSS}>End Time</span> : {endTime}</div>
 			</div>
 		</div>
 	)
@@ -37,7 +57,7 @@ export function AttachementCard(props){
 		<div style={{display:"flex",flexDirection:"column",rowGap:"1rem"}}>
 			{
 				props?.data.map((item)=>(
-					<div style={{display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+					<div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:"0.5rem"}}>
 						<div style={{display:"flex",alignItems:"center",justifyContent:"space-between"}}>
 							<img src={fileIcon} alt="file icon" style={{marginRight:"1.5rem",...imgStyle}} />
 							<span>{item.name}</span>

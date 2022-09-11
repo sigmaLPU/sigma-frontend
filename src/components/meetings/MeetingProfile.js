@@ -31,6 +31,18 @@ export default function MeetingProfile(props){
 	const [participants,setParticipants] = useState([
 		{"img":profile_1,"name":"Animesh","position":"Intern","from":"LPU"},
 		{"img":profile_1,"name":"Animesh","position":"SDE","from":"LPU"},
+		{"img":profile_1,"name":"Animesh","position":"SDE","from":"LPU"},
+		{"img":profile_1,"name":"Animesh","position":"SDE","from":"LPU"},
+		{"img":profile_1,"name":"Animesh","position":"SDE","from":"LPU"},
+		{"img":profile_1,"name":"Animesh","position":"SDE","from":"LPU"},
+		{"img":profile_1,"name":"Animesh","position":"SDE","from":"LPU"},
+		{"img":profile_1,"name":"Animesh","position":"SDE","from":"LPU"},
+		{"img":profile_1,"name":"Animesh","position":"SDE","from":"LPU"},
+		{"img":profile_1,"name":"Animesh","position":"SDE","from":"LPU"},
+		{"img":profile_1,"name":"Animesh","position":"SDE","from":"LPU"},
+		{"img":profile_1,"name":"Animesh","position":"SDE","from":"LPU"},
+		{"img":profile_1,"name":"Animesh","position":"SDE","from":"LPU"},
+		{"img":profile_1,"name":"Animesh","position":"SDE","from":"LPU"},
 		{"img":profile_1,"name":"Animesh","position":"","from":""},
 		{"img":profile_1,"name":"Animesh","position":"","from":""},
 		{"img":profile_1,"name":"Animesh","position":"","from":""},
@@ -57,35 +69,36 @@ export default function MeetingProfile(props){
 							heading={"Meeting Regarding Project Sigma"}
 							headingComponetCSS = {BasicDetailsheadingComponetCSS}
 							style={{border:"1px solid #F07F1A"}}
+							cardDataCSS = {{maxHeight:"10rem"}}
 						>
 							<BasicDetailsMeetingCard/>
 						</Card>
 						<div style={{display:"flex",columnGap:"1rem"}}>
-							<Card heading={"OutCome"} headingComponetCSS={{color:"black"}} style={{border:"1px solid #F07F1A"}}>
+							<Card heading={"OutCome"} headingComponetCSS={{color:"black"}} style={{border:"1px solid #F07F1A"}} cardDataCSS={{maxHeight:"15rem"}}>
 							
 								<ul>{
 									data.map(item=>(
-										<li style={{}}>{item["title"].length<50 ? item["title"]:item["title"].substr(0,50)+"..."}</li>
+										<li style={{paddingBottom:"1rem"}}>{item["title"].length<50 ? item["title"]:item["title"].substr(0,50)+"..."}</li>
 									))}
 								</ul>
 
 							</Card>
 
-							<Card heading={"Action Plan"} headingComponetCSS={{color:"black"}} style={{border:"1px solid #F07F1A"}}>
+							<Card heading={"Action Plan"} headingComponetCSS={{color:"black"}} style={{border:"1px solid #F07F1A"}} cardDataCSS={{maxHeight:"15rem"}}>
 								<ul>{
 									data.map(item=>(
-										<li style={{}}>{item["title"].length<50 ? item["title"]:item["title"].substr(0,50)+"..."}</li>
+										<li style={{paddingBottom:"1rem"}}>{item["title"].length<50 ? item["title"]:item["title"].substr(0,50)+"..."}</li>
 									))}
 								</ul>
 							</Card>
 						</div>
 
-						<div style={{display:"flex",columnGap:"1rem"}}>
-							<Card heading={"MOM notes"} headingComponetCSS={{color:"black"}} style={{border:"1px solid #F07F1A"}}>
+						<div style={{display:"flex",columnGap:"1rem",maxHeight:"20rem"}}>
+							<Card heading={"MOM notes"} headingComponetCSS={{color:"black"}} style={{border:"1px solid #F07F1A"}} >
 							
 								<ul>{
 									data.map(item=>(
-										<li style={{}}>{item["title"].length<50 ? item["title"]:item["title"].substr(0,50)+"..."}</li>
+										<li style={{marginBottom:"1rem"}}>{item["title"].length<50 ? item["title"]:item["title"].substr(0,50)+"..."}</li>
 									))}
 								</ul>
 
@@ -101,7 +114,7 @@ export default function MeetingProfile(props){
 
 					</div>
 				{/*Side bar*/}
-					<div style={{minWidth:"28rem",textAlign:"center",display:"flex",flexDirection:"column",rowGap:"1rem"}}>
+					<div style={{minWidth:"28rem",textAlign:"center",display:"flex",flexDirection:"column",rowGap:"1rem",maxHeight:"100vh",justifyContent:"flex-start"}}>
 
 
 						<Card headingComponetCSS={{display:"none"}} style={{border:"1px solid #F07F1A",maxHeight:"8rem"}} styleHeading={{height:"2rem"}}>
@@ -118,9 +131,9 @@ export default function MeetingProfile(props){
 
 
 
-						<div style={{border:"1px solid #F07F1A",borderRadius:"8px",display:"flex",minHeight:"60vh",flexDirection:"column",alignItems:"flex-start",padding:"1rem"}}>
+						<div style={{border:"1px solid #F07F1A",borderRadius:"8px",display:"flex",maxHeight:"70vh",flexDirection:"column",alignItems:"flex-start",padding:"1rem"}}>
 							<div>Participants</div>
-							<div style={{display:"flex",flexDirection:"column",rowGap:"0.5rem",marginTop:"1rem",width:"100%"}}>
+							<div style={{display:"flex",overflow:"scroll",paddingRight:"1.5rem",flexDirection:"column",rowGap:"0.5rem",marginTop:"1rem",width:"100%"}}>
 								{
 									participants.map((item)=>(
 										<div style={{display:"flex",columnGap:"1.5rem",width:"100%",justifyContent:"flex-start",alignItems:"center"}}>
