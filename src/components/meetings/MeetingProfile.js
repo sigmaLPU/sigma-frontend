@@ -104,7 +104,7 @@ export default function MeetingProfile(props){
 					<div style={{minWidth:"28rem",textAlign:"center",display:"flex",flexDirection:"column",rowGap:"1rem"}}>
 
 
-						<Card headingComponetCSS={{display:"none"}} style={{border:"1px solid #F07F1A"}} styleHeading={{height:"2rem"}}>
+						<Card headingComponetCSS={{display:"none"}} style={{border:"1px solid #F07F1A",maxHeight:"8rem"}} styleHeading={{height:"2rem"}}>
 							<div style={{display:"flex",justifyContent:"space-between",paddingRight:"3rem",alignItems:"center"}}>
 								<img src={video_icon} style={{height:"3.5rem"}} alt="profile img"/>
 								<div style={{color:"#F07F1A",fontWeight:"700",fontSize:"1.1rem",border: "1px solid #F07F1A",padding:"7px",borderRadius:"8px",cursor:"pointer"}}>
