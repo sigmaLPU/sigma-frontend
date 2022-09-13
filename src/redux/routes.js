@@ -10,6 +10,10 @@ import {
 	getAllUniversitySlice,getAllUniversityReducer,setRedirectFunction,updateViewDetails
 } from './university/routes'
 
+import {
+	forgetPasswordSlice,forgetPasswordReducer
+} from './users/routes'
+
 export {
 	// university profile state/slice/reducer
 	universityBasicDetailsSlice,universityBasicDetailsReducer,
@@ -19,5 +23,8 @@ export {
 	universityRecentUpdateSlice,universityRecentUpdateReducer,
 
 	// university list
-	getAllUniversitySlice,getAllUniversityReducer,setRedirectFunction,updateViewDetails
+	getAllUniversitySlice,getAllUniversityReducer,setRedirectFunction,updateViewDetails,
+
+	forgetPasswordSlice,forgetPasswordReducer,
+
 }

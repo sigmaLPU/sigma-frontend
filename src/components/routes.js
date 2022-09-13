@@ -30,7 +30,12 @@ import Table from './common_components/table'
 import ModalPopUp, {BasicDetailsModal,ContactDetailsModal} from './common_components/modal'
 // meeting card objects
 import {BasicDetailsMeetingCard,AttachementCard} from './meetings/meetingCards'
-
+// modal popup
+import {
+		BasicDetailsMeetingModal,OutcomeMeetingModal,
+		ActionPlanMeetingModal,MoMNotesMeetingModal,
+		AttachmentMeetingModal,
+} from './meetings/meetingCards'
 export {
 	//pages
 	HomePage,
@@ -40,15 +45,19 @@ export {
 	LoadingPage,
 	UniversityProfile,
 	ResetPassword,ResetRequest,
-	MeetingProfile,BasicDetailsMeetingCard,AttachementCard,
+	MeetingProfile,
 	
 	// componets
 	NavSideBarLayout,
 	Card, ObjectCard,FileCard,ContactCard,RecentUpdateCard,MeetingCard,
 	Chip,
 	Table,	
+	BasicDetailsMeetingCard,AttachementCard,
 
 	// modalpop
 	BasicDetailsModal,ModalPopUp,ContactDetailsModal,
-
+	
+	BasicDetailsMeetingModal,OutcomeMeetingModal,
+	ActionPlanMeetingModal,MoMNotesMeetingModal,
+	AttachmentMeetingModal,
 };

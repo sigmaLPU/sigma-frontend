@@ -12,13 +12,15 @@ import {
   universityMeetingSlice,
   universityProgramSlice,
   universityRecentUpdateSlice,
+  forgetPasswordSlice,
 } from './routes'
 
 export const store = configureStore({
   reducer: {
     auth : authUserReducer,
     authToken:authenticateToken,
-  
+    forgetPasswordSlice:forgetPasswordSlice,
+      
     getAllUniversitySlice:getAllUniversitySlice,
 
     universityBasicDetailsSlice:universityBasicDetailsSlice,

@@ -5,6 +5,7 @@ import React, {useEffect, useState} from 'react';
 import {NavSideBarLayout} from '../routes'
 import {Card ,Chip, Table} from '../routes'
 import {BasicDetailsMeetingCard,AttachementCard} from '../routes'
+import {BasicDetailsMeetingModal,OutcomeMeetingModal,ActionPlanMeetingModal,MoMNotesMeetingModal,AttachmentMeetingModal,} from '../routes'
 
 // other imports
 import video_icon from './resource/video_icon.png'
@@ -66,6 +67,7 @@ export default function MeetingProfile(props){
 				<div style={{display:"flex",columnGap:"1rem"}}>
 					<div style={{flexGrow:"1",display:"flex",flexDirection:"column",rowGap:"1rem"}}>
 						<Card 
+							popup = {<BasicDetailsMeetingModal/>}
 							heading={"Meeting Regarding Project Sigma"}
 							headingComponetCSS = {BasicDetailsheadingComponetCSS}
 							style={{border:"1px solid #F07F1A"}}
@@ -74,7 +76,7 @@ export default function MeetingProfile(props){
 							<BasicDetailsMeetingCard/>
 						</Card>
 						<div style={{display:"flex",columnGap:"1rem"}}>
-							<Card heading={"OutCome"} headingComponetCSS={{color:"black"}} style={{border:"1px solid #F07F1A"}} cardDataCSS={{maxHeight:"15rem"}}>
+							<Card popup = {<OutcomeMeetingModal/>} heading={"OutCome"} headingComponetCSS={{color:"black"}} style={{border:"1px solid #F07F1A"}} cardDataCSS={{maxHeight:"15rem"}}>
 							
 								<ul>{
 									data.map(item=>(
@@ -84,7 +86,7 @@ export default function MeetingProfile(props){
 
 							</Card>
 
-							<Card heading={"Action Plan"} headingComponetCSS={{color:"black"}} style={{border:"1px solid #F07F1A"}} cardDataCSS={{maxHeight:"15rem"}}>
+							<Card popup = {<ActionPlanMeetingModal/>} heading={"Action Plan"} headingComponetCSS={{color:"black"}} style={{border:"1px solid #F07F1A"}} cardDataCSS={{maxHeight:"15rem"}}>
 								<ul>{
 									data.map(item=>(
 										<li style={{paddingBottom:"1rem"}}>{item["title"].length<50 ? item["title"]:item["title"].substr(0,50)+"..."}</li>
@@ -94,7 +96,7 @@ export default function MeetingProfile(props){
 						</div>
 
 						<div style={{display:"flex",columnGap:"1rem",maxHeight:"20rem"}}>
-							<Card heading={"MOM notes"} headingComponetCSS={{color:"black"}} style={{border:"1px solid #F07F1A"}} >
+							<Card popup = {<MoMNotesMeetingModal/>} heading={"MOM notes"} headingComponetCSS={{color:"black"}} style={{border:"1px solid #F07F1A"}} >
 							
 								<ul>{
 									data.map(item=>(
@@ -104,7 +106,7 @@ export default function MeetingProfile(props){
 
 							</Card>
 
-							<Card heading={"Attachement"} headingComponetCSS={{color:"black"}} style={{border:"1px solid #F07F1A"}}>
+							<Card popup = {<AttachmentMeetingModal/>} heading={"Attachement"} headingComponetCSS={{color:"black"}} style={{border:"1px solid #F07F1A"}}>
 								<AttachementCard data={attachement} />
 							</Card>
 						</div>

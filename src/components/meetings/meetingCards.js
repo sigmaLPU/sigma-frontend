@@ -72,3 +72,56 @@ export function AttachementCard(props){
 		</div>
 	)
 }
+
+
+export function BasicDetailsMeetingModal(props){
+	return (
+		<div style={{minWidth:"40rem",minHeight:"30rem",display:"flex",alignItems:"center",flexDirection:"column"}}>
+			<span style={{fontWeight:"800",fontSize:"1.5rem"}}>Basic Meeting Details</span>
+			<div style={{width:"100%",marginBottom:""}}>
+				<div>
+					<span style={{fontSize:"1.1rem",fontWeight:"600"}}>Meeting's Topic</span>
+					<input style={{width:"90%",height:"40px",borderRadius:"8px"}} type="text" />
+				</div>
+			</div>
+		</div>
+	)
+}
+
+
+export function OutcomeMeetingModal(props){
+	return (
+		<div>
+			<span>Outcome</span>
+		</div>
+	)
+}
+
+
+
+export function ActionPlanMeetingModal(props){
+	return (
+		<div>
+			<span>Action Plan</span>
+		</div>
+	)
+}
+
+
+export function MoMNotesMeetingModal(props){
+	return (
+		<div>
+			<span>MOM Notes</span>
+		</div>
+	)
+}
+
+
+
+export function AttachmentMeetingModal(props){
+	return (
+		<div>
+			<span>Attachment</span>
+		</div>
+	)
+}

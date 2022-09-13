@@ -8,9 +8,18 @@ import PasswordIcon from './resource/lock.png'
 import ClosedEye from './resource/closed_eye.png'
 import OpenEye from './resource/open_eye.png'
 
+import {useDispatch,useSelector} from 'react-redux'
+
+import {forgetPasswordReducer} from '../../redux/routes'
+
 export default function ResetRequest(props){
 
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
+
+
+	const [email,setEmail] = useState("");
+	const status = useSelector((state) => state.forgetPasswordSlice.data)
 
 	const style={
 		width: "656px",
@@ -32,7 +41,16 @@ export default function ResetRequest(props){
 	function onSubmit(e){
 		console.log("Reset Password Request")
 		e.preventDefault()
-		navigate("/reset/demoKey")
+		dispatch(forgetPasswordReducer({"email":email}))
+	}
+
+	if(status?.status!=false && status?.status!=undefined ){
+		return (
+			<div>
+				<div>Mail is sended to your mail : {email}</div>
+				<button onClick={()=>navigate("/")}>Return To home</button>
+			</div>
+		)
 	}
 
 	return (
@@ -46,7 +64,9 @@ export default function ResetRequest(props){
 				
 					<div style={{...inputCSS,marginTop:"20px",marginLeft:"50px"}}>
 						<img src={MailIcon} style={{width:"24px",height:"24px",marginLeft: "15px"}}/>
-						<input type="text" placeholder="email" 
+						<input type="text" 
+						onChange={(e)=>setEmail(e.target.value)}
+						placeholder="email" 
 						style={{
 								width:"90%",border: "none",
 								backgroundColor: "transparent",
