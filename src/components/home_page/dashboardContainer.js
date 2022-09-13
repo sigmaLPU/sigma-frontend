@@ -30,6 +30,11 @@ function convertTZ(date, tzString) {
   );
 }
 
+function useForceUpdate(){
+    const [value, setValue] = useState(0); // integer state
+    return () => setValue(value => value + 1); // update state to force render
+}
+
 function LinkButton({ url, name }) {
   const navigate = useNavigate();
 
@@ -46,6 +51,7 @@ function LinkButton({ url, name }) {
 
 export default function Dashboard(props) {
   const navigate = useNavigate();
+  const forceUpdate = useForceUpdate();
 
   const routes = [
     { name: 'Open Leads', url: '/openLeads', img: openLeadsImg },
@@ -100,12 +106,14 @@ export default function Dashboard(props) {
         obj['time'] = h + ':' + m;
       }
       setTimeState(temp)
-      console.log(temp)
+      console.log(timeState)
+      forceUpdate()
     },1000)
 
     return ()=>clearInterval(intervalId)
-
   },[])
+
+
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '90vh' }}>
