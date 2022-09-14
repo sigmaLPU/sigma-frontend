@@ -1,6 +1,6 @@
 import universityBasicDetailsSlice,{universityBasicDetailsReducer} from './universityBasicDetails'
 import universityContactSlice,{universityContactReducer,universityContactAddReducer} from './universityContactPerson'
-import universityMeetingSlice,{universityMeetingReducer} from './universityMeeting'
+import universityMeetingSlice,{universityMeetingReducer,universityMeetingAddReducer,} from './universityMeeting'
 import universityProgramSlice,{universityProgramReducer} from './universityProgram'
 import universityRecentUpdateSlice,{universityRecentUpdateReducer} from './universityRecentUpdates'
 
@@ -8,7 +8,7 @@ import universityRecentUpdateSlice,{universityRecentUpdateReducer} from './unive
 export {
 	universityBasicDetailsSlice,universityBasicDetailsReducer,
 	universityContactSlice,universityContactReducer,universityContactAddReducer,
-	universityMeetingSlice,universityMeetingReducer,
+	universityMeetingSlice,universityMeetingReducer,universityMeetingAddReducer,
 	universityProgramSlice,universityProgramReducer,
 	universityRecentUpdateSlice,universityRecentUpdateReducer,
 }

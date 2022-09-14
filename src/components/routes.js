@@ -27,7 +27,7 @@ import Chip from './common_components/chip'
 // table 
 import Table from './common_components/table'
 //modal
-import ModalPopUp, {BasicDetailsModal,ContactDetailsModal} from './common_components/modal'
+import ModalPopUp, {BasicDetailsModal,ContactDetailsModal,MeetingUniversityModal,} from './common_components/modal'
 // meeting card objects
 import {BasicDetailsMeetingCard,AttachementCard} from './meetings/meetingCards'
 // modal popup
@@ -55,7 +55,7 @@ export {
 	BasicDetailsMeetingCard,AttachementCard,
 
 	// modalpop
-	BasicDetailsModal,ModalPopUp,ContactDetailsModal,
+	BasicDetailsModal,ModalPopUp,ContactDetailsModal,MeetingUniversityModal,
 	
 	BasicDetailsMeetingModal,OutcomeMeetingModal,
 	ActionPlanMeetingModal,MoMNotesMeetingModal,

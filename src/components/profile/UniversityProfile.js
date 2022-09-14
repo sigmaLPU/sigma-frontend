@@ -9,6 +9,7 @@ import {
 	FileCard,MeetingCard,
 	ContactCard,RecentUpdateCard,
 	ModalPopUp,ContactDetailsModal,
+	MeetingUniversityModal,
 } from '../routes'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -66,7 +67,7 @@ export default function UniversityProfile(props){
 					{/*Middle Screeen*/}
 					
 					<div style={{display:"flex",justifyContent:"space-between",marginTop:"2rem",flexWrap:"wrap",height:"380px"}}>
-						<Meetings popup={<BasicDetailsModal/>}/>
+						<Meetings popup={<MeetingUniversityModal/>}/>
 						<GuestVisit popup={<BasicDetailsModal/>}/>
 						<DocumentRequired popup={<BasicDetailsModal/>}/>
 					</div>

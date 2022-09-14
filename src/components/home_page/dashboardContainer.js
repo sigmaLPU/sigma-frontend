@@ -53,9 +53,11 @@ export default function Dashboard(props) {
   const navigate = useNavigate();
   const forceUpdate = useForceUpdate();
 
+  const username = localStorage.getItem('name')
+
   const routes = [
     { name: 'Open Leads', url: '/openLeads', img: openLeadsImg },
-    { name: 'MOUs', url: '/mouMaster', img: mouImg },
+    { name: 'Partner University', url: '/mouMaster', img: mouImg },
     { name: 'Credit Tranfer', url: '/creditTransfer', img: creditTransferImg },
     {
       name: 'Semester Exchange',
@@ -97,7 +99,7 @@ export default function Dashboard(props) {
         var today = convertTZ(new Date(), obj['timeZone']);
         let h = today.getHours();
         let m = today.getMinutes();
-        if (h > 18 && h < 6) {
+        if (h >= 18 && h <= 6) {
           obj['img'] = moon;
         } else {
           obj['img'] = sun;
@@ -157,7 +159,7 @@ export default function Dashboard(props) {
               marginTop: '1rem',
             }}
           >
-            <span style={{ textAlign: 'center' }}>Good Moring User</span>
+            <span style={{ textAlign: 'center' }}>Hello, {username}</span>
           </div>
           <div
             style={{

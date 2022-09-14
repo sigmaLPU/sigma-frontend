@@ -140,6 +140,11 @@ export default function NavSideBar(props) {
   }
 
 
+  function logout(){
+    history('/')
+     localStorage.clear();
+  }
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -170,7 +175,7 @@ export default function NavSideBar(props) {
             </IconButton>
 
             <IconButton>
-              <PersonIcon fontSize="large"/>
+              <PersonIcon onClick={()=>logout()} fontSize="large"/>
             </IconButton>
           </div>
         </Toolbar>

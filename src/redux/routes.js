@@ -1,7 +1,7 @@
 import {
 	universityBasicDetailsSlice,universityBasicDetailsReducer,
 	universityContactSlice,universityContactReducer,universityContactAddReducer,
-	universityMeetingSlice,universityMeetingReducer,
+	universityMeetingSlice,universityMeetingReducer,universityMeetingAddReducer,
 	universityProgramSlice,universityProgramReducer,
 	universityRecentUpdateSlice,universityRecentUpdateReducer,
 } from './temp/routes'
@@ -18,7 +18,7 @@ export {
 	// university profile state/slice/reducer
 	universityBasicDetailsSlice,universityBasicDetailsReducer,
 	universityContactSlice,universityContactReducer,universityContactAddReducer,
-	universityMeetingSlice,universityMeetingReducer,
+	universityMeetingSlice,universityMeetingReducer,universityMeetingAddReducer,
 	universityProgramSlice,universityProgramReducer,
 	universityRecentUpdateSlice,universityRecentUpdateReducer,
 

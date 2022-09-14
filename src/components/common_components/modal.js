@@ -4,7 +4,7 @@ import IconButton from '@mui/material/IconButton'; // Parent component to fit ic
 import CallMadeIcon from '@mui/icons-material/CallMade'; // heading pop icon
 import CloseIcon from '@mui/icons-material/Close';
 
-import {universityContactAddReducer} from '../../redux/routes'
+import {universityContactAddReducer,universityMeetingAddReducer} from '../../redux/routes'
 
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -151,7 +151,7 @@ export function ContactDetailsModal(props){
 
 
 
-export function MeetingModal(props){
+export function MeetingUniversityModal(props){
 	const style = {
 		height: "500px",
 		width: "741px",
@@ -163,16 +163,23 @@ export function MeetingModal(props){
 
 	const dispatch = useDispatch();
 
+	const [participants,setParticipants] = useState({
+		"name":"",
+		"email":"",
+		"designation":""
+	})
 
 	const [data,setData] = useState(
-	{
-    "title":"",
-    "createdBy":"",
-    "meetingTime":"",
-    "agenda":"",
-    "participants":[],
-    "link":""
-	})
+		{
+		"title":"",
+		"createdBy":"",
+		"meetingTime":"",
+		"meetingDate":"",
+		"agenda":"",
+		"participants":[],
+		"link":""
+		}
+	)
 
 	useEffect(()=>{
 	},[])
@@ -180,50 +187,47 @@ export function MeetingModal(props){
 	function onSubmit(e){
 		e.preventDefault();
 		const id = getUniId(window.location.href)
-		dispatch(universityContactAddReducer({data,id}))
 		console.log(data)
+		dispatch(universityMeetingAddReducer({data:data,id}))
+		// console.log(data)
 	}
 
 	return(
 		<div style={style}>
-			<span style={{fontSize:"20px",fontSize:"700",width:"100%",textAlign:"center"}}>
-				Contact Details
+			<span style={{fontSize:"1.3rem",fontSize:"900",width:"100%",textAlign:"center",width:"607px",borderRadius:"8px"}}>
+				Meeting Details
 			</span>
-			<div style={{marginTop:"3rem"}}>
-				<form>
-					<input onChange={(e)=>setData({...data,title:e.target.value})} style={{width:"607px",height:"40px",borderRadius:"8px"}} type="text" placeholder="Name"/>
-					<input onChange={(e)=>setData({...data,email:e.target.value})} style={{width:"607px",height:"40px",borderRadius:"8px"}} type="email" placeholder="Email"/>
-					<input onChange={(e)=>setData({...data,phone:e.target.value})} style={{width:"607px",height:"40px",borderRadius:"8px"}} type="mobile" placeholder="Phone no."/>
-					<input onChange={(e)=>setData({...data,description:e.target.value})} style={{width:"607px",height:"40px",borderRadius:"8px"}} type="text" placeholder="Description"/>
+			<div style={{marginTop:"3rem",width:"100%"}}>
+				<form style={{width:"100%"}}>
+					
+					<div style={{display:"flex",flexDirection:"column",width:"100%",}}>
+						<span>Meeting Agenda</span>
+						<input type="text" style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>setData({...data,"agenda":e.target.value})} />
+					</div>
+
+					<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
+						<span>Meeting between</span>
+						<input type="text" style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>setData({...data,"title":e.target.value})} />
+					</div>
+								
+					<div style={{display:"flex",flexDirection:"row",width:"100%",marginTop:"1rem",columnGap:"1rem"}}>
+						<div style={{display:"flex",flexDirection:"column",width:"50%"}}>
+							<span>Date</span>
+							<input type="date" style={{fontSize:"1.2rem",fontWeight:"700",}} onChange={(e)=>setData({...data,"meetingDate":e.target.value})} />
+						</div>
+						<div style={{display:"flex",flexDirection:"column",width:"40%"}}>
+							<span>Time</span>
+							<input type="time" style={{fontSize:"1.2rem",fontWeight:"700",}} onChange={(e)=>setData({...data,"meetingTime":e.target.value})} />
+						</div>
+					</div>
+
+
 					<button onClick={(e)=>onSubmit(e)}>Save</button>
+
 				</form>
 			</div>
 		</div>
 	)
 }
-
-
-// {
-//     "title":"ADDING CSE IN SEM EXCHANGE",
-//     "createdBy":"Karanveer",
-//     "meetingTime":"20-10-2022",
-//     "agenda":"Include cse in sem exchange",
-//     "participants":[
-//         {"name":"Karanveer C",
-//         "email":"kvc@gmail.com",
-//         "designation":"credit transfer dept - lpu"
-//         },
-//         {"name":"Amit C",
-//         "email":"amit@gmail.com",
-//         "designation":"credit transfer dept - albetra"
-//         }
-//     ],
-//         "link":"www.google.com"
-// }
-
-
-
-
-
 
 

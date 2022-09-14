@@ -20,6 +20,24 @@ const universityMeetingReducer = createAsyncThunk('universityMeeting/universityM
   }
 )
 
+
+const universityMeetingAddReducer = createAsyncThunk('universityMeetingAdd/universityMeetingAddReducer',
+  async (data)=>{
+    console.log("Adding university Meeting data",data)
+
+    var config = {
+      method: 'post',
+      url: `https://sigmalpu.herokuapp.com/api/v2/university/meeting/${data?.id}/add`,
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      data : data?.data
+    };
+    console.log(config)
+    return axios(config)
+  }
+)
+
 export const universityMeetingSlice = createSlice({
   name: 'getSingleUniversityMeeting',
   initialState,
@@ -64,8 +82,24 @@ export const universityMeetingSlice = createSlice({
       state.data.loading = false
     });
 
+
+
+
+
+    builder.addCase(universityMeetingAddReducer.fulfilled, (state, { payload }) => {
+      console.log("university Meeting add fulfilled payload",payload)
+    });
+
+    builder.addCase(universityMeetingAddReducer.pending, (state, { payload }) => {
+      console.log("university Meeting add  pending payload",payload)
+    });
+    
+    builder.addCase(universityMeetingAddReducer.rejected, (state, { payload }) => {
+      console.log("university Meeting add  rejected payload",payload)
+    });
+
   },
 })
 
 export default universityMeetingSlice.reducer
-export {universityMeetingReducer}
+export {universityMeetingReducer,universityMeetingAddReducer}
