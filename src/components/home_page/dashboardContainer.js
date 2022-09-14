@@ -99,16 +99,18 @@ export default function Dashboard(props) {
         var today = convertTZ(new Date(), obj['timeZone']);
         let h = today.getHours();
         let m = today.getMinutes();
-        if (h >= 18 && h <= 6) {
+        if (h >= 18 || h <= 6) {
+          // console.log("moon---> ",h)
           obj['img'] = moon;
         } else {
+          // console.log("sun---> ",h)
           obj['img'] = sun;
         }
         m = checkTime(m);
         obj['time'] = h + ':' + m;
       }
       setTimeState(temp)
-      console.log(timeState)
+      // console.log(timeState)
       forceUpdate()
     },1000)
 
