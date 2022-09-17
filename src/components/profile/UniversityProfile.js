@@ -73,7 +73,7 @@ export default function UniversityProfile(props){
 					</div>
 
 					<div style={{marginTop:"2rem"}}>
-						<ProgramOfColaboration/>						
+						<ProgramOfColaboration props={<BasicDetailsModal/>}/>						
 					</div>
 				</div>					
 				<ModalPopUp>
@@ -274,7 +274,7 @@ function Meetings(props){
 	return (
 		<>
 			{/* Meetings */}
-			<Card  popup={props?.popup} style={{display:"flex",alignContent:"start",flexWrap:"wrap",margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"641px"}} heading="Meetings">
+			<Card  popup={props?.popup} style={{display:"flex",alignContent:"start",flexWrap:"wrap",margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"641px",maxHeight:"100%"}} heading="Meetings">
 				<ul>
 					{	meetingData?.data?.data &&	meetingData?.data?.data.map(item=>(
 							<li><MeetingCard data={item}/></li>

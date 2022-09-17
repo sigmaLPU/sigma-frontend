@@ -28,7 +28,7 @@ function App() {
           <Route exact path="/" element={<LoginPage/>}/>
 
           <Route exact path="/reset" element={<ResetRequest/>} />
-          <Route path="/reset/:id" element={<ProtectedRouteResetPassword><ResetPassword/></ProtectedRouteResetPassword>} />
+          <Route path="/api/v2/user/resetUserPassword/:id" element={<ProtectedRouteResetPassword><ResetPassword/></ProtectedRouteResetPassword>} />
 
           {/*Protected route*/}
           <Route exact path="/dashboard" element={<ProtectedRoute><HomePage/></ProtectedRoute>}/>

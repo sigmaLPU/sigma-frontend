@@ -6,7 +6,7 @@ import {useState} from 'react'
 import {ModalPopUp} from '../routes'
 
 // other imports
-import CallMadeIcon from '@mui/icons-material/CallMade'; // heading pop icon
+// import CallMadeIcon from '@mui/icons-material/CallMade'; // heading pop icon
 import IconButton from '@mui/material/IconButton'; // Parent component to fit icon inside it
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
@@ -21,7 +21,6 @@ export default function Card(props){
 		boxShadow: "3px 3px 3px 3px rgba(207, 200, 184, 0.3)",
 		marginTop:"15px",
 		flexGrow: "4",
-		// overflow:"scroll",
 		...props?.style
 	}
 
@@ -29,6 +28,7 @@ export default function Card(props){
 		margin: props?.cardData?.margin ? props?.cardData?.margin : "8px",
 		overflow: "scroll",
 		maxHeight:"80%",
+		width:"100%",
 		...props?.cardDataCSS
 	}
 
@@ -171,7 +171,7 @@ export function RecentUpdateCard(props){
 
 export function MeetingCard(props){
 	return (
-		<div style={{marginBottom:"1rem"}}>
+		<div style={{marginBottom:"1rem",width:"100%"}}>
 			<div>{props?.data["title"]}</div>
 			<div style={{paddingTop:"4px",display:"flex",justifyContent:"space-between"}}>
 				<span style={{color:"red",fontWeight:"700"}}>Read more...</span>
