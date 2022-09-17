@@ -11,7 +11,7 @@ import {
 } from './university/routes'
 
 import {
-	forgetPasswordSlice,forgetPasswordReducer
+	forgetPasswordSlice,forgetPasswordReducer,resetPasswordReducer,
 } from './users/routes'
 
 export {
@@ -25,6 +25,6 @@ export {
 	// university list
 	getAllUniversitySlice,getAllUniversityReducer,setRedirectFunction,updateViewDetails,
 
-	forgetPasswordSlice,forgetPasswordReducer,
+	forgetPasswordSlice,forgetPasswordReducer,resetPasswordReducer,
 
 }

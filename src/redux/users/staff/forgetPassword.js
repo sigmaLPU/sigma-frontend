@@ -1,11 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-import {FORGET_USER_PASSWORD} from '../../constants'
+import {FORGET_USER_PASSWORD,RESET_PASSWORD} from '../../constants'
 
 const initialState = {
   data:{
-    status:null    
+    status:null,
+    resetStatus:null,
   }
 }
 
@@ -17,13 +18,25 @@ const forgetPasswordReducer = createAsyncThunk('forgetPassword/forgetPasswordRed
             'Content-Type': 'application/json'
           }})
     }
-  )
+)
+
+
+const resetPasswordReducer = createAsyncThunk('forgetPassword/resetPasswordReducer',
+    async (data)=>{
+      console.log("Sending request to backend for reset password",data)
+      return axios.put(`${RESET_PASSWORD}/${data?.id}`,{"password":data?.password},{
+          headers: {
+            'Content-Type': 'application/json'
+          }})
+    }
+)
 
 export const forgetPasswordSlice = createSlice({
   name: 'forgetPassword',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+
     builder.addCase(forgetPasswordReducer.fulfilled, (state, { payload }) => {
       console.log("forget mail sent with given cred (fulfilled)",payload)
       state.data.status = true
@@ -36,8 +49,27 @@ export const forgetPasswordSlice = createSlice({
       console.log("forget mail with given cred (failed)",payload)
       state.data.status = false
     });
+  
+
+    builder.addCase(resetPasswordReducer.fulfilled, (state, { payload }) => {
+      console.log("reset password with given cred (fulfilled)",payload)
+      state.data.resetStatus = true
+    });
+    builder.addCase(resetPasswordReducer.pending, (state, { payload }) => {
+      console.log("reset password given cred (pending)",payload)
+      state.data.resetStatus = null
+    });
+    builder.addCase(resetPasswordReducer.rejected, (state, { payload }) => {
+      console.log("reset password given cred (failed)",payload)
+      state.data.resetStatus = false
+    });
+  
+
   },
 })
 
 export default forgetPasswordSlice.reducer
-export {forgetPasswordReducer}
+export {forgetPasswordReducer,resetPasswordReducer}
+
+
+

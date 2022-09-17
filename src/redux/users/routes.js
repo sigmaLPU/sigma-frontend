@@ -1,6 +1,6 @@
-import forgetPasswordSlice,{forgetPasswordReducer} from './staff/forgetPassword'
+import forgetPasswordSlice,{forgetPasswordReducer,resetPasswordReducer} from './staff/forgetPassword'
 
 
 export {
-	forgetPasswordSlice,forgetPasswordReducer,
+	forgetPasswordSlice,forgetPasswordReducer,resetPasswordReducer,
 }

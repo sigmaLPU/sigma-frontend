@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 
 import {useNavigate} from 'react-router-dom'
 
@@ -10,7 +10,7 @@ import OpenEye from './resource/open_eye.png'
 
 import {useDispatch,useSelector} from 'react-redux'
 
-import {forgetPasswordReducer} from '../../redux/routes'
+import {forgetPasswordReducer,resetPasswordReducer} from '../../redux/routes'
 
 export default function ResetRequest(props){
 
@@ -43,6 +43,10 @@ export default function ResetRequest(props){
 		e.preventDefault()
 		dispatch(forgetPasswordReducer({"email":email}))
 	}
+
+	useEffect(()=>{
+		localStorage.clear();
+	},[])
 
 	if(status?.status!=false && status?.status!=undefined ){
 		return (
@@ -95,10 +99,29 @@ export default function ResetRequest(props){
 }
 
 
+function getTokenForReset(url){
+	var id = ""
+	for(var i=url.length-1;i>=0;i--){
+		if(url[i]==='/') return id
+		id = url[i] + id
+	}
+	return id
+}
+
+
 export function ResetPassword(props){
 
 	const [show,setShow] = useState(true)
 	const [showCon,setShowCon] = useState(true)
+
+	const [password,setPassword] = useState("")
+	const [confirmPassword,setConfirmPassword] = useState("")
+
+	const [id,setId] = useState("")
+
+	const navigate = useNavigate()
+	const dispatch = useDispatch()
+	const status = useSelector((state) => state.forgetPasswordSlice.data)
 
 	const style={
 		width: "656px",
@@ -118,6 +141,26 @@ export function ResetPassword(props){
 	}
 
 
+	function submit(e){
+		setId(getTokenForReset(window.location.href))
+		// localStorage.clear();
+		// console.log(getTokenForReset(window.location.href))		
+		e.preventDefault()
+		if(password!=confirmPassword){
+			console.log("password not matched")
+			return ;
+		}else{
+			dispatch(resetPasswordReducer({password,"id":getTokenForReset(window.location.href)}))
+			console.log("status -> 	",status)
+		}
+	}
+
+	useEffect(()=>{
+		if(status?.resetStatus){
+			navigate('/')
+		}
+	},[status])
+
 	return (
 		<div style={{backgroundColor:"#D9D9D9",height:"100vh",width:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>
 			
@@ -130,6 +173,7 @@ export function ResetPassword(props){
 					<div style={{...inputCSS,marginTop:"20px",marginLeft:"50px"}}>
 						<img src={PasswordIcon} style={{width:"24px",height:"24px",marginLeft: "15px"}}/>
 						<input type={show ? "password":"text"} placeholder="Password" 
+						onChange = {(e)=>setPassword(e.target.value)}
 						style={{
 								width:"80%",border: "none",
 								backgroundColor: "transparent",
@@ -144,6 +188,7 @@ export function ResetPassword(props){
 					<div style={{...inputCSS,marginTop:"20px",marginLeft:"50px"}}>
 						<img src={PasswordIcon} style={{width:"24px",height:"24px",marginLeft: "15px"}}/>
 						<input type={showCon ? "password":"text"} placeholder="Password" 
+						onChange = {(e)=>setConfirmPassword(e.target.value)}
 						style={{
 								width:"80%",border: "none",
 								backgroundColor: "transparent",
@@ -158,7 +203,7 @@ export function ResetPassword(props){
 					<div style={{width:"100%",display:"flex",justifyContent:"center"}}>
 						<div style={{cursor:"pointer",marginTop:"44px",width: "344px",height: "56px",background:"#F07F1A",borderRadius:"6px",display:"flex",justifyContent:"center",alignItems:"center"}}>
 						
-							<button type="submit" style={{background: "none",color: "inherit",border: "none",padding: "0",font: "inherit",cursor: "pointer",outline: "inherit"}}>
+							<button onClick={(e)=>submit(e)} type="submit" style={{background: "none",color: "inherit",border: "none",padding: "0",font: "inherit",cursor: "pointer",outline: "inherit"}}>
 								<span style={{fontWeight:900,fontSize:"20px",color:"white"}}>Save Password</span>
 							</button>
 						</div>
