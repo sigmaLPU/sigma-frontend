@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux'
 
 //redux import
-import { authUserReducer } from '../../redux/users/staff/auth'
+import { authUserReducer } from '../../redux/users/auth'
 import { authenticateTokenReducer } from '../../redux/users/authenticateToken'
 
 // component import

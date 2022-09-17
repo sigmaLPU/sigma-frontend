@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-import {LOGIN_URL} from '../../constants'
+import {LOGIN_URL} from '../constants'
 
 const initialState = {
   data:{

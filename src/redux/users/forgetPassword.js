@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-import {FORGET_USER_PASSWORD,RESET_PASSWORD} from '../../constants'
+import {FORGET_USER_PASSWORD,RESET_PASSWORD} from '../constants'
 
 const initialState = {
   data:{
