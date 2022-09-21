@@ -25,7 +25,7 @@ export default function Card(props){
 	}
 
 	const CardDataCSS = {
-		margin: props?.cardData?.margin ? props?.cardData?.margin : "8px",
+		margin: props?.cardData?.margin ? props?.cardData?.margin : "0px",
 		overflow: "scroll",
 		maxHeight:"80%",
 		width:"100%",

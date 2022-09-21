@@ -25,7 +25,7 @@ export default function MouMaster(props){
 		setData(rawData)
 	},[rawData])
 
-	const replace = [{"name":"Details","value":function(id){return <div style={{cursor:"pointer"}} onClick={()=>redirectTo(id)} style={{color:"#F07F1A",width:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>Details</div>}}]
+	const replace = [{"name":"Details","value":function(id){return <div onClick={()=>redirectTo(id)} style={{color:"#F07F1A",width:"100%",display:"flex",justifyContent:"center",alignItems:"center",cursor:"pointer"}}>Details</div>}}]
 
 
 	useEffect(()=>{
@@ -38,13 +38,6 @@ export default function MouMaster(props){
 	const [column,setColumn] = useState(["Name of University","Country","Meetings","Contact Person","Agreement","Details"])
 	const [rows,setRows] = useState([])
 
-	// tags state
-	const [yourTags,setYourTags] = useState([
-		{title:"USA",active:false},{title:"India",active:false},{title:"Canada",active:false},{title:"Bhutan",active:false},{title:"Nepal",active:true}
-	])
-	const [popularTags,setPopularTags] = useState([
-		{title:"USA",active:false},{title:"India",active:false},{title:"Canada",active:false},{title:"Bhutan",active:false},{title:"Nepal",active:true}
-	])
 
 	const ChipCSS = {
 		minWidth: "126px",
@@ -81,7 +74,7 @@ export default function MouMaster(props){
 	}
 
 	useEffect(()=>{
-		ToggleChip(yourTags,setYourTags,0)
+		// ToggleChip(yourTags,setYourTags,0)
 	},[])
 
 	return (
@@ -94,21 +87,9 @@ export default function MouMaster(props){
 							<input type="text" placeholder="Search" style={{width:"372px",fontSize:"20px",marginBottom:"2rem"}}/>
 						</div>
 
-						<Card style={CardCSS} heading={"Your Tags"} styleHeading={{color:"black"}}>
-							<div style={{width:"100%",height:"100%",display:"flex",flexWrap:"wrap",}}>
-								{yourTags.map((item,key)=>(
-									<Chip style={ChipCSS} text={item.title} active = {item.active}/>
-								))}
-							</div>
-						</Card>
+						<YourTags />
+						<PopularTags/>						
 						
-						<Card style={{...CardCSS,marginTop:"2rem"}} heading={"Popular Tags"}>
-							<div style={{width:"100%",height:"100%",display:"flex",flexWrap:"wrap",}}>
-								{popularTags.map((item,key)=>(
-									<Chip style={ChipCSS} text={item.title} active = {item.active}/>
-								))}
-							</div>
-						</Card>
 					
 					</div>
 					{/*Right Part*/}
@@ -126,3 +107,80 @@ export default function MouMaster(props){
 		</div>
 	)
 }
+
+
+
+function YourTags(props){
+
+	const ChipCSS = {
+		minWidth: "126px",
+		height: "28px",
+		background: "#FFFFFF",
+		border: "1px solid #F07F1A",borderRadius: "7px",
+		margin:"4px"
+	}
+	const CardCSS = {
+		minHeight:"218px",
+		width:"372px",
+		border: "1px solid #F07F1A",
+		boxShadow: "0px 0px 14px rgba(0, 0, 0, 0.25)",
+		color:"black",
+	}
+
+
+	const [yourTags,setYourTags] = useState([
+		{title:"USA",active:false},{title:"India",active:false},{title:"Canada",active:false},{title:"Bhutan",active:false},{title:"Nepal",active:true}
+	])
+
+
+	return (
+		<Card style={CardCSS} heading={"Your Tags"} styleHeading={{color:"black"}}>
+			<div style={{width:"100%",height:"100%",display:"flex",flexWrap:"wrap",}}>
+				{
+					yourTags.map((item,key)=>(
+						<Chip style={ChipCSS} text={item.title} active={item.active}/>
+					))
+				}
+			</div>
+		</Card>
+
+	)
+}
+
+
+function PopularTags(props){
+
+	const ChipCSS = {
+		minWidth: "126px",
+		height: "28px",
+		background: "#FFFFFF",
+		border: "1px solid #F07F1A",borderRadius: "7px",
+		margin:"4px"
+	}
+	const CardCSS = {
+		minHeight:"218px",
+		width:"372px",
+		border: "1px solid #F07F1A",
+		boxShadow: "0px 0px 14px rgba(0, 0, 0, 0.25)",
+		color:"black",
+	}
+
+	// tags state
+	const [popularTags,setPopularTags] = useState([
+		{title:"USA",active:false},{title:"India",active:false},{title:"Canada",active:false},{title:"Bhutan",active:false},{title:"Nepal",active:true}
+	]) 
+
+	return (
+		<Card style={{...CardCSS,marginTop:"2rem"}} heading={"Popular Tags"}>
+			<div style={{width:"100%",height:"100%",display:"flex",flexWrap:"wrap",}}>
+				{
+					popularTags.map((item,key)=>(
+						<Chip style={ChipCSS} text={item.title} active = {item.active}/>
+					))
+				}
+			</div>
+		</Card>
+	)
+}
+	
+

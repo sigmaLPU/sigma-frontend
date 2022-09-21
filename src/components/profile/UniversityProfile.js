@@ -9,7 +9,7 @@ import {
 	FileCard,MeetingCard,
 	ContactCard,RecentUpdateCard,
 	ModalPopUp,ContactDetailsModal,
-	MeetingUniversityModal,
+	MeetingUniversityModal,GuestVisitUniversityModal,MouContractUniversityModal,
 } from '../routes'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -52,7 +52,7 @@ export default function UniversityProfile(props){
 
 						<div style={{display:"flex",rowGap:"2rem",flexWrap:"wrap",alignContent:"space-between"}}>						
 							<BasicDetails popup={<BasicDetailsModal/>}/>							
-							<MOUcontract popup={<BasicDetailsModal/>}/>
+							<MOUcontract popup={<MouContractUniversityModal/>}/>
 							<ContactPerson popup={<ContactDetailsModal/>}/>
 							<ApplicationProcess popup={<BasicDetailsModal/>}/>
 							<FacultyMobiliy popup={<BasicDetailsModal/>}/>								
@@ -68,7 +68,7 @@ export default function UniversityProfile(props){
 					
 					<div style={{display:"flex",justifyContent:"space-between",marginTop:"2rem",flexWrap:"wrap",height:"380px"}}>
 						<Meetings popup={<MeetingUniversityModal/>}/>
-						<GuestVisit popup={<BasicDetailsModal/>}/>
+						<GuestVisit popup={<GuestVisitUniversityModal/>}/>
 						<DocumentRequired popup={<BasicDetailsModal/>}/>
 					</div>
 
