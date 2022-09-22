@@ -4,11 +4,13 @@ import {
 	universityMeetingSlice,universityMeetingReducer,universityMeetingAddReducer,
 	universityProgramSlice,universityProgramReducer,
 	universityRecentUpdateSlice,universityRecentUpdateReducer,
-} from './temp/routes'
+} from './universityProfile/routes'
 
 import {
-	getAllUniversitySlice,getAllUniversityReducer,setRedirectFunction,updateViewDetails
-} from './university/routes'
+	getAllUniversitySlice,getAllUniversityReducer,setRedirectFunction,updateViewDetails,
+
+	tagsMouMasterSlice,activateYourTagChip,deleteYourTagChip,addYourTagChip,
+} from './mouMaster/routes'
 
 import {
 	forgetPasswordSlice,forgetPasswordReducer,resetPasswordReducer,
@@ -24,6 +26,7 @@ export {
 
 	// university list
 	getAllUniversitySlice,getAllUniversityReducer,setRedirectFunction,updateViewDetails,
+	tagsMouMasterSlice,activateYourTagChip,deleteYourTagChip,addYourTagChip,
 
 	forgetPasswordSlice,forgetPasswordReducer,resetPasswordReducer,
 

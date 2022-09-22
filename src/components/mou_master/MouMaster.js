@@ -8,7 +8,7 @@ import {NavSideBarLayout} from '../routes'
 import {Card ,Chip, Table} from '../routes'
 
 // other imports
-import { getAllUniversityReducer,setRedirectFunction, updateViewDetails } from '../../redux/routes'
+import { getAllUniversityReducer,setRedirectFunction, updateViewDetails,activateYourTagChip,deleteYourTagChip,addYourTagChip, } from '../../redux/routes'
 
 
 // function defination
@@ -111,6 +111,13 @@ export default function MouMaster(props){
 
 
 function YourTags(props){
+
+
+	const rawData = useSelector((state)=>state.tagsMouMasterSlice.data)
+
+	useEffect(()=>{
+		console.log("Tags data ---> ",rawData)
+	},[])
 
 	const ChipCSS = {
 		minWidth: "126px",

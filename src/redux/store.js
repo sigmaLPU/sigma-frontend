@@ -4,7 +4,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import authUserReducer from './users/auth.js';
 import authenticateToken from './users/auth.js';
 
-import { getAllUniversitySlice } from './routes';
+import { getAllUniversitySlice, tagsMouMasterSlice } from './routes';
 
 import {
   universityBasicDetailsSlice,
@@ -22,7 +22,8 @@ export const store = configureStore({
     forgetPasswordSlice: forgetPasswordSlice,
 
     getAllUniversitySlice: getAllUniversitySlice,
-
+    tagsMouMasterSlice: tagsMouMasterSlice,
+    
     universityBasicDetailsSlice: universityBasicDetailsSlice,
     universityContactSlice: universityContactSlice,
     universityMeetingSlice: universityMeetingSlice,
