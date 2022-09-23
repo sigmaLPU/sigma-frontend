@@ -10,6 +10,7 @@ import {
 	ContactCard,RecentUpdateCard,
 	ModalPopUp,ContactDetailsModal,
 	MeetingUniversityModal,GuestVisitUniversityModal,MouContractUniversityModal,
+	ProgramOfColaborationUniversityModal,RecentUpdateUniversityModal,
 } from '../routes'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -60,7 +61,7 @@ export default function UniversityProfile(props){
 						</div>
 
 						<div style={{position:"relative",top:"-15px"}}>
-							<RecentUpdate popup={<BasicDetailsModal/>}/>
+							<RecentUpdate popup={<RecentUpdateUniversityModal/>}/>
 						</div>
 
 					</div>
@@ -73,7 +74,7 @@ export default function UniversityProfile(props){
 					</div>
 
 					<div style={{marginTop:"2rem"}}>
-						<ProgramOfColaboration props={<BasicDetailsModal/>}/>						
+						<ProgramOfColaboration popup={<ProgramOfColaborationUniversityModal/>}/>						
 					</div>
 				</div>					
 				
@@ -347,7 +348,7 @@ function ProgramOfColaboration(props){
 
 	return (
 		<>
-			<Table data={data} rows={data.rows} column={data.column} heading={"Program of colaboration"} style={{minHeight:"15rem"}}/>
+			<Table data={data} popup={props?.popup} rows={data.rows} column={data.column} heading={"Program of colaboration"} style={{minHeight:"15rem"}}/>
 		</>
 	)
 }

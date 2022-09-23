@@ -4,7 +4,10 @@ import IconButton from '@mui/material/IconButton'; // Parent component to fit ic
 import CallMadeIcon from '@mui/icons-material/CallMade'; // heading pop icon
 import CloseIcon from '@mui/icons-material/Close';
 
-import {universityContactAddReducer,universityMeetingAddReducer,universityBasicDetailsUpdateReducer} from '../../redux/routes'
+import {universityContactAddReducer,universityMeetingAddReducer,
+	universityBasicDetailsUpdateReducer,universityProgramAddReducer,
+	universityRecentUpdateAddReducer,
+} from '../../redux/routes'
 
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -46,13 +49,16 @@ export default function ModalPopUp(props){
 		setIsOpen(false);
 	}
 
-
 	return (
 		<div>
-			<IconButton color="inherit" onClick={openModal} aria-label="open drawer" style={{width:"30px",height:"28.54px",float:"right",border:"1px solid black" , borderRadius:"8px"}}>
-				<CallMadeIcon />
-			</IconButton>
-      <Modal
+			{
+				props?.activeComponent ? 
+					<div onClick={openModal} style={{cursor:"pointer"}}>{props?.activeComponent}</div> 
+					: 
+					<IconButton color="inherit" onClick={openModal} aria-label="open drawer" style={{width:"30px",height:"28.54px",float:"right",border:"1px solid black" , borderRadius:"8px"}}>
+						<CallMadeIcon />
+					</IconButton>
+      }<Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
@@ -175,11 +181,6 @@ export function ContactDetailsModal(props){
 		</div>
 	)
 }
-
-
-
-
-
 
 
 export function MeetingUniversityModal(props){
@@ -398,3 +399,99 @@ export function MouContractUniversityModal(props){
 	)
 }
 
+export function ProgramOfColaborationUniversityModal(props){
+	const style = {
+		height: "500px",
+		width: "741px",
+		borderRadius: "10px",
+		display:"flex",justifyContent:"start",
+		alignItems:"center",
+		flexDirection:"column",
+	}
+
+
+	const dispatch = useDispatch()
+
+	const [data,setData] = useState({
+    "lpu_name":"",
+    "forign_name":"",
+    "tutionFees":"",
+    "scholarship":""
+	})
+
+
+	useEffect(()=>{
+	},[])
+
+	function submit(e){
+		e.preventDefault()
+		console.log("submit ---> ",data)
+		const id = getUniId(window.location.href)
+		dispatch(universityProgramAddReducer({id,data:data}))
+	}
+
+
+	return(
+		<div style={style}>
+			<span style={{fontSize:"20px",fontSize:"700",width:"100%",textAlign:"center"}}>Program of Colaboration</span>
+			<div style={{marginTop:"3rem"}}>
+				<form>
+					<input style={{width:"607px",height:"40px",borderRadius:"8px"}} onChange={(e)=>setData({...data,lpu_name:e.target.value})} value={data.lpu_name} type="text" placeholder="LPU Degree name"/>
+					<input style={{width:"607px",height:"40px",borderRadius:"8px"}} onChange={(e)=>setData({...data,forign_name:e.target.value})} value={data.forign_name} type="text" placeholder="Final Degree name"/>
+					<input style={{width:"607px",height:"40px",borderRadius:"8px"}} onChange={(e)=>setData({...data,tutionFees:e.target.value})} value={data.tutionFees} type="text" placeholder="Fees"/>
+					<input style={{width:"607px",height:"40px",borderRadius:"8px"}} onChange={(e)=>setData({...data,scholarship:e.target.value})} value={data.scholarship} type="text" placeholder="Scholarship"/>
+					<button onClick={(e)=>submit(e)}>Save</button>
+				</form>
+			</div>
+		</div>
+	)
+}
+
+
+
+
+
+
+
+export function RecentUpdateUniversityModal(props){
+	const style = {
+		height: "500px",
+		width: "741px",
+		borderRadius: "10px",
+		display:"flex",justifyContent:"start",
+		alignItems:"center",
+		flexDirection:"column",
+	}
+
+
+	const dispatch = useDispatch()
+
+	const [data,setData] = useState({
+		"type":"text",
+		"value":""
+	})
+
+
+	useEffect(()=>{
+	},[])
+
+	function submit(e){
+		e.preventDefault()
+		console.log("submit ---> ",data)
+		const id = getUniId(window.location.href)
+		dispatch(universityRecentUpdateAddReducer({id,data:data}))
+	}
+
+
+	return(
+		<div style={style}>
+			<span style={{fontSize:"20px",fontSize:"700",width:"100%",textAlign:"center"}}>Add New Recent Update</span>
+			<div style={{marginTop:"3rem"}}>
+				<form>
+					<input style={{width:"607px",minHeight:"40px",borderRadius:"8px"}} onChange={(e)=>setData({...data,value:e.target.value})} value={data.lpu_name} type="text" placeholder="Write Here"/>
+					<button onClick={(e)=>submit(e)}>Save</button>
+				</form>
+			</div>
+		</div>
+	)
+}

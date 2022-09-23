@@ -6,7 +6,11 @@ const initialState = {
   data:{
     message:"Loading",
     loading:true,
-    data:{},
+    data:{
+      "data":[],
+      "ids":[],
+      "column":[]
+    },
   }
 }
 
@@ -19,6 +23,26 @@ const universityProgramReducer = createAsyncThunk('universityProgram/universityP
     }})
   }
 )
+
+
+const universityProgramAddReducer = createAsyncThunk('universityProgram/universityProgramAddReducer',
+  async (data)=>{
+    var config = {
+      method: 'post',
+      url: `https://sigmalpu.herokuapp.com/api/v2/university/program/${data?.id}/add`,
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      data : data?.data
+    };
+
+    console.log("Adding university program data ",data?.data)
+    return axios(config)
+  }
+)
+
+
+
 
 export const universityProgramSlice = createSlice({
   name: 'getSingleUniversityProgram',
@@ -60,8 +84,42 @@ export const universityProgramSlice = createSlice({
       state.data.loading = false
     });
 
+
+    builder.addCase(universityProgramAddReducer.fulfilled, (state, { payload }) => {
+      console.log("university program fulfilled payload",payload)
+      state.data.message = "Fulfilled"
+      state.data.loading = false
+      var obj = payload?.data?.universityProgram
+ 
+      console.log("after adding program-------> ",obj)
+
+      var temp = {}
+      temp["LPU Degree Name"] = obj?.lpu_name ? obj?.lpu_name : "Not available"
+      temp["Final Degree Name"] = obj?.forign_name ? obj?.forign_name : "Not available"
+      temp["Fees"] = obj?.tutionFees ? obj?.tutionFees : "Not available"
+      temp["Scholarship"] = obj?.scholarship ? obj?.scholarship : "Not available"
+      temp["Agreements"] = <div>View Details</div>
+
+      state.data.data.column = ["LPU Degree Name","Final Degree Name","Fees","Scholarship","Agreements"]
+      state.data.data.ids = [obj?._id].concat(state.data.data.ids)
+      state.data.data.data = [temp].concat(state.data.data.data)
+      // state.data.data = {data:arr,ids:ids,column:["LPU Degree Name","Final Degree Name","Fees","Scholarship","Agreements"]}
+    });
+
+    builder.addCase(universityProgramAddReducer.pending, (state, { payload }) => {
+      console.log("university program pending payload",payload)
+      state.data.message = "Loading"
+    });
+    
+    builder.addCase(universityProgramAddReducer.rejected, (state, { payload }) => {
+      console.log("university program rejected payload",payload)
+      state.data.message = "Failed"
+      state.data.loading = false
+    });
+
+
   },
 })
 
 export default universityProgramSlice.reducer
-export {universityProgramReducer}
+export {universityProgramReducer,universityProgramAddReducer}

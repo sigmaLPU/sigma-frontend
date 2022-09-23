@@ -27,7 +27,12 @@ import Chip from './common_components/chip'
 // table 
 import Table from './common_components/table'
 //modal
-import ModalPopUp, {BasicDetailsModal,ContactDetailsModal,MeetingUniversityModal,GuestVisitUniversityModal,MouContractUniversityModal,} from './common_components/modal'
+
+import ModalPopUp, {BasicDetailsModal,ContactDetailsModal,MeetingUniversityModal,
+	GuestVisitUniversityModal,MouContractUniversityModal,
+	ProgramOfColaborationUniversityModal,RecentUpdateUniversityModal,
+} from './common_components/modal'
+
 // meeting card objects
 import {BasicDetailsMeetingCard,AttachementCard} from './meetings/meetingCards'
 // modal popup
@@ -36,6 +41,7 @@ import {
 		ActionPlanMeetingModal,MoMNotesMeetingModal,
 		AttachmentMeetingModal,
 } from './meetings/meetingCards'
+
 export {
 	//pages
 	HomePage,
@@ -55,7 +61,9 @@ export {
 	BasicDetailsMeetingCard,AttachementCard,
 
 	// modalpop
-	BasicDetailsModal,ModalPopUp,ContactDetailsModal,MeetingUniversityModal,GuestVisitUniversityModal,MouContractUniversityModal,
+	BasicDetailsModal,ModalPopUp,ContactDetailsModal,MeetingUniversityModal,
+	GuestVisitUniversityModal,MouContractUniversityModal,
+	ProgramOfColaborationUniversityModal,RecentUpdateUniversityModal,
 	
 	BasicDetailsMeetingModal,OutcomeMeetingModal,
 	ActionPlanMeetingModal,MoMNotesMeetingModal,

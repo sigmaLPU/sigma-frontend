@@ -171,7 +171,7 @@ export function RecentUpdateCard(props){
 
 export function MeetingCard(props){
 
-	
+
 
 	return (
 		<div style={{marginBottom:"1rem",width:"100%"}}>
@@ -179,7 +179,11 @@ export function MeetingCard(props){
 				<span>{props?.data["title"]}</span>
 			</div>
 			<div style={{paddingTop:"4px",display:"flex",justifyContent:"space-between"}}>
-				<span style={{color:"red",fontWeight:"700"}}>Read more...</span>
+				<span style={{color:"red",fontWeight:"700"}}>
+					<ModalPopUp activeComponent={<span>Read more...</span>}>
+						Edit Modal
+					</ModalPopUp>
+				</span>
 				<span>{props?.data["meetingTime"]}</span>
 			</div>
 		</div>

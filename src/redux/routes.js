@@ -2,8 +2,8 @@ import {
 	universityBasicDetailsSlice,universityBasicDetailsReducer,universityBasicDetailsUpdateReducer,
 	universityContactSlice,universityContactReducer,universityContactAddReducer,
 	universityMeetingSlice,universityMeetingReducer,universityMeetingAddReducer,
-	universityProgramSlice,universityProgramReducer,
-	universityRecentUpdateSlice,universityRecentUpdateReducer,
+	universityProgramSlice,universityProgramReducer,universityProgramAddReducer,
+	universityRecentUpdateSlice,universityRecentUpdateReducer,universityRecentUpdateAddReducer,
 } from './universityProfile/routes'
 
 import {
@@ -21,8 +21,8 @@ export {
 	universityBasicDetailsSlice,universityBasicDetailsReducer,universityBasicDetailsUpdateReducer,
 	universityContactSlice,universityContactReducer,universityContactAddReducer,
 	universityMeetingSlice,universityMeetingReducer,universityMeetingAddReducer,
-	universityProgramSlice,universityProgramReducer,
-	universityRecentUpdateSlice,universityRecentUpdateReducer,
+	universityProgramSlice,universityProgramReducer,universityProgramAddReducer,
+	universityRecentUpdateSlice,universityRecentUpdateReducer,universityRecentUpdateAddReducer,
 
 	// university list
 	getAllUniversitySlice,getAllUniversityReducer,setRedirectFunction,updateViewDetails,

@@ -29,6 +29,23 @@ const universityRecentUpdateReducer = createAsyncThunk('universityRecentUpdate/u
   }
 )
 
+const universityRecentUpdateAddReducer = createAsyncThunk('universityRecentUpdate/universityRecentUpdateAddReducer',
+  async (data)=>{
+    var config = {
+      method: 'post',
+      url: `https://sigmalpu.herokuapp.com/api/v2/university/update/${data?.id}/add`,
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      data : data?.data
+    };
+
+    console.log("Adding university update data ",data?.data)
+    return axios(config)
+  }
+)
+
+
 export const universityRecentUpdateSlice = createSlice({
   name: 'getSingleUniversityRecentUpdate',
   initialState,
@@ -68,8 +85,38 @@ export const universityRecentUpdateSlice = createSlice({
       state.data.loading = false
     });
 
+
+    builder.addCase(universityRecentUpdateAddReducer.fulfilled, (state, { payload }) => {
+      console.log("university recent update Add fulfilled payload",payload)
+      state.data.message = "Fulfilled"
+      state.data.loading = false
+    
+      var obj = payload?.data?.universityUpdate
+
+      var temp = {}
+      temp["title"] = obj?.value
+      temp["date"] = toDate(obj?.createdAt)
+
+      state.data.data.data = [temp].concat(state.data.data.data)
+      state.data.data.ids = [obj?._id].concat(state.data.data.ids)
+
+    });
+
+    builder.addCase(universityRecentUpdateAddReducer.pending, (state, { payload }) => {
+      console.log("university recent update Add pending payload",payload)
+      state.data.message = "Loading"
+    });
+    
+    builder.addCase(universityRecentUpdateAddReducer.rejected, (state, { payload }) => {
+      console.log("university recent update add rejected payload",payload)
+      state.data.message = "Failed"
+      state.data.loading = false
+    });
+
+
+
   },
 })
 
 export default universityRecentUpdateSlice.reducer
-export {universityRecentUpdateReducer}
+export {universityRecentUpdateReducer,universityRecentUpdateAddReducer}
