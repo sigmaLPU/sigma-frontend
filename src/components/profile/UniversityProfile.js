@@ -14,6 +14,7 @@ import {
 	MeetingUpdateUniversityModal,
 
 	LoadingPage,
+	LoadingComponent,
 } from '../routes'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -47,7 +48,6 @@ export default function UniversityProfile(props){
 	// default image for user contact
 	const loading_obj = {"STATUS":"LOADING"};
 
-	// const loading1 = useSelector((state)=>state.universityBasicDetailsSlice.data)
 	// const loading2 = useSelector((state)=>state.universityContactSlice.data)
 	// const loading3 = useSelector((state)=>state.universityMeetingSlice.data)
 	// const loading4 = useSelector((state)=>state.universityProgramSlice.data)
@@ -134,7 +134,9 @@ function BasicDetails(props){
 		<>
 			{/* basic Details */}
 			<Card popup={props?.popup} style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Basic Details">
-				<ObjectCard data={details.data}/>
+				{
+					details?.loading ? <LoadingComponent/> : <ObjectCard data={details.data}/>
+				}
 			</Card>
 		</>
 	)
@@ -181,7 +183,7 @@ function ContactPerson(props){
 			{/* Contact Person */}
 			<Card  popup={props?.popup}  style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Contact Person">
 				{
-					contactData?.data?.data?.map((item,key)=>(
+					contactData?.loading ? <LoadingComponent/> : contactData?.data?.data?.map((item,key)=>(
 						<ContactCard data={item} id={contactData?.data?.ids[key]}/>
 					))
 				}
@@ -275,11 +277,15 @@ function RecentUpdate(props){
 		<>
 			{/* RECENT UPDATE*/}
 			<Card popup={props?.popup}  cardDataCSS={{maxHeight:"90%"}}  heading="Recent Update" style={{width:"411px",height:"100%",border:"1px solid black"}}>
-				<ul>
-				{		data.map(item=>(
-						<li><RecentUpdateCard data={item}/></li>
-				))}
-				</ul>
+				{	recentUpdateData?.loading ? <LoadingComponent/> :
+					<ul>
+						{		
+							data.map(item=>(
+								<li><RecentUpdateCard data={item}/></li>
+							))
+						}
+					</ul>
+				}
 			</Card>
 		</>
 	)
@@ -304,11 +310,16 @@ function Meetings(props){
 		<>
 			{/* Meetings */}
 			<Card  popup={props?.popup} style={{display:"flex",alignContent:"start",flexWrap:"wrap",margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"641px",maxHeight:"100%"}} heading="Meetings">
-				<ul>
-					{	meetingData?.data?.data &&	meetingData?.data?.data.map(item=>(
-							<li><MeetingCard meetingUpdateUniversityModal={<MeetingUpdateUniversityModal data={item}/>} data={item}/></li>
-					))}
-				</ul>
+				{
+					meetingData?.loading ? <LoadingComponent/> :
+						<ul>
+							{	
+								meetingData?.data?.data &&	meetingData?.data?.data.map(item=>(
+									<li><MeetingCard meetingUpdateUniversityModal={<MeetingUpdateUniversityModal data={item}/>} data={item}/></li>
+								))
+							}
+						</ul>
+				}
 			</Card>
 		</>
 	)
