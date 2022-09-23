@@ -98,6 +98,7 @@ export const universityMeetingSlice = createSlice({
 
     builder.addCase(universityMeetingReducer.pending, (state, { payload }) => {
       console.log("university Meeting pending payload",payload)
+      state.data.loading = true
       state.data.message = "Loading"
     });
     
@@ -134,6 +135,7 @@ export const universityMeetingSlice = createSlice({
 
     builder.addCase(universityMeetingAddReducer.pending, (state, { payload }) => {
       console.log("university Meeting add  pending payload",payload)
+      state.data.loading = true
       state.data.message = "Loading"
     });
     
@@ -176,6 +178,7 @@ export const universityMeetingSlice = createSlice({
 
     builder.addCase(universityMeetingUpdateReducer.pending, (state, { payload }) => {
       console.log("university Meeting update pending payload",payload)
+      state.data.loading = true
       state.data.message = "Loading"
     });
     

@@ -19,7 +19,8 @@ import {
 	MeetingUpdateUniversityModal,
 } from './modals/universityProfileModals'
 
-
+// loading component
+import {LoadingComponent} from './loadingComponent'
 
 export {
 	//card
@@ -33,4 +34,6 @@ export {
 	ProgramOfColaborationUniversityModal,RecentUpdateUniversityModal,
 	MeetingUpdateUniversityModal,
 
+	// loading component
+	LoadingComponent,
 }

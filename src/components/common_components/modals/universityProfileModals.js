@@ -5,6 +5,8 @@ import IconButton from '@mui/material/IconButton'; // Parent component to fit ic
 import CallMadeIcon from '@mui/icons-material/CallMade'; // heading pop icon
 import CloseIcon from '@mui/icons-material/Close';
 
+import { LoadingComponent } from '../../routes';
+
 import { useDispatch, useSelector } from 'react-redux'
 
 import {universityContactAddReducer,universityMeetingAddReducer,
@@ -229,6 +231,8 @@ export function MeetingUpdateUniversityModal(props){
 
 	const dispatch = useDispatch();
 
+	const reduxData = useSelector((state)=>state.universityMeetingSlice.data)
+
 	const [data,setData] = useState(
 		{
 		"title":"",
@@ -251,12 +255,20 @@ export function MeetingUpdateUniversityModal(props){
 	function onSubmit(e){
 		e.preventDefault();
 		const id = data["id"]
-		delete data["id"]
-		delete data["university"]
+		// delete data["id"]
+		// delete data["university"]
 		console.log("Submitterd data ---> ",data)
 		dispatch(universityMeetingUpdateReducer({
 			data:{"title":data?.title,"agenda":data?.agenda},id
 		}))
+	}
+
+	if(reduxData?.loading){
+		return (
+			<div style={style}>
+				<LoadingComponent/>
+			</div>
+		)
 	}
 
 	return(

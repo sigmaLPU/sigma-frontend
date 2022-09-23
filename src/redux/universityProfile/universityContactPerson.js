@@ -75,6 +75,7 @@ export const universityContactSlice = createSlice({
 
     builder.addCase(universityContactReducer.pending, (state, { payload }) => {
       console.log("university contact pending payload",payload)
+      state.data.loading = true
       state.data.message = "Loading"
     });
     
@@ -104,6 +105,7 @@ export const universityContactSlice = createSlice({
 
     builder.addCase(universityContactAddReducer.pending, (state, { payload }) => {
       console.log("university contact add pending payload",payload)
+      state.data.loading = true
       state.data.message = "Loading"
     });
     

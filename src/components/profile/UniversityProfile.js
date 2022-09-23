@@ -12,6 +12,8 @@ import {
 	MeetingUniversityModal,GuestVisitUniversityModal,MouContractUniversityModal,
 	ProgramOfColaborationUniversityModal,RecentUpdateUniversityModal,
 	MeetingUpdateUniversityModal,
+
+	LoadingPage,
 } from '../routes'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -38,11 +40,38 @@ function getUniId(url){
 
 const default_img = `https://anchorandcontrol.com/wp-content/themes/cera-child/assets/images/avatars/user-avatar.png`
 
+
 export default function UniversityProfile(props){
 
 	const dispatch = useDispatch();
 	// default image for user contact
 	const loading_obj = {"STATUS":"LOADING"};
+
+	// const loading1 = useSelector((state)=>state.universityBasicDetailsSlice.data)
+	// const loading2 = useSelector((state)=>state.universityContactSlice.data)
+	// const loading3 = useSelector((state)=>state.universityMeetingSlice.data)
+	// const loading4 = useSelector((state)=>state.universityProgramSlice.data)
+	// const loading5 = useSelector((state)=>state.universityRecentUpdateSlice.data)
+
+	// const [isLoading,setIsLoading] = useState(true)
+
+	// useEffect(()=>{
+	// 	if(loading1?.loading || loading2?.loading || loading3?.loading || loading4?.loading || loading5?.loading){
+	// 		setIsLoading(true)
+	// 	}else{
+	// 		setIsLoading(false)
+	// 	}
+	// 	console.log("loading ----> ",isLoading)
+	// },[loading1,loading2,loading3,loading4,loading5])
+
+	// if(isLoading){
+	// 	return (
+	// 		<div>
+	// 			<LoadingPage/>
+	// 		</div>
+	// 	)
+	// }
+
 
 	return (
 		<div>
