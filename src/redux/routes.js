@@ -1,7 +1,7 @@
 import {
 	universityBasicDetailsSlice,universityBasicDetailsReducer,universityBasicDetailsUpdateReducer,
 	universityContactSlice,universityContactReducer,universityContactAddReducer,
-	universityMeetingSlice,universityMeetingReducer,universityMeetingAddReducer,
+	universityMeetingSlice,universityMeetingReducer,universityMeetingAddReducer,universityMeetingUpdateReducer,
 	universityProgramSlice,universityProgramReducer,universityProgramAddReducer,
 	universityRecentUpdateSlice,universityRecentUpdateReducer,universityRecentUpdateAddReducer,
 } from './universityProfile/routes'
@@ -20,7 +20,7 @@ export {
 	// university profile state/slice/reducer
 	universityBasicDetailsSlice,universityBasicDetailsReducer,universityBasicDetailsUpdateReducer,
 	universityContactSlice,universityContactReducer,universityContactAddReducer,
-	universityMeetingSlice,universityMeetingReducer,universityMeetingAddReducer,
+	universityMeetingSlice,universityMeetingReducer,universityMeetingAddReducer,universityMeetingUpdateReducer,
 	universityProgramSlice,universityProgramReducer,universityProgramAddReducer,
 	universityRecentUpdateSlice,universityRecentUpdateReducer,universityRecentUpdateAddReducer,
 

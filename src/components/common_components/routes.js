@@ -16,6 +16,7 @@ import {
 	BasicDetailsModal,ContactDetailsModal,MeetingUniversityModal,
 	GuestVisitUniversityModal,MouContractUniversityModal,
 	ProgramOfColaborationUniversityModal,RecentUpdateUniversityModal,
+	MeetingUpdateUniversityModal,
 } from './modals/universityProfileModals'
 
 
@@ -30,4 +31,6 @@ export {
 	BasicDetailsModal,ContactDetailsModal,MeetingUniversityModal,
 	GuestVisitUniversityModal,MouContractUniversityModal,
 	ProgramOfColaborationUniversityModal,RecentUpdateUniversityModal,
+	MeetingUpdateUniversityModal,
+
 }

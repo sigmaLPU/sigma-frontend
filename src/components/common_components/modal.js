@@ -18,7 +18,7 @@ export default function ModalPopUp(props){
 	  },
 	};
 
-	let subtitle;
+	// let subtitle;
 	const [modalIsOpen, setIsOpen] = useState(false);
 
 	function openModal() {
@@ -26,7 +26,7 @@ export default function ModalPopUp(props){
 	}
 
 	function afterOpenModal() {
-		subtitle.style.color = '#f00';
+		// subtitle.style.color = '#f00';
 	}
 
 	function closeModal() {

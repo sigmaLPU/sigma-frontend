@@ -11,6 +11,7 @@ import {
 	ModalPopUp,ContactDetailsModal,
 	MeetingUniversityModal,GuestVisitUniversityModal,MouContractUniversityModal,
 	ProgramOfColaborationUniversityModal,RecentUpdateUniversityModal,
+	MeetingUpdateUniversityModal,
 } from '../routes'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -276,7 +277,7 @@ function Meetings(props){
 			<Card  popup={props?.popup} style={{display:"flex",alignContent:"start",flexWrap:"wrap",margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"641px",maxHeight:"100%"}} heading="Meetings">
 				<ul>
 					{	meetingData?.data?.data &&	meetingData?.data?.data.map(item=>(
-							<li><MeetingCard data={item}/></li>
+							<li><MeetingCard meetingUpdateUniversityModal={<MeetingUpdateUniversityModal data={item}/>} data={item}/></li>
 					))}
 				</ul>
 			</Card>

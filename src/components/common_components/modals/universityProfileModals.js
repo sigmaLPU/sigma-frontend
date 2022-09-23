@@ -9,7 +9,8 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import {universityContactAddReducer,universityMeetingAddReducer,
 	universityBasicDetailsUpdateReducer,universityProgramAddReducer,
-	universityRecentUpdateAddReducer,
+	universityRecentUpdateAddReducer,universityMeetingUpdateReducer,
+	universityMeetingReducer,
 } from '../../../redux/routes'
 
 
@@ -151,7 +152,6 @@ export function MeetingUniversityModal(props){
 		"title":"",
 		"createdBy":"",
 		"meetingTime":"",
-		"meetingDate":"",
 		"agenda":"",
 		"participants":[],
 		"link":"N/A"
@@ -168,11 +168,7 @@ export function MeetingUniversityModal(props){
 	function onSubmit(e){
 		e.preventDefault();
 		const id = getUniId(window.location.href)
-		data["meetingTime"] = data["meetingDate"]+" "+data["meetingTime"]
-		delete data["meetingDate"]
-		console.log(data)
 		dispatch(universityMeetingAddReducer({data:data,id}))
-		// console.log(data)
 	}
 
 	return(
@@ -208,11 +204,7 @@ export function MeetingUniversityModal(props){
 					<div style={{display:"flex",flexDirection:"row",width:"100%",marginTop:"1rem",columnGap:"1rem"}}>
 						<div style={{display:"flex",flexDirection:"column",width:"50%"}}>
 							<span>Date</span>
-							<input type="date" style={{fontSize:"1.2rem",fontWeight:"700",}} onChange={(e)=>setData({...data,"meetingDate":e.target.value})} />
-						</div>
-						<div style={{display:"flex",flexDirection:"column",width:"40%"}}>
-							<span>Time</span>
-							<input type="time" style={{fontSize:"1.2rem",fontWeight:"700",}} onChange={(e)=>setData({...data,"meetingTime":e.target.value})} />
+							<input type="date" style={{fontSize:"1.2rem",fontWeight:"700",}} onChange={(e)=>setData({...data,"meetingTime":e.target.value})} />
 						</div>
 					</div>
 
@@ -225,7 +217,95 @@ export function MeetingUniversityModal(props){
 	)
 }
 
+export function MeetingUpdateUniversityModal(props){
+	const style = {
+		height: "500px",
+		width: "741px",
+		borderRadius: "10px",
+		display:"flex",justifyContent:"start",
+		alignItems:"center",
+		flexDirection:"column",
+	}
 
+	const dispatch = useDispatch();
+
+	const [data,setData] = useState(
+		{
+		"title":"",
+		"createdBy":"",
+		"meetingTime":"",
+		"agenda":"",
+		"participants":[],
+		"link":"N/A"
+		}
+	)
+
+	useEffect(()=>{
+		var name = localStorage.getItem('name')
+		if(name){
+			setData({...data,...props?.data})
+			console.log("update data ---->",data)
+		}
+	},[])
+
+	function onSubmit(e){
+		e.preventDefault();
+		const id = data["id"]
+		delete data["id"]
+		delete data["university"]
+		console.log("Submitterd data ---> ",data)
+		dispatch(universityMeetingUpdateReducer({
+			data:{"title":data?.title,"agenda":data?.agenda},id}))
+			// .then((data)=>{
+			// 		dispatch(universityMeetingReducer({}))
+			// })
+	}
+
+	return(
+		<div style={style}>
+			<span style={{fontSize:"1.3rem",fontSize:"900",width:"100%",textAlign:"center",width:"607px",borderRadius:"8px"}}>
+				Edit Meeting Details
+			</span>
+			<div style={{marginTop:"3rem",width:"100%"}}>
+				<form style={{width:"100%"}}>
+					
+					<div style={{display:"flex",flexDirection:"column",width:"100%",}}>
+						<span>Meeting Agenda</span>
+						<input type="text" value={data?.agenda} style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>setData({...data,"agenda":e.target.value})} />
+					</div>
+
+					<div style={{display:"flex",flexDirection:"column",width:"100%",}}>
+						<span>Created By</span>
+						<input type="text" value={data?.createdBy} style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>setData({...data,"agenda":e.target.value})} />
+					</div>
+
+					<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
+						<span>Meeting between</span>
+						<input type="text" value={data?.title} style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>setData({...data,"title":e.target.value})} />
+					</div>
+								
+
+					<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
+						<span>Link</span>
+						<input type="text" value={data?.link} style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>setData({...data,"link":e.target.value})} />
+					</div>
+								
+
+					<div style={{display:"flex",flexDirection:"row",width:"100%",marginTop:"1rem",columnGap:"1rem"}}>
+						<div style={{display:"flex",flexDirection:"column",width:"50%"}}>
+							<span>Date</span>
+							<input type="date" value={data?.meetingTime} style={{fontSize:"1.2rem",fontWeight:"700",}} onChange={(e)=>setData({...data,"meetingTime":e.target.value})} />
+						</div>
+					</div>
+
+
+					<button onClick={(e)=>onSubmit(e)}>Save</button>
+
+				</form>
+			</div>
+		</div>
+	)
+}
 
 
 export function GuestVisitUniversityModal(props){
@@ -440,3 +520,4 @@ export function RecentUpdateUniversityModal(props){
 		</div>
 	)
 }
+

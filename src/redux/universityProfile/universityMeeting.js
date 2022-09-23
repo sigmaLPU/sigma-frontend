@@ -6,7 +6,10 @@ const initialState = {
   data:{
     message:"Loading",
     loading:true,
-    data:{},
+    data:{
+      data:[],
+      ids:[]
+    },
   }
 }
 
@@ -38,6 +41,23 @@ const universityMeetingAddReducer = createAsyncThunk('universityMeetingAdd/unive
   }
 )
 
+
+const universityMeetingUpdateReducer = createAsyncThunk('universityMeeting/universityMeetingUpdateReducer',
+  async (data)=>{
+    console.log("Update university basic data")
+    return axios.put(`https://sigmalpu.herokuapp.com/api/v2/university/meeting/${data?.id}/update`,data?.data,{
+        headers: {
+          'Content-Type': 'application/json'
+    }})
+  }
+)
+
+
+
+
+
+
+
 export const universityMeetingSlice = createSlice({
   name: 'getSingleUniversityMeeting',
   initialState,
@@ -59,6 +79,10 @@ export const universityMeetingSlice = createSlice({
           temp2["title"] = obj?.title
           temp2["meetingTime"] = obj?.meetingTime
           temp2["id"] = obj?._id
+          temp2["createdBy"] = obj?.createdBy
+          temp2["agenda"] = obj?.agenda
+          temp2["link"] = obj?.link
+          temp2["university"] = obj?.university
           arr.push(temp2)
           ids.push(obj?._id)
         }
@@ -89,18 +113,59 @@ export const universityMeetingSlice = createSlice({
 
     builder.addCase(universityMeetingAddReducer.fulfilled, (state, { payload }) => {
       console.log("university Meeting add fulfilled payload",payload)
+    
+      state.data.message = "Fulfilled"
+      state.data.loading = false
+      var obj = payload?.data?.universityMeeting
+      
+      var temp2 = {}
+      temp2["title"] = obj?.title
+      temp2["meetingTime"] = obj?.meetingTime
+      temp2["id"] = obj?._id
+      temp2["createdBy"] = obj?.createdBy
+      temp2["agenda"] = obj?.agenda
+      temp2["link"] = obj?.link
+      temp2["university"] = obj?.university
+
+      state.data.data.data = [temp2].concat(state.data.data.data)
+      state.data.data.ids = [obj?._id].concat(state.data.data.ids)
+
     });
 
     builder.addCase(universityMeetingAddReducer.pending, (state, { payload }) => {
       console.log("university Meeting add  pending payload",payload)
+      state.data.message = "Loading"
     });
     
     builder.addCase(universityMeetingAddReducer.rejected, (state, { payload }) => {
       console.log("university Meeting add  rejected payload",payload)
+      state.data.message = "Failed"
+      state.data.loading = false
     });
+
+
+
+    builder.addCase(universityMeetingUpdateReducer.fulfilled, (state, { payload }) => {
+      console.log("university Meeting update fulfilled payload",payload)
+      state.data.message = "Fulfilled"
+      state.data.loading = false
+    });
+
+    builder.addCase(universityMeetingUpdateReducer.pending, (state, { payload }) => {
+      console.log("university Meeting update pending payload",payload)
+      state.data.message = "Loading"
+    });
+    
+    builder.addCase(universityMeetingUpdateReducer.rejected, (state, { payload }) => {
+      console.log("university Meeting update  rejected payload",payload)
+      state.data.message = "Failed"
+      state.data.loading = false
+    });
+
+
 
   },
 })
 
 export default universityMeetingSlice.reducer
-export {universityMeetingReducer,universityMeetingAddReducer}
+export {universityMeetingReducer,universityMeetingAddReducer,universityMeetingUpdateReducer}

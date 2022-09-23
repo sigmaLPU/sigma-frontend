@@ -116,7 +116,7 @@ export function MeetingCard(props){
 			<div style={{paddingTop:"4px",display:"flex",justifyContent:"space-between"}}>
 				<span style={{color:"red",fontWeight:"700"}}>
 					<ModalPopUp activeComponent={<span>Read more...</span>}>
-						Edit Modal
+						{props?.meetingUpdateUniversityModal ? props?.meetingUpdateUniversityModal : "Not Available"}
 					</ModalPopUp>
 				</span>
 				<span>{props?.data["meetingTime"]}</span>
