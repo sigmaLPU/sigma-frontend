@@ -255,10 +255,8 @@ export function MeetingUpdateUniversityModal(props){
 		delete data["university"]
 		console.log("Submitterd data ---> ",data)
 		dispatch(universityMeetingUpdateReducer({
-			data:{"title":data?.title,"agenda":data?.agenda},id}))
-			// .then((data)=>{
-			// 		dispatch(universityMeetingReducer({}))
-			// })
+			data:{"title":data?.title,"agenda":data?.agenda},id
+		}))
 	}
 
 	return(

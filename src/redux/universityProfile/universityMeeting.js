@@ -149,6 +149,29 @@ export const universityMeetingSlice = createSlice({
       console.log("university Meeting update fulfilled payload",payload)
       state.data.message = "Fulfilled"
       state.data.loading = false
+
+      var obj = payload?.data?.universityMeeting
+      var temp2 = {}
+      temp2["title"] = obj?.title
+      temp2["meetingTime"] = obj?.meetingTime
+      temp2["id"] = obj?._id
+      temp2["createdBy"] = obj?.createdBy
+      temp2["agenda"] = obj?.agenda
+      temp2["link"] = obj?.link
+      temp2["university"] = obj?.university
+
+      var id = temp2["id"]
+      var index = -1
+      var ids = state.data.data.ids
+      for(var i=0;i<ids.length;i++){
+        if(ids[i]==id){
+          index = i
+        }
+      }
+      if(index!=-1){
+        state.data.data.data[index] = temp2        
+      }
+
     });
 
     builder.addCase(universityMeetingUpdateReducer.pending, (state, { payload }) => {
