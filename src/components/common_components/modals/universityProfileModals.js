@@ -9,7 +9,8 @@ import { LoadingComponent } from '../../routes';
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import {universityContactAddReducer,universityMeetingAddReducer,
+import {
+	universityContactAddReducer,universityMeetingAddReducer,
 	universityBasicDetailsUpdateReducer,universityProgramAddReducer,
 	universityRecentUpdateAddReducer,universityMeetingUpdateReducer,
 	universityMeetingReducer,

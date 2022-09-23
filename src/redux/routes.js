@@ -16,6 +16,8 @@ import {
 	forgetPasswordSlice,forgetPasswordReducer,resetPasswordReducer,
 } from './users/routes'
 
+export default function s(){ return "Nothing default"}
+
 export {
 	// university profile state/slice/reducer
 	universityBasicDetailsSlice,universityBasicDetailsReducer,universityBasicDetailsUpdateReducer,
