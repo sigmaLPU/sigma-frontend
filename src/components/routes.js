@@ -21,17 +21,17 @@ import MeetingProfile from './meetings/MeetingProfile'
 // navbar side bar
 import NavSideBarLayout from './common_components/navbarSidebar' 
 // card container common components
-import Card, {ObjectCard,FileCard,ContactCard,RecentUpdateCard,MeetingCard} from './common_components/card'
+import {Card,ObjectCard,FileCard,ContactCard,RecentUpdateCard,MeetingCard} from './common_components/routes'
 // chip 
 import Chip from './common_components/chip'
 // table 
 import Table from './common_components/table'
 //modal
 
-import ModalPopUp, {BasicDetailsModal,ContactDetailsModal,MeetingUniversityModal,
+import {ModalPopUp,BasicDetailsModal,ContactDetailsModal,MeetingUniversityModal,
 	GuestVisitUniversityModal,MouContractUniversityModal,
 	ProgramOfColaborationUniversityModal,RecentUpdateUniversityModal,
-} from './common_components/modal'
+} from './common_components/routes'
 
 // meeting card objects
 import {BasicDetailsMeetingCard,AttachementCard} from './meetings/meetingCards'
