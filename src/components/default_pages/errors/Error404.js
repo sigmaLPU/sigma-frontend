@@ -1,6 +1,6 @@
 // react imports
 import React from 'react';
-
+import {useNavigate} from 'react-router-dom'
 
 // component import
 
@@ -12,6 +12,7 @@ import RejcetImg from '../resource/404reject.png'
 // function defination
 
 export default function Error404(props){
+	const navigate = useNavigate()
 
 	const word = ["S","I","G","M","A"]
 	const _404 = ["4","0","4"]
@@ -42,6 +43,10 @@ export default function Error404(props){
 						<div style={{fontSize:"71px",fontWeight:"700"}}>Page Not Found</div>
 						<div style={{fontSize:"1.6rem"}}>ਤੁਹਾਨੂੰ ਇੱਥੇ ਆਉਣ ਦੀ ਇਜਾਜ਼ਤ ਨਹੀਂ ਹੈ</div>
 						<div style={{fontSize:"1.2rem"}}>आपको यहां रहने की अनुमति नहीं है |</div>
+						<div style={{fontSize:"1.4rem",fontWeight:"700",backgroundColor:"#F07F1A",padding:"4px 8px",cursor:"pointer",marginTop:"1rem",borderRadius:"8px"}} 
+							onClick={()=>navigate('/dashboard')}>
+							Back To Home
+						</div>
 					</div>
 				</div>
 			</div>
