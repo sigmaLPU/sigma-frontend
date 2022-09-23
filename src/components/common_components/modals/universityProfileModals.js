@@ -1,75 +1,4 @@
-import React, {useState,useEffect} from 'react'
-import Modal from 'react-modal';
-import IconButton from '@mui/material/IconButton'; // Parent component to fit icon inside it
-import CallMadeIcon from '@mui/icons-material/CallMade'; // heading pop icon
-import CloseIcon from '@mui/icons-material/Close';
-
-import {universityContactAddReducer,universityMeetingAddReducer,universityBasicDetailsUpdateReducer} from '../../redux/routes'
-
-import { useDispatch, useSelector } from 'react-redux'
-
-function getUniId(url){
-	var id = ""
-	for(var i=url.length-1;i>=0;i--){
-		if(url[i]==='/') return id
-		id = url[i] + id
-	}
-	return id
-}
-
-
-export default function ModalPopUp(props){
-
-	const customStyles = {
-	  content: {
-	    top: '50%',
-	    left: '50%',
-	    right: 'auto',
-	    bottom: 'auto',
-	    marginRight: '-50%',
-	    transform: 'translate(-50%, -50%)',
-	  },
-	};
-
-	let subtitle;
-	const [modalIsOpen, setIsOpen] = useState(false);
-
-	function openModal() {
-		setIsOpen(true);
-	}
-
-	function afterOpenModal() {
-		subtitle.style.color = '#f00';
-	}
-
-	function closeModal() {
-		setIsOpen(false);
-	}
-
-
-	return (
-		<div>
-			<IconButton color="inherit" onClick={openModal} aria-label="open drawer" style={{width:"30px",height:"28.54px",float:"right",border:"1px solid black" , borderRadius:"8px"}}>
-				<CallMadeIcon />
-			</IconButton>
-      <Modal
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Example Modal"
-      >
-      	<div style={{width:"100%",display:"flex",justifyContent:"flex-end"}}>
-	      	<IconButton onClick={closeModal}>
-	      		<CloseIcon/>
-	      	</IconButton>
-      	</div>
-       	{props?.children}
-      </Modal>
-    </div>
-	)
-}
-
+import React,{useState,useEffect} from 'react'
 
 
 export function BasicDetailsModal(props){
@@ -82,47 +11,16 @@ export function BasicDetailsModal(props){
 		flexDirection:"column",
 	}
 
-	const details = useSelector((state)=>state.universityBasicDetailsSlice.data)
-
-	const dispatch = useDispatch()
-
-	const [data,setData] = useState({
-		"name":"",
-		"country":"",
-		"address":"",
-		"website":"",
-	})
-
-
-	useEffect(()=>{
-		var d = details?.data
-		if(d){
-			console.log(d)
-
-			setData({...data,...d})
-			console.log(d?.country)
-			console.log(data)
-		}
-	},[])
-
-	function submit(e){
-		e.preventDefault()
-		console.log("submit ---> ",data)
-		const id = getUniId(window.location.href)
-		dispatch(universityBasicDetailsUpdateReducer({id,data:data}))
-	}
-
-
 	return(
 		<div style={style}>
 			<span style={{fontSize:"20px",fontSize:"700",width:"100%",textAlign:"center"}}>Basic Details</span>
 			<div style={{marginTop:"3rem"}}>
 				<form>
-					<input style={{width:"607px",height:"40px",borderRadius:"8px"}} onChange={(e)=>setData({...data,name:e.target.value})} value={data.name} type="text" placeholder="University name"/>
-					<input style={{width:"607px",height:"40px",borderRadius:"8px"}} onChange={(e)=>setData({...data,country:e.target.value})} value={data.country} type="text" placeholder="Country name"/>
-					<input style={{width:"607px",height:"40px",borderRadius:"8px"}} onChange={(e)=>setData({...data,address:e.target.value})} value={data.address} type="text" placeholder="Address name"/>
-					<input style={{width:"607px",height:"40px",borderRadius:"8px"}} onChange={(e)=>setData({...data,website:e.target.value})} value={data.website} type="text" placeholder="Website"/>
-					<button onClick={(e)=>submit(e)}>Save</button>
+					<input style={{width:"607px",height:"40px",borderRadius:"8px"}} type="text" placeholder="University name"/>
+					<input style={{width:"607px",height:"40px",borderRadius:"8px"}} type="text" placeholder="Country name"/>
+					<input style={{width:"607px",height:"40px",borderRadius:"8px"}} type="text" placeholder="Address name"/>
+					<input style={{width:"607px",height:"40px",borderRadius:"8px"}} type="text" placeholder="Website"/>
+					<button>Save</button>
 				</form>
 			</div>
 		</div>
@@ -208,22 +106,16 @@ export function MeetingUniversityModal(props){
 		"meetingDate":"",
 		"agenda":"",
 		"participants":[],
-		"link":"N/A"
+		"link":""
 		}
 	)
 
 	useEffect(()=>{
-		var name = localStorage.getItem('name')
-		if(name){
-			setData({...data,"createdBy":name})
-		}
 	},[])
 
 	function onSubmit(e){
 		e.preventDefault();
 		const id = getUniId(window.location.href)
-		data["meetingTime"] = data["meetingDate"]+" "+data["meetingTime"]
-		delete data["meetingDate"]
 		console.log(data)
 		dispatch(universityMeetingAddReducer({data:data,id}))
 		// console.log(data)
@@ -239,26 +131,14 @@ export function MeetingUniversityModal(props){
 					
 					<div style={{display:"flex",flexDirection:"column",width:"100%",}}>
 						<span>Meeting Agenda</span>
-						<input type="text" value={data?.agenda} style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>setData({...data,"agenda":e.target.value})} />
-					</div>
-
-					<div style={{display:"flex",flexDirection:"column",width:"100%",}}>
-						<span>Created By</span>
-						<input type="text" value={data?.createdBy} style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>setData({...data,"agenda":e.target.value})} />
+						<input type="text" style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>setData({...data,"agenda":e.target.value})} />
 					</div>
 
 					<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
 						<span>Meeting between</span>
-						<input type="text" value={data?.title} style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>setData({...data,"title":e.target.value})} />
+						<input type="text" style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>setData({...data,"title":e.target.value})} />
 					</div>
 								
-
-					<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
-						<span>Link</span>
-						<input type="text" value={data?.link} style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>setData({...data,"link":e.target.value})} />
-					</div>
-								
-
 					<div style={{display:"flex",flexDirection:"row",width:"100%",marginTop:"1rem",columnGap:"1rem"}}>
 						<div style={{display:"flex",flexDirection:"column",width:"50%"}}>
 							<span>Date</span>

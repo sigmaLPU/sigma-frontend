@@ -76,9 +76,7 @@ export default function UniversityProfile(props){
 						<ProgramOfColaboration props={<BasicDetailsModal/>}/>						
 					</div>
 				</div>					
-				<ModalPopUp>
-					<BasicDetailsModal />
-				</ModalPopUp>
+				
 			</NavSideBarLayout>
 		</div>
 	)

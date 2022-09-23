@@ -58,6 +58,7 @@ export const universityMeetingSlice = createSlice({
           var temp2 = {}
           temp2["title"] = obj?.title
           temp2["meetingTime"] = obj?.meetingTime
+          temp2["id"] = obj?._id
           arr.push(temp2)
           ids.push(obj?._id)
         }

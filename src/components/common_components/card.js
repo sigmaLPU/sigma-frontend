@@ -170,12 +170,17 @@ export function RecentUpdateCard(props){
 
 
 export function MeetingCard(props){
+
+	
+
 	return (
 		<div style={{marginBottom:"1rem",width:"100%"}}>
-			<div>{props?.data["title"]}</div>
+			<div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+				<span>{props?.data["title"]}</span>
+			</div>
 			<div style={{paddingTop:"4px",display:"flex",justifyContent:"space-between"}}>
 				<span style={{color:"red",fontWeight:"700"}}>Read more...</span>
-				<span>{props?.data["date"]}</span>
+				<span>{props?.data["meetingTime"]}</span>
 			</div>
 		</div>
 	)

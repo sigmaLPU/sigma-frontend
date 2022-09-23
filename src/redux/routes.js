@@ -1,5 +1,5 @@
 import {
-	universityBasicDetailsSlice,universityBasicDetailsReducer,
+	universityBasicDetailsSlice,universityBasicDetailsReducer,universityBasicDetailsUpdateReducer,
 	universityContactSlice,universityContactReducer,universityContactAddReducer,
 	universityMeetingSlice,universityMeetingReducer,universityMeetingAddReducer,
 	universityProgramSlice,universityProgramReducer,
@@ -18,7 +18,7 @@ import {
 
 export {
 	// university profile state/slice/reducer
-	universityBasicDetailsSlice,universityBasicDetailsReducer,
+	universityBasicDetailsSlice,universityBasicDetailsReducer,universityBasicDetailsUpdateReducer,
 	universityContactSlice,universityContactReducer,universityContactAddReducer,
 	universityMeetingSlice,universityMeetingReducer,universityMeetingAddReducer,
 	universityProgramSlice,universityProgramReducer,
