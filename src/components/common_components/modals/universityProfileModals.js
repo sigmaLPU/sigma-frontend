@@ -35,7 +35,7 @@ function getUniId(url){
 	return id
 }
 
-function Button(props){
+export function Button(props){
 
 	const buttonCSS = {background: "none",color: "inherit",border: "none",padding: "0",font: "inherit",cursor: "pointer",outline: "inherit",...props?.childCSS}
 	

@@ -33,7 +33,7 @@ import {ModalPopUp,BasicDetailsModal,ContactDetailsModal,MeetingUniversityModal,
 	ProgramOfColaborationUniversityModal,RecentUpdateUniversityModal,
 	MeetingUpdateUniversityModal,LoadingComponent,ContactDetailsUpdateModal,
 	MouContractAddUniversityModal,RecentUpdateUpdateUniversityModal,
-	MouContractUpdateUniversityModal,
+	MouContractUpdateUniversityModal,AddNewUniversity,
 } from './common_components/routes'
 
 // meeting card objects
@@ -69,7 +69,7 @@ export {
 	ProgramOfColaborationUniversityModal,RecentUpdateUniversityModal,
 	MeetingUpdateUniversityModal,ContactDetailsUpdateModal,
 	MouContractAddUniversityModal,RecentUpdateUpdateUniversityModal,
-	MouContractUpdateUniversityModal,
+	MouContractUpdateUniversityModal,AddNewUniversity,
 	
 	LoadingComponent,
 

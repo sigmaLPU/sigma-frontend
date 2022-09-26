@@ -6,6 +6,7 @@ import {useNavigate} from 'react-router-dom'
 // component import
 import {NavSideBarLayout} from '../routes'
 import {Card ,Chip, Table} from '../routes'
+import {AddNewUniversity} from '../routes'
 
 // other imports
 import { getAllUniversityReducer,setRedirectFunction, updateViewDetails,activateYourTagChip,deleteYourTagChip,addYourTagChip, } from '../../redux/routes'
@@ -100,6 +101,7 @@ export default function MouMaster(props){
 							column = {data?.data?.column}
 							heading={"Partner University"}
 							replace = {replace}
+							popup = {<AddNewUniversity />}
 						/>
 					</div>
 				</div>

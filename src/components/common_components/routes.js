@@ -21,8 +21,16 @@ import {
 	MouContractUpdateUniversityModal,
 } from './modals/universityProfileModals'
 
+
+import {AddNewUniversity} from './modals/mouMasterModal'
+
 // loading component
 import {LoadingComponent} from './loadingComponent'
+
+
+// common componet
+import {Button} from './modals/universityProfileModals'
+
 
 export {
 	//card
@@ -38,6 +46,13 @@ export {
 	MouContractAddUniversityModal,RecentUpdateUpdateUniversityModal,
 	MouContractUpdateUniversityModal,
 	
+
+	AddNewUniversity,
+
 	// loading component
 	LoadingComponent,
+
+
+	// common component
+	Button,
 }

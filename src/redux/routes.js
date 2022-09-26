@@ -8,7 +8,7 @@ import {
 } from './universityProfile/routes'
 
 import {
-	getAllUniversitySlice,getAllUniversityReducer,setRedirectFunction,updateViewDetails,
+	getAllUniversitySlice,getAllUniversityReducer,setRedirectFunction,updateViewDetails,universityAddReducer,
 
 	tagsMouMasterSlice,activateYourTagChip,deleteYourTagChip,addYourTagChip,
 } from './mouMaster/routes'
@@ -29,7 +29,7 @@ export {
 	universityMouContractSlice,universityMouContractReducer,universityMouContractAddReducer,universityMouContractUpdateReducer,setMouContractSliceLoading,
 
 	// university list
-	getAllUniversitySlice,getAllUniversityReducer,setRedirectFunction,updateViewDetails,
+	getAllUniversitySlice,getAllUniversityReducer,setRedirectFunction,updateViewDetails,universityAddReducer,
 	tagsMouMasterSlice,activateYourTagChip,deleteYourTagChip,addYourTagChip,
 
 	forgetPasswordSlice,forgetPasswordReducer,resetPasswordReducer,

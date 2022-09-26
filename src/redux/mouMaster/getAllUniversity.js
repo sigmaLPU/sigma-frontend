@@ -29,6 +29,25 @@ const getAllUniversityReducer = createAsyncThunk('getAllUniverity/getAllUniversi
     }
   )
 
+const universityAddReducer = createAsyncThunk('universityContact/universityAddReducer',
+  async (data)=>{
+    var config = {
+      method: 'post',
+      url: `https://sigmalpu.herokuapp.com/api/v2/university/add`,
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      data : data?.data
+    };
+    return axios(config)
+  }
+)
+
+
+
+
+
+
 export const getAllUniversitySlice = createSlice({
   name: 'getAllUniversity',
   initialState,
@@ -69,14 +88,51 @@ export const getAllUniversitySlice = createSlice({
         state.data.data = {rows:r,column:["Name of University","Country","Meetings","Contact Person","Agreement","Details"]}
       
       }
+      state.data.loading = false
+      
     });
     builder.addCase(getAllUniversityReducer.pending, (state, { payload }) => {
+      state.data.loading = true
+      state.data.message = "Loading"
     });
     builder.addCase(getAllUniversityReducer.rejected, (state, { payload }) => {
+      state.data.loading = false
+      state.data.message = "Failed"
+    });
+
+
+
+    builder.addCase(universityAddReducer.fulfilled, (state, { payload }) => {
+      var x = payload?.data?.university
+      if(!x){
+        state.data.message="Something went wrong"
+      }else{
+        state.data.message="Fulfilled"
+        var obj = {}
+        obj["Name of University"] = x?.name ? x?.name : "---"
+        obj["Country"] = x?.country ? x?.country : "---"
+        obj["Meetings"] =  x?.meeting ? x?.meeting : "---"
+        obj["Contact Person"] =  x?.contact ? x?.contact[0] : "---"
+        obj["Agreement"] = x?.agreement ? x?.agreement : "---"
+        obj["Details"] = x?._id;    
+
+        state.data.data.rows = [obj].concat(state.data.data.rows)
+
+      }
+      state.data.loading = false
+
+    });
+    builder.addCase(universityAddReducer.pending, (state, { payload }) => {
+      state.data.loading = true
+      state.data.message = "Loading"
+    });
+    builder.addCase(universityAddReducer.rejected, (state, { payload }) => {
+      state.data.loading = false
+      state.data.message = "Failed"
     });
   },
 })
 
 export default getAllUniversitySlice.reducer
-export {getAllUniversityReducer}
+export {getAllUniversityReducer,universityAddReducer}
 export const {setRedirectFunction,updateViewDetails} = getAllUniversitySlice.actions
