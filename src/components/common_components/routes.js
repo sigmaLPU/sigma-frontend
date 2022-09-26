@@ -17,6 +17,7 @@ import {
 	GuestVisitUniversityModal,MouContractUniversityModal,
 	ProgramOfColaborationUniversityModal,RecentUpdateUniversityModal,
 	MeetingUpdateUniversityModal,ContactDetailsUpdateModal,
+	MouContractUpdateUniversityModal,RecentUpdateUpdateUniversityModal,
 } from './modals/universityProfileModals'
 
 // loading component
@@ -33,7 +34,8 @@ export {
 	GuestVisitUniversityModal,MouContractUniversityModal,
 	ProgramOfColaborationUniversityModal,RecentUpdateUniversityModal,
 	MeetingUpdateUniversityModal,ContactDetailsUpdateModal,
-
+	MouContractUpdateUniversityModal,RecentUpdateUpdateUniversityModal,
+	
 	// loading component
 	LoadingComponent,
 }
