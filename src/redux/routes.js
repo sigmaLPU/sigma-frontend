@@ -4,6 +4,7 @@ import {
 	universityMeetingSlice,universityMeetingReducer,universityMeetingAddReducer,universityMeetingUpdateReducer,
 	universityProgramSlice,universityProgramReducer,universityProgramAddReducer,
 	universityRecentUpdateSlice,universityRecentUpdateReducer,universityRecentUpdateAddReducer,
+	universityMouContractSlice,universityMouContractReducer,universityMouContractAddReducer,universityMouContractUpdateReducer,
 } from './universityProfile/routes'
 
 import {
@@ -25,6 +26,7 @@ export {
 	universityMeetingSlice,universityMeetingReducer,universityMeetingAddReducer,universityMeetingUpdateReducer,
 	universityProgramSlice,universityProgramReducer,universityProgramAddReducer,
 	universityRecentUpdateSlice,universityRecentUpdateReducer,universityRecentUpdateAddReducer,
+	universityMouContractSlice,universityMouContractReducer,universityMouContractAddReducer,universityMouContractUpdateReducer,
 
 	// university list
 	getAllUniversitySlice,getAllUniversityReducer,setRedirectFunction,updateViewDetails,

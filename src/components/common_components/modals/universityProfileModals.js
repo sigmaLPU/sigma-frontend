@@ -17,6 +17,10 @@ import {
 } from '../../../redux/routes'
 
 
+import {
+	uploadFile
+} from '../../../firebase/routes'
+
 function getUniId(url){
 	var id = ""
 	for(var i=url.length-1;i>=0;i--){
@@ -455,32 +459,6 @@ export function GuestVisitUniversityModal(props){
 }
 
 
-export function MouContractUniversityModal(props){
-	const style = {
-		height: "500px",
-		width: "741px",
-		borderRadius: "10px",
-		display:"flex",justifyContent:"start",
-		alignItems:"center",
-		flexDirection:"column",
-	}
-
-	return(
-		<div style={style}>
-			<span style={{fontSize:"20px",fontSize:"700",width:"100%",textAlign:"center"}}>MouContract University</span>
-			<div style={{marginTop:"3rem"}}>
-				<form>
-					<input style={{width:"607px",height:"40px",borderRadius:"8px"}} type="text" placeholder="University name"/>
-					<input style={{width:"607px",height:"40px",borderRadius:"8px"}} type="text" placeholder="Country name"/>
-					<input style={{width:"607px",height:"40px",borderRadius:"8px"}} type="text" placeholder="Address name"/>
-					<input style={{width:"607px",height:"40px",borderRadius:"8px"}} type="text" placeholder="Website"/>
-					<button>Save</button>
-				</form>
-			</div>
-		</div>
-	)
-}
-
 export function ProgramOfColaborationUniversityModal(props){
 	const style = {
 		height: "500px",
@@ -572,3 +550,208 @@ export function RecentUpdateUniversityModal(props){
 	)
 }
 
+export function MouContractUniversityModal(props){
+	const style = {
+		height: "500px",
+		width: "741px",
+		borderRadius: "10px",
+		display:"flex",justifyContent:"start",
+		alignItems:"center",
+		flexDirection:"column",
+	}
+
+	const dispatch = useDispatch();
+
+	const [data,setData] = useState({
+		"file":"",
+		"startDate":"",
+		"endDate":"",
+		"type":""
+	})
+
+	const [file,setFile] = useState(null);
+
+	const options = [
+		"general",
+		"articulation_aggrement",
+		"exchange_aggrement",
+		"research",
+		"collaboration",
+		"other"
+	]
+
+	useEffect(()=>{
+	},[])
+
+	function onSubmit(e){
+		e.preventDefault();
+		const uni_id = getUniId(window.location.href)
+
+		let file_name = `${uni_id}_MouContract_${data?.startDate}_${data?.endDate}_${data?.type}`
+		
+		uploadFile(file,`files/${file_name}`).then((data)=>{
+			console.log("data saved ---> ",data)
+
+		})
+
+		// dispatch(universityMeetingAddReducer({data:data,id}))
+	}
+
+	function handleFile(e){
+		e.preventDefault()
+		let file = e.target?.files[0]
+		if(!file){
+			console.log("Error")
+			return ;
+		}
+		setFile(file)
+	}
+
+	return(
+		<div style={style}>
+			<span style={{fontSize:"1.3rem",fontSize:"900",width:"100%",textAlign:"center",width:"607px",borderRadius:"8px"}}>
+				MOU Details
+			</span>
+			<div style={{marginTop:"3rem",width:"100%"}}>
+				<form style={{width:"100%"}}>
+
+					<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
+						<span>Type</span>
+
+						<select style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>setData({...data,"type":e.target.value})}>
+							{options.map( (item)=>(
+								<option value={item}>{item}</option>
+							))}
+						</select>
+
+					</div>
+
+					
+					<div style={{display:"flex",flexDirection:"row",width:"100%",marginTop:"1rem",columnGap:"1rem"}}>
+						<div style={{display:"flex",flexDirection:"column",width:"50%"}}>
+							<span>Start Date</span>
+							<input type="date" style={{fontSize:"1.2rem",fontWeight:"700",}} onChange={(e)=>setData({...data,"startDate":e.target.value})} />
+						</div>
+
+						<div style={{display:"flex",flexDirection:"column",width:"50%"}}>
+							<span>Start Date</span>
+							<input type="date" style={{fontSize:"1.2rem",fontWeight:"700",}} onChange={(e)=>setData({...data,"endDate":e.target.value})} />
+						</div>
+					</div>
+
+
+					<div style={{display:"flex",flexDirection:"column",width:"100%",}}>
+						<span>Upload File</span>
+						<input type="file" style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>handleFile(e)} />
+					</div>
+
+					<button onClick={(e)=>onSubmit(e)}>Save</button>
+
+				</form>
+			</div>
+		</div>
+	)
+}
+
+export function MouContractUpdateUniversityModal(props){
+	const style = {
+		height: "500px",
+		width: "741px",
+		borderRadius: "10px",
+		display:"flex",justifyContent:"start",
+		alignItems:"center",
+		flexDirection:"column",
+	}
+
+	const dispatch = useDispatch();
+
+	const [data,setData] = useState({
+		"file":"",
+		"startDate":"",
+		"endDate":"",
+		"type":""
+	})
+
+	const [file,setFile] = useState(null);
+
+	const options = [
+		"general",
+		"articulation_aggrement",
+		"exchange_aggrement",
+		"research",
+		"collaboration",
+		"other"
+	]
+
+	useEffect(()=>{
+	},[])
+
+	function onSubmit(e){
+		e.preventDefault();
+		const uni_id = getUniId(window.location.href)
+
+		let file_name = `${uni_id}_MouContract_${data?.startDate}_${data?.endDate}_${data?.type}`
+		
+		uploadFile(file,`files/${file_name}`).then((data)=>{
+			console.log("data saved ---> ",data)
+			
+		})
+
+		// dispatch(universityMeetingAddReducer({data:data,id}))
+	}
+
+	function handleFile(e){
+		e.preventDefault()
+		let file = e.target?.files[0]
+		if(!file){
+			console.log("Error")
+			return ;
+		}
+		setFile(file)
+	}
+
+	return(
+		<div style={style}>
+			<span style={{fontSize:"1.3rem",fontSize:"900",width:"100%",textAlign:"center",width:"607px",borderRadius:"8px"}}>
+				MOU Details Update
+			</span>
+			<div style={{marginTop:"3rem",width:"100%"}}>
+				<form style={{width:"100%"}}>
+
+					<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
+						<span>Type</span>
+
+						<select style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>setData({...data,"type":e.target.value})}>
+							{options.map( (item)=>(
+								<option value={item}>{item}</option>
+							))}
+						</select>
+
+					</div>
+
+					
+					<div style={{display:"flex",flexDirection:"row",width:"100%",marginTop:"1rem",columnGap:"1rem"}}>
+						<div style={{display:"flex",flexDirection:"column",width:"50%"}}>
+							<span>Start Date</span>
+							<input type="date" style={{fontSize:"1.2rem",fontWeight:"700",}} onChange={(e)=>setData({...data,"startDate":e.target.value})} />
+						</div>
+
+						<div style={{display:"flex",flexDirection:"column",width:"50%"}}>
+							<span>Start Date</span>
+							<input type="date" style={{fontSize:"1.2rem",fontWeight:"700",}} onChange={(e)=>setData({...data,"endDate":e.target.value})} />
+						</div>
+					</div>
+
+
+					<div style={{display:"flex",flexDirection:"column",width:"100%",}}>
+						<span>Upload File</span>
+						<input type="file" style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>handleFile(e)} />
+					</div>
+
+					<button onClick={(e)=>onSubmit(e)}>Save</button>
+
+				</form>
+			</div>
+		</div>
+	)
+}

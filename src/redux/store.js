@@ -12,6 +12,8 @@ import {
   universityMeetingSlice,
   universityProgramSlice,
   universityRecentUpdateSlice,
+  universityMouContractSlice,
+
   forgetPasswordSlice,
 } from './routes';
 
@@ -29,5 +31,6 @@ export const store = configureStore({
     universityMeetingSlice: universityMeetingSlice,
     universityProgramSlice: universityProgramSlice,
     universityRecentUpdateSlice: universityRecentUpdateSlice,
+    universityMouContractSlice: universityMouContractSlice,
   },
 });
