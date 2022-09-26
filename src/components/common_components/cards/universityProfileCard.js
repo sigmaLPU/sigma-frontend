@@ -102,7 +102,11 @@ export function RecentUpdateCard(props){
 		<div style={{marginBottom:"1rem"}}>
 			<div>{props?.data["title"]}</div>
 			<div style={{paddingTop:"4px",display:"flex",justifyContent:"space-between"}}>
-				<span style={{color:"red",fontWeight:"700"}}>Read more...</span>
+				<span style={{color:"red",fontWeight:"700"}}>
+					<ModalPopUp activeComponent={<span>Read more...</span>}>
+						{props?.recentUpdateUpdateUniversityModal ? props?.recentUpdateUpdateUniversityModal : "Not Available"}
+					</ModalPopUp>
+				</span>
 				<span>{props?.data["date"]}</span>
 			</div>
 		</div>

@@ -14,6 +14,7 @@ import {
 	universityBasicDetailsUpdateReducer,universityProgramAddReducer,
 	universityRecentUpdateAddReducer,universityMeetingUpdateReducer,
 	universityMeetingReducer,universityContactUpdateReducer,
+	universityRecentUpdateUpdateReducer,
 } from '../../../redux/routes'
 
 
@@ -576,24 +577,27 @@ export function RecentUpdateUpdateUniversityModal(props){
 
 	useEffect(()=>{
 		if(props?.data){
-			setData({...data,...props?.data})
+			var value = props?.data?.title
+			var type = props?.data?.type
+			setData({value,type})
 		}
+		console.log("Recent Update ---> ",props?.data,data)
 	},[])
 
 	function submit(e){
 		e.preventDefault()
 		console.log("submit ---> ",data)
-		const id = getUniId(window.location.href)
-		// dispatch(universityRecentUpdateAddReducer({id,data:data}))
+		const id = props?.data?.id
+		dispatch(universityRecentUpdateUpdateReducer({id,data:data}))
 	}
 
 
 	return(
 		<div style={style}>
-			<span style={{fontSize:"20px",fontSize:"700",width:"100%",textAlign:"center"}}>Add New Recent Update</span>
+			<span style={{fontSize:"20px",fontSize:"700",width:"100%",textAlign:"center"}}>Recent Update -> Update</span>
 			<div style={{marginTop:"3rem"}}>
 				<form>
-					<input value={data?.value} style={{width:"607px",minHeight:"40px",borderRadius:"8px"}} onChange={(e)=>setData({...data,value:e.target.value})} value={data.lpu_name} type="text" placeholder="Write Here"/>
+					<input value={data?.value} style={{width:"607px",minHeight:"40px",borderRadius:"8px"}} onChange={(e)=>setData({...data,value:e.target.value})} type="text"/>
 					<button onClick={(e)=>submit(e)}>Save</button>
 				</form>
 			</div>

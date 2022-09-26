@@ -12,7 +12,7 @@ import {
 	MeetingUniversityModal,GuestVisitUniversityModal,MouContractUniversityModal,
 	ProgramOfColaborationUniversityModal,RecentUpdateUniversityModal,
 	MeetingUpdateUniversityModal,ContactDetailsUpdateModal,
-	MouContractUpdateUniversityModal,
+	MouContractUpdateUniversityModal,RecentUpdateUpdateUniversityModal,
 
 	LoadingPage,
 	LoadingComponent,
@@ -257,7 +257,7 @@ function RecentUpdate(props){
 					<ul>
 						{		
 							data.map(item=>(
-								<li><RecentUpdateCard data={item}/></li>
+								<li><RecentUpdateCard recentUpdateUpdateUniversityModal={<RecentUpdateUpdateUniversityModal data={item}/>} data={item}/></li>
 							))
 						}
 					</ul>
