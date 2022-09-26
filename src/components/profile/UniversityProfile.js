@@ -11,7 +11,7 @@ import {
 	ModalPopUp,ContactDetailsModal,
 	MeetingUniversityModal,GuestVisitUniversityModal,MouContractUniversityModal,
 	ProgramOfColaborationUniversityModal,RecentUpdateUniversityModal,
-	MeetingUpdateUniversityModal,
+	MeetingUpdateUniversityModal,ContactDetailsUpdateModal,
 
 	LoadingPage,
 	LoadingComponent,

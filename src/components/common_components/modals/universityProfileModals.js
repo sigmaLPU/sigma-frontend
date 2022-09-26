@@ -84,8 +84,6 @@ export function BasicDetailsModal(props){
 	)
 }
 
-
-
 export function ContactDetailsModal(props){
 	const style = {
 		height: "500px",
@@ -117,6 +115,54 @@ export function ContactDetailsModal(props){
 		<div style={style}>
 			<span style={{fontSize:"20px",fontSize:"700",width:"100%",textAlign:"center"}}>
 				Contact Details
+			</span>
+			<div style={{marginTop:"3rem"}}>
+				<form>
+					<input onChange={(e)=>setData({...data,name:e.target.value})} style={{width:"607px",height:"40px",borderRadius:"8px"}} type="text" placeholder="Name"/>
+					<input onChange={(e)=>setData({...data,email:e.target.value})} style={{width:"607px",height:"40px",borderRadius:"8px"}} type="email" placeholder="Email"/>
+					<input onChange={(e)=>setData({...data,phone:e.target.value})} style={{width:"607px",height:"40px",borderRadius:"8px"}} type="mobile" placeholder="Phone no."/>
+					<input onChange={(e)=>setData({...data,description:e.target.value})} style={{width:"607px",height:"40px",borderRadius:"8px"}} type="text" placeholder="Description"/>
+					<button onClick={(e)=>onSubmit(e)}>Save</button>
+				</form>
+			</div>
+		</div>
+	)
+}
+
+export function ContactDetailsUpdateModal(props){
+	const style = {
+		height: "500px",
+		width: "741px",
+		borderRadius: "10px",
+		display:"flex",justifyContent:"start",
+		alignItems:"center",
+		flexDirection:"column",
+	}
+
+	const dispatch = useDispatch();
+
+
+	const [data,setData] = useState({
+		name:"",email:"",phone:"",description:""
+	})
+
+	useEffect(()=>{
+		if(props?.data){
+			setData({...data,...props?.data})
+		}
+	},[])
+
+	function onSubmit(e){
+		e.preventDefault();
+		const id = getUniId(window.location.href)
+		// dispatch(universityContactAddReducer({data,id}))
+		console.log("updated data --> ",data)
+	}
+
+	return(
+		<div style={style}>
+			<span style={{fontSize:"20px",fontSize:"700",width:"100%",textAlign:"center"}}>
+				Update Contact Details
 			</span>
 			<div style={{marginTop:"3rem"}}>
 				<form>
@@ -482,12 +528,6 @@ export function ProgramOfColaborationUniversityModal(props){
 		</div>
 	)
 }
-
-
-
-
-
-
 
 export function RecentUpdateUniversityModal(props){
 	const style = {

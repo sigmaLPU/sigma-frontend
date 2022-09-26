@@ -31,7 +31,7 @@ import Table from './common_components/table'
 import {ModalPopUp,BasicDetailsModal,ContactDetailsModal,MeetingUniversityModal,
 	GuestVisitUniversityModal,MouContractUniversityModal,
 	ProgramOfColaborationUniversityModal,RecentUpdateUniversityModal,
-	MeetingUpdateUniversityModal,LoadingComponent,
+	MeetingUpdateUniversityModal,LoadingComponent,ContactDetailsUpdateModal,
 } from './common_components/routes'
 
 // meeting card objects
@@ -65,7 +65,7 @@ export {
 	BasicDetailsModal,ModalPopUp,ContactDetailsModal,MeetingUniversityModal,
 	GuestVisitUniversityModal,MouContractUniversityModal,
 	ProgramOfColaborationUniversityModal,RecentUpdateUniversityModal,
-	MeetingUpdateUniversityModal,
+	MeetingUpdateUniversityModal,ContactDetailsUpdateModal,
 	
 	LoadingComponent,
 
