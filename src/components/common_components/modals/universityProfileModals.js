@@ -13,7 +13,7 @@ import {
 	universityContactAddReducer,universityMeetingAddReducer,
 	universityBasicDetailsUpdateReducer,universityProgramAddReducer,
 	universityRecentUpdateAddReducer,universityMeetingUpdateReducer,
-	universityMeetingReducer,
+	universityMeetingReducer,universityContactUpdateReducer,
 } from '../../../redux/routes'
 
 
@@ -147,15 +147,20 @@ export function ContactDetailsUpdateModal(props){
 	})
 
 	useEffect(()=>{
+		console.log("Contact update data ---> ",props?.data)
 		if(props?.data){
-			setData({...data,...props?.data})
+			var phone = props?.data?.mobile
+			var name = props?.data?.name
+			var email = props?.data?.mail
+			var description = props?.data?.description
+			setData({...data,phone,name,email,description})
 		}
 	},[])
 
 	function onSubmit(e){
 		e.preventDefault();
-		const id = getUniId(window.location.href)
-		// dispatch(universityContactAddReducer({data,id}))
+		const id = props?.data?.id
+		dispatch(universityContactUpdateReducer({data,id}))
 		console.log("updated data --> ",data)
 	}
 
@@ -166,10 +171,10 @@ export function ContactDetailsUpdateModal(props){
 			</span>
 			<div style={{marginTop:"3rem"}}>
 				<form>
-					<input onChange={(e)=>setData({...data,name:e.target.value})} style={{width:"607px",height:"40px",borderRadius:"8px"}} type="text" placeholder="Name"/>
-					<input onChange={(e)=>setData({...data,email:e.target.value})} style={{width:"607px",height:"40px",borderRadius:"8px"}} type="email" placeholder="Email"/>
-					<input onChange={(e)=>setData({...data,phone:e.target.value})} style={{width:"607px",height:"40px",borderRadius:"8px"}} type="mobile" placeholder="Phone no."/>
-					<input onChange={(e)=>setData({...data,description:e.target.value})} style={{width:"607px",height:"40px",borderRadius:"8px"}} type="text" placeholder="Description"/>
+					<input value={data?.name} onChange={(e)=>setData({...data,name:e.target.value})} style={{width:"607px",height:"40px",borderRadius:"8px"}} type="text" placeholder="Name"/>
+					<input value={data?.email} onChange={(e)=>setData({...data,email:e.target.value})} style={{width:"607px",height:"40px",borderRadius:"8px"}} type="email" placeholder="Email"/>
+					<input value={data?.phone} onChange={(e)=>setData({...data,phone:e.target.value})} style={{width:"607px",height:"40px",borderRadius:"8px"}} type="mobile" placeholder="Phone no."/>
+					<input value={data?.description} onChange={(e)=>setData({...data,description:e.target.value})} style={{width:"607px",height:"40px",borderRadius:"8px"}} type="text" placeholder="Description"/>
 					<button onClick={(e)=>onSubmit(e)}>Save</button>
 				</form>
 			</div>

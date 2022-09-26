@@ -38,6 +38,16 @@ const universityContactAddReducer = createAsyncThunk('universityContact/universi
   }
 )
 
+const universityContactUpdateReducer = createAsyncThunk('universityContact/universityContactUpdateReducer',
+  async (data)=>{
+    console.log("Update university contact data")
+    return axios.put(`https://sigmalpu.herokuapp.com/api/v2/university/contact/${data?.id}/update`,data?.data,{
+        headers: {
+          'Content-Type': 'application/json'
+    }})
+  }
+)
+
 
 
 export const universityContactSlice = createSlice({
@@ -62,6 +72,7 @@ export const universityContactSlice = createSlice({
             temp2["name"] = obj?.name ? obj?.name : "Not available";
             temp2["mobile"] = obj?.phone ? obj?.phone : "Not available";
             temp2["mail"] = obj?.email ? obj?.email : "Not available";
+            temp2["id"] = obj?._id ? obj?._id : "Not available";
             temp2["img"] = obj?.img ? obj?.img : "https://anchorandcontrol.com/wp-content/themes/cera-child/assets/images/avatars/user-avatar.png";
             ids.push(obj?._id)
             temp.push(temp2)
@@ -96,6 +107,7 @@ export const universityContactSlice = createSlice({
         temp["name"] = payload?.data?.universityContact?.name ? payload?.data?.universityContact?.name : "Not available";
         temp["mail"] = payload?.data?.universityContact?.email ? payload?.data?.universityContact?.email : "Not available";
         temp["mobile"] = payload?.data?.universityContact?.phone ? payload?.data?.universityContact?.phone : "Not available";
+        temp["id"] = payload?.data?.universityContact?._id ? payload?.data?.universityContact?._id : "Not available";
         temp["img"] = payload?.data?.universityContact?.img ? payload?.data?.universityContact?.img : "https://anchorandcontrol.com/wp-content/themes/cera-child/assets/images/avatars/user-avatar.png";
         console.log("data added ----> ",temp)      
         state.data.data.data.push(temp)
@@ -115,8 +127,53 @@ export const universityContactSlice = createSlice({
       state.data.loading = false
     });
 
+
+
+    builder.addCase(universityContactUpdateReducer.fulfilled, (state, { payload }) => {
+      console.log("university contact update fulfilled payload",payload)
+      state.data.message = "Fulfilled"
+      state.data.loading = false
+      console.log(payload)
+      
+      if(payload?.data?.universityContact){
+        var temp = {}
+        temp["name"] = payload?.data?.universityContact?.name ? payload?.data?.universityContact?.name : "Not available";
+        temp["mail"] = payload?.data?.universityContact?.email ? payload?.data?.universityContact?.email : "Not available";
+        temp["mobile"] = payload?.data?.universityContact?.phone ? payload?.data?.universityContact?.phone : "Not available";
+        temp["id"] = payload?.data?.universityContact?._id ? payload?.data?.universityContact?._id : "Not available";
+        temp["img"] = payload?.data?.universityContact?.img ? payload?.data?.universityContact?.img : "https://anchorandcontrol.com/wp-content/themes/cera-child/assets/images/avatars/user-avatar.png";
+        
+        console.log("data update ----> ",temp)      
+        
+        var id = temp["id"]
+        var index = -1
+        var ids = state.data.data.ids
+        for(var i=0;i<ids.length;i++){
+          if(ids[i]==id){
+            index = i
+          }
+        }
+        if(index!=-1){
+          state.data.data.data[index] = temp     
+        }
+      }
+
+    });
+
+    builder.addCase(universityContactUpdateReducer.pending, (state, { payload }) => {
+      console.log("university contact update pending payload",payload)
+      state.data.loading = true
+      state.data.message = "Loading"
+    });
+    
+    builder.addCase(universityContactUpdateReducer.rejected, (state, { payload }) => {
+      console.log("university contact update  rejected payload",payload)
+      state.data.message = "Failed"
+      state.data.loading = false
+    });
+
   },
 })
 
 export default universityContactSlice.reducer
-export {universityContactReducer,universityContactAddReducer}
+export {universityContactReducer,universityContactAddReducer,universityContactUpdateReducer}

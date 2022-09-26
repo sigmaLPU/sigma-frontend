@@ -1,6 +1,6 @@
 import {
 	universityBasicDetailsSlice,universityBasicDetailsReducer,universityBasicDetailsUpdateReducer,
-	universityContactSlice,universityContactReducer,universityContactAddReducer,
+	universityContactSlice,universityContactReducer,universityContactAddReducer,universityContactUpdateReducer,
 	universityMeetingSlice,universityMeetingReducer,universityMeetingAddReducer,universityMeetingUpdateReducer,
 	universityProgramSlice,universityProgramReducer,universityProgramAddReducer,
 	universityRecentUpdateSlice,universityRecentUpdateReducer,universityRecentUpdateAddReducer,
@@ -21,7 +21,7 @@ export default function s(){ return "Nothing default"}
 export {
 	// university profile state/slice/reducer
 	universityBasicDetailsSlice,universityBasicDetailsReducer,universityBasicDetailsUpdateReducer,
-	universityContactSlice,universityContactReducer,universityContactAddReducer,
+	universityContactSlice,universityContactReducer,universityContactAddReducer,universityContactUpdateReducer,
 	universityMeetingSlice,universityMeetingReducer,universityMeetingAddReducer,universityMeetingUpdateReducer,
 	universityProgramSlice,universityProgramReducer,universityProgramAddReducer,
 	universityRecentUpdateSlice,universityRecentUpdateReducer,universityRecentUpdateAddReducer,

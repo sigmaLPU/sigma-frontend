@@ -64,11 +64,7 @@ export function FileCard(props) {
 export function ContactCard(props){
 	const [bgColor,setBgColor] = useState("white")
 
-	return (
-		<div onClick={()=>console.log(props?.id)} style={{display:"flex",borderBottom:"1px solid black",backgroundColor:bgColor}} onMouseEnter={()=>setBgColor("#dbdbd9")} onMouseLeave={()=>setBgColor("white")}>
-			<div><img style={{width:"90px",borderRadius:"50px",marginRight:"12px"}} src={props?.data["img"] ? props?.data["img"] : "/"} /></div>
-			<div>
-				<table style={{width:"100%",display:"flex",flexDirection:"column",justifyContent:"space-between"}}>
+	const activeComponent = <table style={{width:"100%",display:"flex",flexDirection:"column",justifyContent:"space-between"}}>
 					<tr style={{}}>
 						<td style={{fontWeight:"800"}}>Name</td>
 						<td style={{padding:"4px"}}>:</td>
@@ -85,6 +81,16 @@ export function ContactCard(props){
 						<td>{props?.data["mobile"]}</td>
 					</tr>
 				</table>
+
+
+
+	return (
+		<div onClick={()=>console.log(props?.id)} style={{display:"flex",borderBottom:"1px solid black",backgroundColor:bgColor}} onMouseEnter={()=>setBgColor("#dbdbd9")} onMouseLeave={()=>setBgColor("white")}>
+			<div><img style={{width:"90px",borderRadius:"50px",marginRight:"12px"}} src={props?.data["img"] ? props?.data["img"] : "/"} /></div>
+			<div>
+				<ModalPopUp activeComponent={activeComponent}>
+					{props?.contactDetailsUpdateModal ? props?.contactDetailsUpdateModal : "Not Available"}
+				</ModalPopUp>
 			</div>
 		</div>
 	)

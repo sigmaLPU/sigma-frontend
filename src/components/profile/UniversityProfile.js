@@ -184,7 +184,7 @@ function ContactPerson(props){
 			<Card  popup={props?.popup}  style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Contact Person">
 				{
 					contactData?.loading ? <LoadingComponent/> : contactData?.data?.data?.map((item,key)=>(
-						<ContactCard data={item} id={contactData?.data?.ids[key]}/>
+						<ContactCard contactDetailsUpdateModal={<ContactDetailsUpdateModal data={item}/>} data={item} id={contactData?.data?.ids[key]}/>
 					))
 				}
 			</Card>

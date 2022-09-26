@@ -1,5 +1,5 @@
 import universityBasicDetailsSlice,{universityBasicDetailsReducer,universityBasicDetailsUpdateReducer} from './universityBasicDetails'
-import universityContactSlice,{universityContactReducer,universityContactAddReducer} from './universityContactPerson'
+import universityContactSlice,{universityContactReducer,universityContactAddReducer,universityContactUpdateReducer} from './universityContactPerson'
 import universityMeetingSlice,{universityMeetingReducer,universityMeetingAddReducer,universityMeetingUpdateReducer} from './universityMeeting'
 import universityProgramSlice,{universityProgramReducer,universityProgramAddReducer} from './universityProgram'
 import universityRecentUpdateSlice,{universityRecentUpdateReducer,universityRecentUpdateAddReducer} from './universityRecentUpdates'
@@ -7,7 +7,7 @@ import universityRecentUpdateSlice,{universityRecentUpdateReducer,universityRece
 
 export {
 	universityBasicDetailsSlice,universityBasicDetailsReducer,universityBasicDetailsUpdateReducer,
-	universityContactSlice,universityContactReducer,universityContactAddReducer,
+	universityContactSlice,universityContactReducer,universityContactAddReducer,universityContactUpdateReducer,
 	universityMeetingSlice,universityMeetingReducer,universityMeetingAddReducer,universityMeetingUpdateReducer,
 	universityProgramSlice,universityProgramReducer,universityProgramAddReducer,
 	universityRecentUpdateSlice,universityRecentUpdateReducer,universityRecentUpdateAddReducer,
