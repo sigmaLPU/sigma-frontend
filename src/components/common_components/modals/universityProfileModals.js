@@ -659,7 +659,7 @@ export function MouContractAddUniversityModal(props){
 		e.preventDefault()
 		let file = e.target?.files[0]
 		if(!file){
-			console.log("Error")
+			// console.log("Error")
 			return ;
 		}
 		setFile(file)
@@ -776,7 +776,7 @@ export function MouContractUpdateUniversityModal(props){
 		e.preventDefault()
 		let file = e.target?.files[0]
 		if(!file){
-			console.log("Error")
+			// console.log("Error")
 			return ;
 		}
 		setFile(file)
