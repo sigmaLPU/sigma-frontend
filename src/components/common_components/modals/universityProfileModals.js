@@ -550,6 +550,52 @@ export function RecentUpdateUniversityModal(props){
 	)
 }
 
+export function RecentUpdateUpdateUniversityModal(props){
+	const style = {
+		height: "500px",
+		width: "741px",
+		borderRadius: "10px",
+		display:"flex",justifyContent:"start",
+		alignItems:"center",
+		flexDirection:"column",
+	}
+
+
+	const dispatch = useDispatch()
+
+	const [data,setData] = useState({
+		"type":"text",
+		"value":""
+	})
+
+
+	useEffect(()=>{
+		if(props?.data){
+			setData({...data,...props?.data})
+		}
+	},[])
+
+	function submit(e){
+		e.preventDefault()
+		console.log("submit ---> ",data)
+		const id = getUniId(window.location.href)
+		// dispatch(universityRecentUpdateAddReducer({id,data:data}))
+	}
+
+
+	return(
+		<div style={style}>
+			<span style={{fontSize:"20px",fontSize:"700",width:"100%",textAlign:"center"}}>Add New Recent Update</span>
+			<div style={{marginTop:"3rem"}}>
+				<form>
+					<input value={data?.value} style={{width:"607px",minHeight:"40px",borderRadius:"8px"}} onChange={(e)=>setData({...data,value:e.target.value})} value={data.lpu_name} type="text" placeholder="Write Here"/>
+					<button onClick={(e)=>submit(e)}>Save</button>
+				</form>
+			</div>
+		</div>
+	)
+}
+
 export function MouContractUniversityModal(props){
 	const style = {
 		height: "500px",
