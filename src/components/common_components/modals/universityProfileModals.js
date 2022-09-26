@@ -35,6 +35,30 @@ function getUniId(url){
 	return id
 }
 
+function Button(props){
+
+	const buttonCSS = {background: "none",color: "inherit",border: "none",padding: "0",font: "inherit",cursor: "pointer",outline: "inherit",...props?.childCSS}
+	
+	const containerCSS = {
+		cursor:"pointer",
+		marginTop:"79px",
+		background:"#F07F1A",
+		borderRadius:"6px",
+		display:"flex",
+		justifyContent:"center",
+		alignItems:"center",
+		maxWidth:"607px",
+		...props?.style
+	}
+	
+	return (
+		<div onClick={(e)=>props?.submit(e)} style={containerCSS}>
+			<button type="submit" style={buttonCSS}>
+				<span style={{fontWeight:900,fontSize:"20px",color:"white"}}>{props?.buttonText}</span>
+			</button>
+		</div>
+	)
+}
 
 export function BasicDetailsModal(props){
 	const style = {
@@ -86,16 +110,23 @@ export function BasicDetailsModal(props){
 		)
 	}
 
+	const textFeildCSS = {width:"607px",height:"40px",border:"none",borderBottom:"1px solid black",fontSize:"1.1rem",fontWeight:"720"}
+
 	return(
 		<div style={style}>
-			<span style={{fontSize:"20px",fontSize:"700",width:"100%",textAlign:"center"}}>Basic Details</span>
+			<span style={{fontSize:"1.6rem",fontWeight:"800",width:"100%",textAlign:"center"}}>
+				Basic Details
+			</span>
 			<div style={{marginTop:"3rem"}}>
 				<form>
-					<input style={{width:"607px",height:"40px",borderRadius:"8px"}} onChange={(e)=>setData({...data,name:e.target.value})} value={data.name} type="text" placeholder="University name"/>
-					<input style={{width:"607px",height:"40px",borderRadius:"8px"}} onChange={(e)=>setData({...data,country:e.target.value})} value={data.country} type="text" placeholder="Country name"/>
-					<input style={{width:"607px",height:"40px",borderRadius:"8px"}} onChange={(e)=>setData({...data,address:e.target.value})} value={data.address} type="text" placeholder="Address name"/>
-					<input style={{width:"607px",height:"40px",borderRadius:"8px"}} onChange={(e)=>setData({...data,website:e.target.value})} value={data.website} type="text" placeholder="Website"/>
-					<button onClick={(e)=>submit(e)}>Save</button>
+					<div style={{display:"flex",flexDirection:"column",rowGap:"1rem"}}>
+						<input style={textFeildCSS} onChange={(e)=>setData({...data,name:e.target.value})} value={data.name} type="text" placeholder="University name"/>
+						<input style={textFeildCSS} onChange={(e)=>setData({...data,country:e.target.value})} value={data.country} type="text" placeholder="Country name"/>
+						<input style={textFeildCSS} onChange={(e)=>setData({...data,address:e.target.value})} value={data.address} type="text" placeholder="Address name"/>
+						<input style={textFeildCSS} onChange={(e)=>setData({...data,website:e.target.value})} value={data.website} type="text" placeholder="Website"/>
+					</div>
+					<Button submit={submit} buttonText={"Save"}/>
+					
 				</form>
 			</div>
 		</div>
@@ -138,19 +169,24 @@ export function ContactDetailsModal(props){
 			</div>
 		)
 	}
+	
+	const textFeildCSS = {width:"607px",height:"40px",border:"none",borderBottom:"1px solid black",fontSize:"1.1rem",fontWeight:"720"}
 
 	return(
 		<div style={style}>
-			<span style={{fontSize:"20px",fontSize:"700",width:"100%",textAlign:"center"}}>
+			<span style={{fontSize:"1.6rem",fontWeight:"800",width:"100%",textAlign:"center"}}>
 				Contact Details
 			</span>
 			<div style={{marginTop:"3rem"}}>
 				<form>
-					<input onChange={(e)=>setData({...data,name:e.target.value})} style={{width:"607px",height:"40px",borderRadius:"8px"}} type="text" placeholder="Name"/>
-					<input onChange={(e)=>setData({...data,email:e.target.value})} style={{width:"607px",height:"40px",borderRadius:"8px"}} type="email" placeholder="Email"/>
-					<input onChange={(e)=>setData({...data,phone:e.target.value})} style={{width:"607px",height:"40px",borderRadius:"8px"}} type="mobile" placeholder="Phone no."/>
-					<input onChange={(e)=>setData({...data,description:e.target.value})} style={{width:"607px",height:"40px",borderRadius:"8px"}} type="text" placeholder="Description"/>
-					<button onClick={(e)=>onSubmit(e)}>Save</button>
+					<div style={{display:"flex",flexDirection:"column",rowGap:"1rem"}}>
+						<input onChange={(e)=>setData({...data,name:e.target.value})} style={textFeildCSS} type="text" placeholder="Name"/>
+						<input onChange={(e)=>setData({...data,email:e.target.value})} style={textFeildCSS} type="email" placeholder="Email"/>
+						<input onChange={(e)=>setData({...data,phone:e.target.value})} style={textFeildCSS} type="mobile" placeholder="Phone no."/>
+						<input onChange={(e)=>setData({...data,description:e.target.value})} style={textFeildCSS} type="text" placeholder="Description"/>
+					</div>
+					<Button submit={onSubmit} buttonText={"Save"}/>
+					
 				</form>
 			</div>
 		</div>
@@ -162,7 +198,8 @@ export function ContactDetailsUpdateModal(props){
 		height: "500px",
 		width: "741px",
 		borderRadius: "10px",
-		display:"flex",justifyContent:"start",
+		display:"flex",
+		justifyContent:"start",
 		alignItems:"center",
 		flexDirection:"column",
 	}
@@ -201,19 +238,24 @@ export function ContactDetailsUpdateModal(props){
 			</div>
 		)
 	}
+	
+	const textFeildCSS = {width:"607px",height:"40px",border:"none",borderBottom:"1px solid black",fontSize:"1.1rem",fontWeight:"720"}
 
 	return(
 		<div style={style}>
-			<span style={{fontSize:"20px",fontSize:"700",width:"100%",textAlign:"center"}}>
+			<span style={{fontSize:"1.6rem",fontWeight:"800",width:"100%",textAlign:"center"}}>
 				Update Contact Details
 			</span>
 			<div style={{marginTop:"3rem"}}>
 				<form>
-					<input value={data?.name} onChange={(e)=>setData({...data,name:e.target.value})} style={{width:"607px",height:"40px",borderRadius:"8px"}} type="text" placeholder="Name"/>
-					<input value={data?.email} onChange={(e)=>setData({...data,email:e.target.value})} style={{width:"607px",height:"40px",borderRadius:"8px"}} type="email" placeholder="Email"/>
-					<input value={data?.phone} onChange={(e)=>setData({...data,phone:e.target.value})} style={{width:"607px",height:"40px",borderRadius:"8px"}} type="mobile" placeholder="Phone no."/>
-					<input value={data?.description} onChange={(e)=>setData({...data,description:e.target.value})} style={{width:"607px",height:"40px",borderRadius:"8px"}} type="text" placeholder="Description"/>
-					<button onClick={(e)=>onSubmit(e)}>Save</button>
+					<div style={{display:"flex",flexDirection:"column",rowGap:"1rem"}}>
+						<input value={data?.name} onChange={(e)=>setData({...data,name:e.target.value})} style={textFeildCSS} type="text" placeholder="Name"/>
+						<input value={data?.email} onChange={(e)=>setData({...data,email:e.target.value})} style={textFeildCSS} type="email" placeholder="Email"/>
+						<input value={data?.phone} onChange={(e)=>setData({...data,phone:e.target.value})} style={textFeildCSS} type="mobile" placeholder="Phone no."/>
+						<input value={data?.description} onChange={(e)=>setData({...data,description:e.target.value})} style={textFeildCSS} type="text" placeholder="Description"/>
+					</div>
+					<Button submit={onSubmit} buttonText={"Save"}/>
+					
 				</form>
 			</div>
 		</div>
@@ -223,8 +265,8 @@ export function ContactDetailsUpdateModal(props){
 
 export function MeetingUniversityModal(props){
 	const style = {
-		height: "500px",
-		width: "741px",
+		maxHeight: "500px",
+		minWidth: "741px",
 		borderRadius: "10px",
 		display:"flex",justifyContent:"start",
 		alignItems:"center",
@@ -273,50 +315,54 @@ export function MeetingUniversityModal(props){
 		)
 	}
 
+	const textFeildCSS = {width:"607px",height:"40px",border:"none",borderBottom:"1px solid black",fontSize:"1.1rem",fontWeight:"720"}
 
 	return(
 		<div style={style}>
-			<span style={{fontSize:"1.3rem",fontSize:"900",width:"100%",textAlign:"center",width:"607px",borderRadius:"8px"}}>
+			<span style={{fontSize:"1.6rem",fontWeight:"800",width:"100%",textAlign:"center"}}>
 				Meeting Details
 			</span>
-			<div style={{marginTop:"3rem",width:"100%"}}>
-				<form style={{width:"100%"}}>
+			<div style={{marginTop:"3rem"}}>
+				<form>
+					<div style={{display:"flex",flexDirection:"column",rowGap:"0.5rem"}}>
 					
-					<div style={{display:"flex",flexDirection:"column",width:"100%",}}>
-						<span>Meeting Agenda</span>
-						<input type="text" value={data?.agenda} style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>setData({...data,"agenda":e.target.value})} />
-					</div>
-
-					<div style={{display:"flex",flexDirection:"column",width:"100%",}}>
-						<span>Created By</span>
-						<input type="text" value={data?.createdBy} style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>setData({...data,"agenda":e.target.value})} />
-					</div>
-
-					<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
-						<span>Meeting between</span>
-						<input type="text" value={data?.title} style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>setData({...data,"title":e.target.value})} />
-					</div>
-								
-
-					<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
-						<span>Link</span>
-						<input type="text" value={data?.link} style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>setData({...data,"link":e.target.value})} />
-					</div>
-								
-
-					<div style={{display:"flex",flexDirection:"row",width:"100%",marginTop:"1rem",columnGap:"1rem"}}>
-						<div style={{display:"flex",flexDirection:"column",width:"50%"}}>
-							<span>Date</span>
-							<input type="date" style={{fontSize:"1.2rem",fontWeight:"700",}} onChange={(e)=>setData({...data,"meetingTime":e.target.value})} />
+						<div style={{display:"flex",flexDirection:"column",width:"100%",}}>
+							<span>Meeting Agenda</span>
+							<input type="text" value={data?.agenda} style={textFeildCSS} onChange={(e)=>setData({...data,"agenda":e.target.value})} />
 						</div>
+
+						<div style={{display:"flex",flexDirection:"column",width:"100%",}}>
+							<span>Created By</span>
+							<input type="text" value={data?.createdBy} style={textFeildCSS} onChange={(e)=>setData({...data,"agenda":e.target.value})} />
+						</div>
+
+						<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
+							<span>Meeting between</span>
+							<input type="text" value={data?.title} style={textFeildCSS} onChange={(e)=>setData({...data,"title":e.target.value})} />
+						</div>
+									
+
+						<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
+							<span>Link</span>
+							<input type="text" value={data?.link} style={textFeildCSS} onChange={(e)=>setData({...data,"link":e.target.value})} />
+						</div>
+									
+
+						<div style={{display:"flex",flexDirection:"row",width:"100%",marginTop:"1rem",columnGap:"1rem"}}>
+							<div style={{display:"flex",flexDirection:"column",width:"50%"}}>
+								<span>Date</span>
+								<input type="date" style={textFeildCSS} onChange={(e)=>setData({...data,"meetingTime":e.target.value})} />
+							</div>
+						</div>
+
 					</div>
 
-
-					<button onClick={(e)=>onSubmit(e)}>Save</button>
-
+					<Button style={{marginTop:"1rem"}} submit={onSubmit} buttonText={"Save"}/>
+					
 				</form>
 			</div>
 		</div>
+
 	)
 }
 
@@ -372,49 +418,54 @@ export function MeetingUpdateUniversityModal(props){
 		)
 	}
 
+	const textFeildCSS = {width:"607px",height:"40px",border:"none",borderBottom:"1px solid black",fontSize:"1.1rem",fontWeight:"720"}
+
 	return(
 		<div style={style}>
-			<span style={{fontSize:"1.3rem",fontSize:"900",width:"100%",textAlign:"center",width:"607px",borderRadius:"8px"}}>
-				Edit Meeting Details
+			<span style={{fontSize:"1.6rem",fontWeight:"800",width:"100%",textAlign:"center"}}>
+				Meeting Details
 			</span>
-			<div style={{marginTop:"3rem",width:"100%"}}>
-				<form style={{width:"100%"}}>
+			<div style={{marginTop:"3rem"}}>
+				<form>
+					<div style={{display:"flex",flexDirection:"column",rowGap:"0.5rem"}}>
 					
-					<div style={{display:"flex",flexDirection:"column",width:"100%",}}>
-						<span>Meeting Agenda</span>
-						<input type="text" value={data?.agenda} style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>setData({...data,"agenda":e.target.value})} />
-					</div>
-
-					<div style={{display:"flex",flexDirection:"column",width:"100%",}}>
-						<span>Created By</span>
-						<input type="text" value={data?.createdBy} style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>setData({...data,"agenda":e.target.value})} />
-					</div>
-
-					<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
-						<span>Meeting between</span>
-						<input type="text" value={data?.title} style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>setData({...data,"title":e.target.value})} />
-					</div>
-								
-
-					<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
-						<span>Link</span>
-						<input type="text" value={data?.link} style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>setData({...data,"link":e.target.value})} />
-					</div>
-								
-
-					<div style={{display:"flex",flexDirection:"row",width:"100%",marginTop:"1rem",columnGap:"1rem"}}>
-						<div style={{display:"flex",flexDirection:"column",width:"50%"}}>
-							<span>Date</span>
-							<input type="date" value={data?.meetingTime} style={{fontSize:"1.2rem",fontWeight:"700",}} onChange={(e)=>setData({...data,"meetingTime":e.target.value})} />
+						<div style={{display:"flex",flexDirection:"column",width:"100%",}}>
+							<span>Meeting Agenda</span>
+							<input type="text" value={data?.agenda} style={textFeildCSS} onChange={(e)=>setData({...data,"agenda":e.target.value})} />
 						</div>
+
+						<div style={{display:"flex",flexDirection:"column",width:"100%",}}>
+							<span>Created By</span>
+							<input type="text" value={data?.createdBy} style={textFeildCSS} onChange={(e)=>setData({...data,"agenda":e.target.value})} />
+						</div>
+
+						<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
+							<span>Meeting between</span>
+							<input type="text" value={data?.title} style={textFeildCSS} onChange={(e)=>setData({...data,"title":e.target.value})} />
+						</div>
+									
+
+						<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
+							<span>Link</span>
+							<input type="text" value={data?.link} style={textFeildCSS} onChange={(e)=>setData({...data,"link":e.target.value})} />
+						</div>
+									
+
+						<div style={{display:"flex",flexDirection:"row",width:"100%",marginTop:"1rem",columnGap:"1rem"}}>
+							<div style={{display:"flex",flexDirection:"column",width:"50%"}}>
+								<span>Date</span>
+								<input type="date" style={textFeildCSS} onChange={(e)=>setData({...data,"meetingTime":e.target.value})} />
+							</div>
+						</div>
+
 					</div>
 
-
-					<button onClick={(e)=>onSubmit(e)}>Save</button>
-
+					<Button style={{marginTop:"1rem"}} submit={onSubmit} buttonText={"Save"}/>
+					
 				</form>
 			</div>
 		</div>
+
 	)
 }
 
@@ -454,57 +505,61 @@ export function GuestVisitUniversityModal(props){
 		// console.log(data)
 	}
 
+	const textFeildCSS = {width:"607px",height:"40px",border:"none",borderBottom:"1px solid black",fontSize:"1.1rem",fontWeight:"720"}
+
+
 	return(
 		<div style={style}>
-			<span style={{fontSize:"1.3rem",fontSize:"900",width:"100%",textAlign:"center",width:"607px",borderRadius:"8px"}}>
+			<span style={{fontSize:"1.6rem",fontWeight:"800",width:"100%",textAlign:"center"}}>
 				Guest Visit
 			</span>
-			<div style={{marginTop:"3rem",width:"100%"}}>
-				<form style={{width:"100%"}}>
-					
-					<div style={{display:"flex",flexDirection:"column",width:"100%",}}>
-						<span>Full Name</span>
-						<input type="text" style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>setData({...data,"name":e.target.value})} />
-					</div>
+			<div style={{marginTop:"3rem"}}>
+				<form>
+					<div style={{display:"flex",flexDirection:"column",rowGap:"1rem"}}>
 
-					<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
-						<span>Designation</span>
-						<input type="text" style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>setData({...data,"designation":e.target.value})} />
-					</div>
-								
-					<div style={{display:"flex",flexDirection:"column",width:"100%",}}>
-						<span>Mobile</span>
-						<input type="text" style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>setData({...data,"mobile":e.target.value})} />
-					</div>
+						<div style={{display:"flex",flexDirection:"column",width:"100%",}}>
+							<span>Full Name</span>
+							<input type="text" style={textFeildCSS} onChange={(e)=>setData({...data,"name":e.target.value})} />
+						</div>
 
-					<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
-						<span>Email Id</span>
-						<input type="text" style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>setData({...data,"email":e.target.value})} />
-					</div>
+						<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
+							<span>Designation</span>
+							<input type="text" style={textFeildCSS} onChange={(e)=>setData({...data,"designation":e.target.value})} />
+						</div>
+									
+						<div style={{display:"flex",flexDirection:"column",width:"100%",}}>
+							<span>Mobile</span>
+							<input type="text" style={textFeildCSS} onChange={(e)=>setData({...data,"mobile":e.target.value})} />
+						</div>
+
+						<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
+							<span>Email Id</span>
+							<input type="text" style={textFeildCSS} onChange={(e)=>setData({...data,"email":e.target.value})} />
+						</div>
 
 
-					<div style={{display:"flex",flexDirection:"row",width:"100%",marginTop:"1rem",columnGap:"1rem"}}>
 						<div style={{display:"flex",flexDirection:"column",width:"50%"}}>
 							<span>Date</span>
-							<input type="date" style={{fontSize:"1.2rem",fontWeight:"700",}} onChange={(e)=>setData({...data,"date":e.target.value})} />
+							<input type="date" style={textFeildCSS} onChange={(e)=>setData({...data,"date":e.target.value})} />
 						</div>
 						<div style={{display:"flex",flexDirection:"column",width:"40%"}}>
 							<span>Time</span>
-							<input type="time" style={{fontSize:"1.2rem",fontWeight:"700",}} onChange={(e)=>setData({...data,"time":e.target.value})} />
+							<input type="time" style={textFeildCSS} onChange={(e)=>setData({...data,"time":e.target.value})} />
 						</div>
+
+						<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
+							<span>Purpose</span>
+							<input type="text" style={textFeildCSS} onChange={(e)=>setData({...data,"purpose":e.target.value})} />
+						</div>
+
 					</div>
 
-					<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
-						<span>Purpose</span>
-						<input type="text" style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>setData({...data,"purpose":e.target.value})} />
-					</div>
-
-
-					<button onClick={(e)=>onSubmit(e)}>Save</button>
-
+					<Button style={{marginBottom:"5rem"}} submit={onSubmit} buttonText={"Save"}/>
+					
 				</form>
 			</div>
 		</div>
+
 	)
 }
 
@@ -551,19 +606,28 @@ export function ProgramOfColaborationUniversityModal(props){
 		)
 	}
 
+	const textFeildCSS = {width:"607px",height:"40px",border:"none",borderBottom:"1px solid black",fontSize:"1.1rem",fontWeight:"720"}
+
 	return(
 		<div style={style}>
-			<span style={{fontSize:"20px",fontSize:"700",width:"100%",textAlign:"center"}}>Program of Colaboration</span>
+			<span style={{fontSize:"1.6rem",fontWeight:"800",width:"100%",textAlign:"center"}}>
+				Program of Colaboration
+			</span>
 			<div style={{marginTop:"3rem"}}>
 				<form>
-					<input style={{width:"607px",height:"40px",borderRadius:"8px"}} onChange={(e)=>setData({...data,lpu_name:e.target.value})} value={data.lpu_name} type="text" placeholder="LPU Degree name"/>
-					<input style={{width:"607px",height:"40px",borderRadius:"8px"}} onChange={(e)=>setData({...data,forign_name:e.target.value})} value={data.forign_name} type="text" placeholder="Final Degree name"/>
-					<input style={{width:"607px",height:"40px",borderRadius:"8px"}} onChange={(e)=>setData({...data,tutionFees:e.target.value})} value={data.tutionFees} type="text" placeholder="Fees"/>
-					<input style={{width:"607px",height:"40px",borderRadius:"8px"}} onChange={(e)=>setData({...data,scholarship:e.target.value})} value={data.scholarship} type="text" placeholder="Scholarship"/>
-					<button onClick={(e)=>submit(e)}>Save</button>
+					<div style={{display:"flex",flexDirection:"column",rowGap:"1rem"}}>
+						<input style={textFeildCSS} onChange={(e)=>setData({...data,lpu_name:e.target.value})} value={data.lpu_name} type="text" placeholder="LPU Degree name"/>
+						<input style={textFeildCSS} onChange={(e)=>setData({...data,forign_name:e.target.value})} value={data.forign_name} type="text" placeholder="Final Degree name"/>
+						<input style={textFeildCSS} onChange={(e)=>setData({...data,tutionFees:e.target.value})} value={data.tutionFees} type="text" placeholder="Fees"/>
+						<input style={textFeildCSS} onChange={(e)=>setData({...data,scholarship:e.target.value})} value={data.scholarship} type="text" placeholder="Scholarship"/>
+					</div>
+					<Button submit={submit} buttonText={"Save"}/>
+					
 				</form>
 			</div>
 		</div>
+
+
 	)
 }
 
@@ -606,13 +670,20 @@ export function RecentUpdateUniversityModal(props){
 		)
 	}
 
+	const textFeildCSS = {width:"607px",height:"40px",border:"none",borderBottom:"1px solid black",fontSize:"1.1rem",fontWeight:"720"}
+
+
 	return(
 		<div style={style}>
-			<span style={{fontSize:"20px",fontSize:"700",width:"100%",textAlign:"center"}}>Add New Recent Update</span>
+			<span style={{fontSize:"1.6rem",fontWeight:"800",width:"100%",textAlign:"center"}}>
+				Add New Recent Update
+			</span>
 			<div style={{marginTop:"3rem"}}>
 				<form>
-					<input style={{width:"607px",minHeight:"40px",borderRadius:"8px"}} onChange={(e)=>setData({...data,value:e.target.value})} value={data.lpu_name} type="text" placeholder="Write Here"/>
-					<button onClick={(e)=>submit(e)}>Save</button>
+					<div style={{display:"flex",flexDirection:"column",rowGap:"1rem"}}>
+						<input style={textFeildCSS} onChange={(e)=>setData({...data,value:e.target.value})} value={data.lpu_name} type="text" placeholder="Write Here"/>
+					</div>
+					<Button submit={submit} buttonText={"Save"}/>					
 				</form>
 			</div>
 		</div>
@@ -665,14 +736,22 @@ export function RecentUpdateUpdateUniversityModal(props){
 		)
 	}
 
+	const textFeildCSS = {width:"607px",height:"40px",border:"none",borderBottom:"1px solid black",fontSize:"1.1rem",fontWeight:"720"}
+
 
 	return(
+
 		<div style={style}>
-			<span style={{fontSize:"20px",fontSize:"700",width:"100%",textAlign:"center"}}>Recent Update -> Update</span>
+			<span style={{fontSize:"1.6rem",fontWeight:"800",width:"100%",textAlign:"center"}}>
+				Update the Recent Update
+			</span>
 			<div style={{marginTop:"3rem"}}>
 				<form>
-					<input value={data?.value} style={{width:"607px",minHeight:"40px",borderRadius:"8px"}} onChange={(e)=>setData({...data,value:e.target.value})} type="text"/>
-					<button onClick={(e)=>submit(e)}>Save</button>
+					<div style={{display:"flex",flexDirection:"column",rowGap:"1rem"}}>
+						<input value={data?.value} style={textFeildCSS} onChange={(e)=>setData({...data,value:e.target.value})} type="text"/>
+
+					</div>
+					<Button submit={submit} buttonText={"Save"}/>					
 				</form>
 			</div>
 		</div>
@@ -715,9 +794,6 @@ export function MouContractAddUniversityModal(props){
 	const reduxData = useSelector((state)=>state.universityMouContractSlice.data)
 
 
-	// useEffect(()=>{
-	// 	console.log("mou contract state --> ",reduxData)
-	// },[reduxData])
 	
 	if(reduxData?.loading){
 		return (
@@ -763,51 +839,61 @@ export function MouContractAddUniversityModal(props){
 		setFile(file)
 	}
 
+	const textFeildCSS = {width:"607px",height:"40px",border:"none",borderBottom:"1px solid black",fontSize:"1.1rem",fontWeight:"720"}
+
+
 	return(
 		<div style={style}>
-			<span style={{fontSize:"1.3rem",fontSize:"900",width:"100%",textAlign:"center",width:"607px",borderRadius:"8px"}}>
-				MOU Details
+			<span style={{fontSize:"1.6rem",fontWeight:"800",width:"100%",textAlign:"center"}}>
+				Mou Details
 			</span>
-			<div style={{marginTop:"3rem",width:"100%"}}>
-				<form style={{width:"100%"}}>
+			<div style={{marginTop:"3rem"}}>
+				<form>
+					<div style={{display:"flex",flexDirection:"column",rowGap:"1rem"}}>
 
-					<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
-						<span>Type</span>
+						<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
+							<span>Type</span>
 
-						<select value={data?.type} style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>setData({...data,"type":e.target.value})}>
-							{options.map( (item)=>(
-								<option value={item}>{item}</option>
-							))}
-						</select>
+							<select value={data?.type} style={textFeildCSS} onChange={(e)=>setData({...data,"type":e.target.value})}>
+								{options.map( (item)=>(
+									<option value={item}>{item}</option>
+								))}
+							</select>
+
+						</div>
+
+						<input style={textFeildCSS} onChange={(e)=>setData({...data,title:e.target.value})} value={data.title} type="text" placeholder="Mou Title"/>
+
+						
+						<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem",columnGap:"1rem"}}>
+							
+							<div style={{display:"flex",flexDirection:"column",width:"50%"}}>
+								<span>Start Date</span>
+								<input type="date" style={textFeildCSS} onChange={(e)=>setData({...data,"startDate":e.target.value})} />
+							</div>
+
+							<div style={{display:"flex",flexDirection:"column",width:"50%"}}>
+								<span>Start Date</span>
+								<input type="date" style={textFeildCSS} onChange={(e)=>setData({...data,"endDate":e.target.value})} />
+							</div>
+						
+						</div>
+
+
+						<div style={{display:"flex",flexDirection:"column",width:"100%",}}>
+							<span>Upload File</span>
+							<input type="file" style={textFeildCSS} onChange={(e)=>handleFile(e)} />
+						</div>
+
 
 					</div>
-
-					<input style={{width:"607px",height:"40px",borderRadius:"8px"}} onChange={(e)=>setData({...data,title:e.target.value})} value={data.title} type="text" placeholder="Mou Title"/>
-
+					<Button submit={onSubmit} buttonText={"Save"}/>
 					
-					<div style={{display:"flex",flexDirection:"row",width:"100%",marginTop:"1rem",columnGap:"1rem"}}>
-						<div style={{display:"flex",flexDirection:"column",width:"50%"}}>
-							<span>Start Date</span>
-							<input type="date" style={{fontSize:"1.2rem",fontWeight:"700",}} onChange={(e)=>setData({...data,"startDate":e.target.value})} />
-						</div>
-
-						<div style={{display:"flex",flexDirection:"column",width:"50%"}}>
-							<span>Start Date</span>
-							<input type="date" style={{fontSize:"1.2rem",fontWeight:"700",}} onChange={(e)=>setData({...data,"endDate":e.target.value})} />
-						</div>
-					</div>
-
-
-					<div style={{display:"flex",flexDirection:"column",width:"100%",}}>
-						<span>Upload File</span>
-						<input type="file" style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>handleFile(e)} />
-					</div>
-
-					<button onClick={(e)=>onSubmit(e)}>Save</button>
-
 				</form>
 			</div>
 		</div>
+
+
 	)
 }
 
@@ -899,49 +985,52 @@ export function MouContractUpdateUniversityModal(props){
 		)
 	}
 
+	const textFeildCSS = {width:"607px",height:"40px",border:"none",borderBottom:"1px solid black",fontSize:"1.1rem",fontWeight:"720"}
 
 	return(
 		<div style={style}>
-			<span style={{fontSize:"1.3rem",fontSize:"900",width:"100%",textAlign:"center",width:"607px",borderRadius:"8px"}}>
+			<span style={{fontSize:"1.6rem",fontWeight:"800",width:"100%",textAlign:"center"}}>
 				MOU Details Update
 			</span>
-			<div style={{marginTop:"3rem",width:"100%"}}>
-				<form style={{width:"100%"}}>
+			<div style={{marginTop:"3rem"}}>
+				<form>
+					<div style={{display:"flex",flexDirection:"column",rowGap:"1rem"}}>
 
-					<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
-						<span>Type</span>
+						<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
+							<span>Type</span>
 
-						<select value={data?.type} style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>setData({...data,"type":e.target.value})}>
-							{options.map( (item)=>(
-								<option value={item}>{item}</option>
-							))}
-						</select>
+							<select value={data?.type} style={textFeildCSS} onChange={(e)=>setData({...data,"type":e.target.value})}>
+								{options.map( (item)=>(
+									<option value={item}>{item}</option>
+								))}
+							</select>
+
+						</div>
+
+						<input style={textFeildCSS} onChange={(e)=>setData({...data,title:e.target.value})} value={data.title} type="text" placeholder="Mou Title"/>
+
+						
+						<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem",columnGap:"1rem"}}>
+							<div style={{display:"flex",flexDirection:"column",width:"50%"}}>
+								<span>Start Date</span>
+								<input value={data?.startDate} type="date" style={textFeildCSS} onChange={(e)=>setData({...data,"startDate":e.target.value})} />
+							</div>
+
+							<div style={{display:"flex",flexDirection:"column",width:"50%"}}>
+								<span>Start Date</span>
+								<input value={data?.endDate} type="date" style={textFeildCSS} onChange={(e)=>setData({...data,"endDate":e.target.value})} />
+							</div>
+						</div>
+
+
+						<div style={{display:"flex",flexDirection:"column",width:"100%",}}>
+							<span>Upload File</span>
+							<input type="file" style={textFeildCSS} onChange={(e)=>handleFile(e)} />
+						</div>
 
 					</div>
-
-					<input style={{width:"607px",height:"40px",borderRadius:"8px"}} onChange={(e)=>setData({...data,title:e.target.value})} value={data.title} type="text" placeholder="Mou Title"/>
-
+					<Button submit={onSubmit} buttonText={"Save"}/>
 					
-					<div style={{display:"flex",flexDirection:"row",width:"100%",marginTop:"1rem",columnGap:"1rem"}}>
-						<div style={{display:"flex",flexDirection:"column",width:"50%"}}>
-							<span>Start Date</span>
-							<input value={data?.startDate} type="date" style={{fontSize:"1.2rem",fontWeight:"700",}} onChange={(e)=>setData({...data,"startDate":e.target.value})} />
-						</div>
-
-						<div style={{display:"flex",flexDirection:"column",width:"50%"}}>
-							<span>Start Date</span>
-							<input value={data?.endDate} type="date" style={{fontSize:"1.2rem",fontWeight:"700",}} onChange={(e)=>setData({...data,"endDate":e.target.value})} />
-						</div>
-					</div>
-
-
-					<div style={{display:"flex",flexDirection:"column",width:"100%",}}>
-						<span>Upload File</span>
-						<input type="file" style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>handleFile(e)} />
-					</div>
-
-					<button onClick={(e)=>onSubmit(e)}>Save</button>
-
 				</form>
 			</div>
 		</div>
