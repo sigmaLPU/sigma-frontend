@@ -14,7 +14,8 @@ import {
 	universityBasicDetailsUpdateReducer,universityProgramAddReducer,
 	universityRecentUpdateAddReducer,universityMeetingUpdateReducer,
 	universityMeetingReducer,universityContactUpdateReducer,
-	universityRecentUpdateUpdateReducer,
+	universityRecentUpdateUpdateReducer, universityMouContractReducer,
+	universityMouContractAddReducer,universityMouContractUpdateReducer
 } from '../../../redux/routes'
 
 
@@ -605,7 +606,7 @@ export function RecentUpdateUpdateUniversityModal(props){
 	)
 }
 
-export function MouContractUniversityModal(props){
+export function MouContractAddUniversityModal(props){
 	const style = {
 		height: "500px",
 		width: "741px",
@@ -621,7 +622,8 @@ export function MouContractUniversityModal(props){
 		"file":"",
 		"startDate":"",
 		"endDate":"",
-		"type":""
+		"type":"general",
+		"title":""
 	})
 
 	const [file,setFile] = useState(null);
@@ -644,12 +646,13 @@ export function MouContractUniversityModal(props){
 
 		let file_name = `${uni_id}_MouContract_${data?.startDate}_${data?.endDate}_${data?.type}`
 		
-		uploadFile(file,`files/${file_name}`).then((data)=>{
-			console.log("data saved ---> ",data)
-
+		uploadFile(file,`files/${file_name}`).then((fileURL)=>{
+			setData({...data,"file":fileURL})
+			// if(data?.title==="" || data?.endDate==="" || data?.start==="" || data?.file===""){
+			// 	return ;
+			// }
+			dispatch(universityMouContractAddReducer({id:uni_id,data:data}))
 		})
-
-		// dispatch(universityMeetingAddReducer({data:data,id}))
 	}
 
 	function handleFile(e){
@@ -673,13 +676,15 @@ export function MouContractUniversityModal(props){
 					<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
 						<span>Type</span>
 
-						<select style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>setData({...data,"type":e.target.value})}>
+						<select value={data?.type} style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>setData({...data,"type":e.target.value})}>
 							{options.map( (item)=>(
 								<option value={item}>{item}</option>
 							))}
 						</select>
 
 					</div>
+
+					<input style={{width:"607px",height:"40px",borderRadius:"8px"}} onChange={(e)=>setData({...data,title:e.target.value})} value={data.title} type="text" placeholder="Mou Title"/>
 
 					
 					<div style={{display:"flex",flexDirection:"row",width:"100%",marginTop:"1rem",columnGap:"1rem"}}>
@@ -708,6 +713,7 @@ export function MouContractUniversityModal(props){
 	)
 }
 
+
 export function MouContractUpdateUniversityModal(props){
 	const style = {
 		height: "500px",
@@ -724,7 +730,8 @@ export function MouContractUpdateUniversityModal(props){
 		"file":"",
 		"startDate":"",
 		"endDate":"",
-		"type":""
+		"type":"",
+		"title":""
 	})
 
 	const [file,setFile] = useState(null);
@@ -739,20 +746,30 @@ export function MouContractUpdateUniversityModal(props){
 	]
 
 	useEffect(()=>{
+		if(props?.data){
+			var file = props?.data?.file
+			var title = props?.data?.title
+			var startDate = props?.data?.startDate
+			var endDate = props?.data?.endDate
+			var type = props?.data?.type
+			setData({file,title,startDate,endDate,type})
+		}
 	},[])
 
 	function onSubmit(e){
 		e.preventDefault();
-		const uni_id = getUniId(window.location.href)
+		const uni_id = props?.data?.id
 
 		let file_name = `${uni_id}_MouContract_${data?.startDate}_${data?.endDate}_${data?.type}`
 		
-		uploadFile(file,`files/${file_name}`).then((data)=>{
-			console.log("data saved ---> ",data)
-			
-		})
-
-		// dispatch(universityMeetingAddReducer({data:data,id}))
+		if(file){
+			uploadFile(file,`files/${file_name}`).then((fileURL)=>{
+				setData({...data,"file":fileURL})
+				dispatch(universityMouContractUpdateReducer({id:uni_id,data:data}))
+			})
+		}else{
+			dispatch(universityMouContractUpdateReducer({id:uni_id,data:data}))
+		}
 	}
 
 	function handleFile(e){
@@ -776,7 +793,7 @@ export function MouContractUpdateUniversityModal(props){
 					<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
 						<span>Type</span>
 
-						<select style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>setData({...data,"type":e.target.value})}>
+						<select value={data?.type} style={{fontSize:"1.2rem",fontWeight:"700"}} onChange={(e)=>setData({...data,"type":e.target.value})}>
 							{options.map( (item)=>(
 								<option value={item}>{item}</option>
 							))}
@@ -784,16 +801,18 @@ export function MouContractUpdateUniversityModal(props){
 
 					</div>
 
+					<input style={{width:"607px",height:"40px",borderRadius:"8px"}} onChange={(e)=>setData({...data,title:e.target.value})} value={data.title} type="text" placeholder="Mou Title"/>
+
 					
 					<div style={{display:"flex",flexDirection:"row",width:"100%",marginTop:"1rem",columnGap:"1rem"}}>
 						<div style={{display:"flex",flexDirection:"column",width:"50%"}}>
 							<span>Start Date</span>
-							<input type="date" style={{fontSize:"1.2rem",fontWeight:"700",}} onChange={(e)=>setData({...data,"startDate":e.target.value})} />
+							<input value={data?.startDate} type="date" style={{fontSize:"1.2rem",fontWeight:"700",}} onChange={(e)=>setData({...data,"startDate":e.target.value})} />
 						</div>
 
 						<div style={{display:"flex",flexDirection:"column",width:"50%"}}>
 							<span>Start Date</span>
-							<input type="date" style={{fontSize:"1.2rem",fontWeight:"700",}} onChange={(e)=>setData({...data,"endDate":e.target.value})} />
+							<input value={data?.endDate} type="date" style={{fontSize:"1.2rem",fontWeight:"700",}} onChange={(e)=>setData({...data,"endDate":e.target.value})} />
 						</div>
 					</div>
 

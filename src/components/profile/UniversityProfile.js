@@ -9,11 +9,12 @@ import {
 	FileCard,MeetingCard,
 	ContactCard,RecentUpdateCard,
 	ModalPopUp,ContactDetailsModal,
-	MeetingUniversityModal,GuestVisitUniversityModal,MouContractUniversityModal,
+	MeetingUniversityModal,GuestVisitUniversityModal,
 	ProgramOfColaborationUniversityModal,RecentUpdateUniversityModal,
 	MeetingUpdateUniversityModal,ContactDetailsUpdateModal,
-	MouContractUpdateUniversityModal,RecentUpdateUpdateUniversityModal,
-
+	MouContractAddUniversityModal,RecentUpdateUpdateUniversityModal,
+	MouContractUpdateUniversityModal,
+	
 	LoadingPage,
 	LoadingComponent,
 } from '../routes'
@@ -27,6 +28,7 @@ import {
 	universityMeetingReducer,
 	universityProgramReducer,
 	universityRecentUpdateReducer,
+	universityMouContractReducer,
 } from '../../redux/routes'
 
 
@@ -59,7 +61,7 @@ export default function UniversityProfile(props){
 
 						<div style={{display:"flex",rowGap:"2rem",flexWrap:"wrap",alignContent:"space-between"}}>						
 							<BasicDetails popup={<BasicDetailsModal/>}/>							
-							<MOUcontract popup={<MouContractUniversityModal/>}/>
+							<MOUcontract popup={<MouContractAddUniversityModal/>}/>
 							<ContactPerson popup={<ContactDetailsModal/>}/>
 							<ApplicationProcess popup={<BasicDetailsModal/>}/>
 							<FacultyMobiliy popup={<BasicDetailsModal/>}/>								
@@ -122,19 +124,24 @@ function MOUcontract(props){
 
 	const dispatch = useDispatch()
 
-	const [data,setData] = useState([
-		{"type":"General","start":"28-07-2022","end":"29-07-2023"},
-		{"type":"General","start":"28-07-2022","end":"29-07-2023"},
-		{"type":"General","start":"28-07-2022","end":"29-07-2023"},
-		{"type":"General","start":"28-07-2022","end":"29-07-2023"},
-	])
+	const details = useSelector((state)=>state.universityMouContractSlice.data)
+
+	useEffect(()=>{console.log("mou contract state ---> ",details)},[details])
+
+	useEffect(()=>{
+		const id = getUniId(window.location.href) // obtaining university id from url
+
+		// fetching basic details from server using reducers
+		dispatch(universityMouContractReducer({id}))
+	},[])
+
 
 	return (
 		<>
 			{/* Mou contract */}
 			<Card popup={props?.popup} style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Mou / Contract">
-				{data.map(item=>(
-					<FileCard data={item}/>
+				{details?.data?.data?.map(item=>(
+					<FileCard mouContractUpdateUniversityModal={<MouContractUpdateUniversityModal data={item}/>} data={item}/>
 				))}
 			</Card>
 		</>

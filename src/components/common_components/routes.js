@@ -14,10 +14,11 @@ import ModalPopUp from './modal'
 
 import {
 	BasicDetailsModal,ContactDetailsModal,MeetingUniversityModal,
-	GuestVisitUniversityModal,MouContractUniversityModal,
+	GuestVisitUniversityModal,
 	ProgramOfColaborationUniversityModal,RecentUpdateUniversityModal,
 	MeetingUpdateUniversityModal,ContactDetailsUpdateModal,
-	MouContractUpdateUniversityModal,RecentUpdateUpdateUniversityModal,
+	MouContractAddUniversityModal,RecentUpdateUpdateUniversityModal,
+	MouContractUpdateUniversityModal,
 } from './modals/universityProfileModals'
 
 // loading component
@@ -31,10 +32,11 @@ export {
 	// modal
 	ModalPopUp,
 	BasicDetailsModal,ContactDetailsModal,MeetingUniversityModal,
-	GuestVisitUniversityModal,MouContractUniversityModal,
+	GuestVisitUniversityModal,
 	ProgramOfColaborationUniversityModal,RecentUpdateUniversityModal,
 	MeetingUpdateUniversityModal,ContactDetailsUpdateModal,
-	MouContractUpdateUniversityModal,RecentUpdateUpdateUniversityModal,
+	MouContractAddUniversityModal,RecentUpdateUpdateUniversityModal,
+	MouContractUpdateUniversityModal,
 	
 	// loading component
 	LoadingComponent,

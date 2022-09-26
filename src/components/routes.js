@@ -29,10 +29,11 @@ import Table from './common_components/table'
 //modal
 
 import {ModalPopUp,BasicDetailsModal,ContactDetailsModal,MeetingUniversityModal,
-	GuestVisitUniversityModal,MouContractUniversityModal,
+	GuestVisitUniversityModal,
 	ProgramOfColaborationUniversityModal,RecentUpdateUniversityModal,
 	MeetingUpdateUniversityModal,LoadingComponent,ContactDetailsUpdateModal,
-	MouContractUpdateUniversityModal,RecentUpdateUpdateUniversityModal,
+	MouContractAddUniversityModal,RecentUpdateUpdateUniversityModal,
+	MouContractUpdateUniversityModal,
 } from './common_components/routes'
 
 // meeting card objects
@@ -64,10 +65,11 @@ export {
 
 	// modalpop
 	BasicDetailsModal,ModalPopUp,ContactDetailsModal,MeetingUniversityModal,
-	GuestVisitUniversityModal,MouContractUniversityModal,
+	GuestVisitUniversityModal,
 	ProgramOfColaborationUniversityModal,RecentUpdateUniversityModal,
 	MeetingUpdateUniversityModal,ContactDetailsUpdateModal,
-	MouContractUpdateUniversityModal,RecentUpdateUpdateUniversityModal,
+	MouContractAddUniversityModal,RecentUpdateUpdateUniversityModal,
+	MouContractUpdateUniversityModal,
 	
 	LoadingComponent,
 

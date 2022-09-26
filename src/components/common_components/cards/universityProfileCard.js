@@ -32,11 +32,7 @@ export function ObjectCard(props) {
 export function FileCard(props) {
 	const [bgColor,setBgColor] = useState("white")
 
-	return (
-		<div style={{display:"flex",borderBottom:"1px solid black",backgroundColor:bgColor,justifyContent:"space-between"}} onMouseEnter={()=>setBgColor("#dbdbd9")} onMouseLeave={()=>setBgColor("white")}>
-			<div><IconButton><InsertDriveFileIcon sx={{ fontSize: "80px" }}/></IconButton></div>
-			<div>
-				<table style={{width:"100%",display:"flex",flexDirection:"column",justifyContent:"space-between"}}>
+	const activeComponent = <table style={{width:"100%",display:"flex",flexDirection:"column",justifyContent:"space-between"}}>
 					<tr style={{display:"flex",justifyContent:"space-between"}}>
 						<td style={{fontWeight:"800"}}>Type</td>
 						<td style={{padding:"4px"}}>:</td>-
@@ -45,14 +41,22 @@ export function FileCard(props) {
 					<tr>
 						<td style={{fontWeight:"800"}}>Start Date</td>
 						<td style={{padding:"4px"}}>:</td>
-						<td>{props?.data["start"]}</td>
+						<td>{props?.data["startDate"]}</td>
 					</tr>
 					<tr>
 						<td style={{fontWeight:"800"}}>End Date</td>
 						<td style={{padding:"4px"}}>:</td>
-						<td>{props?.data["end"]}</td>
+						<td>{props?.data["endDate"]}</td>
 					</tr>
 				</table>
+
+	return (
+		<div style={{display:"flex",borderBottom:"1px solid black",backgroundColor:bgColor,justifyContent:"space-between"}} onMouseEnter={()=>setBgColor("#dbdbd9")} onMouseLeave={()=>setBgColor("white")}>
+			<div><IconButton><InsertDriveFileIcon sx={{ fontSize: "80px" }}/></IconButton></div>
+			<div>
+				<ModalPopUp activeComponent={activeComponent}>
+					{props?.mouContractUpdateUniversityModal ? props?.mouContractUpdateUniversityModal : "Not Available"}
+				</ModalPopUp>
 			</div>
 			<div style={{display:"flex",justifyContent:"center"}}>
 				<IconButton><FileDownloadIcon sx={{fontSize:"35px"}} /></IconButton>
