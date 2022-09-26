@@ -22,7 +22,6 @@ const initialState = {
 
 const getAllUniversityReducer = createAsyncThunk('getAllUniverity/getAllUniversityReducer',
     async (data)=>{
-      console.log("Sending request to backend to get all university data")
       return axios.get(GET_ALL_UNIVERSITY_URL,{
           headers: {
             'Content-Type': 'application/json'
@@ -35,7 +34,6 @@ export const getAllUniversitySlice = createSlice({
   initialState,
   reducers: {
     setRedirectFunction : (state,payload) => {
-      console.log("setRedirectFunction payload ---> ",payload?.payload?.redirectTo)
       state.data.redirectTo = payload?.payload?.redirectTo
     },
     updateViewDetails : (state) =>{
@@ -44,13 +42,11 @@ export const getAllUniversitySlice = createSlice({
         for(const r of row){
           r["Details"] = <div style={{color:"#f07f1a",cursor:"pointer"}} onClick={()=>state.data.redirectTo(r["Details"])}>Details</div>
         }
-        console.log(row)
       }
     }
   },
   extraReducers: (builder) => {
     builder.addCase(getAllUniversityReducer.fulfilled, (state, { payload }) => {
-      console.log("university list loading (fulfilled)",payload)
       var data = payload?.data?.universities
       if(!data){
         state.data.message="Something went wrong"
@@ -72,14 +68,11 @@ export const getAllUniversitySlice = createSlice({
         }
         state.data.data = {rows:r,column:["Name of University","Country","Meetings","Contact Person","Agreement","Details"]}
       
-        console.log("master reducer ---> ",r)
       }
     });
     builder.addCase(getAllUniversityReducer.pending, (state, { payload }) => {
-      console.log("university list loading (pending)",payload)
     });
     builder.addCase(getAllUniversityReducer.rejected, (state, { payload }) => {
-      console.log("university list loading (failed)",payload)
     });
   },
 })

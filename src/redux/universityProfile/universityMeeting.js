@@ -15,7 +15,6 @@ const initialState = {
 
 const universityMeetingReducer = createAsyncThunk('universityMeeting/universityMeetingReducer',
   async (data)=>{
-    console.log("Fetching university Meeting data")
     return axios.get(`https://sigmalpu.herokuapp.com/api/v2/university/meeting/${data?.id}`,{
         headers: {
           'Content-Type': 'application/json'
@@ -26,7 +25,6 @@ const universityMeetingReducer = createAsyncThunk('universityMeeting/universityM
 
 const universityMeetingAddReducer = createAsyncThunk('universityMeetingAdd/universityMeetingAddReducer',
   async (data)=>{
-    console.log("Adding university Meeting data",data)
 
     var config = {
       method: 'post',
@@ -36,7 +34,6 @@ const universityMeetingAddReducer = createAsyncThunk('universityMeetingAdd/unive
       },
       data : data?.data
     };
-    console.log(config)
     return axios(config)
   }
 )
@@ -44,7 +41,6 @@ const universityMeetingAddReducer = createAsyncThunk('universityMeetingAdd/unive
 
 const universityMeetingUpdateReducer = createAsyncThunk('universityMeeting/universityMeetingUpdateReducer',
   async (data)=>{
-    console.log("Update university basic data")
     return axios.put(`https://sigmalpu.herokuapp.com/api/v2/university/meeting/${data?.id}/update`,data?.data,{
         headers: {
           'Content-Type': 'application/json'
@@ -65,7 +61,6 @@ export const universityMeetingSlice = createSlice({
   extraReducers: (builder) => {
     
     builder.addCase(universityMeetingReducer.fulfilled, (state, { payload }) => {
-      console.log("university Meeting fulfilled payload",payload)
       state.data.message = "Fulfilled"
       state.data.loading = false
       var data = payload?.data?.meetings
@@ -97,13 +92,11 @@ export const universityMeetingSlice = createSlice({
     });
 
     builder.addCase(universityMeetingReducer.pending, (state, { payload }) => {
-      console.log("university Meeting pending payload",payload)
       state.data.loading = true
       state.data.message = "Loading"
     });
     
     builder.addCase(universityMeetingReducer.rejected, (state, { payload }) => {
-      console.log("university Meeting rejected payload",payload)
       state.data.message = "Failed"
       state.data.loading = false
     });
@@ -113,7 +106,6 @@ export const universityMeetingSlice = createSlice({
 
 
     builder.addCase(universityMeetingAddReducer.fulfilled, (state, { payload }) => {
-      console.log("university Meeting add fulfilled payload",payload)
     
       state.data.message = "Fulfilled"
       state.data.loading = false
@@ -134,13 +126,11 @@ export const universityMeetingSlice = createSlice({
     });
 
     builder.addCase(universityMeetingAddReducer.pending, (state, { payload }) => {
-      console.log("university Meeting add  pending payload",payload)
       state.data.loading = true
       state.data.message = "Loading"
     });
     
     builder.addCase(universityMeetingAddReducer.rejected, (state, { payload }) => {
-      console.log("university Meeting add  rejected payload",payload)
       state.data.message = "Failed"
       state.data.loading = false
     });
@@ -148,7 +138,6 @@ export const universityMeetingSlice = createSlice({
 
 
     builder.addCase(universityMeetingUpdateReducer.fulfilled, (state, { payload }) => {
-      console.log("university Meeting update fulfilled payload",payload)
       state.data.message = "Fulfilled"
       state.data.loading = false
 
@@ -177,13 +166,11 @@ export const universityMeetingSlice = createSlice({
     });
 
     builder.addCase(universityMeetingUpdateReducer.pending, (state, { payload }) => {
-      console.log("university Meeting update pending payload",payload)
       state.data.loading = true
       state.data.message = "Loading"
     });
     
     builder.addCase(universityMeetingUpdateReducer.rejected, (state, { payload }) => {
-      console.log("university Meeting update  rejected payload",payload)
       state.data.message = "Failed"
       state.data.loading = false
     });

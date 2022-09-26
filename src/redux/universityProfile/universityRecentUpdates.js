@@ -21,7 +21,6 @@ const initialState = {
 
 const universityRecentUpdateReducer = createAsyncThunk('universityRecentUpdate/universityRecentUpdateReducer',
   async (data)=>{
-    console.log("Fetching university recent update data")
     return axios.get(`https://sigmalpu.herokuapp.com/api/v2/university/update/${data?.id}`,{
         headers: {
           'Content-Type': 'application/json'
@@ -40,7 +39,6 @@ const universityRecentUpdateAddReducer = createAsyncThunk('universityRecentUpdat
       data : data?.data
     };
 
-    console.log("Adding university update data ",data?.data)
     return axios(config)
   }
 )
@@ -48,7 +46,6 @@ const universityRecentUpdateAddReducer = createAsyncThunk('universityRecentUpdat
 
 const universityRecentUpdateUpdateReducer = createAsyncThunk('universityRecentUpdate/universityRecentUpdateUpdateReducer',
   async (data)=>{
-    console.log("Update university universityRecentUpdate")
     return axios.put(`https://sigmalpu.herokuapp.com/api/v2/university/update/${data?.id}/update`,data?.data,{
         headers: {
           'Content-Type': 'application/json'
@@ -64,7 +61,6 @@ export const universityRecentUpdateSlice = createSlice({
   extraReducers: (builder) => {
     
     builder.addCase(universityRecentUpdateReducer.fulfilled, (state, { payload }) => {
-      console.log("university recent update fulfilled payload",payload)
       state.data.message = "Fulfilled"
       state.data.loading = false
     
@@ -87,20 +83,17 @@ export const universityRecentUpdateSlice = createSlice({
     });
 
     builder.addCase(universityRecentUpdateReducer.pending, (state, { payload }) => {
-      console.log("university recent update pending payload",payload)
       state.data.loading = true
       state.data.message = "Loading"
     });
     
     builder.addCase(universityRecentUpdateReducer.rejected, (state, { payload }) => {
-      console.log("university recent update rejected payload",payload)
       state.data.message = "Failed"
       state.data.loading = false
     });
 
 
     builder.addCase(universityRecentUpdateAddReducer.fulfilled, (state, { payload }) => {
-      console.log("university recent update Add fulfilled payload",payload)
       state.data.message = "Fulfilled"
       state.data.loading = false
     
@@ -117,13 +110,11 @@ export const universityRecentUpdateSlice = createSlice({
     });
 
     builder.addCase(universityRecentUpdateAddReducer.pending, (state, { payload }) => {
-      console.log("university recent update Add pending payload",payload)
       state.data.loading = true
       state.data.message = "Loading"
     });
     
     builder.addCase(universityRecentUpdateAddReducer.rejected, (state, { payload }) => {
-      console.log("university recent update add rejected payload",payload)
       state.data.message = "Failed"
       state.data.loading = false
     });
@@ -132,7 +123,6 @@ export const universityRecentUpdateSlice = createSlice({
 
 
     builder.addCase(universityRecentUpdateUpdateReducer.fulfilled, (state, { payload }) => {
-      console.log("university recent update Update fulfilled payload",payload)
       state.data.message = "Fulfilled"
       state.data.loading = false
     
@@ -158,13 +148,11 @@ export const universityRecentUpdateSlice = createSlice({
     });
 
     builder.addCase(universityRecentUpdateUpdateReducer.pending, (state, { payload }) => {
-      console.log("university recent update Update pending payload",payload)
       state.data.loading = true
       state.data.message = "Loading"
     });
     
     builder.addCase(universityRecentUpdateUpdateReducer.rejected, (state, { payload }) => {
-      console.log("university recent update Update rejected payload",payload)
       state.data.message = "Failed"
       state.data.loading = false
     });

@@ -14,7 +14,6 @@ const initialState = {
 
 const authUserReducer = createAsyncThunk('auth/authUserReducer',
     async (data)=>{
-      console.log("Sending request to backend for validate user")
       return axios.post(LOGIN_URL,data,{
           headers: {
             'Content-Type': 'application/json'
@@ -28,8 +27,6 @@ export const authUserSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(authUserReducer.fulfilled, (state, { payload }) => {
-      console.log("loged user with given cred (fulfilled)")
-      // console.log("payload in extraReducers",payload)
       localStorage.setItem('auth', true)
       localStorage.setItem('name', payload?.data?.name);
       localStorage.setItem('email', payload?.data?.email);
@@ -44,8 +41,6 @@ export const authUserSlice = createSlice({
       }
     });
     builder.addCase(authUserReducer.pending, (state, { payload }) => {
-      console.log("loging user with given cred (pending)")
-      // console.log("payload in extraReducers",payload)
       localStorage.setItem('auth', false)
       localStorage.setItem('from', "pending");
       state.data = {
@@ -56,8 +51,6 @@ export const authUserSlice = createSlice({
       }
     });
     builder.addCase(authUserReducer.rejected, (state, { payload }) => {
-      console.log("loging user with given cred (failed)")
-      // console.log("payload in extraReducers",payload)
       localStorage.setItem('auth', false)
       localStorage.setItem('from', "rejected");
       state.data = {

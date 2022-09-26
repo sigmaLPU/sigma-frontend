@@ -15,7 +15,6 @@ const initialState = {
 
 const universityMouContractReducer = createAsyncThunk('universityMouContract/universityMouContractReducer',
   async (data)=>{
-    console.log("Fetching university mou contact data")
     return axios.get(`https://sigmalpu.herokuapp.com/api/v2/university/mou/${data?.id}`,{
         headers: {
           'Content-Type': 'application/json'
@@ -26,7 +25,6 @@ const universityMouContractReducer = createAsyncThunk('universityMouContract/uni
 
 const universityMouContractAddReducer = createAsyncThunk('universityMouContract/universityMouContractAddReducer',
   async (data)=>{
-    console.log("Adding university mou contact data",data)
 
     var config = {
       method: 'post',
@@ -36,7 +34,6 @@ const universityMouContractAddReducer = createAsyncThunk('universityMouContract/
       },
       data : data?.data
     };
-    console.log(config)
     return axios(config)
   }
 )
@@ -44,7 +41,6 @@ const universityMouContractAddReducer = createAsyncThunk('universityMouContract/
 
 const universityMouContractUpdateReducer = createAsyncThunk('universityMouContract/universityMouContractUpdateReducer',
   async (data)=>{
-    console.log("Update university mou contact data")
     return axios.put(`https://sigmalpu.herokuapp.com/api/v2/university/mou/${data?.id}/update`,data?.data,{
         headers: {
           'Content-Type': 'application/json'
@@ -59,18 +55,23 @@ const universityMouContractUpdateReducer = createAsyncThunk('universityMouContra
 const universityMouContractSlice = createSlice({
   name: 'universityMouContract',
   initialState,
-  reducers:{},
+  reducers:{
+    setMouContractSliceLoading : (state,payload) => {
+      state.data.loading = payload?.payload?.loading
+      if(payload?.payload?.message && payload?.payload?.message!==""){
+        state.data.message = payload?.payload?.message
+      }
+    },
+  },
   extraReducers : (builder) => {
 
     // get
     builder.addCase(universityMouContractReducer.fulfilled, (state, { payload }) => {
-      console.log("university mou fulfilled payload",payload)
       state.data.message = "Fulfilled"
       state.data.loading = false
       var data = payload?.data?.mous
     
       if(data){
-        console.log("mou contract adding to state")
         var arr = []
         var ids = []
         for(const obj of data){
@@ -84,7 +85,6 @@ const universityMouContractSlice = createSlice({
           arr.push(temp)
           ids.push(obj?._id)
         }
-        console.log("mou contract ---> ",arr)
         if(arr.length===0){
           state.data.message = "No record found"
         }
@@ -96,13 +96,11 @@ const universityMouContractSlice = createSlice({
     });
 
     builder.addCase(universityMouContractReducer.pending, (state, { payload }) => {
-      console.log("university Mou pending payload",payload)
       state.data.loading = true
       state.data.message = "Loading"
     });
     
     builder.addCase(universityMouContractReducer.rejected, (state, { payload }) => {
-      console.log("university mou rejected payload",payload)
       state.data.message = "Failed"
       state.data.loading = false
     });
@@ -110,7 +108,6 @@ const universityMouContractSlice = createSlice({
 
     // add
     builder.addCase(universityMouContractAddReducer.fulfilled, (state, { payload }) => {
-      console.log("university mou fulfilled payload",payload)
       state.data.message = "Fulfilled"
       state.data.loading = false
       var obj = payload?.data?.universityMou
@@ -129,13 +126,11 @@ const universityMouContractSlice = createSlice({
     });
 
     builder.addCase(universityMouContractAddReducer.pending, (state, { payload }) => {
-      console.log("university Mou pending payload",payload)
       state.data.loading = true
       state.data.message = "Loading"
     });
     
     builder.addCase(universityMouContractAddReducer.rejected, (state, { payload }) => {
-      console.log("university mou rejected payload",payload)
       state.data.message = "Failed"
       state.data.loading = false
     });
@@ -143,7 +138,6 @@ const universityMouContractSlice = createSlice({
 
     // update
     builder.addCase(universityMouContractUpdateReducer.fulfilled, (state, { payload }) => {
-      console.log("university mou update fulfilled payload",payload)
       state.data.message = "Fulfilled"
       state.data.loading = false
 
@@ -168,19 +162,16 @@ const universityMouContractSlice = createSlice({
       if(index!=-1){
         state.data.data.data[index] = temp        
       }else{
-        console.log("Id not found",id)
       }
 
     });
 
     builder.addCase(universityMouContractUpdateReducer.pending, (state, { payload }) => {
-      console.log("university Mou update pending payload",payload)
       state.data.loading = true
       state.data.message = "Loading"
     });
     
     builder.addCase(universityMouContractUpdateReducer.rejected, (state, { payload }) => {
-      console.log("university mou update rejected payload",payload)
       state.data.message = "Failed"
       state.data.loading = false
     });
@@ -190,3 +181,4 @@ const universityMouContractSlice = createSlice({
 
 export default universityMouContractSlice.reducer
 export {universityMouContractReducer,universityMouContractAddReducer,universityMouContractUpdateReducer}
+export const {setMouContractSliceLoading} = universityMouContractSlice.actions

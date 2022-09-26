@@ -8,7 +8,6 @@ const initialState = {
 
 const getRequestReducer = createAsyncThunk('getRequestAsync/getRequestAsyncReducer',
     async (data)=>{
-      console.log("Sending request to backend to get single university data")
       return axios.get(`${data?.url}`,{
           headers: {
             'Content-Type': 'application/json'
@@ -23,14 +22,10 @@ export const getRequestSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getRequestReducer.fulfilled, (state, { payload }) => {
-      console.log("get request (fulfilled)")
-      // console.log("payload in extraReducers",payload)
     });
     builder.addCase(getRequestReducer.pending, (state, { payload }) => {
-      console.log("get request (pending)")
     });
     builder.addCase(getRequestReducer.rejected, (state, { payload }) => {
-      console.log("get request (failed)")
     });
 
   },

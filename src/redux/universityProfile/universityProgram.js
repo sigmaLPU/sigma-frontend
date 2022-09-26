@@ -16,7 +16,6 @@ const initialState = {
 
 const universityProgramReducer = createAsyncThunk('universityProgram/universityProgramReducer',
   async (data)=>{
-    console.log("Fetching university program data")
     return axios.get(`https://sigmalpu.herokuapp.com/api/v2/university/program/${data?.id}`,{
         headers: {
           'Content-Type': 'application/json'
@@ -36,7 +35,6 @@ const universityProgramAddReducer = createAsyncThunk('universityProgram/universi
       data : data?.data
     };
 
-    console.log("Adding university program data ",data?.data)
     return axios(config)
   }
 )
@@ -51,7 +49,6 @@ export const universityProgramSlice = createSlice({
   extraReducers: (builder) => {
     
     builder.addCase(universityProgramReducer.fulfilled, (state, { payload }) => {
-      console.log("university program fulfilled payload",payload)
       state.data.message = "Fulfilled"
       state.data.loading = false
       var data = payload?.data?.programs
@@ -74,25 +71,21 @@ export const universityProgramSlice = createSlice({
     });
 
     builder.addCase(universityProgramReducer.pending, (state, { payload }) => {
-      console.log("university program pending payload",payload)
       state.data.loading = true
       state.data.message = "Loading"
     });
     
     builder.addCase(universityProgramReducer.rejected, (state, { payload }) => {
-      console.log("university program rejected payload",payload)
       state.data.message = "Failed"
       state.data.loading = false
     });
 
 
     builder.addCase(universityProgramAddReducer.fulfilled, (state, { payload }) => {
-      console.log("university program fulfilled payload",payload)
       state.data.message = "Fulfilled"
       state.data.loading = false
       var obj = payload?.data?.universityProgram
  
-      console.log("after adding program-------> ",obj)
 
       var temp = {}
       temp["LPU Degree Name"] = obj?.lpu_name ? obj?.lpu_name : "Not available"
@@ -108,13 +101,11 @@ export const universityProgramSlice = createSlice({
     });
 
     builder.addCase(universityProgramAddReducer.pending, (state, { payload }) => {
-      console.log("university program pending payload",payload)
       state.data.loading = true
       state.data.message = "Loading"
     });
     
     builder.addCase(universityProgramAddReducer.rejected, (state, { payload }) => {
-      console.log("university program rejected payload",payload)
       state.data.message = "Failed"
       state.data.loading = false
     });

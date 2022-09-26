@@ -15,7 +15,10 @@ import {
 	universityRecentUpdateAddReducer,universityMeetingUpdateReducer,
 	universityMeetingReducer,universityContactUpdateReducer,
 	universityRecentUpdateUpdateReducer, universityMouContractReducer,
-	universityMouContractAddReducer,universityMouContractUpdateReducer
+	universityMouContractAddReducer,universityMouContractUpdateReducer,
+
+	setMouContractSliceLoading,
+
 } from '../../../redux/routes'
 
 
@@ -73,6 +76,15 @@ export function BasicDetailsModal(props){
 		dispatch(universityBasicDetailsUpdateReducer({id,data:data}))
 	}
 
+	const reduxData = useSelector((state)=>state.universityBasicDetailsSlice.data)
+	
+	if(reduxData?.loading){
+		return (
+			<div style={style}>
+				<LoadingComponent/>
+			</div>
+		)
+	}
 
 	return(
 		<div style={style}>
@@ -115,6 +127,16 @@ export function ContactDetailsModal(props){
 		const id = getUniId(window.location.href)
 		dispatch(universityContactAddReducer({data,id}))
 		console.log(data)
+	}
+
+	const reduxData = useSelector((state)=>state.universityContactSlice.data)
+	
+	if(reduxData?.loading){
+		return (
+			<div style={style}>
+				<LoadingComponent/>
+			</div>
+		)
 	}
 
 	return(
@@ -168,6 +190,16 @@ export function ContactDetailsUpdateModal(props){
 		const id = props?.data?.id
 		dispatch(universityContactUpdateReducer({data,id}))
 		console.log("updated data --> ",data)
+	}
+
+	const reduxData = useSelector((state)=>state.universityContactSlice.data)
+	
+	if(reduxData?.loading){
+		return (
+			<div style={style}>
+				<LoadingComponent/>
+			</div>
+		)
 	}
 
 	return(
@@ -230,6 +262,17 @@ export function MeetingUniversityModal(props){
 		const id = getUniId(window.location.href)
 		dispatch(universityMeetingAddReducer({data:data,id}))
 	}
+
+	const reduxData = useSelector((state)=>state.universityMeetingSlice.data)
+	
+	if(reduxData?.loading){
+		return (
+			<div style={style}>
+				<LoadingComponent/>
+			</div>
+		)
+	}
+
 
 	return(
 		<div style={style}>
@@ -476,6 +519,8 @@ export function ProgramOfColaborationUniversityModal(props){
 		flexDirection:"column",
 	}
 
+	const reduxData = useSelector((state)=>state.universityProgramSlice.data)
+
 
 	const dispatch = useDispatch()
 
@@ -497,6 +542,14 @@ export function ProgramOfColaborationUniversityModal(props){
 		dispatch(universityProgramAddReducer({id,data:data}))
 	}
 
+
+	if(reduxData?.loading){
+		return (
+			<div style={style}>
+				<LoadingComponent/>
+			</div>
+		)
+	}
 
 	return(
 		<div style={style}>
@@ -543,6 +596,15 @@ export function RecentUpdateUniversityModal(props){
 		dispatch(universityRecentUpdateAddReducer({id,data:data}))
 	}
 
+	const reduxData = useSelector((state)=>state.universityRecentUpdateSlice.data)
+
+	if(reduxData?.loading){
+		return (
+			<div style={style}>
+				<LoadingComponent/>
+			</div>
+		)
+	}
 
 	return(
 		<div style={style}>
@@ -585,11 +647,22 @@ export function RecentUpdateUpdateUniversityModal(props){
 		console.log("Recent Update ---> ",props?.data,data)
 	},[])
 
+
 	function submit(e){
 		e.preventDefault()
 		console.log("submit ---> ",data)
 		const id = props?.data?.id
 		dispatch(universityRecentUpdateUpdateReducer({id,data:data}))
+	}
+
+	const reduxData = useSelector((state)=>state.universityRecentUpdateSlice.data)
+	
+	if(reduxData?.loading){
+		return (
+			<div style={style}>
+				<LoadingComponent/>
+			</div>
+		)
 	}
 
 
@@ -637,29 +710,54 @@ export function MouContractAddUniversityModal(props){
 		"other"
 	]
 
-	useEffect(()=>{
-	},[])
+	
+
+	const reduxData = useSelector((state)=>state.universityMouContractSlice.data)
+
+
+	// useEffect(()=>{
+	// 	console.log("mou contract state --> ",reduxData)
+	// },[reduxData])
+	
+	if(reduxData?.loading){
+		return (
+			<div style={style}>
+				<LoadingComponent/>
+			</div>
+		)
+	}
+
+
 
 	function onSubmit(e){
 		e.preventDefault();
 		const uni_id = getUniId(window.location.href)
 
+		dispatch(setMouContractSliceLoading({loading:true,message:"Please Wait"}))
+
 		let file_name = `${uni_id}_MouContract_${data?.startDate}_${data?.endDate}_${data?.type}`
-		
+		if(!file){
+			dispatch(setMouContractSliceLoading({loading:false,message:"File is not Present"}))
+			return ;
+		}
 		uploadFile(file,`files/${file_name}`).then((fileURL)=>{
-			setData({...data,"file":fileURL})
-			// if(data?.title==="" || data?.endDate==="" || data?.start==="" || data?.file===""){
-			// 	return ;
-			// }
-			dispatch(universityMouContractAddReducer({id:uni_id,data:data}))
+			var d = {...data}
+			d["file"] = fileURL
+			setData(d)
+			if(d["file"]===""){
+				dispatch(setMouContractSliceLoading({loading:false,message:"Error in uploading file please try after some time"}))
+				return ;
+			}
+			dispatch(universityMouContractAddReducer({id:uni_id,data:d}))
 		})
+
+		dispatch(setMouContractSliceLoading({loading:false,message:""}))
 	}
 
 	function handleFile(e){
 		e.preventDefault()
 		let file = e.target?.files[0]
 		if(!file){
-			// console.log("Error")
 			return ;
 		}
 		setFile(file)
@@ -759,17 +857,26 @@ export function MouContractUpdateUniversityModal(props){
 	function onSubmit(e){
 		e.preventDefault();
 		const uni_id = props?.data?.id
-
+		
+		dispatch(setMouContractSliceLoading({loading:true,message:"Please Wait"}))
+		
 		let file_name = `${uni_id}_MouContract_${data?.startDate}_${data?.endDate}_${data?.type}`
 		
 		if(file){
 			uploadFile(file,`files/${file_name}`).then((fileURL)=>{
-				setData({...data,"file":fileURL})
-				dispatch(universityMouContractUpdateReducer({id:uni_id,data:data}))
+				var d = {...data}
+				d["file"] = fileURL
+				setData(d)
+				if(d["file"]===""){
+					dispatch(setMouContractSliceLoading({loading:false,message:"Error in uploading file please try after some time"}))
+					return ;
+				}
+				dispatch(universityMouContractUpdateReducer({id:uni_id,data:d}))
 			})
 		}else{
 			dispatch(universityMouContractUpdateReducer({id:uni_id,data:data}))
 		}
+		dispatch(setMouContractSliceLoading({loading:false,message:""}))
 	}
 
 	function handleFile(e){
@@ -781,6 +888,17 @@ export function MouContractUpdateUniversityModal(props){
 		}
 		setFile(file)
 	}
+
+	const reduxData = useSelector((state)=>state.universityMouContractSlice.data)
+	
+	if(reduxData?.loading){
+		return (
+			<div style={style}>
+				<LoadingComponent/>
+			</div>
+		)
+	}
+
 
 	return(
 		<div style={style}>
