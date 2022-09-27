@@ -59,7 +59,11 @@ export function FileCard(props) {
 				</ModalPopUp>
 			</div>
 			<div style={{display:"flex",justifyContent:"center"}}>
-				<IconButton><FileDownloadIcon sx={{fontSize:"35px"}} /></IconButton>
+				<IconButton>
+					<a href={props?.data["file"]} download={`${props?.data["title"]}_${props?.data["startDate"]}_${props?.data["endDate"]}}.pdf`}>
+						<FileDownloadIcon sx={{fontSize:"35px"}} />
+					</a>
+				</IconButton>
 			</div>
 		</div>
 	)
