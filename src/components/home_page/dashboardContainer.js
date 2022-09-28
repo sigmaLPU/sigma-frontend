@@ -49,24 +49,15 @@ function LinkButton({ url, name }) {
   );
 }
 
-export default function Dashboard(props) {
-  const navigate = useNavigate();
-  const forceUpdate = useForceUpdate();
 
-  const username = localStorage.getItem('name')
+function TimeComponent(){
 
-  const routes = [
-    { name: 'Open Leads', url: '/openLeads', img: openLeadsImg },
-    { name: 'Partner University', url: '/mouMaster', img: mouImg },
-    { name: 'Credit Tranfer', url: '/creditTransfer', img: creditTransferImg },
-    {
-      name: 'Semester Exchange',
-      url: '/semesterExchange',
-      img: semesterExchangeImg,
-    },
-    { name: 'Template Section', url: '/templates', img: templateSectionImg },
-    { name: 'Training Moduls', url: '/training', img: trainingModalImg },
-  ];
+  const [timeState, setTimeState] = useState([
+    { name: 'Abidjan', time: '12:03', img: sun, timeZone: 'Africa/Abidjan' },
+    { name: 'Delhi', time: '12:03', img: moon, timeZone: 'Asia/Kolkata' },
+    { name: 'Cairo', time: '12:03', img: sun, timeZone: 'Africa/Cairo' },
+    {name: 'Melbourne',time: '12:03',img: moon,timeZone: 'Australia/Melbourne',},
+  ]);
 
   const timeCardCSS = {
     border: '1px solid #F07F1A',
@@ -79,17 +70,7 @@ export default function Dashboard(props) {
     borderRadius: '8px',
   };
 
-  const [timeState, setTimeState] = useState([
-    { name: 'London', time: '12:03', img: sun, timeZone: 'Europe/London' },
-    { name: 'Delhi', time: '12:03', img: moon, timeZone: 'Asia/Kolkata' },
-    { name: 'Cairo', time: '12:03', img: sun, timeZone: 'Africa/Cairo' },
-    {
-      name: 'Melbourne',
-      time: '12:03',
-      img: moon,
-      timeZone: 'Australia/Melbourne',
-    },
-  ]);
+  const forceUpdate = useForceUpdate();
 
   useEffect(() => {
 
@@ -118,39 +99,64 @@ export default function Dashboard(props) {
   },[])
 
 
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+      }}
+    >
+      {timeState.map((item) => (
+        <div style={timeCardCSS}>
+          <div>
+            <img src={item?.img} style={{ height: '4rem' }} />
+          </div>
+          <div
+            style={{
+            fontWeight: '800',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexGrow: '1',
+            }}
+          >
+            <span>{item?.time}</span>
+            <span>{item?.name}</span>
+          </div>
+          </div>
+      ))}
+    </div>
+  )
+}
+
+export default function Dashboard(props) {
+  const navigate = useNavigate();
+  const forceUpdate = useForceUpdate();
+
+  const username = localStorage.getItem('name')
+
+  const routes = [
+    { name: 'Open Leads', url: '/openLeads', img: openLeadsImg },
+    { name: 'Partner University', url: '/mouMaster', img: mouImg },
+    { name: 'Credit Tranfer', url: '/creditTransfer', img: creditTransferImg },
+    {
+      name: 'Semester Exchange',
+      url: '/semesterExchange',
+      img: semesterExchangeImg,
+    },
+    { name: 'Template Section', url: '/templates', img: templateSectionImg },
+    { name: 'Training Moduls', url: '/training', img: trainingModalImg },
+  ];
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '90vh' }}>
       {/*Top part*/}
       <div style={{ height: '15rem' }}>
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-around',
-          }}
-        >
-          {timeState.map((item) => (
-            <div style={timeCardCSS}>
-              <div>
-                <img src={item?.img} style={{ height: '4rem' }} />
-              </div>
-              <div
-                style={{
-                  fontWeight: '800',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  flexGrow: '1',
-                }}
-              >
-                <span>{item?.time}</span>
-                <span>{item?.name}</span>
-              </div>
-            </div>
-          ))}
-        </div>
+
+        <TimeComponent />
+
         <div>
           <div
             style={{

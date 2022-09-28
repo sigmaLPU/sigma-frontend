@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import {ModalPopUp} from '../../routes'
 
 import IconButton from '@mui/material/IconButton'; // Parent component to fit icon inside it
@@ -32,7 +32,52 @@ export function ObjectCard(props) {
 export function FileCard(props) {
 	const [bgColor,setBgColor] = useState("white")
 
+	const [available,setAvailable] = useState("Not Available")
+
+	function isValidDate(date){
+		var parts = date.split("-");
+		if(parts.length!==3){
+			return false
+		}
+		return true;
+	}
+
+	function monthDiff(d1, d2) {
+	    var months;
+	    months = (d2.getFullYear() - d1.getFullYear()) * 12;
+	    months -= d1.getMonth();
+	    months += d2.getMonth();
+	    return months;
+	}
+
+	function dateDifference(date1,date2){
+		// console.log("dates --> ",isValidDate(date1),isValidDate(date2))
+		if(!isValidDate(date1) || !isValidDate(date2)){
+			setAvailable("Not Available")
+			return ;
+		}else{
+			var p1 = date1.split("-")
+			var p2 = date2.split("-")
+
+			var d1 = new Date(p1[0],p1[1],p1[2]);
+			var d2 = new Date(p2[0],p2[1],p2[2]);
+
+			var monthsLeft = Math.abs(monthDiff(d1,d2))
+			setAvailable(`${monthsLeft} months`)
+			console.log("date ",monthsLeft)
+		}
+	}
+
+	useEffect(()=>{
+		dateDifference(props?.data["startDate"],props?.data["endDate"])
+	},[])
+
 	const activeComponent = <table style={{width:"100%",display:"flex",flexDirection:"column",justifyContent:"space-between"}}>
+					<tr style={{display:"flex",justifyContent:"space-between"}}>
+						<td style={{fontWeight:"800"}}>Months</td>
+						<td style={{padding:"4px"}}>:</td>-
+						<td>{available}</td>
+					</tr>
 					<tr style={{display:"flex",justifyContent:"space-between"}}>
 						<td style={{fontWeight:"800"}}>Type</td>
 						<td style={{padding:"4px"}}>:</td>-
@@ -60,7 +105,7 @@ export function FileCard(props) {
 			</div>
 			<div style={{display:"flex",justifyContent:"center"}}>
 				<IconButton>
-					<a href={props?.data["file"]} download={`${props?.data["title"]}_${props?.data["startDate"]}_${props?.data["endDate"]}}.pdf`}>
+					<a href={props?.data["file"]} target="_blank">
 						<FileDownloadIcon sx={{fontSize:"35px"}} />
 					</a>
 				</IconButton>
