@@ -13,6 +13,7 @@ import {UniversityProfile} from './components/routes' // UniversityProfile
 import {MeetingProfile} from './components/routes' // MeetingProfile
 import {ResetPassword,ResetRequest} from './components/routes' // reset password
 import ProtectedRoute, {ProtectedRouteResetPassword} from './ProtectedRoute'
+import {TrainingDashboard,CreditTransferTraining} from './components/routes'
 
 // redux
 import { authenticateTokenReducer, authUserReducer } from './redux/users/authenticateToken'
@@ -35,6 +36,8 @@ function App() {
           <Route exact path="/mouMaster" element={<ProtectedRoute><MouMaster/></ProtectedRoute>}/>
           <Route path="/university/:id" element={<ProtectedRoute><UniversityProfile/></ProtectedRoute>}/>
           <Route path="/meeting/:id" element={<ProtectedRoute><MeetingProfile/></ProtectedRoute>}/>
+          <Route path="/training" element={<ProtectedRoute><TrainingDashboard/></ProtectedRoute>}/>
+          <Route path="/training/creditTransfer" element={<ProtectedRoute><CreditTransferTraining/></ProtectedRoute>}/>
 
 
 

@@ -15,7 +15,8 @@ import LoadingPage from './default_pages/LoadingPage'
 import UniversityProfile from './profile/UniversityProfile'
 // meeting profile
 import MeetingProfile from './meetings/MeetingProfile'
-
+// Training modules
+import {TrainingDashboard,CreditTransferTraining,} from './training_module/routes'
 
 /*---COMPONENT---*/
 // navbar side bar
@@ -76,4 +77,8 @@ export {
 	BasicDetailsMeetingModal,OutcomeMeetingModal,
 	ActionPlanMeetingModal,MoMNotesMeetingModal,
 	AttachmentMeetingModal,
+
+
+	TrainingDashboard,CreditTransferTraining,
+
 };

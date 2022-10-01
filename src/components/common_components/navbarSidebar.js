@@ -241,7 +241,7 @@ export default function NavSideBar(props) {
           ))}
         </List>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }} style={{marginTop: props.marginTop ? props.marginTop :"2rem",...props?.childCSS}}>
+      <Box component="main" sx={ props?.childSX ? props?.childSX : { flexGrow: 1, p: 3 }} style={{marginTop: props.marginTop ? props.marginTop :"2rem",...props?.childCSS}}>
         {props.children}
       </Box>
     </Box>
