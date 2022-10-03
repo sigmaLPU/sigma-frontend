@@ -13,6 +13,8 @@ import {
   universityProgramSlice,
   universityRecentUpdateSlice,
   universityMouContractSlice,
+  universityApplicationProcessSlice,
+  universityDocumentRequiredSlice,
 
   forgetPasswordSlice,
 } from './routes';
@@ -32,5 +34,7 @@ export const store = configureStore({
     universityProgramSlice: universityProgramSlice,
     universityRecentUpdateSlice: universityRecentUpdateSlice,
     universityMouContractSlice: universityMouContractSlice,
+    universityApplicationProcessSlice:universityApplicationProcessSlice,
+    universityDocumentRequiredSlice:universityDocumentRequiredSlice,
   },
 });

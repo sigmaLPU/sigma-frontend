@@ -16,7 +16,9 @@ import {
 	universityMeetingReducer,universityContactUpdateReducer,
 	universityRecentUpdateUpdateReducer, universityMouContractReducer,
 	universityMouContractAddReducer,universityMouContractUpdateReducer,
-
+	universityApplicationProcessAddReducer,
+	universityDocumentRequiredAddReducer,
+	
 	setMouContractSliceLoading,
 
 } from '../../../redux/routes'
@@ -1031,6 +1033,138 @@ export function MouContractUpdateUniversityModal(props){
 					</div>
 					<Button submit={onSubmit} buttonText={"Save"}/>
 					
+				</form>
+			</div>
+		</div>
+	)
+}
+
+
+export function ApplicationProcessAddUniversityModal(props){
+	const style = {
+		height: "500px",
+		width: "741px",
+		borderRadius: "10px",
+		display:"flex",justifyContent:"start",
+		alignItems:"center",
+		flexDirection:"column",
+	}
+
+
+	const dispatch = useDispatch()
+
+	const [data,setData] = useState({
+		"general":false,
+		"title":""
+	})
+
+	useEffect(()=>{
+	},[])
+
+	function submit(e){
+		e.preventDefault()
+		console.log("submit ---> ",data)
+		const id = getUniId(window.location.href)
+		// console.log("Application Process submit data",data)
+		dispatch(universityApplicationProcessAddReducer({id,data:data}))
+	}
+
+	const reduxData = useSelector((state)=>state.universityApplicationProcessSlice.data)
+
+	if(reduxData?.loading){
+		return (
+			<div style={style}>
+				<LoadingComponent/>
+			</div>
+		)
+	}
+
+	const textFeildCSS = {width:"607px",height:"40px",border:"none",borderBottom:"1px solid black",fontSize:"1.1rem",fontWeight:"720"}
+
+
+	return(
+		<div style={style}>
+			<span style={{fontSize:"1.6rem",fontWeight:"800",width:"100%",textAlign:"center"}}>
+				Add New Application Process
+			</span>
+			<div style={{marginTop:"3rem"}}>
+				<form>
+					<div style={{display:"flex",flexDirection:"column",rowGap:"1rem"}}>
+						<input style={textFeildCSS} onChange={(e)=>setData({...data,title:e.target.value})} type="text" placeholder="Write Here"/>
+					</div>
+
+					<div style={{display:"flex",flexDirection:"row",width:"100%",marginTop:"1rem"}}>
+						<span>Apply For All University</span>
+						<input style={{paddingLeft:"1rem"}} type="checkbox" onChange={(e)=>setData({...data,"general":!data?.general})}/>
+					</div>
+
+					<Button submit={submit} buttonText={"Save"}/>					
+				</form>
+			</div>
+		</div>
+	)
+}
+
+
+export function DocumentAddUniversityModal(props){
+	const style = {
+		height: "500px",
+		width: "741px",
+		borderRadius: "10px",
+		display:"flex",justifyContent:"start",
+		alignItems:"center",
+		flexDirection:"column",
+	}
+
+
+	const dispatch = useDispatch()
+
+	const [data,setData] = useState({
+		"general":false,
+		"title":""
+	})
+
+	useEffect(()=>{
+	},[])
+
+	function submit(e){
+		e.preventDefault()
+		console.log("submit ---> ",data)
+		const id = getUniId(window.location.href)
+		// console.log("Application Process submit data",data)
+		dispatch(universityDocumentRequiredAddReducer({id,data:data}))
+	}
+
+	const reduxData = useSelector((state)=>state.universityApplicationProcessSlice.data)
+
+	if(reduxData?.loading){
+		return (
+			<div style={style}>
+				<LoadingComponent/>
+			</div>
+		)
+	}
+
+	const textFeildCSS = {width:"607px",height:"40px",border:"none",borderBottom:"1px solid black",fontSize:"1.1rem",fontWeight:"720"}
+
+
+	return(
+		<div style={style}>
+			<span style={{fontSize:"1.6rem",fontWeight:"800",width:"100%",textAlign:"center"}}>
+				Add New Document
+			</span>
+			<div style={{marginTop:"3rem"}}>
+				<form>
+					<div style={{display:"flex",flexDirection:"column",rowGap:"1rem"}}>
+						<input style={textFeildCSS} onChange={(e)=>setData({...data,title:e.target.value})} type="text" placeholder="Write Here"/>
+					</div>
+
+					<div style={{display:"flex",flexDirection:"row",width:"100%",marginTop:"1rem"}}>
+						<span>Apply For All University</span>
+						<input style={{paddingLeft:"1rem"}} type="checkbox" onChange={(e)=>setData({...data,"general":!data?.general})}/>
+					</div>
+
+					<Button submit={submit} buttonText={"Save"}/>					
 				</form>
 			</div>
 		</div>

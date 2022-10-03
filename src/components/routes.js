@@ -34,7 +34,8 @@ import {ModalPopUp,BasicDetailsModal,ContactDetailsModal,MeetingUniversityModal,
 	ProgramOfColaborationUniversityModal,RecentUpdateUniversityModal,
 	MeetingUpdateUniversityModal,LoadingComponent,ContactDetailsUpdateModal,
 	MouContractAddUniversityModal,RecentUpdateUpdateUniversityModal,
-	MouContractUpdateUniversityModal,AddNewUniversity,
+	MouContractUpdateUniversityModal,AddNewUniversity,ApplicationProcessAddUniversityModal,
+	DocumentAddUniversityModal,
 } from './common_components/routes'
 
 // meeting card objects
@@ -70,7 +71,8 @@ export {
 	ProgramOfColaborationUniversityModal,RecentUpdateUniversityModal,
 	MeetingUpdateUniversityModal,ContactDetailsUpdateModal,
 	MouContractAddUniversityModal,RecentUpdateUpdateUniversityModal,
-	MouContractUpdateUniversityModal,AddNewUniversity,
+	MouContractUpdateUniversityModal,AddNewUniversity,ApplicationProcessAddUniversityModal,
+	DocumentAddUniversityModal,
 	
 	LoadingComponent,
 

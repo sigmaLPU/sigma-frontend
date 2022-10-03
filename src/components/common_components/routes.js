@@ -18,7 +18,8 @@ import {
 	ProgramOfColaborationUniversityModal,RecentUpdateUniversityModal,
 	MeetingUpdateUniversityModal,ContactDetailsUpdateModal,
 	MouContractAddUniversityModal,RecentUpdateUpdateUniversityModal,
-	MouContractUpdateUniversityModal,
+	MouContractUpdateUniversityModal,ApplicationProcessAddUniversityModal,
+	DocumentAddUniversityModal,
 } from './modals/universityProfileModals'
 
 
@@ -44,8 +45,8 @@ export {
 	ProgramOfColaborationUniversityModal,RecentUpdateUniversityModal,
 	MeetingUpdateUniversityModal,ContactDetailsUpdateModal,
 	MouContractAddUniversityModal,RecentUpdateUpdateUniversityModal,
-	MouContractUpdateUniversityModal,
-	
+	MouContractUpdateUniversityModal,ApplicationProcessAddUniversityModal,
+	DocumentAddUniversityModal,
 
 	AddNewUniversity,
 

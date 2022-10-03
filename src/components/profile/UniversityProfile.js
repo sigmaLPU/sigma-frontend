@@ -13,8 +13,9 @@ import {
 	ProgramOfColaborationUniversityModal,RecentUpdateUniversityModal,
 	MeetingUpdateUniversityModal,ContactDetailsUpdateModal,
 	MouContractAddUniversityModal,RecentUpdateUpdateUniversityModal,
-	MouContractUpdateUniversityModal,
-	
+	MouContractUpdateUniversityModal,ApplicationProcessAddUniversityModal,
+	DocumentAddUniversityModal,
+
 	LoadingPage,
 	LoadingComponent,
 } from '../routes'
@@ -29,6 +30,9 @@ import {
 	universityProgramReducer,
 	universityRecentUpdateReducer,
 	universityMouContractReducer,
+	universityApplicationProcessReducer,
+	universityDocumentRequiredReducer,
+
 } from '../../redux/routes'
 
 
@@ -63,7 +67,7 @@ export default function UniversityProfile(props){
 							<BasicDetails popup={<BasicDetailsModal/>}/>							
 							<MOUcontract popup={<MouContractAddUniversityModal/>}/>
 							<ContactPerson popup={<ContactDetailsModal/>}/>
-							<ApplicationProcess popup={<BasicDetailsModal/>}/>
+							<ApplicationProcess popup={<ApplicationProcessAddUniversityModal/>}/>
 							<FacultyMobiliy popup={<BasicDetailsModal/>}/>								
 							<FinancialAgreements popup={<BasicDetailsModal/>}/>
 						</div>
@@ -78,7 +82,7 @@ export default function UniversityProfile(props){
 					<div style={{display:"flex",justifyContent:"space-between",marginTop:"2rem",flexWrap:"wrap",height:"380px"}}>
 						<Meetings popup={<MeetingUniversityModal/>}/>
 						<GuestVisit popup={<GuestVisitUniversityModal/>}/>
-						<DocumentRequired popup={<BasicDetailsModal/>}/>
+						<DocumentRequired popup={<DocumentAddUniversityModal/>}/>
 					</div>
 
 					<div style={{marginTop:"2rem"}}>
@@ -180,26 +184,40 @@ function ApplicationProcess(props){
 
 	const dispatch = useDispatch()
 
+
+	const details = useSelector((state)=>state.universityApplicationProcessSlice.data)
+
 	const [data,setData] = useState([
 		{"title":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text","date":"27-07-2022"},
 	])
+
+	useEffect(()=>{
+		const id = getUniId(window.location.href) // obtaining university id from url
+		dispatch(universityApplicationProcessReducer({id}))
+	},[])
+
+	useEffect(()=>{
+		if(details?.data?.data){
+			setData(details?.data?.data)
+			console.log("Application Process data -------------> ",details?.data?.data)
+		}
+	},[details])
 
 	return (
 		<>
 			{/* Application process*/}
 			<Card  popup={props?.popup} style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Application Process">
 				<ul>
-				{
-					data.map(item=>(
-						<li style={{}}>{item["title"].length<50 ? item["title"]:item["title"].substr(0,50)+"..."}</li>
-					))
-				}
+					{
+						data?.map((item)=>(
+							<li>{item?.title ? item?.title : ""}</li>
+						))
+					}
 				</ul>
 			</Card>
 		</>
 	)
 }
-
 
 function FacultyMobiliy(props){
 
@@ -326,25 +344,42 @@ function GuestVisit(props){
 	)
 }
 
+
 function DocumentRequired(props){
 
 	const dispatch = useDispatch()
+
+
+	const details = useSelector((state)=>state.universityDocumentRequiredSlice.data)
 
 	const [data,setData] = useState([
 		{"title":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text","date":"27-07-2022"},
 	])
 
+	useEffect(()=>{
+		const id = getUniId(window.location.href) // obtaining university id from url
+		dispatch(universityDocumentRequiredReducer({id}))
+	},[])
+
+	useEffect(()=>{
+		if(details?.data?.data){
+			setData(details?.data?.data)
+			console.log("document required data -------------> ",details?.data?.data)
+		}
+	},[details])
+
 	return (
 		<>
-			{/* Document Required */}
-			<Card  popup={props?.popup} style={{display:"flex",alignContent:"start",flexWrap:"wrap",alignItems:"stretch",margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"411px",height:"100%"}} heading="Document Required">
-			<ul>
-					{		data.map(item=>(
-							<li><RecentUpdateCard data={item}/></li>
-					))}
-					</ul>
+			{/* Application process*/}
+			<Card  popup={props?.popup} style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Document Required">
+				<ul>
+					{
+						data?.map((item)=>(
+							<li>{item?.title ? item?.title : ""}</li>
+						))
+					}
+				</ul>
 			</Card>
-
 		</>
 	)
 }
