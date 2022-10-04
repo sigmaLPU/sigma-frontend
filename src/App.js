@@ -11,6 +11,7 @@ import {Error404} from './components/routes' // default home page
 import {MouMaster} from './components/routes' // mou master
 import {UniversityProfile} from './components/routes' // UniversityProfile
 import {MeetingProfile} from './components/routes' // MeetingProfile
+import {MeetingMaster} from './components/routes' // Meeting Master
 import {ResetPassword,ResetRequest} from './components/routes' // reset password
 import ProtectedRoute, {ProtectedRouteResetPassword} from './ProtectedRoute'
 import {TrainingDashboard,CreditTransferTraining} from './components/routes'
@@ -36,6 +37,9 @@ function App() {
           <Route exact path="/mouMaster" element={<ProtectedRoute><MouMaster/></ProtectedRoute>}/>
           <Route path="/university/:id" element={<ProtectedRoute><UniversityProfile/></ProtectedRoute>}/>
           <Route path="/meeting/:id" element={<ProtectedRoute><MeetingProfile/></ProtectedRoute>}/>
+          
+          <Route path="/meeting" element={<ProtectedRoute><MeetingMaster/></ProtectedRoute>}/>
+          
           <Route path="/training" element={<ProtectedRoute><TrainingDashboard/></ProtectedRoute>}/>
           <Route path="/training/creditTransfer" element={<ProtectedRoute><CreditTransferTraining/></ProtectedRoute>}/>
 

@@ -9,6 +9,8 @@ import ResetRequest,{ResetPassword} from './default_pages/ResetPassword'
 import Error404 from './default_pages/errors/Error404'
 // mou master
 import MouMaster from './mou_master/MouMaster'
+// meeting master
+import MeetingMaster from './meeting_master/MeetingMaster'
 // loading page
 import LoadingPage from './default_pages/LoadingPage'
 // university profile 
@@ -56,7 +58,7 @@ export {
 	LoadingPage,
 	UniversityProfile,
 	ResetPassword,ResetRequest,
-	MeetingProfile,
+	MeetingProfile,MeetingMaster,
 	
 	// componets
 	NavSideBarLayout,

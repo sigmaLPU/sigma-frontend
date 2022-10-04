@@ -19,6 +19,11 @@ import {
 	forgetPasswordSlice,forgetPasswordReducer,resetPasswordReducer,
 } from './users/routes'
 
+import {
+	getAllMeetingsSlice,	
+	getAllUniversityMeetingsReducer,universityMeetingsAddReducer,setRedirectFunctionMeetings,updateViewDetailsMeetings,
+} from './meetingMaster/routes'
+
 export default function s(){ return "Nothing default"}
 
 export {
@@ -38,4 +43,6 @@ export {
 
 	forgetPasswordSlice,forgetPasswordReducer,resetPasswordReducer,
 
+	// meeting master
+	getAllMeetingsSlice,getAllUniversityMeetingsReducer,universityMeetingsAddReducer,setRedirectFunctionMeetings,updateViewDetailsMeetings,
 }

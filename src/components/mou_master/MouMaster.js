@@ -10,6 +10,7 @@ import {AddNewUniversity} from '../routes'
 
 // other imports
 import { getAllUniversityReducer,setRedirectFunction, updateViewDetails,activateYourTagChip,deleteYourTagChip,addYourTagChip, } from '../../redux/routes'
+import {getAllMeetingsSlice,getAllUniversityMeetingsReducer,universityMeetingsAddReducer,setRedirectFunctionMeetings,updateViewDetailsMeetings,} from '../../redux/routes'
 
 
 // function defination

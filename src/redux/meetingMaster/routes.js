@@ -1,0 +1,6 @@
+import getAllMeetingsSlice ,{getAllUniversityMeetingsReducer,universityMeetingsAddReducer,setRedirectFunctionMeetings,updateViewDetailsMeetings} from './getAllMeetings'
+
+export {
+	getAllMeetingsSlice,getAllUniversityMeetingsReducer,universityMeetingsAddReducer,setRedirectFunctionMeetings,updateViewDetailsMeetings,
+	
+}

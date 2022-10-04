@@ -438,7 +438,7 @@ export function MeetingUpdateUniversityModal(props){
 
 						<div style={{display:"flex",flexDirection:"column",width:"100%",}}>
 							<span>Created By</span>
-							<input type="text" value={data?.createdBy} style={textFeildCSS} onChange={(e)=>setData({...data,"agenda":e.target.value})} />
+							<input type="text" value={data?.createdBy} style={textFeildCSS} onChange={(e)=>setData({...data,"createdBy":e.target.value})} />
 						</div>
 
 						<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
