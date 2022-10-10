@@ -54,7 +54,9 @@ export default function ModalPopUp(props){
 	      		<CloseIcon/>
 	      	</IconButton>
       	</div>
-       	{props?.children}
+      	<div style={{paddingBottom:"5rem"}}>
+	       	{props?.children}
+      	</div>
       </Modal>
     </div>
 	)

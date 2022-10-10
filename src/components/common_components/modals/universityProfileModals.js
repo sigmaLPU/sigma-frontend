@@ -378,6 +378,10 @@ export function MeetingUpdateUniversityModal(props){
 		flexDirection:"column",
 	}
 
+	const buttonCSS = {
+
+	}
+
 	const dispatch = useDispatch();
 
 	const reduxData = useSelector((state)=>state.universityMeetingSlice.data)
@@ -462,7 +466,7 @@ export function MeetingUpdateUniversityModal(props){
 
 					</div>
 
-					<Button style={{marginTop:"1rem"}} submit={onSubmit} buttonText={"Save"}/>
+					<Button style={{marginTop:"1rem",...buttonCSS}} submit={onSubmit} buttonText={"Save"}/>
 					
 				</form>
 			</div>

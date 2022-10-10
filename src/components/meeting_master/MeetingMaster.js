@@ -6,7 +6,7 @@ import {useNavigate} from 'react-router-dom'
 // component import
 import {NavSideBarLayout} from '../routes'
 import {Card ,Chip, Table} from '../routes'
-import {AddNewUniversity} from '../routes'
+import {MeetingMeetingsMasterModal} from '../routes'
 
 // other imports
 import { getAllUniversityReducer,setRedirectFunction, updateViewDetails,activateYourTagChip,deleteYourTagChip,addYourTagChip, } from '../../redux/routes'
@@ -15,33 +15,6 @@ import {getAllMeetingsSlice,getAllUniversityMeetingsReducer,universityMeetingsAd
 
 // function defination
 export default function MeetingMaster(props){
-
-	const dispatch = useDispatch()
-
-	const rawData = useSelector((state)=>state.getAllMeetingsSlice.data)
-
-	const [data,setData] = useState(rawData)
-
-	useEffect(()=>{
-		console.log("pre mou master ---> ",rawData)
-		setData(rawData)
-	},[rawData])
-
-	const replace = [{"name":"link","value":function(id){return <div onClick={()=>redirectTo(id)} style={{color:"#F07F1A",width:"100%",display:"flex",justifyContent:"center",alignItems:"center",cursor:"pointer"}}>Link</div>}}]
-
-
-	useEffect(()=>{
-		// dispatch(getAllUniversityReducer({}))
-		dispatch(getAllUniversityMeetingsReducer({}))
-	},[])
-
-	const navigate = useNavigate()
-	// table state
-	const [message,setMessage] = useState("loading the tables");
-	const [column,setColumn] = useState(["Meeting Topic","Meeting Agenda","Meetings","Meeting Time","Participants","link"])
-	const [rows,setRows] = useState([])
-
-
 	const ChipCSS = {
 		minWidth: "126px",
 		height: "28px",
@@ -57,24 +30,6 @@ export default function MeetingMaster(props){
 		color:"black",
 	}
 
-
-	function getData(){
-		return {
-			pagenation_id : "1234",
-			column : column,
-			rows : rows,
-		}
-	}
-
-	function redirectTo(id){
-		const url = `/meeting/${id}`
-		navigate(url)
-	}
-
-	function ToggleChip(array,setArray,id){
-		var arr = array;arr[id].active=!arr[id].active;
-		setArray(arr)
-	}
 
 	useEffect(()=>{
 		// ToggleChip(yourTags,setYourTags,0)
@@ -97,14 +52,7 @@ export default function MeetingMaster(props){
 					</div>
 					{/*Right Part*/}
 					<div style={{marginLeft:"1rem",width:"100%"}}>
-						<Table 
-							data={data}
-							rows = {data?.data?.rows}
-							column = {data?.data?.column}
-							heading={"Meeting Master"}
-							replace = {replace}
-							popup = {<AddNewUniversity />}
-						/>
+						<MeetingMasterTable popup={<MeetingMeetingsMasterModal />}/>
 					</div>
 				</div>
 			</NavSideBarLayout>
@@ -194,4 +142,61 @@ function PopularTags(props){
 	)
 }
 	
+function MeetingMasterTable(props) {
+	const dispatch = useDispatch()
 
+	const rawData = useSelector((state)=>state.getAllMeetingsSlice.data)
+
+	const [data,setData] = useState(rawData)
+
+	useEffect(()=>{
+		console.log("pre mou master ---> ",rawData)
+		setData(rawData)
+	},[rawData])
+
+	const replace = [{"name":"link","value":function(id){return <div onClick={()=>redirectTo(id)} style={{color:"#F07F1A",width:"100%",display:"flex",justifyContent:"center",alignItems:"center",cursor:"pointer"}}>Link</div>}}]
+
+
+	useEffect(()=>{
+		// dispatch(getAllUniversityReducer({}))
+		dispatch(getAllUniversityMeetingsReducer({}))
+	},[])
+
+	const navigate = useNavigate()
+	// table state
+	const [message,setMessage] = useState("loading the tables");
+	const [column,setColumn] = useState(["Meeting Topic","Meeting Agenda","Meetings","Meeting Time","Participants","link"])
+	const [rows,setRows] = useState([])
+
+	function getData(){
+		return {
+			pagenation_id : "1234",
+			column : column,
+			rows : rows,
+		}
+	}
+
+	function redirectTo(id){
+		const url = `/meeting/${id}`
+		navigate(url)
+	}
+
+	function ToggleChip(array,setArray,id){
+		var arr = array;arr[id].active=!arr[id].active;
+		setArray(arr)
+	}
+
+
+	return (
+		<>
+			<Table 
+				data={data}
+				rows = {data?.data?.rows}
+				column = {data?.data?.column}
+				heading={"Meeting Master"}
+				replace = {replace}
+				popup = {props?.popup}
+			/>
+		</>
+	)
+}

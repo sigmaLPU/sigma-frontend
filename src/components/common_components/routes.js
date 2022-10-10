@@ -22,6 +22,7 @@ import {
 	DocumentAddUniversityModal,
 } from './modals/universityProfileModals'
 
+import {MeetingMeetingsMasterModal} from './modals/meetingMasterModals'
 
 import {AddNewUniversity} from './modals/mouMasterModal'
 
@@ -49,7 +50,7 @@ export {
 	DocumentAddUniversityModal,
 
 	AddNewUniversity,
-
+	MeetingMeetingsMasterModal,
 	// loading component
 	LoadingComponent,
 
