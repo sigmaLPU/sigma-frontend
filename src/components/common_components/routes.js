@@ -19,7 +19,7 @@ import {
 	MeetingUpdateUniversityModal,ContactDetailsUpdateModal,
 	MouContractAddUniversityModal,RecentUpdateUpdateUniversityModal,
 	MouContractUpdateUniversityModal,ApplicationProcessAddUniversityModal,
-	DocumentAddUniversityModal,
+	DocumentAddUniversityModal,FinancialAgreementAddUniversityModal,
 } from './modals/universityProfileModals'
 
 import {MeetingMeetingsMasterModal} from './modals/meetingMasterModals'
@@ -47,7 +47,7 @@ export {
 	MeetingUpdateUniversityModal,ContactDetailsUpdateModal,
 	MouContractAddUniversityModal,RecentUpdateUpdateUniversityModal,
 	MouContractUpdateUniversityModal,ApplicationProcessAddUniversityModal,
-	DocumentAddUniversityModal,
+	DocumentAddUniversityModal,FinancialAgreementAddUniversityModal,
 
 	AddNewUniversity,
 	MeetingMeetingsMasterModal,

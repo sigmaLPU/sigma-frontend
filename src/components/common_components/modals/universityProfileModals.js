@@ -18,6 +18,7 @@ import {
 	universityMouContractAddReducer,universityMouContractUpdateReducer,
 	universityApplicationProcessAddReducer,
 	universityDocumentRequiredAddReducer,
+	universityFinancialAgreementAddReducer,
 	
 	setMouContractSliceLoading,
 
@@ -27,6 +28,7 @@ import {
 import {
 	uploadFile
 } from '../../../firebase/routes'
+import axios from 'axios';
 
 function getUniId(url){
 	var id = ""
@@ -784,6 +786,138 @@ export function MouContractAddUniversityModal(props){
 		"title":""
 	})
 
+	const [file, setFile] = useState();
+	const [fileName, setFileName] = useState("");
+
+	const options = [
+		"general",
+		"articulation_aggrement",
+		"exchange_aggrement",
+		"research",
+		"collaboration",
+		"other"
+	]
+
+	
+
+	const reduxData = useSelector((state)=>state.universityMouContractSlice.data)
+
+
+	
+	if(reduxData?.loading){
+		return (
+			<div style={style}>
+				<LoadingComponent/>
+			</div>
+		)
+	}
+
+
+
+	async function onSubmit(e){
+		const uni_id = getUniId(window.location.href)
+		const url = `http://localhost:5000/api/v2/university/mou/${uni_id}/add`
+		const formData = new FormData();
+		formData.append("file", file);
+		formData.append("fileName", fileName);
+		try {
+			const res = await axios.post(
+				url,
+			formData
+			);
+			console.log(res);
+		} catch (ex) {
+			console.log(ex);
+		}
+		// axios(config)
+		// axios.post(`http://localhost:5000/api/v2/university/mou/${uni_id}/add`,formData)
+	}
+
+	function handleFile(e){
+		console.log(e.target?.files[0])
+		setFile(e.target?.files[0]);
+        setFileName(e.target?.files[0]?.name);
+	}
+
+	const textFeildCSS = {width:"607px",height:"40px",border:"none",borderBottom:"1px solid black",fontSize:"1.1rem",fontWeight:"720"}
+
+
+	return(
+		<div style={style}>
+			<span style={{fontSize:"1.6rem",fontWeight:"800",width:"100%",textAlign:"center"}}>
+				Mou Details
+			</span>
+			<div style={{marginTop:"3rem"}}>
+				<form>
+					<div style={{display:"flex",flexDirection:"column",rowGap:"1rem"}}>
+
+						<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
+							<span>Type</span>
+
+							<select value={data?.type} style={textFeildCSS} onChange={(e)=>setData({...data,"type":e.target.value})}>
+								{options.map( (item)=>(
+									<option value={item}>{item}</option>
+								))}
+							</select>
+
+						</div>
+
+						<input style={textFeildCSS} onChange={(e)=>setData({...data,title:e.target.value})} value={data.title} type="text" placeholder="Mou Title"/>
+
+						
+						<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem",columnGap:"1rem"}}>
+							
+							<div style={{display:"flex",flexDirection:"column",width:"50%"}}>
+								<span>Start Date</span>
+								<input type="date" style={textFeildCSS} onChange={(e)=>setData({...data,"startDate":e.target.value})} />
+							</div>
+
+							<div style={{display:"flex",flexDirection:"column",width:"50%"}}>
+								<span>Start Date</span>
+								<input type="date" style={textFeildCSS} onChange={(e)=>setData({...data,"endDate":e.target.value})} />
+							</div>
+						
+						</div>
+
+
+						<div style={{display:"flex",flexDirection:"column",width:"100%",}}>
+							<span>Upload File</span>
+							<input type="file" style={textFeildCSS} onChange={(e)=>handleFile(e)} />
+						</div>
+
+
+					</div>
+					<Button submit={onSubmit} buttonText={"Save"}/>
+					
+				</form>
+			</div>
+		</div>
+
+
+	)
+}
+
+
+export function MouContractAddUniversityModal2(props){
+	const style = {
+		height: "500px",
+		width: "741px",
+		borderRadius: "10px",
+		display:"flex",justifyContent:"start",
+		alignItems:"center",
+		flexDirection:"column",
+	}
+
+	const dispatch = useDispatch();
+
+	const [data,setData] = useState({
+		"file":"",
+		"startDate":"",
+		"endDate":"",
+		"type":"general",
+		"title":""
+	})
+
 	const [file,setFile] = useState(null);
 
 	const options = [
@@ -1090,6 +1224,70 @@ export function ApplicationProcessAddUniversityModal(props){
 		<div style={style}>
 			<span style={{fontSize:"1.6rem",fontWeight:"800",width:"100%",textAlign:"center"}}>
 				Add New Application Process
+			</span>
+			<div style={{marginTop:"3rem"}}>
+				<form>
+					<div style={{display:"flex",flexDirection:"column",rowGap:"1rem"}}>
+						<input style={textFeildCSS} onChange={(e)=>setData({...data,title:e.target.value})} type="text" placeholder="Write Here"/>
+					</div>
+
+					<div style={{display:"flex",flexDirection:"row",width:"100%",marginTop:"1rem"}}>
+						<span>Apply For All University</span>
+						<input style={{paddingLeft:"1rem"}} type="checkbox" onChange={(e)=>setData({...data,"general":!data?.general})}/>
+					</div>
+
+					<Button submit={submit} buttonText={"Save"}/>					
+				</form>
+			</div>
+		</div>
+	)
+}
+
+export function FinancialAgreementAddUniversityModal(props){
+	const style = {
+		height: "500px",
+		width: "741px",
+		borderRadius: "10px",
+		display:"flex",justifyContent:"start",
+		alignItems:"center",
+		flexDirection:"column",
+	}
+
+
+	const dispatch = useDispatch()
+
+	const [data,setData] = useState({
+		"general":false,
+		"title":""
+	})
+
+	useEffect(()=>{
+	},[])
+
+	function submit(e){
+		e.preventDefault()
+		console.log("submit ---> ",data)
+		const id = getUniId(window.location.href)
+		dispatch(universityFinancialAgreementAddReducer({id,data:data}))
+	}
+
+	const reduxData = useSelector((state)=>state.universityFinancialAgreementSlice.data)
+
+	if(reduxData?.loading){
+		return (
+			<div style={style}>
+				<LoadingComponent/>
+			</div>
+		)
+	}
+
+	const textFeildCSS = {width:"607px",height:"40px",border:"none",borderBottom:"1px solid black",fontSize:"1.1rem",fontWeight:"720"}
+
+
+	return(
+		<div style={style}>
+			<span style={{fontSize:"1.6rem",fontWeight:"800",width:"100%",textAlign:"center"}}>
+				Add New Financial Agrement
 			</span>
 			<div style={{marginTop:"3rem"}}>
 				<form>

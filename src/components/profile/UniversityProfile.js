@@ -14,7 +14,7 @@ import {
 	MeetingUpdateUniversityModal,ContactDetailsUpdateModal,
 	MouContractAddUniversityModal,RecentUpdateUpdateUniversityModal,
 	MouContractUpdateUniversityModal,ApplicationProcessAddUniversityModal,
-	DocumentAddUniversityModal,
+	DocumentAddUniversityModal,FinancialAgreementAddUniversityModal,
 
 	LoadingPage,
 	LoadingComponent,
@@ -32,7 +32,7 @@ import {
 	universityMouContractReducer,
 	universityApplicationProcessReducer,
 	universityDocumentRequiredReducer,
-
+	universityFinancialAgreementReducer,
 } from '../../redux/routes'
 
 
@@ -69,7 +69,7 @@ export default function UniversityProfile(props){
 							<ContactPerson popup={<ContactDetailsModal/>}/>
 							<ApplicationProcess popup={<ApplicationProcessAddUniversityModal/>}/>
 							<FacultyMobiliy popup={<BasicDetailsModal/>}/>								
-							<FinancialAgreements popup={<BasicDetailsModal/>}/>
+							<FinancialAgreements popup={<FinancialAgreementAddUniversityModal/>}/>
 						</div>
 
 						<div style={{position:"relative",top:"-15px"}}>
@@ -240,15 +240,34 @@ function FinancialAgreements(props){
 
 	const dispatch = useDispatch()
 
+	const details = useSelector((state)=>state.universityFinancialAgreementSlice.data)
+
 	const [data,setData] = useState([
 		{"title":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text","date":"27-07-2022"},
 	])
 
+	useEffect(()=>{
+		const id = getUniId(window.location.href) // obtaining university id from url
+		dispatch(universityFinancialAgreementReducer({id}))
+	},[])
+
+	useEffect(()=>{
+		if(details?.data?.data){
+			setData(details?.data?.data)
+			console.log("Financial Agreements --> ",details)
+		}
+	},[details])
+
 	return (
 		<>
-			{/* Financial Agreements */}
 			<Card  popup={props?.popup} style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Financial Agreements">
-			
+				<ul>
+					{
+						data?.map((item)=>(
+							<li>{item?.title ? item?.title : ""}</li>
+						))
+					}
+				</ul>
 			</Card>
 		</>
 	)
