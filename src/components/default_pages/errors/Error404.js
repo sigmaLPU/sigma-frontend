@@ -1,5 +1,5 @@
 // react imports
-import React from 'react';
+import React,{useEffect} from 'react';
 import {useNavigate} from 'react-router-dom'
 
 // component import
@@ -16,6 +16,13 @@ export default function Error404(props){
 
 	const word = ["S","I","G","M","A"]
 	const _404 = ["4","0","4"]
+
+	useEffect(()=>{
+		setTimeout(()=>{
+			window.history.back()
+		},5000)
+	},[])
+
 	return (
 		<div style={{width:"100%",height:"100vh",display:"flex",justifyContent:"center",alignItems:"center"}}>
 			<div style={{display:"flex"}}>

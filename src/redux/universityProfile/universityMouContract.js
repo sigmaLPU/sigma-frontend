@@ -30,7 +30,7 @@ const universityMouContractAddReducer = createAsyncThunk('universityMouContract/
       method: 'post',
       url: `https://sigmalpu.herokuapp.com/api/v2/university/mou/${data?.id}/add`,
       headers: { 
-        'Content-Type': 'application/json'
+        'Content-Type': 'multipart/form-data'
       },
       data : data?.data
     };
@@ -69,7 +69,7 @@ const universityMouContractSlice = createSlice({
     builder.addCase(universityMouContractReducer.fulfilled, (state, { payload }) => {
       state.data.message = "Fulfilled"
       state.data.loading = false
-      var data = payload?.data?.mous
+      var data = payload?.data?.mous  
     
       if(data){
         var arr = []
@@ -81,7 +81,9 @@ const universityMouContractSlice = createSlice({
           temp["id"] = obj?._id
           temp["startDate"] = obj?.startDate
           temp["endDate"] = obj?.endDate
-          temp["file"] = obj?.file
+          temp["file"] = obj?.file?.f_url
+          temp["file_k"] = obj?.file?.f_key
+
           arr.push(temp)
           ids.push(obj?._id)
         }
@@ -118,7 +120,8 @@ const universityMouContractSlice = createSlice({
       temp["id"] = obj?._id
       temp["startDate"] = obj?.startDate
       temp["endDate"] = obj?.endDate
-      temp["file"] = obj?.file
+      temp["file"] = obj?.file?.f_url
+      temp["file_k"] = obj?.file?.f_key
 
       state.data.data.data = [temp].concat(state.data.data.data)
       state.data.data.ids = [obj?._id].concat(state.data.data.ids)

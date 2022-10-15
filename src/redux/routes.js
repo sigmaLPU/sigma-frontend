@@ -8,6 +8,7 @@ import {
 	universityApplicationProcessSlice,universityApplicationProcessReducer,universityApplicationProcessAddReducer,
 	universityDocumentRequiredSlice,universityDocumentRequiredReducer,universityDocumentRequiredAddReducer,
 	universityFinancialAgreementReducer,universityFinancialAgreementAddReducer,universityFinancialAgreementSlice,
+	universityGuestVisitSlice,universityGuestVisitReducer,universityGuestVisitAddReducer,
 } from './universityProfile/routes'
 
 import {
@@ -38,6 +39,7 @@ export {
 	universityApplicationProcessSlice,universityApplicationProcessReducer,universityApplicationProcessAddReducer,
 	universityDocumentRequiredSlice,universityDocumentRequiredReducer,universityDocumentRequiredAddReducer,
 	universityFinancialAgreementReducer,universityFinancialAgreementAddReducer,universityFinancialAgreementSlice,
+	universityGuestVisitSlice,universityGuestVisitReducer,universityGuestVisitAddReducer,
 	
 	// university list
 	getAllUniversitySlice,getAllUniversityReducer,setRedirectFunction,updateViewDetails,universityAddReducer,

@@ -19,7 +19,7 @@ import {
 	universityApplicationProcessAddReducer,
 	universityDocumentRequiredAddReducer,
 	universityFinancialAgreementAddReducer,
-	
+	universityGuestVisitAddReducer,
 	setMouContractSliceLoading,
 
 } from '../../../redux/routes'
@@ -337,7 +337,7 @@ export function MeetingUniversityModal(props){
 
 						<div style={{display:"flex",flexDirection:"column",width:"100%",}}>
 							<span>Created By</span>
-							<input type="text" value={data?.createdBy} style={textFeildCSS} onChange={(e)=>setData({...data,"agenda":e.target.value})} />
+							<input type="text" value={data?.createdBy} style={textFeildCSS}/>
 						</div>
 
 						<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
@@ -444,7 +444,7 @@ export function MeetingUpdateUniversityModal(props){
 
 						<div style={{display:"flex",flexDirection:"column",width:"100%",}}>
 							<span>Created By</span>
-							<input type="text" value={data?.createdBy} style={textFeildCSS} onChange={(e)=>setData({...data,"createdBy":e.target.value})} />
+							<input type="text" value={data?.createdBy} style={textFeildCSS} />
 						</div>
 
 						<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
@@ -492,25 +492,42 @@ export function GuestVisitUniversityModal(props){
 
 	const [data,setData] = useState(
 		{
-			"name":"",
-			"designation":"",
-			"mobile":"",
-			"email":"",
-			"date":"",
-			"time":"",
-			"purpose":""
+			"title":"n/a",
+			"description":"n/a",
+			"visitDate":"n/a",
+			"visitPeriod":"n/a",
+			"visitors":[],
+			"host":"n/a",
+			"hostEmail":"n/a",
+			"hostPhone":"n/a",
+			"university":"n/a",	
 		}
 	)
 
 	useEffect(()=>{
+		var name = localStorage.getItem('name')
+		if(name){
+			setData({...data,host:name})
+		}
+		var hostEmail = localStorage.getItem('email')
+		if(hostEmail){
+			setData({...data,hostEmail})
+		}
+		var hostPhone = localStorage.getItem('phone')
+		if(hostPhone){
+			setData({...data,hostPhone})
+		}
+		const id = getUniId(window.location.href)
+		if(id){
+			setData({...data,university:id})
+		}
 	},[])
 
 	function onSubmit(e){
 		e.preventDefault();
 		const id = getUniId(window.location.href)
 		console.log(data)
-		dispatch(universityMeetingAddReducer({data:data,id}))
-		// console.log(data)
+		dispatch(universityGuestVisitAddReducer({data:data,id}))
 	}
 
 	const textFeildCSS = {width:"607px",height:"40px",border:"none",borderBottom:"1px solid black",fontSize:"1.1rem",fontWeight:"720"}
@@ -526,38 +543,18 @@ export function GuestVisitUniversityModal(props){
 					<div style={{display:"flex",flexDirection:"column",rowGap:"1rem"}}>
 
 						<div style={{display:"flex",flexDirection:"column",width:"100%",}}>
-							<span>Full Name</span>
-							<input type="text" style={textFeildCSS} onChange={(e)=>setData({...data,"name":e.target.value})} />
+							<span>Title</span>
+							<input type="text" style={textFeildCSS} onChange={(e)=>setData({...data,"title":e.target.value})} />
 						</div>
 
 						<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
-							<span>Designation</span>
-							<input type="text" style={textFeildCSS} onChange={(e)=>setData({...data,"designation":e.target.value})} />
+							<span>Description</span>
+							<input type="text" style={textFeildCSS} onChange={(e)=>setData({...data,"description":e.target.value})} />
 						</div>
-									
-						<div style={{display:"flex",flexDirection:"column",width:"100%",}}>
-							<span>Mobile</span>
-							<input type="text" style={textFeildCSS} onChange={(e)=>setData({...data,"mobile":e.target.value})} />
-						</div>
-
-						<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
-							<span>Email Id</span>
-							<input type="text" style={textFeildCSS} onChange={(e)=>setData({...data,"email":e.target.value})} />
-						</div>
-
 
 						<div style={{display:"flex",flexDirection:"column",width:"50%"}}>
 							<span>Date</span>
-							<input type="date" style={textFeildCSS} onChange={(e)=>setData({...data,"date":e.target.value})} />
-						</div>
-						<div style={{display:"flex",flexDirection:"column",width:"40%"}}>
-							<span>Time</span>
-							<input type="time" style={textFeildCSS} onChange={(e)=>setData({...data,"time":e.target.value})} />
-						</div>
-
-						<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
-							<span>Purpose</span>
-							<input type="text" style={textFeildCSS} onChange={(e)=>setData({...data,"purpose":e.target.value})} />
+							<input type="date" style={textFeildCSS} onChange={(e)=>setData({...data,"visitDate":e.target.value})} />
 						</div>
 
 					</div>
@@ -779,14 +776,14 @@ export function MouContractAddUniversityModal(props){
 	const dispatch = useDispatch();
 
 	const [data,setData] = useState({
-		"file":"",
+		"file":{},
 		"startDate":"",
 		"endDate":"",
 		"type":"general",
 		"title":""
 	})
 
-	const [file, setFile] = useState();
+	const [file, setFile] = useState({});
 	const [fileName, setFileName] = useState("");
 
 	const options = [
@@ -815,28 +812,39 @@ export function MouContractAddUniversityModal(props){
 
 
 	async function onSubmit(e){
-		const uni_id = getUniId(window.location.href)
-		const url = `http://localhost:5000/api/v2/university/mou/${uni_id}/add`
+		e.preventDefault();
 		const formData = new FormData();
-		formData.append("file", file);
-		formData.append("fileName", fileName);
-		try {
-			const res = await axios.post(
-				url,
-			formData
-			);
-			console.log(res);
-		} catch (ex) {
-			console.log(ex);
-		}
-		// axios(config)
-		// axios.post(`http://localhost:5000/api/v2/university/mou/${uni_id}/add`,formData)
+		formData.append("file", data?.file);
+		formData.append("startDate", data?.startDate);
+		formData.append("endDate", data?.endDate);
+		formData.append("type", data?.type);
+		formData.append("title", data?.title);
+
+		const id = getUniId(window.location.href)
+
+		dispatch(universityMouContractAddReducer({id,data:formData}))
+
+		// const url = `https://sigmalpu.herokuapp.com/api/v2/university/mou/${id}/add`
+	
+		// const config = {
+		// 	headers: {
+		// 		"Content-Type": "multipart/form-data",
+		// 	}
+		// }
+
+		// try {
+		// 	const res = await axios.post(url, formData, config);
+		// 	console.log("res ---> ",res)
+		// } catch (error) {
+		// 	console.log("error ---> ",error)
+		// }
 	}
 
 	function handleFile(e){
-		console.log(e.target?.files[0])
-		setFile(e.target?.files[0]);
-        setFileName(e.target?.files[0]?.name);
+		// console.log(e.target?.files[0])
+		// setFile(e.target?.files[0]);
+        // setFileName(e.target?.files[0]?.name);
+		setData({...data,file:e.target?.files[0]})
 	}
 
 	const textFeildCSS = {width:"607px",height:"40px",border:"none",borderBottom:"1px solid black",fontSize:"1.1rem",fontWeight:"720"}
