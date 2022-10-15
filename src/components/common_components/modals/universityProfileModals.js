@@ -823,21 +823,6 @@ export function MouContractAddUniversityModal(props){
 		const id = getUniId(window.location.href)
 
 		dispatch(universityMouContractAddReducer({id,data:formData}))
-
-		// const url = `https://sigmalpu.herokuapp.com/api/v2/university/mou/${id}/add`
-	
-		// const config = {
-		// 	headers: {
-		// 		"Content-Type": "multipart/form-data",
-		// 	}
-		// }
-
-		// try {
-		// 	const res = await axios.post(url, formData, config);
-		// 	console.log("res ---> ",res)
-		// } catch (error) {
-		// 	console.log("error ---> ",error)
-		// }
 	}
 
 	function handleFile(e){

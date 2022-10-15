@@ -15,6 +15,7 @@ import {
 	MouContractAddUniversityModal,RecentUpdateUpdateUniversityModal,
 	MouContractUpdateUniversityModal,ApplicationProcessAddUniversityModal,
 	DocumentAddUniversityModal,FinancialAgreementAddUniversityModal,
+	GuestVisitCard,
 
 	LoadingPage,
 	LoadingComponent,
@@ -33,6 +34,7 @@ import {
 	universityApplicationProcessReducer,
 	universityDocumentRequiredReducer,
 	universityFinancialAgreementReducer,
+	universityGuestVisitReducer,
 } from '../../redux/routes'
 
 
@@ -94,8 +96,6 @@ export default function UniversityProfile(props){
 		</div>
 	)
 }
-
-
 
 function BasicDetails(props){
 
@@ -277,9 +277,7 @@ function RecentUpdate(props){
 
 	const dispatch = useDispatch()
 
-	const [data,setData] = useState([
-		{"title":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text","date":"27-07-2022"},
-	])
+	const [data,setData] = useState([])
 
 	const recentUpdateData = useSelector((state)=>state.universityRecentUpdateSlice.data)
 
@@ -293,6 +291,7 @@ function RecentUpdate(props){
 		dispatch(universityRecentUpdateReducer({id}))
 	},[])
 
+
 	return (
 		<>
 			{/* RECENT UPDATE*/}
@@ -300,7 +299,7 @@ function RecentUpdate(props){
 				{	recentUpdateData?.loading ? <LoadingComponent/> :
 					<ul>
 						{		
-							data.map(item=>(
+							recentUpdateData?.data?.data.map(item=>(
 								<li><RecentUpdateCard recentUpdateUpdateUniversityModal={<RecentUpdateUpdateUniversityModal data={item}/>} data={item}/></li>
 							))
 						}
@@ -348,16 +347,31 @@ function Meetings(props){
 function GuestVisit(props){
 
 	const dispatch = useDispatch()
+	const guestVisitData = useSelector((state)=>state.universityGuestVisitSlice.data)
 
 	const [data,setData] = useState([
 	])
 
+	useEffect(()=>{
+		const id = getUniId(window.location.href) // obtaining university id from url
+
+		dispatch(universityGuestVisitReducer({id}))
+	},[])
 
 	return (
 		<>
 			{/* Guest Visit */}
 			<Card popup={props?.popup}  style={{display:"flex",alignContent:"start",flexWrap:"wrap",alignItems:"stretch",margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"641px"}} heading="Guest Visit">
-
+				{
+					guestVisitData?.loading ? <LoadingComponent/> :
+						<ul>
+							{	
+								guestVisitData?.data?.data &&	guestVisitData?.data?.data.map(item=>(
+									<li><GuestVisitCard meetingUpdateUniversityModal={<MeetingUpdateUniversityModal data={item}/>} data={item}/></li>
+								))
+							}
+						</ul>
+				}
 			</Card>
 		</>
 	)

@@ -32,7 +32,7 @@ import Table from './common_components/table'
 //modal
 
 import {ModalPopUp,BasicDetailsModal,ContactDetailsModal,MeetingUniversityModal,
-	GuestVisitUniversityModal,
+	GuestVisitUniversityModal,GuestVisitCard,
 	ProgramOfColaborationUniversityModal,RecentUpdateUniversityModal,
 	MeetingUpdateUniversityModal,LoadingComponent,ContactDetailsUpdateModal,
 	MouContractAddUniversityModal,RecentUpdateUpdateUniversityModal,
@@ -62,7 +62,7 @@ export {
 	
 	// componets
 	NavSideBarLayout,
-	Card, ObjectCard,FileCard,ContactCard,RecentUpdateCard,MeetingCard,
+	Card, ObjectCard,FileCard,ContactCard,RecentUpdateCard,MeetingCard,GuestVisitCard,
 	Chip,
 	Table,	
 	BasicDetailsMeetingCard,AttachementCard,

@@ -63,7 +63,7 @@ export const universityRecentUpdateSlice = createSlice({
     builder.addCase(universityRecentUpdateReducer.fulfilled, (state, { payload }) => {
       state.data.message = "Fulfilled"
       state.data.loading = false
-    
+      console.log("recent update data --> ",payload.data) 
       var rData = payload?.data?.updates
       if(rData){
         var ids = []
@@ -133,7 +133,7 @@ export const universityRecentUpdateSlice = createSlice({
       temp["_id"] = obj?._id
       temp["date"] = toDate(obj?.createdAt)
 
-      var id = temp["id"]
+      var id = temp["_id"]
       var index = -1
       var ids = state.data.data.ids
       for(var i=0;i<ids.length;i++){

@@ -6,7 +6,8 @@ import {
 	FileCard,
 	ContactCard,
 	RecentUpdateCard,
-	MeetingCard
+	MeetingCard,
+	GuestVisitCard,
 } from './cards/universityProfileCard'
 
 // modal
@@ -37,7 +38,7 @@ import {Button} from './modals/universityProfileModals'
 export {
 	//card
 	Card,
-	ObjectCard, FileCard, ContactCard, RecentUpdateCard, MeetingCard,
+	ObjectCard, FileCard, ContactCard, RecentUpdateCard, MeetingCard,GuestVisitCard,
 
 	// modal
 	ModalPopUp,
