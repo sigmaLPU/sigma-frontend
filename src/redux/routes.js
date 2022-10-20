@@ -26,6 +26,8 @@ import {
 	getAllUniversityMeetingsReducer,universityMeetingsAddReducer,setRedirectFunctionMeetings,updateViewDetailsMeetings,
 } from './meetingMaster/routes'
 
+import {searchSlice,searchReducer} from './search/routes'
+
 export default function s(){ return "Nothing default"}
 
 export {
@@ -46,6 +48,8 @@ export {
 	tagsMouMasterSlice,activateYourTagChip,deleteYourTagChip,addYourTagChip,
 
 	forgetPasswordSlice,forgetPasswordReducer,resetPasswordReducer,
+
+	searchSlice,searchReducer,
 
 	// meeting master
 	getAllMeetingsSlice,getAllUniversityMeetingsReducer,universityMeetingsAddReducer,setRedirectFunctionMeetings,updateViewDetailsMeetings,

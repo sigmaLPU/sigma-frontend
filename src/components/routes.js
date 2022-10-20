@@ -14,11 +14,15 @@ import MeetingMaster from './meeting_master/MeetingMaster'
 // loading page
 import LoadingPage from './default_pages/LoadingPage'
 // university profile 
-import UniversityProfile from './profile/UniversityProfile'
+import UniversityProfile from './universityProfile/UniversityProfile'
 // meeting profile
 import MeetingProfile from './meetings/MeetingProfile'
 // Training modules
 import {TrainingDashboard,CreditTransferTraining,} from './training_module/routes'
+// student profile
+import StudentProfile from './student_profile/StudentProfile'
+// search page
+import Search from './search/Search'
 
 /*---COMPONENT---*/
 // navbar side bar
@@ -59,7 +63,9 @@ export {
 	UniversityProfile,
 	ResetPassword,ResetRequest,
 	MeetingProfile,MeetingMaster,
-	
+	StudentProfile,
+	Search,
+		
 	// componets
 	NavSideBarLayout,
 	Card, ObjectCard,FileCard,ContactCard,RecentUpdateCard,MeetingCard,GuestVisitCard,

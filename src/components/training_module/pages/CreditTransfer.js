@@ -12,6 +12,9 @@ import guidelinesImg from '../resource/creditTransfer/guidelines.png'
 import policyImg from '../resource/creditTransfer/policy.png'
 import processDetailsImg from '../resource/creditTransfer/processDetails.png'
 
+
+import Guidelines2020PDF from '../resource/creditTransfer/pdf/2020_Guidelines_for_taking_Credit_Transfer_as_an_Option.pdf'
+import Guidelines2021PDF from '../resource/creditTransfer/pdf/2021_International_Credit_Transfer_Option_Guidelines_Students.pdf'
 export default function CreditTransferTraining(props){
 
 	const navigate = useNavigate()
@@ -29,23 +32,29 @@ export default function CreditTransferTraining(props){
 	}
 
 	const [containers,setContainers] = useState([
-		{text:"Frequently Asked Question",img:frequentlyAskedImg,url:"/training/creditTransfer/faq",active:true},
-		{text:"Guidelines of Credit Transfer",img:guidelinesImg,url:"/training/creditTransfer/guidelines",active:false},
-		{text:"Policies of Credit Transfer",img:policyImg,url:"/training/creditTransfer/policy",active:false},
-		{text:"Counselling Script of Credit Transfer",img:councliningImg,url:"/training/creditTransfer/counselling",active:false},
-		{text:"Process Details of Credit Transfer",img:processDetailsImg,url:"/training/creditTransfer/processDetails",active:false},
+		{text:"Frequently Asked Question",img:frequentlyAskedImg,url:"/training/creditTransfer/faq",active:true,value:<FAQs/>},
+		{text:"Guidelines of Credit Transfer",img:guidelinesImg,url:"/training/creditTransfer/guidelines",active:false,value:<Guidelines/>},
+		{text:"Policies of Credit Transfer",img:policyImg,url:"/training/creditTransfer/policy",active:false,value:<Policies/>},
+		{text:"Counselling Script of Credit Transfer",img:councliningImg,url:"/training/creditTransfer/counselling",active:false,value:<FAQs/>},
+		{text:"Process Details of Credit Transfer",img:processDetailsImg,url:"/training/creditTransfer/processDetails",active:false,value:<FAQs/>},
 	])
 
-
-	const faq = [
-		{question:"dlnsdfskldf klnsdfkldsfsdkl lkfndslknfdsklnf klnfdslkfds ?",answer:"dlfnsd lksndflksdfnk dsfklsdf nkdslfndsn kfdnkdd fkndsklf"},
-		{question:"dlnsdfskldf klnsdfkldsfsdkl lkfndslknfdsklnf klnfdslkfds ?",answer:"dlfnsd lksndflksdfnk dsfklsdf nkdslfndsn kfdnkdd fkndsklf"},
-		{question:"dlnsdfskldf klnsdfkldsfsdkl lkfndslknfdsklnf klnfdslkfds ?",answer:"dlfnsd lksndflksdfnk dsfklsdf nkdslfndsn kfdnkdd fkndsklf"},
-		{question:"dlnsdfskldf klnsdfkldsfsdkl lkfndslknfdsklnf klnfdslkfds ?",answer:"dlfnsd lksndflksdfnk dsfklsdf nkdslfndsn kfdnkdd fkndsklf"},
-		{question:"dlnsdfskldf klnsdfkldsfsdkl lkfndslknfdsklnf klnfdslkfds ?",answer:"dlfnsd lksndflksdfnk dsfklsdf nkdslfndsn kfdnkdd fkndsklf"},
-	]
+	const [activeIndex,setActiveIndex] = useState(0)
+	
 
 	const containersCardCSS = {cursor:"pointer",width:"15rem",minHeight:"10rem",padding:"12px",display:"flex",alignItems:"center",flexDirection:"column",border:"2px solid #F07F1A",boxShadow: "0px 5px 25px rgba(0, 0, 0, 0.25)",borderRadius:"4px"}
+
+
+	function change(index){
+		var item = containers
+		for(var i=0;i<item.length;i++){
+			item[i].active = false
+		}
+		setActiveIndex(index)
+		item[index].active = true
+		setContainers(item)
+		window.history.replaceState(null, item[index].text, item[index].url)
+	}
 
 	return (
 		<div>
@@ -56,19 +65,17 @@ export default function CreditTransferTraining(props){
 				<div style={{width:"100%"}}>
 					<div style={{width:"100%",display:"flex",justifyContent:"space-around",margin:"1rem 2rem 1rem 2rem",}}>
 						{
-							containers.map((item)=>(
-								<div onClick={(e)=>navigate(item?.url)} style={item?.active ? {...containersCardCSS,background:"linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2))"} : containersCardCSS }>
+							containers.map((item,index)=>(
+								<div onClick={(e)=>change(index)} style={item?.active ? {...containersCardCSS,background:"linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2))"} : containersCardCSS }>
 									<img src={item?.img} style={{maxWidth:"80%",maxHeight:"8rem"}}/>
 									<span style={{textAlign:"center"}}>{item?.text}</span>
 								</div>
 							))
 						}
 					</div>
-					<div style={{marginBottom:"5rem",width:"100%",display:"flex",alignItems:"center",marginTop:"4rem",flexDirection:"column",rowGap:"2rem"}}>
+					<div >
 
-						{faq.map((item,key)=>(
-							<FAQ data={item} key={key} sNo={key+1}/>						
-						))}
+						{containers[activeIndex].value}						
 
 					</div>
 				</div>
@@ -77,6 +84,24 @@ export default function CreditTransferTraining(props){
 	)
 }
 
+
+function FAQs(props){
+	const faq = [
+		{question:"dlnsdfskldf klnsdfkldsfsdkl lkfndslknfdsklnf klnfdslkfds ?",answer:"dlfnsd lksndflksdfnk dsfklsdf nkdslfndsn kfdnkdd fkndsklf"},
+		{question:"dlnsdfskldf klnsdfkldsfsdkl lkfndslknfdsklnf klnfdslkfds ?",answer:"dlfnsd lksndflksdfnk dsfklsdf nkdslfndsn kfdnkdd fkndsklf"},
+		{question:"dlnsdfskldf klnsdfkldsfsdkl lkfndslknfdsklnf klnfdslkfds ?",answer:"dlfnsd lksndflksdfnk dsfklsdf nkdslfndsn kfdnkdd fkndsklf"},
+		{question:"dlnsdfskldf klnsdfkldsfsdkl lkfndslknfdsklnf klnfdslkfds ?",answer:"dlfnsd lksndflksdfnk dsfklsdf nkdslfndsn kfdnkdd fkndsklf"},
+		{question:"dlnsdfskldf klnsdfkldsfsdkl lkfndslknfdsklnf klnfdslkfds ?",answer:"dlfnsd lksndflksdfnk dsfklsdf nkdslfndsn kfdnkdd fkndsklf"},
+	]
+
+	return (
+		<div style={{marginBottom:"5rem",width:"100%",display:"flex",alignItems:"center",marginTop:"4rem",flexDirection:"column",rowGap:"2rem"}}>
+			{faq.map((item,key)=>(
+				<FAQ data={item} key={key} sNo={key+1}/>						
+			))}
+		</div>
+	)
+}
 
 function FAQ(props){
 	
@@ -92,6 +117,67 @@ function FAQ(props){
 				{ active && <span style={{fontSize:"1.2rem",padding:"0.5rem"}}>
 					{props?.data?.answer}
 				</span>}
+			</div>
+		</div>
+	)
+}
+
+
+
+function Guidelines(props){
+	const guidelines = [
+		{text:"2021_International_Credit_Transfer_Option_Guidelines_Students",item:Guidelines2021PDF},
+		{text:"2020_Guidelines_for_taking_Credit_Transfer_as_an_Option",item:Guidelines2020PDF},
+	]
+
+	return (
+		<div style={{marginBottom:"5rem",width:"100%",display:"flex",alignItems:"center",marginTop:"4rem",flexDirection:"column",rowGap:"2rem"}}>
+			{guidelines.map((item,key)=>(
+				<Guideline data={item} key={key} sNo={key+1}/>						
+			))}
+		</div>
+	)
+}
+
+function Guideline(props){
+	
+
+	return (
+		<div style={{width:"80%",boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.25)"}}>
+			<div style={{display:"flex",justifyContent:"flex-start",padding:"0.5rem 1rem 0.5rem 1rem",flexDirection:"column"}}>
+				<div style={{width:"100%",display:"flex",justifyContent:"space-between"}}>
+					<a href={props?.data?.item} target="_blank"  style={{fontSize:"1.3rem",textDecoration:"none",cursor:"pointer"}}>{props?.sNo}. {props?.data?.text}</a>
+				</div>
+			</div>
+		</div>
+	)
+}
+
+
+function Policies(props){
+	const guidelines = [
+		// {text:"2020_Guidelines_for_taking_Credit_Transfer_as_an_Option",item:Guidelines2020PDF},
+	]
+
+	return (
+		<div style={{marginBottom:"5rem",width:"100%",display:"flex",alignItems:"center",marginTop:"4rem",flexDirection:"column",rowGap:"2rem"}}>
+			{guidelines.map((item,key)=>(
+				<Policie data={item} key={key} sNo={key+1}/>						
+			))}
+			{guidelines.length===0 ? <Policie data={{"text":"No Data Available"}} /> : "" }
+		</div>
+	)
+}
+
+function Policie(props){
+	
+
+	return (
+		<div style={{width:"80%",boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.25)"}}>
+			<div style={{display:"flex",justifyContent:"flex-start",padding:"0.5rem 1rem 0.5rem 1rem",flexDirection:"column"}}>
+				<div style={{width:"100%",display:"flex",justifyContent:"space-between"}}>
+					<a href={props?.data?.item} target="_blank"  style={{fontSize:"1.3rem",textDecoration:"none",cursor:"pointer"}}>{props?.sNo}. {props?.data?.text}</a>
+				</div>
 			</div>
 		</div>
 	)

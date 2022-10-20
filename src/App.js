@@ -10,11 +10,13 @@ import {LoginPage} from './components/routes' // default home page
 import {Error404} from './components/routes' // default home page
 import {MouMaster} from './components/routes' // mou master
 import {UniversityProfile} from './components/routes' // UniversityProfile
+import {StudentProfile} from './components/routes' // StudentProfile
 import {MeetingProfile} from './components/routes' // MeetingProfile
 import {MeetingMaster} from './components/routes' // Meeting Master
 import {ResetPassword,ResetRequest} from './components/routes' // reset password
 import ProtectedRoute, {ProtectedRouteResetPassword} from './ProtectedRoute'
 import {TrainingDashboard,CreditTransferTraining} from './components/routes'
+import {Search} from './components/routes'
 
 // redux
 import { authenticateTokenReducer, authUserReducer } from './redux/users/authenticateToken'
@@ -36,10 +38,12 @@ function App() {
           <Route exact path="/dashboard" element={<ProtectedRoute><HomePage/></ProtectedRoute>}/>
           <Route exact path="/mouMaster" element={<ProtectedRoute><MouMaster/></ProtectedRoute>}/>
           <Route path="/university/:id" element={<ProtectedRoute><UniversityProfile/></ProtectedRoute>}/>
+          <Route path="/student/:id" element={<ProtectedRoute><StudentProfile/></ProtectedRoute>}/>
           <Route path="/meeting/:id" element={<ProtectedRoute><MeetingProfile/></ProtectedRoute>}/>
           
           <Route path="/meeting" element={<ProtectedRoute><MeetingMaster/></ProtectedRoute>}/>
-          
+          <Route path="/search" element={<ProtectedRoute><Search/></ProtectedRoute>} />
+
           <Route path="/training" element={<ProtectedRoute><TrainingDashboard/></ProtectedRoute>}/>
           <Route path="/training/creditTransfer" element={<ProtectedRoute><CreditTransferTraining/></ProtectedRoute>}/>
 

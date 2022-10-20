@@ -18,6 +18,7 @@ import {
   getAllMeetingsSlice,
   universityFinancialAgreementSlice,
 	universityGuestVisitSlice,
+  searchSlice,
 
   forgetPasswordSlice,
 } from './routes';
@@ -42,5 +43,6 @@ export const store = configureStore({
     getAllMeetingsSlice:getAllMeetingsSlice,
     universityFinancialAgreementSlice:universityFinancialAgreementSlice,
     universityGuestVisitSlice:universityGuestVisitSlice,
+    searchSlice:searchSlice,
   },
 });
