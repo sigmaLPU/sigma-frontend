@@ -477,7 +477,6 @@ export function MeetingUpdateUniversityModal(props){
 	)
 }
 
-
 export function GuestVisitUniversityModal(props){
 	const style = {
 		height: "500px",
@@ -528,6 +527,96 @@ export function GuestVisitUniversityModal(props){
 		const id = getUniId(window.location.href)
 		console.log(data)
 		dispatch(universityGuestVisitAddReducer({data:data,id}))
+	}
+
+	const textFeildCSS = {width:"607px",height:"40px",border:"none",borderBottom:"1px solid black",fontSize:"1.1rem",fontWeight:"720"}
+
+
+	return(
+		<div style={style}>
+			<span style={{fontSize:"1.6rem",fontWeight:"800",width:"100%",textAlign:"center"}}>
+				Guest Visit
+			</span>
+			<div style={{marginTop:"3rem"}}>
+				<form>
+					<div style={{display:"flex",flexDirection:"column",rowGap:"1rem"}}>
+
+						<div style={{display:"flex",flexDirection:"column",width:"100%",}}>
+							<span>Title</span>
+							<input type="text" style={textFeildCSS} onChange={(e)=>setData({...data,"title":e.target.value})} />
+						</div>
+
+						<div style={{display:"flex",flexDirection:"column",width:"100%",marginTop:"1rem"}}>
+							<span>Description</span>
+							<input type="text" style={textFeildCSS} onChange={(e)=>setData({...data,"description":e.target.value})} />
+						</div>
+
+						<div style={{display:"flex",flexDirection:"column",width:"50%"}}>
+							<span>Date</span>
+							<input type="date" style={textFeildCSS} onChange={(e)=>setData({...data,"visitDate":e.target.value})} />
+						</div>
+
+					</div>
+
+					<Button style={{marginBottom:"5rem"}} submit={onSubmit} buttonText={"Save"}/>
+					
+				</form>
+			</div>
+		</div>
+
+	)
+}
+
+export function GuestVisitUpdateUniversityModal(props){
+	const style = {
+		height: "500px",
+		width: "741px",
+		borderRadius: "10px",
+		display:"flex",justifyContent:"start",
+		alignItems:"center",
+		flexDirection:"column",
+	}
+
+	const dispatch = useDispatch();
+
+	const [data,setData] = useState(
+		{
+			"title":"n/a",
+			"description":"n/a",
+			"visitDate":"n/a",
+			"visitPeriod":"n/a",
+			"visitors":[],
+			"host":"n/a",
+			"hostEmail":"n/a",
+			"hostPhone":"n/a",
+			"university":"n/a",	
+		}
+	)
+
+	useEffect(()=>{
+		var name = localStorage.getItem('name')
+		if(name){
+			setData({...data,host:name})
+		}
+		var hostEmail = localStorage.getItem('email')
+		if(hostEmail){
+			setData({...data,hostEmail})
+		}
+		var hostPhone = localStorage.getItem('phone')
+		if(hostPhone){
+			setData({...data,hostPhone})
+		}
+		const id = getUniId(window.location.href)
+		if(id){
+			setData({...data,university:id})
+		}
+	},[])
+
+	function onSubmit(e){
+		e.preventDefault();
+		const id = getUniId(window.location.href)
+		console.log(data)
+		// dispatch(universityGuestVisitAddReducer({data:data,id}))
 	}
 
 	const textFeildCSS = {width:"607px",height:"40px",border:"none",borderBottom:"1px solid black",fontSize:"1.1rem",fontWeight:"720"}

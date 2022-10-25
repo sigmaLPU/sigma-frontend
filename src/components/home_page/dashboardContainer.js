@@ -147,7 +147,7 @@ export default function Dashboard(props) {
       img: semesterExchangeImg,
     },
     { name: 'Template Section', url: '/templates', img: templateSectionImg },
-    { name: 'Training Moduls', url: '/training', img: trainingModalImg },
+    { name: 'Training Modules', url: '/training', img: trainingModalImg },
   ];
 
   return (

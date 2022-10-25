@@ -15,7 +15,7 @@ import {
 	MouContractAddUniversityModal,RecentUpdateUpdateUniversityModal,
 	MouContractUpdateUniversityModal,ApplicationProcessAddUniversityModal,
 	DocumentAddUniversityModal,FinancialAgreementAddUniversityModal,
-	GuestVisitCard,
+	GuestVisitCard,GuestVisitUpdateUniversityModal,
 
 	LoadingPage,
 	LoadingComponent,
@@ -367,7 +367,7 @@ function GuestVisit(props){
 						<ul>
 							{	
 								guestVisitData?.data?.data &&	guestVisitData?.data?.data.map(item=>(
-									<li><GuestVisitCard meetingUpdateUniversityModal={<MeetingUpdateUniversityModal data={item}/>} data={item}/></li>
+									<li><GuestVisitCard guestVisitUpdateUniversityModal={<GuestVisitUpdateUniversityModal data={item}/>} data={item}/></li>
 								))
 							}
 						</ul>

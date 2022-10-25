@@ -20,7 +20,8 @@ import {
 	MeetingUpdateUniversityModal,ContactDetailsUpdateModal,
 	MouContractAddUniversityModal,RecentUpdateUpdateUniversityModal,
 	MouContractUpdateUniversityModal,ApplicationProcessAddUniversityModal,
-	DocumentAddUniversityModal,FinancialAgreementAddUniversityModal,
+	DocumentAddUniversityModal,FinancialAgreementAddUniversityModal,GuestVisitUpdateUniversityModal,
+
 } from './modals/universityProfileModals'
 
 import {MeetingMeetingsMasterModal} from './modals/meetingMasterModals'
@@ -49,7 +50,8 @@ export {
 	MouContractAddUniversityModal,RecentUpdateUpdateUniversityModal,
 	MouContractUpdateUniversityModal,ApplicationProcessAddUniversityModal,
 	DocumentAddUniversityModal,FinancialAgreementAddUniversityModal,
-
+	GuestVisitUpdateUniversityModal,
+	
 	AddNewUniversity,
 	MeetingMeetingsMasterModal,
 	// loading component
