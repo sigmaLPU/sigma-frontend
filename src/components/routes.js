@@ -23,6 +23,8 @@ import {TrainingDashboard,CreditTransferTraining,} from './training_module/route
 import StudentProfile from './student_profile/StudentProfile'
 // search page
 import Search from './search/Search'
+// guest visit master
+import {GuestVisitMaster,GuestVisitProfile} from './guest_visit/routes'
 
 /*---COMPONENT---*/
 // navbar side bar
@@ -42,7 +44,7 @@ import {ModalPopUp,BasicDetailsModal,ContactDetailsModal,MeetingUniversityModal,
 	MouContractAddUniversityModal,RecentUpdateUpdateUniversityModal,
 	MouContractUpdateUniversityModal,AddNewUniversity,ApplicationProcessAddUniversityModal,
 	DocumentAddUniversityModal,MeetingMeetingsMasterModal,FinancialAgreementAddUniversityModal,
-	GuestVisitUpdateUniversityModal,
+	GuestVisitUpdateUniversityModal,GuestVisitMasterModal,
 } from './common_components/routes'
 
 // meeting card objects
@@ -65,7 +67,7 @@ export {
 	ResetPassword,ResetRequest,
 	MeetingProfile,MeetingMaster,
 	StudentProfile,
-	Search,
+	Search,GuestVisitMaster,GuestVisitProfile,
 		
 	// componets
 	NavSideBarLayout,
@@ -82,7 +84,7 @@ export {
 	MouContractAddUniversityModal,RecentUpdateUpdateUniversityModal,
 	MouContractUpdateUniversityModal,AddNewUniversity,ApplicationProcessAddUniversityModal,
 	DocumentAddUniversityModal,MeetingMeetingsMasterModal,FinancialAgreementAddUniversityModal,
-	GuestVisitUpdateUniversityModal,
+	GuestVisitUpdateUniversityModal,GuestVisitMasterModal,
 	
 	LoadingComponent,
 

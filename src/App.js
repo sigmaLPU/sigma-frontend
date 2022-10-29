@@ -17,6 +17,7 @@ import {ResetPassword,ResetRequest} from './components/routes' // reset password
 import ProtectedRoute, {ProtectedRouteResetPassword} from './ProtectedRoute'
 import {TrainingDashboard,CreditTransferTraining} from './components/routes'
 import {Search} from './components/routes'
+import {GuestVisitMaster,GuestVisitProfile} from './components/routes'
 
 // redux
 import { authenticateTokenReducer, authUserReducer } from './redux/users/authenticateToken'
@@ -37,6 +38,10 @@ function App() {
           {/*Protected route*/}
           <Route exact path="/dashboard" element={<ProtectedRoute><HomePage/></ProtectedRoute>}/>
           <Route exact path="/mouMaster" element={<ProtectedRoute><MouMaster/></ProtectedRoute>}/>
+          
+          <Route exact path="/guest_visit" element={<ProtectedRoute><GuestVisitMaster/></ProtectedRoute>}/>
+          <Route exact path="/guest_visit/:id" element={<ProtectedRoute><GuestVisitProfile/></ProtectedRoute>}/>
+          
           <Route path="/university/:id" element={<ProtectedRoute><UniversityProfile/></ProtectedRoute>}/>
           <Route path="/student/:id" element={<ProtectedRoute><StudentProfile/></ProtectedRoute>}/>
           <Route path="/meeting/:id" element={<ProtectedRoute><MeetingProfile/></ProtectedRoute>}/>

@@ -10,3 +10,6 @@ export const GET_SINGLE_UNIVERSITY_MEETING_URL = `${BASE_URL}/${API_VERSION}/uni
 export const GET_SINGLE_UNIVERSITY_PROGRAM_URL = `${BASE_URL}/${API_VERSION}/university/program`
 export const FORGET_USER_PASSWORD = `${BASE_URL}/${API_VERSION}/user/forgotUserPassword`
 export const RESET_PASSWORD = `${BASE_URL}/${API_VERSION}/user/resetUserPassword`
+
+
+// https://sigmalpu.herokuapp.com/api/v2

@@ -26,6 +26,8 @@ import {
 
 import {MeetingMeetingsMasterModal} from './modals/meetingMasterModals'
 
+import {GuestVisitMasterModal} from './modals/guestVisitModals'
+
 import {AddNewUniversity} from './modals/mouMasterModal'
 
 // loading component
@@ -51,7 +53,8 @@ export {
 	MouContractUpdateUniversityModal,ApplicationProcessAddUniversityModal,
 	DocumentAddUniversityModal,FinancialAgreementAddUniversityModal,
 	GuestVisitUpdateUniversityModal,
-	
+	GuestVisitMasterModal,
+		
 	AddNewUniversity,
 	MeetingMeetingsMasterModal,
 	// loading component

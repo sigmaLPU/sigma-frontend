@@ -26,6 +26,12 @@ import {
 	getAllUniversityMeetingsReducer,universityMeetingsAddReducer,setRedirectFunctionMeetings,updateViewDetailsMeetings,
 } from './meetingMaster/routes'
 
+
+import {
+	basicGuestVisitSlice,getAllGuestVisitReducer,guestVisitAddReducer,
+	setRedirectFunctionGuestVisit,updateViewDetailsGuestVisit
+} from './guestVisit/routes'
+
 import {searchSlice,searchReducer} from './search/routes'
 
 export default function s(){ return "Nothing default"}
@@ -42,7 +48,8 @@ export {
 	universityDocumentRequiredSlice,universityDocumentRequiredReducer,universityDocumentRequiredAddReducer,
 	universityFinancialAgreementReducer,universityFinancialAgreementAddReducer,universityFinancialAgreementSlice,
 	universityGuestVisitSlice,universityGuestVisitReducer,universityGuestVisitAddReducer,
-	
+	basicGuestVisitSlice,getAllGuestVisitReducer,guestVisitAddReducer,setRedirectFunctionGuestVisit,updateViewDetailsGuestVisit,
+
 	// university list
 	getAllUniversitySlice,getAllUniversityReducer,setRedirectFunction,updateViewDetails,universityAddReducer,
 	tagsMouMasterSlice,activateYourTagChip,deleteYourTagChip,addYourTagChip,
