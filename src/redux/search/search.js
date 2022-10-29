@@ -3,7 +3,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 const initialState = {
-  data:[]
+  data:[],
+  loading:false,
 }
 
 const searchReducer = createAsyncThunk('search/searchReducer',
@@ -154,7 +155,7 @@ export const searchSlice = createSlice({
 
       function compare(a,b){
         if(a?.length>b.length){
-          return 0
+          return -1
         }
         return 1
       }
@@ -179,21 +180,24 @@ export const searchSlice = createSlice({
         let dataIndivisual = data[key]
         let resp = functions[key](dataIndivisual)
         
-        let len = resp?.response?.rows?.length || resp?.response?.data?.length
+        let len = resp?.response?.rows?.length || resp?.response?.data?.length || 0
         ans.push({name:key,length:len,...resp})
       }
 
       ans.sort(compare)
 
       state.data = ans
+      state.loading = false
     });
 
     builder.addCase(searchReducer.pending, (state, { payload }) => {
       console.log("search state pending")
+      state.loading = true
     });
     
     builder.addCase(searchReducer.rejected, (state, { payload }) => {
       console.log("search state fail")
+      state.loading = false
     });
   },
 })
