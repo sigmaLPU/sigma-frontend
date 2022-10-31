@@ -29,7 +29,8 @@ import {
 
 import {
 	basicGuestVisitSlice,getAllGuestVisitReducer,guestVisitAddReducer,
-	setRedirectFunctionGuestVisit,updateViewDetailsGuestVisit
+	setRedirectFunctionGuestVisit,updateViewDetailsGuestVisit,
+	singleGuestVisitSlice,getGuestVisitReducer,
 } from './guestVisit/routes'
 
 import {searchSlice,searchReducer} from './search/routes'
@@ -49,7 +50,8 @@ export {
 	universityFinancialAgreementReducer,universityFinancialAgreementAddReducer,universityFinancialAgreementSlice,
 	universityGuestVisitSlice,universityGuestVisitReducer,universityGuestVisitAddReducer,
 	basicGuestVisitSlice,getAllGuestVisitReducer,guestVisitAddReducer,setRedirectFunctionGuestVisit,updateViewDetailsGuestVisit,
-
+	singleGuestVisitSlice,getGuestVisitReducer,
+	
 	// university list
 	getAllUniversitySlice,getAllUniversityReducer,setRedirectFunction,updateViewDetails,universityAddReducer,
 	tagsMouMasterSlice,activateYourTagChip,deleteYourTagChip,addYourTagChip,

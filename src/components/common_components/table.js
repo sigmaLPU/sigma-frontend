@@ -81,17 +81,17 @@ export default function Table(props){
 	return(
 		<>
 		<div style={{width:"100%",display:"flex",justifyContent:"space-between"}}>
-			<span>Showing 12 out of 1022</span>
-			<div>Pagination</div>
+			{/*<span>Showing 12 out of 1022</span>
+			<div>Pagination</div>*/}
 		</div>
 		<div style={style}>
 			<div style={headingCSS}>
-				<div style={{width:"90%",display:"flex",justifyContent:"center",}}>
-					<div style={headingSpanCSS}>
+				<div style={{width:"100%",display:"flex",justifyContent:"center",}}>
+					{!props?.noHeading && <div style={headingSpanCSS}>
 						<span style={{width:"100%",textAlign:"center"}}>{props?.heading}</span>
-					</div>
+					</div>}
 				</div>
-				<div style={{width:"auto",display:"flex",justifyContent:"flex-end"}}>
+				<div style={{width:"auto",marginRight:"0.5rem",display:"flex",justifyContent:"center",alignItems:"center"}}>
 					<ModalPopUp>
 						{props?.popup ? props?.popup : "Not Available"}
 					</ModalPopUp>	

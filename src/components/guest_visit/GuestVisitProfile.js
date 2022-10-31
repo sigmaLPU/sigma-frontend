@@ -1,9 +1,15 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import {NavSideBarLayout} from '../routes'
 import {Card ,Chip, Table} from '../routes'
-
+import {useDispatch} from 'react-redux'
 
 export default function GuestVisitProfile(props){
+
+	const dispatch = useDispatch()
+
+
+	useEffect()
+
 	return (
 		<div>
 			<NavSideBarLayout  childCSS={{marginTop:"4rem"}}>

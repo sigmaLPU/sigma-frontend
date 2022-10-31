@@ -104,13 +104,14 @@ function SearchResults(props){
 	}
 
 	return (
-		<div style={{width:"97%",boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.25)"}}>
+		<div style={{width:"97%",boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.25)"}} onClick={(e)=>setActive(!active)}>
 			<div style={{display:"flex",justifyContent:"flex-start",padding:"0.5rem 1rem 0.5rem 1rem",flexDirection:"column"}}>
 				<div style={{width:"100%",display:"flex",justifyContent:"space-between"}}>
 					<span style={{fontSize:"1.3rem"}}>{props?.sNo}. {props?.data?.name} ({props?.data?.response?.rows?.length})</span>
 					<img src={downArrowImg} onClick={(e)=>setActive(!active)} style={{cursor:"pointer",width:"2rem",height:"2rem",border:"1px solid black",padding:"0.5rem",borderRadius:"50%"}}/>
 				</div>
 				{ active && (props?.data.length>0 ? <Table 
+							noHeading={true}
 							data={props?.data?.response?.rows}
 							rows = {props?.data?.response?.rows}
 							column = {props?.data?.response?.column}

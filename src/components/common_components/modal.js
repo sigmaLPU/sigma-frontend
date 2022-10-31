@@ -33,6 +33,8 @@ export default function ModalPopUp(props){
 		setIsOpen(false);
 	}
 
+	console.log("activeComponent ",props?.activeComponent)
+
 	return (
 		<div>
 			{

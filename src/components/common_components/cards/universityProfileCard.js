@@ -4,7 +4,7 @@ import {ModalPopUp} from '../../routes'
 import IconButton from '@mui/material/IconButton'; // Parent component to fit icon inside it
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
-
+import {useNavigate} from 'react-router-dom'
 
 export function ObjectCard(props) {
 	var keys = []
@@ -167,6 +167,8 @@ export function RecentUpdateCard(props){
 }
 
 export function MeetingCard(props){
+	const navigate = useNavigate()
+
 	return (
 		<div style={{marginBottom:"1rem",width:"100%"}}>
 			<div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
@@ -174,9 +176,10 @@ export function MeetingCard(props){
 			</div>
 			<div style={{paddingTop:"4px",display:"flex",justifyContent:"space-between"}}>
 				<span style={{color:"red",fontWeight:"700"}}>
-					<ModalPopUp activeComponent={<span>Read more...</span>}>
+					<span style={{cursor:"pointer"}} onClick={()=>navigate(`/meeting/${props?.data["id"]}`)}>Read more...</span>
+					{/*<ModalPopUp activeComponent={<span>Read more...</span>}>
 						{props?.meetingUpdateUniversityModal ? props?.meetingUpdateUniversityModal : "Not Available"}
-					</ModalPopUp>
+					</ModalPopUp>*/}
 				</span>
 				<span>{props?.data["meetingTime"]}</span>
 			</div>

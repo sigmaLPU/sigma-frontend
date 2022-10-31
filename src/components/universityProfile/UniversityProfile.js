@@ -229,7 +229,7 @@ function FacultyMobiliy(props){
 	return (
 		<>
 			{/* Student/ faculty mobility */}
-			<Card  popup={props?.popup}  style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Student/ faculty mobility">
+			<Card popup={props?.popup} activeComponent={true} style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Student/ faculty mobility">
 				
 			</Card>
 		</>
@@ -361,7 +361,7 @@ function GuestVisit(props){
 	return (
 		<>
 			{/* Guest Visit */}
-			<Card popup={props?.popup}  style={{display:"flex",alignContent:"start",flexWrap:"wrap",alignItems:"stretch",margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"641px"}} heading="Guest Visit">
+			<Card popup={props?.popup}  style={{display:"flex",alignContent:"start",flexWrap:"wrap",alignItems:"stretch",margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"641px",maxHeight:"100%"}} heading="Guest Visit">
 				{
 					guestVisitData?.loading ? <LoadingComponent/> :
 						<ul>
@@ -404,7 +404,7 @@ function DocumentRequired(props){
 	return (
 		<>
 			{/* Application process*/}
-			<Card  popup={props?.popup} style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"352px"}} heading="Document Required">
+			<Card  popup={props?.popup} style={{margin:"0rem 1rem 0rem 0rem",border:"1px solid black",width:"441px",height:"100%"}} heading="Document Required">
 				<ul>
 					{
 						data?.map((item)=>(

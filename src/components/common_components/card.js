@@ -48,7 +48,7 @@ export default function Card(props){
 						</div>
 					</div>
 					<div style={{margin:"11px 8px 0px 0px"}}>
-						<ModalPopUp>
+						<ModalPopUp activeComponent={props?.activeComponent}>
 							{props?.popup ? props?.popup : "Not Available"}
 						</ModalPopUp>		
 					</div>
