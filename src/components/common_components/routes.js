@@ -30,6 +30,11 @@ import {GuestVisitMasterModal} from './modals/guestVisitModals'
 
 import {AddNewUniversity} from './modals/mouMasterModal'
 
+import {
+	BasicDetailsMeetingModal,OutcomeMeetingModal,ActionPlanMeetingModal,
+	MoMNotesMeetingModal,AttachmentMeetingModal,ParticipantsMeetingModal,
+} from './modals/meetingProfileModal'
+
 // loading component
 import {LoadingComponent} from './loadingComponent'
 
@@ -54,7 +59,8 @@ export {
 	DocumentAddUniversityModal,FinancialAgreementAddUniversityModal,
 	GuestVisitUpdateUniversityModal,
 	GuestVisitMasterModal,
-		
+	BasicDetailsMeetingModal,OutcomeMeetingModal,ActionPlanMeetingModal,
+	MoMNotesMeetingModal,AttachmentMeetingModal,ParticipantsMeetingModal,		
 	AddNewUniversity,
 	MeetingMeetingsMasterModal,
 	// loading component

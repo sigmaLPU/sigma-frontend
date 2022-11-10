@@ -20,6 +20,7 @@ import {
 	universityGuestVisitSlice,
   searchSlice,
   basicGuestVisitSlice,
+  getMeetingsSlice,
 
   forgetPasswordSlice,
 } from './routes';
@@ -46,6 +47,6 @@ export const store = configureStore({
     universityGuestVisitSlice:universityGuestVisitSlice,
     searchSlice:searchSlice,
     basicGuestVisitSlice:basicGuestVisitSlice,
-    
+    getMeetingsSlice:getMeetingsSlice,
   },
 });

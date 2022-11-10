@@ -8,6 +8,8 @@ import universityApplicationProcessSlice,{universityApplicationProcessReducer,un
 import universityDocumentRequiredSlice,{universityDocumentRequiredReducer,universityDocumentRequiredAddReducer} from './universityDocumentRequired'
 import universityFinancialAgreementSlice,{universityFinancialAgreementReducer,universityFinancialAgreementAddReducer,} from './universityFinancialAgreement'
 import universityGuestVisitSlice,{universityGuestVisitReducer,universityGuestVisitAddReducer} from './universityGuestVisit'
+import getAllUniversitySlice, {getAllUniversityReducer,setRedirectFunction,updateViewDetails,universityAddReducer} from './getAllUniversity'
+import tagsMouMasterSlice, {activateYourTagChip,deleteYourTagChip,addYourTagChip} from './tags'
 
 export {
 	universityBasicDetailsSlice,universityBasicDetailsReducer,universityBasicDetailsUpdateReducer,
@@ -20,4 +22,8 @@ export {
 	universityDocumentRequiredSlice,universityDocumentRequiredReducer,universityDocumentRequiredAddReducer,
 	universityFinancialAgreementReducer,universityFinancialAgreementAddReducer,universityFinancialAgreementSlice,
 	universityGuestVisitSlice,universityGuestVisitReducer,universityGuestVisitAddReducer,
+	getAllUniversitySlice,getAllUniversityReducer,setRedirectFunction,updateViewDetails,universityAddReducer,
+
+	tagsMouMasterSlice,activateYourTagChip,deleteYourTagChip,addYourTagChip,
+
 }

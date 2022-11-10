@@ -7,14 +7,12 @@ import LoginPage from './default_pages/LoginPage'
 import ResetRequest,{ResetPassword} from './default_pages/ResetPassword'
 // 404 error
 import Error404 from './default_pages/errors/Error404'
-// mou master
-import MouMaster from './mou_master/MouMaster'
 // meeting master
 import MeetingMaster from './meeting_master/MeetingMaster'
 // loading page
 import LoadingPage from './default_pages/LoadingPage'
-// university profile 
-import UniversityProfile from './universityProfile/UniversityProfile'
+// university
+import {UniversityProfile,UniversityMaster} from './universityProfile/routes'
 // meeting profile
 import MeetingProfile from './meetings/MeetingProfile'
 // Training modules
@@ -45,25 +43,21 @@ import {ModalPopUp,BasicDetailsModal,ContactDetailsModal,MeetingUniversityModal,
 	MouContractUpdateUniversityModal,AddNewUniversity,ApplicationProcessAddUniversityModal,
 	DocumentAddUniversityModal,MeetingMeetingsMasterModal,FinancialAgreementAddUniversityModal,
 	GuestVisitUpdateUniversityModal,GuestVisitMasterModal,
+	BasicDetailsMeetingModal,OutcomeMeetingModal,ActionPlanMeetingModal,
+	MoMNotesMeetingModal,AttachmentMeetingModal,ParticipantsMeetingModal,
 } from './common_components/routes'
 
 // meeting card objects
 import {BasicDetailsMeetingCard,AttachementCard} from './meetings/meetingCards'
-// modal popup
-import {
-		BasicDetailsMeetingModal,OutcomeMeetingModal,
-		ActionPlanMeetingModal,MoMNotesMeetingModal,
-		AttachmentMeetingModal,
-} from './meetings/meetingCards'
+// modal
 
 export {
 	//pages
 	HomePage,
 	LoginPage,
 	Error404,
-	MouMaster,
 	LoadingPage,
-	UniversityProfile,
+	UniversityProfile,UniversityMaster,
 	ResetPassword,ResetRequest,
 	MeetingProfile,MeetingMaster,
 	StudentProfile,
@@ -90,7 +84,7 @@ export {
 
 	BasicDetailsMeetingModal,OutcomeMeetingModal,
 	ActionPlanMeetingModal,MoMNotesMeetingModal,
-	AttachmentMeetingModal,
+	AttachmentMeetingModal,ParticipantsMeetingModal,
 
 
 	TrainingDashboard,CreditTransferTraining,

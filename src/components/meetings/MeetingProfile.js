@@ -5,14 +5,33 @@ import React, {useEffect, useState} from 'react';
 import {NavSideBarLayout} from '../routes'
 import {Card ,Chip, Table} from '../routes'
 import {BasicDetailsMeetingCard,AttachementCard} from '../routes'
-import {BasicDetailsMeetingModal,OutcomeMeetingModal,ActionPlanMeetingModal,MoMNotesMeetingModal,AttachmentMeetingModal,} from '../routes'
+import {BasicDetailsMeetingModal,OutcomeMeetingModal,ActionPlanMeetingModal,
+	MoMNotesMeetingModal,AttachmentMeetingModal,ParticipantsMeetingModal,
+} from '../routes'
 
 // other imports
 import video_icon from './resource/video_icon.png'
 import profile_1 from './resource/profile_1.jpg'
 
+import {useNavigate,useDispatch,useSelector} from 'react-redux'
+import {getMeetingsSlice,getMeetingsReducer} from '../../redux/routes' 
+
+function getUniId(url){
+	var id = ""
+	for(var i=url.length-1;i>=0;i--){
+		if(url[i]==='/') return id
+		id = url[i] + id
+	}
+	return id
+}
+
+
 // function defination
 export default function MeetingProfile(props){
+
+	const dispatch = useDispatch()
+	const [id,setId] = useState("")
+	const rawData = useSelector((state)=>state.getMeetingsSlice.data)
 
 	const BasicDetailsheadingComponetCSS = {
 		borderRadius:"20px",
@@ -59,6 +78,11 @@ export default function MeetingProfile(props){
 		{name:"Temp.pdf",view:"",download:""},
 	])
 
+	useEffect(()=>{
+		const id = getUniId(window.location.href)
+		// dispatch(getMeetingsReducer({id}))
+		setId(id)
+	},[])
 
 	return (
 		<div>
@@ -68,12 +92,12 @@ export default function MeetingProfile(props){
 					<div style={{flexGrow:"1",display:"flex",flexDirection:"column",rowGap:"1rem"}}>
 						<Card 
 							popup = {<BasicDetailsMeetingModal/>}
-							heading={"Meeting Regarding Project Sigma"}
+							heading={rawData?.data?.title}
 							headingComponetCSS = {BasicDetailsheadingComponetCSS}
 							style={{border:"1px solid #F07F1A"}}
 							cardDataCSS = {{maxHeight:"10rem"}}
 						>
-							<BasicDetailsMeetingCard/>
+							<BasicDetailsMeetingCard data={rawData?.data} id={id}/>
 						</Card>
 						<div style={{display:"flex",columnGap:"1rem"}}>
 							<Card popup = {<OutcomeMeetingModal/>} heading={"OutCome"} headingComponetCSS={{color:"black"}} style={{border:"1px solid #F07F1A"}} cardDataCSS={{maxHeight:"15rem"}}>
@@ -133,8 +157,26 @@ export default function MeetingProfile(props){
 
 
 
-						<div style={{border:"1px solid #F07F1A",borderRadius:"8px",display:"flex",maxHeight:"70vh",flexDirection:"column",alignItems:"flex-start",padding:"1rem"}}>
-							<div>Participants</div>
+						<Card popup = {<ParticipantsMeetingModal/>} heading={"Participants"} headingComponetCSS={{color:"black"}} style={{border:"1px solid #F07F1A"}} >
+							{
+								rawData?.data?.participants.map((item,key)=>(
+									<div style={{display:"flex",flexDirection:"column",borderBottom:"1px solid black",flexWrap:"wrap"}}>
+										<div>{item?.name}</div>
+										<div>{item?.email}</div>
+										<div>{item?.designation}</div>
+									</div>
+								))
+							}
+						</Card>
+					</div>
+				</div>
+			</NavSideBarLayout>
+		</div>
+	)
+}
+
+/*
+<div>Participants</div>
 							<div style={{display:"flex",overflow:"scroll",paddingRight:"1.5rem",flexDirection:"column",rowGap:"0.5rem",marginTop:"1rem",width:"100%"}}>
 								{
 									participants.map((item)=>(
@@ -151,13 +193,4 @@ export default function MeetingProfile(props){
 										</div>
 									))
 								}
-							</div>
-						</div>
-
-
-					</div>
-				</div>
-			</NavSideBarLayout>
-		</div>
-	)
-}
+*/

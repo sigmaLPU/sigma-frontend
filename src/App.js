@@ -8,7 +8,7 @@ import {useEffect} from 'react'
 import {HomePage} from './components/routes' // default home page
 import {LoginPage} from './components/routes' // default home page
 import {Error404} from './components/routes' // default home page
-import {MouMaster} from './components/routes' // mou master
+import {UniversityMaster} from './components/routes' // mou master
 import {UniversityProfile} from './components/routes' // UniversityProfile
 import {StudentProfile} from './components/routes' // StudentProfile
 import {MeetingProfile} from './components/routes' // MeetingProfile
@@ -37,7 +37,7 @@ function App() {
 
           {/*Protected route*/}
           <Route exact path="/dashboard" element={<ProtectedRoute><HomePage/></ProtectedRoute>}/>
-          <Route exact path="/mouMaster" element={<ProtectedRoute><MouMaster/></ProtectedRoute>}/>
+          <Route exact path="/mouMaster" element={<ProtectedRoute><UniversityMaster/></ProtectedRoute>}/>
           
           <Route exact path="/guest_visit" element={<ProtectedRoute><GuestVisitMaster/></ProtectedRoute>}/>
           <Route exact path="/guest_visit/:id" element={<ProtectedRoute><GuestVisitProfile/></ProtectedRoute>}/>

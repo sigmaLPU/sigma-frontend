@@ -9,13 +9,10 @@ import {
 	universityDocumentRequiredSlice,universityDocumentRequiredReducer,universityDocumentRequiredAddReducer,
 	universityFinancialAgreementReducer,universityFinancialAgreementAddReducer,universityFinancialAgreementSlice,
 	universityGuestVisitSlice,universityGuestVisitReducer,universityGuestVisitAddReducer,
-} from './universityProfile/routes'
-
-import {
 	getAllUniversitySlice,getAllUniversityReducer,setRedirectFunction,updateViewDetails,universityAddReducer,
 
 	tagsMouMasterSlice,activateYourTagChip,deleteYourTagChip,addYourTagChip,
-} from './mouMaster/routes'
+} from './university/routes'
 
 import {
 	forgetPasswordSlice,forgetPasswordReducer,resetPasswordReducer,
@@ -24,7 +21,8 @@ import {
 import {
 	getAllMeetingsSlice,	
 	getAllUniversityMeetingsReducer,universityMeetingsAddReducer,setRedirectFunctionMeetings,updateViewDetailsMeetings,
-} from './meetingMaster/routes'
+	getMeetingsSlice,getMeetingsReducer,meetingBasicDetailsUpdateReducer,
+} from './meeting/routes'
 
 
 import {
@@ -50,7 +48,7 @@ export {
 	universityFinancialAgreementReducer,universityFinancialAgreementAddReducer,universityFinancialAgreementSlice,
 	universityGuestVisitSlice,universityGuestVisitReducer,universityGuestVisitAddReducer,
 	basicGuestVisitSlice,getAllGuestVisitReducer,guestVisitAddReducer,setRedirectFunctionGuestVisit,updateViewDetailsGuestVisit,
-	singleGuestVisitSlice,getGuestVisitReducer,
+	singleGuestVisitSlice,getGuestVisitReducer,getMeetingsSlice,getMeetingsReducer,meetingBasicDetailsUpdateReducer,
 	
 	// university list
 	getAllUniversitySlice,getAllUniversityReducer,setRedirectFunction,updateViewDetails,universityAddReducer,

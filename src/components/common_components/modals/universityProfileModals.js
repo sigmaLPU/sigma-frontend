@@ -187,7 +187,7 @@ export function ContactDetailsModal(props){
 						<input onChange={(e)=>setData({...data,name:e.target.value})} style={textFeildCSS} type="text" placeholder="Name"/>
 						<input onChange={(e)=>setData({...data,email:e.target.value})} style={textFeildCSS} type="email" placeholder="Email"/>
 						<input onChange={(e)=>setData({...data,phone:e.target.value})} style={textFeildCSS} type="mobile" placeholder="Phone no."/>
-						<input onChange={(e)=>setData({...data,description:e.target.value})} style={textFeildCSS} type="text" placeholder="Description"/>
+						<input onChange={(e)=>setData({...data,description:e.target.value})} style={textFeildCSS} type="text" placeholder="Designation"/>
 					</div>
 					<Button submit={onSubmit} buttonText={"Save"}/>
 					
@@ -256,7 +256,7 @@ export function ContactDetailsUpdateModal(props){
 						<input value={data?.name} onChange={(e)=>setData({...data,name:e.target.value})} style={textFeildCSS} type="text" placeholder="Name"/>
 						<input value={data?.email} onChange={(e)=>setData({...data,email:e.target.value})} style={textFeildCSS} type="email" placeholder="Email"/>
 						<input value={data?.phone} onChange={(e)=>setData({...data,phone:e.target.value})} style={textFeildCSS} type="mobile" placeholder="Phone no."/>
-						<input value={data?.description} onChange={(e)=>setData({...data,description:e.target.value})} style={textFeildCSS} type="text" placeholder="Description"/>
+						<input value={data?.description} onChange={(e)=>setData({...data,description:e.target.value})} style={textFeildCSS} type="text" placeholder="Designation"/>
 					</div>
 					<Button submit={onSubmit} buttonText={"Save"}/>
 					
