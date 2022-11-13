@@ -159,7 +159,7 @@ export default function MeetingProfile(props){
 
 						<Card popup = {<ParticipantsMeetingModal/>} heading={"Participants"} headingComponetCSS={{color:"black"}} style={{border:"1px solid #F07F1A"}} >
 							{
-								rawData?.data?.participants.map((item,key)=>(
+								rawData?.data?.participants?.map((item,key)=>(
 									<div style={{display:"flex",flexDirection:"column",borderBottom:"1px solid black",flexWrap:"wrap"}}>
 										<div>{item?.name}</div>
 										<div>{item?.email}</div>
