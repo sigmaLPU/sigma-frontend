@@ -90,8 +90,7 @@ export const universityApplicationProcessSlice = createSlice({
     builder.addCase(universityApplicationProcessAddReducer.fulfilled, (state, { payload }) => {
       state.data.message = "Fulfilled"
       state.data.loading = false
-    
-      var obj = payload?.data?.universityUpdate
+      var obj = payload?.data?.universityApplication
 
       var temp = {}
       temp["title"] = obj?.title
