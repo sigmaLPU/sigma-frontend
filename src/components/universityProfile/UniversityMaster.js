@@ -23,7 +23,6 @@ export default function MouMaster(props){
 	const [data,setData] = useState(rawData)
 
 	useEffect(()=>{
-		console.log("pre mou master ---> ",rawData)
 		setData(rawData)
 	},[rawData])
 
@@ -119,7 +118,6 @@ function YourTags(props){
 	const rawData = useSelector((state)=>state.tagsMouMasterSlice.data)
 
 	useEffect(()=>{
-		console.log("Tags data ---> ",rawData)
 	},[])
 
 	const ChipCSS = {

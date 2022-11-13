@@ -36,16 +36,13 @@ export function BasicDetailsMeetingModal(props){
 	useEffect(()=>{
 		var d = details?.data
 		if(d){
-			console.log("data present --> ",d)
 
 			setData({...data,...d})
-			console.log(data)
 		}
 	},[])
 
 	function submit(e){
 		e.preventDefault()
-		console.log("submit ---> ",data)
 		const id = getUniId(window.location.href)
 		dispatch(meetingBasicDetailsUpdateReducer({id,data:data}))
 	}
@@ -154,10 +151,8 @@ export function ParticipantsMeetingModal(props){
 	useEffect(()=>{
 		var d = details?.data
 		if(d){
-			console.log("data present from ParticipantsMeetingModal --> ",d)
 
 			setData({...data,...d})
-			console.log(data)
 		}
 	},[])
 
@@ -167,7 +162,6 @@ export function ParticipantsMeetingModal(props){
 		let temp = []
 		let newParticipants = participants
 
-		console.log("adding",participants)
 		
 		for(var i=0;i<p.length;i++){
 			temp.push(p[i])
@@ -216,7 +210,6 @@ export function ParticipantsMeetingModal(props){
 		let temp = []
 		let newParticipants = participants
 
-		console.log("adding",participants)
 		
 		for(var i=0;i<p.length;i++){
 			if(i===editId){

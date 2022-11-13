@@ -44,7 +44,6 @@ export default function Search(props){
 	}
 
 	if(data.length===0){
-		console.log("result is empty")
 		return (
 			<NavSideBarLayout childCSS={{marginTop:"4rem",width:"100%",height:"100%"}}>
 				<div style={{marginBottom:"2rem",width:"100vw",height:"80vh",display:"flex",justifyContent:"center",alignItems:"center"}}>
@@ -129,7 +128,6 @@ function SearchFeild(props){
 
 	function submit(e){
 		e.preventDefault()
-		console.log("Search ",search)
 		if(props?.searchFunction){
 			props?.searchFunction(e,search)
 		}

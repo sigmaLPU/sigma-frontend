@@ -1,9 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-function redirectTo(url){
-  window.loaction.href = url
-}
+
 
 const initialState = {
   data:{
@@ -65,7 +63,6 @@ export const getAllMeetingsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getAllUniversityMeetingsReducer.fulfilled, (state, { payload }) => {
       var data = payload?.data?.meetings
-      console.log("meetings data ------> ",data)
       if(!data){
         state.data.message="Something went wrong"
       }else if(data.length===0){

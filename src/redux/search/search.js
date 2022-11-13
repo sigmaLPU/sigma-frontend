@@ -191,12 +191,10 @@ export const searchSlice = createSlice({
     });
 
     builder.addCase(searchReducer.pending, (state, { payload }) => {
-      console.log("search state pending")
       state.loading = true
     });
     
     builder.addCase(searchReducer.rejected, (state, { payload }) => {
-      console.log("search state fail")
       state.loading = false
     });
   },

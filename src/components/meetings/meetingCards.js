@@ -41,7 +41,6 @@ export function BasicDetailsMeetingCard(props){
 	}
 
 	useEffect(()=>{
-		console.log("propos --> ",rawData?.data)
 		setDate(rawData?.data?.meetingTime || "Not Available")
 		setHeading(rawData?.data?.agenda || "Not Available")
 		setStartTime(rawData?.data?.startTime || "Not Available")

@@ -8,7 +8,7 @@ import {
 	Table,ObjectCard,
 	FileCard,MeetingCard,
 	ContactCard,RecentUpdateCard,
-	ModalPopUp,ContactDetailsModal,
+	ContactDetailsModal,
 	MeetingUniversityModal,GuestVisitUniversityModal,
 	ProgramOfColaborationUniversityModal,RecentUpdateUniversityModal,
 	MeetingUpdateUniversityModal,ContactDetailsUpdateModal,
@@ -17,7 +17,6 @@ import {
 	DocumentAddUniversityModal,FinancialAgreementAddUniversityModal,
 	GuestVisitCard,GuestVisitUpdateUniversityModal,
 
-	LoadingPage,
 	LoadingComponent,
 } from '../routes'
 
@@ -103,8 +102,6 @@ function BasicDetails(props){
 
 	const details = useSelector((state)=>state.universityBasicDetailsSlice.data)
 
-	useEffect(()=>{console.log("state ---> ",details)},[details])
-
 	useEffect(()=>{
 		const id = getUniId(window.location.href) // obtaining university id from url
 
@@ -130,7 +127,6 @@ function MOUcontract(props){
 
 	const details = useSelector((state)=>state.universityMouContractSlice.data)
 
-	useEffect(()=>{console.log("mou contract state ---> ",details)},[details])
 
 	useEffect(()=>{
 		const id = getUniId(window.location.href) // obtaining university id from url
@@ -158,7 +154,6 @@ function ContactPerson(props){
 
 	const contactData = useSelector((state)=>state.universityContactSlice.data)
 
-	useEffect(()=>{console.log("state contact ---> ",contactData)},[contactData])
 
 	useEffect(()=>{
 		const id = getUniId(window.location.href) // obtaining university id from url
@@ -199,7 +194,6 @@ function ApplicationProcess(props){
 	useEffect(()=>{
 		if(details?.data?.data){
 			setData(details?.data?.data)
-			console.log("Application Process data -------------> ",details?.data?.data)
 		}
 	},[details])
 
@@ -254,7 +248,6 @@ function FinancialAgreements(props){
 	useEffect(()=>{
 		if(details?.data?.data){
 			setData(details?.data?.data)
-			console.log("Financial Agreements --> ",details)
 		}
 	},[details])
 
@@ -282,7 +275,6 @@ function RecentUpdate(props){
 	const recentUpdateData = useSelector((state)=>state.universityRecentUpdateSlice.data)
 
 	useEffect(()=>{
-		console.log("state recentUpdate ---> ",recentUpdateData)
 		setData(recentUpdateData?.data?.data ? recentUpdateData?.data?.data : [] )
 	},[recentUpdateData])
 
@@ -316,7 +308,6 @@ function Meetings(props){
 
 	const meetingData = useSelector((state)=>state.universityMeetingSlice.data)
 
-	useEffect(()=>{console.log("state meetings ---> ",meetingData)},[meetingData])
 
 	useEffect(()=>{
 		const id = getUniId(window.location.href) // obtaining university id from url
@@ -397,7 +388,6 @@ function DocumentRequired(props){
 	useEffect(()=>{
 		if(details?.data?.data){
 			setData(details?.data?.data)
-			console.log("document required data -------------> ",details?.data?.data)
 		}
 	},[details])
 
@@ -428,7 +418,6 @@ function ProgramOfColaboration(props){
 	useEffect(()=>{
 		var rows = programData.data.data ? programData.data.data : [] 
 		var column = programData.data.column ? programData.data.column : []
-		console.log("state Program ---> ",rows,column)
 		setData({rows:rows,column:column,pagenation_id:0})
 	},[programData])
 

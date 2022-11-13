@@ -72,18 +72,12 @@ function LoginCard(props){
 		const token = localStorage.getItem('token')
 	    const auth = localStorage.getItem('auth')
 	    if(token && auth){
-	      console.log("token is presented")
 	      dispatch(authenticateTokenReducer({token})).unwrap().then((d)=>{
-	    	console.log("token is valid")
-	        // console.log(d)
 	        localStorage.setItem('token',token)
 	    	setLoading(false)
-	    	console.log("Allow to show data")
 	    	navigate("/dashboard")
 	      }).catch((error)=>{
 	      	localStorage.setItem('token',"")
-	      	console.log("Token is wrong need to login")
-	        console.log(error)
 	        navigate("/")
 	      })
 	    }
@@ -92,19 +86,14 @@ function LoginCard(props){
 
 	function submit(e){
 		e.preventDefault()
-		console.log("user is submitting login form")
 		setLoading(true)
-		console.log(loading)
 		dispatch(authUserReducer({email,password}))
 		.unwrap().then((d)=>{
 			setLoading(false)
-			console.log("data fron response",d)
 			navigate('/dashboard')
 		}).catch((error)=>{
 			setLoading(false)
-			console.log("error occur",error)
 		}).then(()=>{
-			console.log("loading over")
 		})
 	}
 

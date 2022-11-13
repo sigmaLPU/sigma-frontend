@@ -39,7 +39,6 @@ export default function ResetRequest(props){
 	}
 
 	function onSubmit(e){
-		console.log("Reset Password Request")
 		e.preventDefault()
 		dispatch(forgetPasswordReducer({"email":email}))
 	}
@@ -144,14 +143,11 @@ export function ResetPassword(props){
 	function submit(e){
 		setId(getTokenForReset(window.location.href))
 		// localStorage.clear();
-		// console.log(getTokenForReset(window.location.href))		
 		e.preventDefault()
 		if(password!=confirmPassword){
-			console.log("password not matched")
 			return ;
 		}else{
 			dispatch(resetPasswordReducer({password,"id":getTokenForReset(window.location.href)}))
-			console.log("status -> 	",status)
 		}
 	}
 

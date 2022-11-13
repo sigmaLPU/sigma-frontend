@@ -68,7 +68,6 @@ function YourTags(props){
 	const rawData = useSelector((state)=>state.tagsMouMasterSlice.data)
 
 	useEffect(()=>{
-		console.log("Tags data ---> ",rawData)
 	},[])
 
 	const ChipCSS = {
@@ -150,7 +149,6 @@ function GuestVisitTable(props) {
 	const [data,setData] = useState(rawData)
 
 	useEffect(()=>{
-		console.log("pre mou master ---> ",rawData)
 		setData(rawData)
 	},[rawData])
 

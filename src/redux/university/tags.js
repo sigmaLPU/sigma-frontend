@@ -1,5 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
+import { createSlice } from '@reduxjs/toolkit'
 
 
 const initialState = {
@@ -23,21 +22,13 @@ export const tagsMouMasterSlice = createSlice({
   initialState,
   reducers: {
     activateYourTagChip : (state,payload) => {
-      console.log(payload)
     },
     deleteYourTagChip : (state,payload) => {
-      console.log(payload)
     },
     addYourTagChip : (state,payload) => {
-      console.log(payload)
     },
-    // setRedirectFunction : (state,payload) => {
-    //   console.log("setRedirectFunction payload ---> ",payload?.payload?.redirectTo)
-    //   state.data.redirectTo = payload?.payload?.redirectTo
-    // },
   },
 })
 
 export default tagsMouMasterSlice.reducer
-// export {getAllUniversityReducer}
 export const {activateYourTagChip,deleteYourTagChip,addYourTagChip} = tagsMouMasterSlice.actions

@@ -89,17 +89,13 @@ export function BasicDetailsModal(props){
 	useEffect(()=>{
 		var d = details?.data
 		if(d){
-			console.log(d)
 
 			setData({...data,...d})
-			console.log(d?.country)
-			console.log(data)
 		}
 	},[])
 
 	function submit(e){
 		e.preventDefault()
-		console.log("submit ---> ",data)
 		const id = getUniId(window.location.href)
 		dispatch(universityBasicDetailsUpdateReducer({id,data:data}))
 	}
@@ -161,7 +157,6 @@ export function ContactDetailsModal(props){
 		e.preventDefault();
 		const id = getUniId(window.location.href)
 		dispatch(universityContactAddReducer({data,id}))
-		console.log(data)
 	}
 
 	const reduxData = useSelector((state)=>state.universityContactSlice.data)
@@ -216,7 +211,6 @@ export function ContactDetailsUpdateModal(props){
 	})
 
 	useEffect(()=>{
-		console.log("Contact update data ---> ",props?.data)
 		if(props?.data){
 			var phone = props?.data?.mobile
 			var name = props?.data?.name
@@ -230,7 +224,6 @@ export function ContactDetailsUpdateModal(props){
 		e.preventDefault();
 		const id = props?.data?.id
 		dispatch(universityContactUpdateReducer({data,id}))
-		console.log("updated data --> ",data)
 	}
 
 	const reduxData = useSelector((state)=>state.universityContactSlice.data)
@@ -403,7 +396,6 @@ export function MeetingUpdateUniversityModal(props){
 		var name = localStorage.getItem('name')
 		if(name){
 			setData({...data,...props?.data})
-			console.log("update data ---->",data)
 		}
 	},[])
 
@@ -412,7 +404,6 @@ export function MeetingUpdateUniversityModal(props){
 		const id = data["id"]
 		// delete data["id"]
 		// delete data["university"]
-		console.log("Submitterd data ---> ",data)
 		dispatch(universityMeetingUpdateReducer({
 			data:{"title":data?.title,"agenda":data?.agenda},id
 		}))
@@ -525,7 +516,6 @@ export function GuestVisitUniversityModal(props){
 	function onSubmit(e){
 		e.preventDefault();
 		const id = getUniId(window.location.href)
-		console.log(data)
 		dispatch(universityGuestVisitAddReducer({data:data,id}))
 	}
 
@@ -615,7 +605,6 @@ export function GuestVisitUpdateUniversityModal(props){
 	function onSubmit(e){
 		e.preventDefault();
 		const id = getUniId(window.location.href)
-		console.log(data)
 		// dispatch(universityGuestVisitAddReducer({data:data,id}))
 	}
 
@@ -686,7 +675,6 @@ export function ProgramOfColaborationUniversityModal(props){
 
 	function submit(e){
 		e.preventDefault()
-		console.log("submit ---> ",data)
 		const id = getUniId(window.location.href)
 		dispatch(universityProgramAddReducer({id,data:data}))
 	}
@@ -749,7 +737,6 @@ export function RecentUpdateUniversityModal(props){
 
 	function submit(e){
 		e.preventDefault()
-		console.log("submit ---> ",data)
 		const id = getUniId(window.location.href)
 		dispatch(universityRecentUpdateAddReducer({id,data:data}))
 	}
@@ -809,13 +796,11 @@ export function RecentUpdateUpdateUniversityModal(props){
 			var type = props?.data?.type
 			setData({value,type})
 		}
-		console.log("Recent Update ---> ",props?.data,data)
 	},[])
 
 
 	function submit(e){
 		e.preventDefault()
-		console.log("submit ---> ",data)
 		const id = props?.data?.id
 		dispatch(universityRecentUpdateUpdateReducer({id,data:data}))
 	}
@@ -915,7 +900,6 @@ export function MouContractAddUniversityModal(props){
 	}
 
 	function handleFile(e){
-		// console.log(e.target?.files[0])
 		// setFile(e.target?.files[0]);
         // setFileName(e.target?.files[0]?.name);
 		setData({...data,file:e.target?.files[0]})
@@ -1191,7 +1175,6 @@ export function MouContractUpdateUniversityModal(props){
 		e.preventDefault()
 		let file = e.target?.files[0]
 		if(!file){
-			// console.log("Error")
 			return ;
 		}
 		setFile(file)
@@ -1283,9 +1266,7 @@ export function ApplicationProcessAddUniversityModal(props){
 
 	function submit(e){
 		e.preventDefault()
-		console.log("submit ---> ",data)
 		const id = getUniId(window.location.href)
-		// console.log("Application Process submit data",data)
 		dispatch(universityApplicationProcessAddReducer({id,data:data}))
 	}
 
@@ -1348,7 +1329,6 @@ export function FinancialAgreementAddUniversityModal(props){
 
 	function submit(e){
 		e.preventDefault()
-		console.log("submit ---> ",data)
 		const id = getUniId(window.location.href)
 		dispatch(universityFinancialAgreementAddReducer({id,data:data}))
 	}
@@ -1413,9 +1393,7 @@ export function DocumentAddUniversityModal(props){
 
 	function submit(e){
 		e.preventDefault()
-		console.log("submit ---> ",data)
 		const id = getUniId(window.location.href)
-		// console.log("Application Process submit data",data)
 		dispatch(universityDocumentRequiredAddReducer({id,data:data}))
 	}
 

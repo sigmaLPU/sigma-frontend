@@ -297,7 +297,6 @@ export function AddNewUniversity(props){
 
 	function submit(e){
 		e.preventDefault()
-		console.log("submit ---> ",data)
 		// const id = getUniId(window.location.href)
 		dispatch(universityAddReducer({data:data}))
 	}

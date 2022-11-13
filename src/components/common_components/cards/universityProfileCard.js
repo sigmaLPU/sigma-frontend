@@ -51,7 +51,6 @@ export function FileCard(props) {
 	}
 
 	function dateDifference(date1,date2){
-		// console.log("dates --> ",isValidDate(date1),isValidDate(date2))
 		if(!isValidDate(date1) || !isValidDate(date2)){
 			setAvailable("Not Available")
 			return ;
@@ -64,7 +63,6 @@ export function FileCard(props) {
 
 			var monthsLeft = Math.abs(monthDiff(d1,d2))
 			setAvailable(`${monthsLeft} months`)
-			console.log("date ",monthsLeft)
 		}
 	}
 

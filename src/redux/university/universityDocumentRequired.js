@@ -57,7 +57,6 @@ export const universityDocumentRequiredSlice = createSlice({
     builder.addCase(universityDocumentRequiredReducer.fulfilled, (state, { payload }) => {
       state.data.message = "Fulfilled"
       state.data.loading = false
-      console.log("document required data --> ",payload)
       var rData = payload?.data?.documents
       if(rData){
         var ids = []

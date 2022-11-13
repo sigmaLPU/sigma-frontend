@@ -57,7 +57,6 @@ export const universityFinancialAgreementSlice = createSlice({
     builder.addCase(universityFinancialAgreementReducer.fulfilled, (state, { payload }) => {
       state.data.message = "Fulfilled"
       state.data.loading = false
-      console.log("document required data --> ",payload)
       var rData = payload?.data?.finincialAggrements
       if(rData){
         var ids = []
