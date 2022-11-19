@@ -17,7 +17,8 @@ const universityFinancialAgreementReducer = createAsyncThunk('universityFinancia
   async (data)=>{
     return axios.get(`https://sigmalpu.herokuapp.com/api/v2/university/extra/finincialAgreements/${data?.id}`,{
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          Authorization : "Bearer "+localStorage.getItem('token')
     }})
   }
 )
@@ -28,7 +29,8 @@ const universityFinancialAgreementAddReducer = createAsyncThunk('universityFinan
       method: 'post',
       url: `https://sigmalpu.herokuapp.com/api/v2/university/extra/finincialAgreements/${data?.id}/add`,
       headers: { 
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+          Authorization : "Bearer "+localStorage.getItem('token')
       },
       data : data?.data
     };

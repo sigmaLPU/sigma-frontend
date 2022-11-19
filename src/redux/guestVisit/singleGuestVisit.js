@@ -18,7 +18,8 @@ const getGuestVisitReducer = createAsyncThunk('singleGuestVisit/getGuestVisitRed
     async (data)=>{
       return axios.get(`https://sigmalpu.herokuapp.com/api/v2/guestvisit/${data?.id}`,{
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+          Authorization : "Bearer "+localStorage.getItem('token')
           }})
     }
   )

@@ -11,7 +11,8 @@ const searchReducer = createAsyncThunk('search/searchReducer',
   async (data)=>{
     return axios.get(`https://sigmalpu.herokuapp.com/api/v2/search/all?search=${data?.query}`,{
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          Authorization : "Bearer "+localStorage.getItem('token')
     }})
   }
 )

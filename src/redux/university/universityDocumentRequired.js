@@ -17,7 +17,8 @@ const universityDocumentRequiredReducer = createAsyncThunk('universityDocumentRe
   async (data)=>{
     return axios.get(`https://sigmalpu.herokuapp.com/api/v2/university/extra/documents/${data?.id}`,{
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          Authorization : "Bearer "+localStorage.getItem('token')
     }})
   }
 )
@@ -28,7 +29,8 @@ const universityDocumentRequiredAddReducer = createAsyncThunk('universityDocumen
       method: 'post',
       url: `https://sigmalpu.herokuapp.com/api/v2/university/extra/documents/${data?.id}/add`,
       headers: { 
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+          Authorization : "Bearer "+localStorage.getItem('token')
       },
       data : data?.data
     };

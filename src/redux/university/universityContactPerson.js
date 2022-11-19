@@ -15,7 +15,8 @@ const universityContactReducer = createAsyncThunk('universityContact/universityC
   async (data)=>{
     return axios.get(`https://sigmalpu.herokuapp.com/api/v2/university/contact/${data?.id}`,{
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          Authorization : "Bearer "+localStorage.getItem('token')
     }})
   }
 )
@@ -27,7 +28,8 @@ const universityContactAddReducer = createAsyncThunk('universityContact/universi
       method: 'post',
       url: `https://sigmalpu.herokuapp.com/api/v2/university/contact/${data?.id}/add`,
       headers: { 
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+          Authorization : "Bearer "+localStorage.getItem('token')
       },
       data : data?.data
     };

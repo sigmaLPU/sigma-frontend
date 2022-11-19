@@ -17,7 +17,8 @@ const universityApplicationProcessReducer = createAsyncThunk('universityApplicat
   async (data)=>{
     return axios.get(`https://sigmalpu.herokuapp.com/api/v2/university/extra/applications/${data?.id}`,{
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          Authorization : "Bearer "+localStorage.getItem('token')
     }})
   }
 )
@@ -28,7 +29,8 @@ const universityApplicationProcessAddReducer = createAsyncThunk('universityRecen
       method: 'post',
       url: `https://sigmalpu.herokuapp.com/api/v2/university/extra/applications/${data?.id}/add`,
       headers: { 
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+          Authorization : "Bearer "+localStorage.getItem('token')
       },
       data : data?.data
     };
