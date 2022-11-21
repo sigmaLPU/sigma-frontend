@@ -11,7 +11,8 @@ import {Table} from '../routes'
 
 import downArrowImg from './downArrow.png'
 import SearchIcon from '@mui/icons-material/Search';
-
+import SearchDoodal from './serach_image_doodal.png'
+import searchButton from './search.png'
 
 export default function Search(props){
 
@@ -46,13 +47,15 @@ export default function Search(props){
 	if(data.length===0){
 		return (
 			<NavSideBarLayout childCSS={{marginTop:"4rem",width:"100%",height:"100%"}}>
-				<div style={{marginBottom:"2rem",width:"100vw",height:"80vh",display:"flex",justifyContent:"center",alignItems:"center"}}>
+				<div style={{marginBottom:"2rem",width:"100vw",height:"80vh",display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column"}}>
+					<img src={SearchDoodal} style={{width:"30rem"}}/>
 					<form onSubmit={(e)=>searchFunc(e)} style={{width:"90%",display:"flex",justifyContent:"center"}}>
 						<input
 							onChange={(e)=>setQuery(e.target.value)} 
 							type="text" placeholder="Search" 
 							style={inputFeildCSS}
 						/>
+						<button><img src={searchButton} style={{maxHeight:"2.5rem",cursor:"pointer"}}/></button>
 					</form>
 				</div>
 				{loading && "Loading Please wait"}
