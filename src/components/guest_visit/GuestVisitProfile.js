@@ -7,8 +7,7 @@ export default function GuestVisitProfile(props){
 
 	const dispatch = useDispatch()
 
-
-	useEffect()
+	// useEffect()
 
 	return (
 		<div>

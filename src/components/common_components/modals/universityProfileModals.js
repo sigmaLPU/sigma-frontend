@@ -204,6 +204,7 @@ export function ContactDetailsUpdateModal(props){
 	}
 
 	const dispatch = useDispatch();
+	const reduxData = useSelector((state)=>state.universityContactSlice.data)
 
 
 	const [data,setData] = useState({
@@ -220,13 +221,17 @@ export function ContactDetailsUpdateModal(props){
 		}
 	},[])
 
+	useEffect(()=>{
+		console.log(reduxData)
+		console.log(props?.data?.id)
+	},[reduxData])
+
 	function onSubmit(e){
 		e.preventDefault();
 		const id = props?.data?.id
 		dispatch(universityContactUpdateReducer({data,id}))
 	}
 
-	const reduxData = useSelector((state)=>state.universityContactSlice.data)
 	
 	if(reduxData?.loading){
 		return (

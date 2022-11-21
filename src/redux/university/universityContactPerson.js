@@ -42,7 +42,9 @@ const universityContactUpdateReducer = createAsyncThunk('universityContact/unive
   async (data)=>{
     return axios.put(`https://sigmalpu.herokuapp.com/api/v2/university/contact/${data?.id}/update`,data?.data,{
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          Authorization : "Bearer "+localStorage.getItem('token')
+          
     }})
   }
 )
@@ -72,6 +74,7 @@ export const universityContactSlice = createSlice({
             temp2["mail"] = obj?.email ? obj?.email : "Not available";
             temp2["id"] = obj?._id ? obj?._id : "Not available";
             temp2["img"] = obj?.img ? obj?.img : "https://anchorandcontrol.com/wp-content/themes/cera-child/assets/images/avatars/user-avatar.png";
+            temp2["description"] = obj?.description ? obj?.description : "";
             ids.push(obj?._id)
             temp.push(temp2)
           }
@@ -103,6 +106,7 @@ export const universityContactSlice = createSlice({
         temp["mobile"] = payload?.data?.universityContact?.phone ? payload?.data?.universityContact?.phone : "Not available";
         temp["id"] = payload?.data?.universityContact?._id ? payload?.data?.universityContact?._id : "Not available";
         temp["img"] = payload?.data?.universityContact?.img ? payload?.data?.universityContact?.img : "https://anchorandcontrol.com/wp-content/themes/cera-child/assets/images/avatars/user-avatar.png";
+        temp["description"] = payload?.data?.universityContact?.description ? payload?.data?.universityContact?.description : "";
         state.data.data.data.push(temp)
         state.data.data.ids.push(payload?.data?.universityContact?._id ? payload?.data?.universityContact?._id : 0)
       }
@@ -131,7 +135,7 @@ export const universityContactSlice = createSlice({
         temp["mobile"] = payload?.data?.universityContact?.phone ? payload?.data?.universityContact?.phone : "Not available";
         temp["id"] = payload?.data?.universityContact?._id ? payload?.data?.universityContact?._id : "Not available";
         temp["img"] = payload?.data?.universityContact?.img ? payload?.data?.universityContact?.img : "https://anchorandcontrol.com/wp-content/themes/cera-child/assets/images/avatars/user-avatar.png";
-        
+        temp["description"] = payload?.data?.universityContact?.description ? payload?.data?.universityContact?.description : "";    
         
         var id = temp["id"]
         var index = -1

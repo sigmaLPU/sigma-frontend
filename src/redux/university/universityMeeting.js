@@ -10,6 +10,7 @@ const initialState = {
       data:[],
       ids:[]
     },
+    resp:{},
   }
 }
 
@@ -131,11 +132,13 @@ export const universityMeetingSlice = createSlice({
     builder.addCase(universityMeetingAddReducer.pending, (state, { payload }) => {
       state.data.loading = true
       state.data.message = "Loading"
+      state.data.resp = payload
     });
     
     builder.addCase(universityMeetingAddReducer.rejected, (state, { payload }) => {
       state.data.message = "Failed"
       state.data.loading = false
+      state.data.resp = payload
     });
 
 
