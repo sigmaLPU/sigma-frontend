@@ -35,6 +35,8 @@ import Chip from './common_components/chip'
 import Table from './common_components/table'
 //modal
 
+import {TeamChart} from './team/routes'
+
 import {ModalPopUp,BasicDetailsModal,ContactDetailsModal,MeetingUniversityModal,
 	GuestVisitUniversityModal,GuestVisitCard,
 	ProgramOfColaborationUniversityModal,RecentUpdateUniversityModal,
@@ -89,4 +91,5 @@ export {
 
 	TrainingDashboard,CreditTransferTraining,
 
+	TeamChart,
 };

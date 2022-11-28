@@ -16,7 +16,7 @@ const initialState = {
 
 const universityMeetingReducer = createAsyncThunk('universityMeeting/universityMeetingReducer',
   async (data)=>{
-    return axios.get(`https://sigmalpu.herokuapp.com/api/v2/university/meeting/${data?.id}`,{
+    return axios.get(`https://sigmalpu.herokuapp.com/api/v2/meeting/university/${data?.id}`,{
         headers: {
           'Content-Type': 'application/json',
           Authorization : "Bearer "+localStorage.getItem('token')
@@ -27,10 +27,12 @@ const universityMeetingReducer = createAsyncThunk('universityMeeting/universityM
 
 const universityMeetingAddReducer = createAsyncThunk('universityMeetingAdd/universityMeetingAddReducer',
   async (data)=>{
+    
+    data["data"]["university"] = data?.id
 
     var config = {
       method: 'post',
-      url: `https://sigmalpu.herokuapp.com/api/v2/university/meeting/${data?.id}/add`,
+      url: `https://sigmalpu.herokuapp.com/api/v2/meeting/create`,
       headers: { 
         'Content-Type': 'application/json',
           Authorization : "Bearer "+localStorage.getItem('token')
@@ -44,7 +46,7 @@ const universityMeetingAddReducer = createAsyncThunk('universityMeetingAdd/unive
 
 const universityMeetingUpdateReducer = createAsyncThunk('universityMeeting/universityMeetingUpdateReducer',
   async (data)=>{
-    return axios.put(`https://sigmalpu.herokuapp.com/api/v2/university/meeting/${data?.id}/update`,data?.data,{
+    return axios.put(`https://sigmalpu.herokuapp.com/api/v2/meeting/${data?.id}/update`,data?.data,{
         headers: {
           'Content-Type': 'application/json',
           Authorization : "Bearer "+localStorage.getItem('token')
@@ -113,7 +115,7 @@ export const universityMeetingSlice = createSlice({
     
       state.data.message = "Fulfilled"
       state.data.loading = false
-      var obj = payload?.data?.universityMeeting
+      var obj = payload?.data?.meeting
       
       var temp2 = {}
       temp2["title"] = obj?.title
@@ -123,6 +125,8 @@ export const universityMeetingSlice = createSlice({
       temp2["agenda"] = obj?.agenda
       temp2["link"] = obj?.link
       temp2["university"] = obj?.university
+
+      console.log("ADDED ",temp2)
 
       state.data.data.data = [temp2].concat(state.data.data.data)
       state.data.data.ids = [obj?._id].concat(state.data.data.ids)

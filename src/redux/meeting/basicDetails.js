@@ -12,7 +12,7 @@ const initialState = {
 
 const getMeetingsReducer = createAsyncThunk('basicDetails/getMeetingsReducer',
     async (data)=>{
-      return axios.get(`https://sigmalpu.herokuapp.com/api/v2/university/meeting/single/${data?.id}`,{
+      return axios.get(`https://sigmalpu.herokuapp.com/api/v2/meeting/single/${data?.id}`,{
           headers: {
             'Content-Type': 'application/json',
           Authorization : "Bearer "+localStorage.getItem('token')
@@ -22,7 +22,7 @@ const getMeetingsReducer = createAsyncThunk('basicDetails/getMeetingsReducer',
 
 const meetingBasicDetailsUpdateReducer = createAsyncThunk('basicDetails/meetingBasicDetailsUpdateReducer',
   async (data)=>{
-    return axios.put(`https://sigmalpu.herokuapp.com/api/v2/university/meeting/${data?.id}/update`,data?.data,{
+    return axios.put(`https://sigmalpu.herokuapp.com/api/v2/meeting/single/${data?.id}`,data?.data,{
         headers: {
           'Content-Type': 'application/json',
           Authorization : "Bearer "+localStorage.getItem('token')
@@ -36,8 +36,8 @@ export const getMeetingsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getMeetingsReducer.fulfilled, (state, { payload }) => {
-      var data = payload?.data?.meetings
-      state.data.data = data.length > 0 ? data[0] : null
+      var data = payload?.data?.meeting
+      state.data.data = data
       state.data.message = "Fulfilled"
       state.data.loading = false
     });
@@ -51,7 +51,7 @@ export const getMeetingsSlice = createSlice({
     });
 
     builder.addCase(meetingBasicDetailsUpdateReducer.fulfilled, (state, { payload }) => {
-      var data = payload?.data?.universityMeeting
+      var data = payload?.data?.meeting
       state.data.data = data
       state.data.message = "Fulfilled"
       state.data.loading = false

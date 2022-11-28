@@ -36,6 +36,7 @@ import {
 	universityGuestVisitReducer,
 } from '../../redux/routes'
 
+import Tooltip from '@mui/material/Tooltip';
 
 function getUniId(url){
 	var id = ""
@@ -65,7 +66,7 @@ export default function UniversityProfile(props){
 					<div style={{display:"flex",justifyContent:"space-between",maxHeight:"790px"}}>
 
 						<div style={{display:"flex",rowGap:"2rem",flexWrap:"wrap",alignContent:"space-between"}}>						
-							<BasicDetails popup={<BasicDetailsModal/>}/>							
+							<BasicDetails popup={<BasicDetailsModal/>}/>					
 							<MOUcontract popup={<MouContractAddUniversityModal/>}/>
 							<ContactPerson popup={<ContactDetailsModal/>}/>
 							<ApplicationProcess popup={<ApplicationProcessAddUniversityModal/>}/>
