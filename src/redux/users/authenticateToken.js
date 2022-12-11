@@ -14,7 +14,7 @@ const initialState = {
 
 const authenticateTokenReducer = createAsyncThunk('auth/authUserReducer',
     async (data)=>{
-      return axios.get("https://sigmalpu.herokuapp.com/api/v2/user/profile",{
+      return axios.get("https://sigma-lpu-vsbd9.ondigitalocean.app/api/v2/user/profile",{
         headers:{
           Authorization : "Bearer "+localStorage.getItem('token')
         }

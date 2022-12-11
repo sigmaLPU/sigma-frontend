@@ -1,4 +1,4 @@
-const BASE_URL = "https://sigmalpu.herokuapp.com"
+const BASE_URL = "https://sigma-lpu-vsbd9.ondigitalocean.app/"
 const API_VERSION = "api/v2"
 
 export const LOGIN_URL = `${BASE_URL}/${API_VERSION}/user/login`
@@ -12,4 +12,4 @@ export const FORGET_USER_PASSWORD = `${BASE_URL}/${API_VERSION}/user/forgotUserP
 export const RESET_PASSWORD = `${BASE_URL}/${API_VERSION}/user/resetUserPassword`
 
 
-// https://sigmalpu.herokuapp.com/api/v2
+// https://sigma-lpu-vsbd9.ondigitalocean.app//api/v2

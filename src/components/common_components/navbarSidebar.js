@@ -225,6 +225,7 @@ export default function NavSideBar(props) {
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                 }}
+                onClick={() => history(iconObject.url)}
               >
                 <ListItemIcon
                   sx={{

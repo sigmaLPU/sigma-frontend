@@ -53,6 +53,9 @@ import {ModalPopUp,BasicDetailsModal,ContactDetailsModal,MeetingUniversityModal,
 import {BasicDetailsMeetingCard,AttachementCard} from './meetings/meetingCards'
 // modal
 
+// tools page
+import {Tools,} from './tools/routes'
+
 export {
 	//pages
 	HomePage,
@@ -92,4 +95,6 @@ export {
 	TrainingDashboard,CreditTransferTraining,
 
 	TeamChart,
+
+	Tools,
 };

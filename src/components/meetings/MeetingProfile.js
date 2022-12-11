@@ -48,26 +48,6 @@ export default function MeetingProfile(props){
 		{"title":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text","date":"27-07-2022"},
 	])
 
-	const [participants,setParticipants] = useState([
-		{"img":profile_1,"name":"Animesh","position":"Intern","from":"LPU"},
-		{"img":profile_1,"name":"Animesh","position":"SDE","from":"LPU"},
-		{"img":profile_1,"name":"Animesh","position":"SDE","from":"LPU"},
-		{"img":profile_1,"name":"Animesh","position":"SDE","from":"LPU"},
-		{"img":profile_1,"name":"Animesh","position":"SDE","from":"LPU"},
-		{"img":profile_1,"name":"Animesh","position":"SDE","from":"LPU"},
-		{"img":profile_1,"name":"Animesh","position":"SDE","from":"LPU"},
-		{"img":profile_1,"name":"Animesh","position":"SDE","from":"LPU"},
-		{"img":profile_1,"name":"Animesh","position":"SDE","from":"LPU"},
-		{"img":profile_1,"name":"Animesh","position":"SDE","from":"LPU"},
-		{"img":profile_1,"name":"Animesh","position":"SDE","from":"LPU"},
-		{"img":profile_1,"name":"Animesh","position":"SDE","from":"LPU"},
-		{"img":profile_1,"name":"Animesh","position":"SDE","from":"LPU"},
-		{"img":profile_1,"name":"Animesh","position":"SDE","from":"LPU"},
-		{"img":profile_1,"name":"Animesh","position":"","from":""},
-		{"img":profile_1,"name":"Animesh","position":"","from":""},
-		{"img":profile_1,"name":"Animesh","position":"","from":""},
-		{"img":profile_1,"name":"Animesh","position":"","from":""},
-	])
 
 	const [attachement,setAttachement] = useState([
 		{name:"Temp.pdf",view:"",download:""},
@@ -103,8 +83,8 @@ export default function MeetingProfile(props){
 							<Card popup = {<OutcomeMeetingModal/>} heading={"OutCome"} headingComponetCSS={{color:"black"}} style={{border:"1px solid #F07F1A"}} cardDataCSS={{maxHeight:"15rem"}}>
 							
 								<ul>{
-									data.map(item=>(
-										<li style={{paddingBottom:"1rem"}}>{item["title"].length<50 ? item["title"]:item["title"].substr(0,50)+"..."}</li>
+									rawData?.data?.outcome?.map(item=>(
+										<li style={{paddingBottom:"1rem"}}>{item["value"].length<50 ? item["value"]:item["value"].substr(0,50)+"..."}</li>
 									))}
 								</ul>
 
@@ -112,8 +92,8 @@ export default function MeetingProfile(props){
 
 							<Card popup = {<ActionPlanMeetingModal/>} heading={"Action Plan"} headingComponetCSS={{color:"black"}} style={{border:"1px solid #F07F1A"}} cardDataCSS={{maxHeight:"15rem"}}>
 								<ul>{
-									data.map(item=>(
-										<li style={{paddingBottom:"1rem"}}>{item["title"].length<50 ? item["title"]:item["title"].substr(0,50)+"..."}</li>
+									rawData?.data?.actionPlan?.map(item=>(
+										<li style={{paddingBottom:"1rem"}}>{item["value"].length<50 ? item["value"]:item["value"].substr(0,50)+"..."}</li>
 									))}
 								</ul>
 							</Card>
@@ -123,8 +103,8 @@ export default function MeetingProfile(props){
 							<Card popup = {<MoMNotesMeetingModal/>} heading={"MOM notes"} headingComponetCSS={{color:"black"}} style={{border:"1px solid #F07F1A"}} >
 							
 								<ul>{
-									data.map(item=>(
-										<li style={{marginBottom:"1rem"}}>{item["title"].length<50 ? item["title"]:item["title"].substr(0,50)+"..."}</li>
+									rawData?.data?.momNotes?.map(item=>(
+										<li style={{marginBottom:"1rem"}}>{item["value"].length<50 ? item["value"]:item["value"].substr(0,50)+"..."}</li>
 									))}
 								</ul>
 
