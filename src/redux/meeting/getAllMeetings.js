@@ -18,7 +18,7 @@ const initialState = {
 
 const getAllUniversityMeetingsReducer = createAsyncThunk('getAllMeetings/getAllUniversityMeetingsReducer',
     async (data)=>{
-      return axios.get("https://sigmalpu.herokuapp.com/api/v2/meeting/all",{
+      return axios.get("https://sigma-lpu-vsbd9.ondigitalocean.app/api/v2/meeting/all",{
           headers: {
             'Content-Type': 'application/json',
           Authorization : "Bearer "+localStorage.getItem('token')
@@ -30,7 +30,7 @@ const universityMeetingsAddReducer = createAsyncThunk('getAllMeetings/university
   async (data)=>{
     var config = {
       method: 'post',
-      url: `https://sigmalpu.herokuapp.com/api/v2/meeting/create`,
+      url: `https://sigma-lpu-vsbd9.ondigitalocean.app/api/v2/meeting/create`,
       headers: { 
         'Content-Type': 'application/json',
           Authorization : "Bearer "+localStorage.getItem('token')

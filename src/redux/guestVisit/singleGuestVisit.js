@@ -16,7 +16,7 @@ const initialState = {
 
 const getGuestVisitReducer = createAsyncThunk('singleGuestVisit/getGuestVisitReducer',
     async (data)=>{
-      return axios.get(`https://sigmalpu.herokuapp.com/api/v2/guestvisit/${data?.id}`,{
+      return axios.get(`https://sigma-lpu-vsbd9.ondigitalocean.app/api/v2/guestvisit/${data?.id}`,{
           headers: {
             'Content-Type': 'application/json',
           Authorization : "Bearer "+localStorage.getItem('token')
@@ -28,7 +28,7 @@ const getGuestVisitReducer = createAsyncThunk('singleGuestVisit/getGuestVisitRed
 //   async (data)=>{ 
 //     var config = {
 //       method: 'post',
-//       url: `https://sigmalpu.herokuapp.com/api/v2/guestvisit/add`,
+//       url: `https://sigma-lpu-vsbd9.ondigitalocean.app/api/v2/guestvisit/add`,
 //       headers: { 
 //         'Content-Type': 'application/json'
 //       },

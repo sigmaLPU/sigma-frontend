@@ -16,7 +16,7 @@ const initialState = {
 
 const universityProgramReducer = createAsyncThunk('universityProgram/universityProgramReducer',
   async (data)=>{
-    return axios.get(`https://sigmalpu.herokuapp.com/api/v2/university/program/${data?.id}`,{
+    return axios.get(`https://sigma-lpu-vsbd9.ondigitalocean.app/api/v2/university/program/${data?.id}`,{
         headers: {
           'Content-Type': 'application/json',
           Authorization : "Bearer "+localStorage.getItem('token')
@@ -29,7 +29,7 @@ const universityProgramAddReducer = createAsyncThunk('universityProgram/universi
   async (data)=>{
     var config = {
       method: 'post',
-      url: `https://sigmalpu.herokuapp.com/api/v2/university/program/${data?.id}/add`,
+      url: `https://sigma-lpu-vsbd9.ondigitalocean.app/api/v2/university/program/${data?.id}/add`,
       headers: { 
         'Content-Type': 'application/json',
           Authorization : "Bearer "+localStorage.getItem('token')

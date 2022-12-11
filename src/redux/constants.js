@@ -1,4 +1,4 @@
-const BASE_URL = "https://sigma-lpu-vsbd9.ondigitalocean.app/"
+const BASE_URL = "https://sigma-lpu-vsbd9.ondigitalocean.app"
 const API_VERSION = "api/v2"
 
 export const LOGIN_URL = `${BASE_URL}/${API_VERSION}/user/login`

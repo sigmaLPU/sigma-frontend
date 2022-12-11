@@ -16,7 +16,7 @@ const initialState = {
 
 const universityMeetingReducer = createAsyncThunk('universityMeeting/universityMeetingReducer',
   async (data)=>{
-    return axios.get(`https://sigmalpu.herokuapp.com/api/v2/meeting/university/${data?.id}`,{
+    return axios.get(`https://sigma-lpu-vsbd9.ondigitalocean.app/api/v2/meeting/university/${data?.id}`,{
         headers: {
           'Content-Type': 'application/json',
           Authorization : "Bearer "+localStorage.getItem('token')
@@ -32,7 +32,7 @@ const universityMeetingAddReducer = createAsyncThunk('universityMeetingAdd/unive
 
     var config = {
       method: 'post',
-      url: `https://sigmalpu.herokuapp.com/api/v2/meeting/create`,
+      url: `https://sigma-lpu-vsbd9.ondigitalocean.app/api/v2/meeting/create`,
       headers: { 
         'Content-Type': 'application/json',
           Authorization : "Bearer "+localStorage.getItem('token')
@@ -46,7 +46,7 @@ const universityMeetingAddReducer = createAsyncThunk('universityMeetingAdd/unive
 
 const universityMeetingUpdateReducer = createAsyncThunk('universityMeeting/universityMeetingUpdateReducer',
   async (data)=>{
-    return axios.put(`https://sigmalpu.herokuapp.com/api/v2/meeting/${data?.id}/update`,data?.data,{
+    return axios.put(`https://sigma-lpu-vsbd9.ondigitalocean.app/api/v2/meeting/${data?.id}/update`,data?.data,{
         headers: {
           'Content-Type': 'application/json',
           Authorization : "Bearer "+localStorage.getItem('token')

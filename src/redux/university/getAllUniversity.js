@@ -34,7 +34,7 @@ const universityAddReducer = createAsyncThunk('universityContact/universityAddRe
   async (data)=>{
     var config = {
       method: 'post',
-      url: `https://sigmalpu.herokuapp.com/api/v2/university/add`,
+      url: `https://sigma-lpu-vsbd9.ondigitalocean.app/api/v2/university/add`,
       headers: { 
         'Content-Type': 'application/json',
           Authorization : "Bearer "+localStorage.getItem('token')

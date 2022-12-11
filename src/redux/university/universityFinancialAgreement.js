@@ -15,7 +15,7 @@ const initialState = {
 
 const universityFinancialAgreementReducer = createAsyncThunk('universityFinancialAgreement/universityFinancialAgreementReducer',
   async (data)=>{
-    return axios.get(`https://sigmalpu.herokuapp.com/api/v2/university/extra/finincialAgreements/${data?.id}`,{
+    return axios.get(`https://sigma-lpu-vsbd9.ondigitalocean.app/api/v2/university/extra/finincialAgreements/${data?.id}`,{
         headers: {
           'Content-Type': 'application/json',
           Authorization : "Bearer "+localStorage.getItem('token')
@@ -27,7 +27,7 @@ const universityFinancialAgreementAddReducer = createAsyncThunk('universityFinan
   async (data)=>{
     var config = {
       method: 'post',
-      url: `https://sigmalpu.herokuapp.com/api/v2/university/extra/finincialAgreements/${data?.id}/add`,
+      url: `https://sigma-lpu-vsbd9.ondigitalocean.app/api/v2/university/extra/finincialAgreements/${data?.id}/add`,
       headers: { 
         'Content-Type': 'application/json',
           Authorization : "Bearer "+localStorage.getItem('token')
@@ -42,7 +42,7 @@ const universityFinancialAgreementAddReducer = createAsyncThunk('universityFinan
 
 // const universityRecentUpdateUpdateReducer = createAsyncThunk('universityRecentUpdate/universityRecentUpdateUpdateReducer',
 //   async (data)=>{
-//     return axios.put(`https://sigmalpu.herokuapp.com/api/v2/university/update/${data?.id}/update`,data?.data,{
+//     return axios.put(`https://sigma-lpu-vsbd9.ondigitalocean.app/api/v2/university/update/${data?.id}/update`,data?.data,{
 //         headers: {
 //           'Content-Type': 'application/json'
 //     }})
