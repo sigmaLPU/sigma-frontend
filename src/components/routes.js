@@ -23,6 +23,9 @@ import StudentProfile from './student_profile/StudentProfile'
 import Search from './search/Search'
 // guest visit master
 import {GuestVisitMaster,GuestVisitProfile} from './guest_visit/routes'
+// country profile
+import {CountryProfile} from './countryProfile/routes'
+
 
 /*---COMPONENT---*/
 // navbar side bar
@@ -67,7 +70,9 @@ export {
 	MeetingProfile,MeetingMaster,
 	StudentProfile,
 	Search,GuestVisitMaster,GuestVisitProfile,
-		
+	
+	CountryProfile,
+			
 	// componets
 	NavSideBarLayout,
 	Card, ObjectCard,FileCard,ContactCard,RecentUpdateCard,MeetingCard,GuestVisitCard,

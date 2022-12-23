@@ -20,6 +20,8 @@ import {Search} from './components/routes'
 import {GuestVisitMaster,GuestVisitProfile} from './components/routes'
 import {TeamChart} from './components/routes'
 import {Tools} from './components/routes'
+import {CountryProfile} from './components/routes'
+
 // redux
 import { authenticateTokenReducer, authUserReducer } from './redux/users/authenticateToken'
 import { useSelector, useDispatch } from 'react-redux'
@@ -56,7 +58,9 @@ function App() {
 
           <Route path="/team" element={<ProtectedRoute><TeamChart/></ProtectedRoute>}/>
           <Route path="/tools" element={<ProtectedRoute><Tools/></ProtectedRoute>}/>
+          
 
+          <Route path="/semesterExchange" element={<ProtectedRoute><CountryProfile/></ProtectedRoute>}/>
 
 
           {/*When page not found*/}
