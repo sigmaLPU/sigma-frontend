@@ -115,29 +115,25 @@ export function FileCard(props) {
 export function ContactCard(props){
 	const [bgColor,setBgColor] = useState("white")
 
-	const activeComponent = <table style={{width:"100%",display:"flex",flexDirection:"column",justifyContent:"space-between"}}>
-					<tr style={{}}>
-						<td style={{fontWeight:"800"}}>Name</td>
-						<td style={{padding:"4px"}}>:</td>
-						<td>{props?.data["name"]}</td>
-					</tr>
-					<tr>
-						<td style={{fontWeight:"800"}}>Email</td>
-						<td style={{padding:"4px"}}>:</td>
-						<td>{props?.data["mail"]}</td>
-					</tr>
-					<tr>
-						<td style={{fontWeight:"800"}}>Contact</td>
-						<td style={{padding:"4px"}}>:</td>
-						<td>{props?.data["mobile"]}</td>
-					</tr>
-				</table>
+	const activeComponent = <div>
+		{props?.data["name"] && 
+			<div style={{margin:"0rem 0rem 0rem 1rem",width:"100%"}}>
+				<div style={{display:"flex",alignItems:"center",columnGap:"0.5rem",justifyContent:"space-between",width:"100%"}}>
+					<span style={{fontSize:"1.2rem",fontWeight:"700"}}>{props?.data["name"]}</span>
+					<span style={{fontSize:"0.9rem",fontWeight:"500"}}>({props?.data["description"]})</span>
+				</div>
+				<div style={{display:"flex",alignItems:"center",justifyContent:"space-between",columnGap:"0.5rem"}}>
+					<span style={{}}>{props?.data["mobile"]}</span>
+					<span style={{}}>{props?.data["mail"]}</span>
+				</div>
+			</div>
+		}
 
+		</div>
 
 
 	return (
 		<div style={{display:"flex",borderBottom:"1px solid black",backgroundColor:bgColor}} onMouseEnter={()=>setBgColor("#dbdbd9")} onMouseLeave={()=>setBgColor("white")}>
-			<div><img style={{width:"90px",borderRadius:"50px",marginRight:"12px"}} src={props?.data["img"] ? props?.data["img"] : "/"} /></div>
 			<div>
 				<ModalPopUp activeComponent={activeComponent}>
 					{props?.contactDetailsUpdateModal ? props?.contactDetailsUpdateModal : "Not Available"}
@@ -145,6 +141,8 @@ export function ContactCard(props){
 			</div>
 		</div>
 	)
+
+
 }
 
 

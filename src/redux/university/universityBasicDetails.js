@@ -7,6 +7,7 @@ const initialState = {
     message:"Loading",
     loading:true,
     data:{},
+    id : "",
   }
 }
 
@@ -46,6 +47,7 @@ export const universityBasicDetailsSlice = createSlice({
         "address":(payload?.data?.university?.country+", "+payload?.data?.university?.city) ? payload?.data?.university?.country+", "+payload?.data?.university?.city : "Not available",
         "website":payload?.data?.university?.website ? payload?.data?.university?.website : "Not available",
       }
+      state.data.id = payload?.data?.university?._id
     });
     builder.addCase(universityBasicDetailsReducer.pending, (state, { payload }) => {
       state.data.message = "Loading"

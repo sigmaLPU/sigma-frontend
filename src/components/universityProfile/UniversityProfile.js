@@ -437,6 +437,3 @@ function ProgramOfColaboration(props){
 
 
 
-
-
-
