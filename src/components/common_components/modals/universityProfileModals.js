@@ -9,6 +9,8 @@ import { LoadingComponent } from '../../routes';
 
 import { useDispatch, useSelector } from 'react-redux'
 
+import {useNavigate} from 'react-router-dom'
+
 import {
 	universityContactAddReducer,universityMeetingAddReducer,
 	universityBasicDetailsUpdateReducer,universityProgramAddReducer,
@@ -21,7 +23,7 @@ import {
 	universityFinancialAgreementAddReducer,
 	universityGuestVisitAddReducer,
 	setMouContractSliceLoading,
-
+	redirectToGuestVisitProfile,
 } from '../../../redux/routes'
 
 
@@ -485,6 +487,10 @@ export function GuestVisitUniversityModal(props){
 
 	const dispatch = useDispatch();
 
+	const reduxData = useSelector((state)=>state.universityGuestVisitSlice.data)
+
+	const navigate = useNavigate()
+
 	const [data,setData] = useState(
 		{
 			"title":"n/a",
@@ -518,6 +524,16 @@ export function GuestVisitUniversityModal(props){
 		}
 	},[])
 
+
+	useEffect(()=>{
+		console.log(reduxData)
+		if(reduxData?.redirect==true && reduxData?.id!==""){
+			var temp_id = reduxData?.id
+			dispatch(redirectToGuestVisitProfile())
+			navigate(`/guest_visit/${temp_id}`)			
+		}
+	},[reduxData])
+
 	function onSubmit(e){
 		e.preventDefault();
 		const id = getUniId(window.location.href)
@@ -525,6 +541,15 @@ export function GuestVisitUniversityModal(props){
 	}
 
 	const textFeildCSS = {width:"607px",height:"40px",border:"none",borderBottom:"1px solid black",fontSize:"1.1rem",fontWeight:"720"}
+
+
+	if(reduxData?.loading){
+		return (
+			<div style={style}>
+				<LoadingComponent/>
+			</div>
+		)
+	}
 
 
 	return(

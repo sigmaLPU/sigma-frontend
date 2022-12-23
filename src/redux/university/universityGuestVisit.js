@@ -10,12 +10,14 @@ const initialState = {
       data:[],
       ids:[]
     },
+    id:"",
+    redirect:false,
   }
 }
 
 const universityGuestVisitReducer = createAsyncThunk('universityGuestVisit/universityGuestVisitReducer',
   async (data)=>{
-    return axios.get(`https://sigma-lpu-vsbd9.ondigitalocean.app/api/v2/guestvisit/${data?.id}`,{
+    return axios.get(`https://sigma-lpu-vsbd9.ondigitalocean.app/api/v2/guestvisit/${data?.id}/all`,{
         headers: {
           'Content-Type': 'application/json',
           Authorization : "Bearer "+localStorage.getItem('token')
@@ -59,13 +61,20 @@ const universityGuestVisitAddReducer = createAsyncThunk('universityGuestVisitAdd
 export const universityGuestVisitSlice = createSlice({
   name: 'getSingleuniversityGuestVisit',
   initialState,
-  reducers: {},
+  reducers: {
+    redirectToGuestVisitProfile : (state,payload) => {
+      state.data.loading = false
+      state.data.id = ""
+    },
+  },
   extraReducers: (builder) => {
     
     builder.addCase(universityGuestVisitReducer.fulfilled, (state, { payload }) => {
       state.data.message = "Fulfilled"
       state.data.loading = false
       var data = payload?.data?.guestVisits
+
+      console.log("animesh -> ",payload)
       
       if(data){
         var temp = {}
@@ -99,11 +108,13 @@ export const universityGuestVisitSlice = createSlice({
     builder.addCase(universityGuestVisitReducer.pending, (state, { payload }) => {
       state.data.loading = true
       state.data.message = "Loading"
+      state.data.redirect = false
     });
     
     builder.addCase(universityGuestVisitReducer.rejected, (state, { payload }) => {
       state.data.message = "Failed"
       state.data.loading = false
+      state.data.redirect = false
     });
 
 
@@ -115,6 +126,8 @@ export const universityGuestVisitSlice = createSlice({
       state.data.message = "Fulfilled"
       state.data.loading = false
       var obj = payload?.data?.guestVisit
+
+      console.log("pass")
       
       var temp2 = {}
       temp2["title"] = obj?.title
@@ -127,6 +140,8 @@ export const universityGuestVisitSlice = createSlice({
         temp2["host"] = obj?.hostEmail
         temp2["hostPhone"] = obj?.hostPhone
         temp2["university"] = obj?.university
+        state.data.id = obj?._id
+      state.data.redirect = true
 
       state.data.data.data = [temp2].concat(state.data.data.data)
       state.data.data.ids = [obj?._id].concat(state.data.data.ids)
@@ -136,11 +151,14 @@ export const universityGuestVisitSlice = createSlice({
     builder.addCase(universityGuestVisitAddReducer.pending, (state, { payload }) => {
       state.data.loading = true
       state.data.message = "Loading"
+      console.log("pen")
+
     });
     
     builder.addCase(universityGuestVisitAddReducer.rejected, (state, { payload }) => {
       state.data.message = "Failed"
       state.data.loading = false
+      console.log("Failed")
     });
 
 
@@ -150,3 +168,5 @@ export const universityGuestVisitSlice = createSlice({
 
 export default universityGuestVisitSlice.reducer
 export {universityGuestVisitReducer,universityGuestVisitAddReducer}
+
+export const {redirectToGuestVisitProfile} = universityGuestVisitSlice.actions
