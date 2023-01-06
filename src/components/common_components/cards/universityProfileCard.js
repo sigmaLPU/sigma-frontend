@@ -10,13 +10,18 @@ export function ObjectCard(props) {
 	var keys = []
 	keys = Object.keys(props?.data)
 
+	function capitalizeFirstLetter(string) {
+	  return string.charAt(0).toUpperCase() + string.slice(1);
+	}
+
+
 	return (
-		<div style={{width:"100%",display:"flex",justifyContent:"center"}}>
+		<div style={{width:"100%",display:"flex",justifyContent:"center",paddingLeft:"1rem"}}>
 			<table>
 				{
 					keys.map(key=>(
-						<tr>
-							<td style={{fontWeight:"800",fontSize:"20px"}}>{key}</td>
+						<tr style={{}}>
+							<td style={{fontWeight:"800",fontSize:"20px"}}>{capitalizeFirstLetter(key)}</td>
 							<td style={{padding:"4px",fontWeight:"800",fontSize:"20px"}}>:</td>
 							<td style={{fontWeight:"400",fontSize:"20px"}}>{props?.data[key]}</td>
 						</tr>
@@ -72,15 +77,16 @@ export function FileCard(props) {
 
 	const activeComponent = <table style={{width:"100%",display:"flex",flexDirection:"column",justifyContent:"space-between"}}>
 					<tr style={{display:"flex",justifyContent:"space-between"}}>
-						<td style={{fontWeight:"800"}}>Months</td>
-						<td style={{padding:"4px"}}>:</td>-
-						<td>{available}</td>
-					</tr>
-					<tr style={{display:"flex",justifyContent:"space-between"}}>
 						<td style={{fontWeight:"800"}}>Type</td>
-						<td style={{padding:"4px"}}>:</td>-
+						<td style={{padding:"4px"}}>:</td>
 						<td>{props?.data["type"]}</td>
 					</tr>
+					<tr style={{display:"flex",justifyContent:"space-between"}}>
+						<td style={{fontWeight:"800"}}>Months</td>
+						<td style={{padding:"4px"}}>:</td>
+						<td>{available}</td>
+					</tr>
+					
 					<tr>
 						<td style={{fontWeight:"800"}}>Start Date</td>
 						<td style={{padding:"4px"}}>:</td>
@@ -115,22 +121,17 @@ export function FileCard(props) {
 export function ContactCard(props){
 	const [bgColor,setBgColor] = useState("white")
 
-	const activeComponent = <div>
+	const activeComponent = <div style={{paddingLeft:"1rem"}}>
 		{props?.data["name"] && 
-			<div style={{margin:"0rem 0rem 0rem 1rem",width:"100%"}}>
-				<div style={{display:"flex",alignItems:"center",columnGap:"0.5rem",justifyContent:"space-between",width:"100%"}}>
-					<span style={{fontSize:"1.2rem",fontWeight:"700"}}>{props?.data["name"]}</span>
-					<span style={{fontSize:"0.9rem",fontWeight:"500"}}>({props?.data["description"]})</span>
-				</div>
-				<div style={{display:"flex",alignItems:"center",justifyContent:"space-between",columnGap:"0.5rem"}}>
-					<span style={{}}>{props?.data["mobile"]}</span>
-					<span style={{}}>{props?.data["mail"]}</span>
-				</div>
+			<div>
+				<div style={{fontSize:"1.2rem",fontWeight:"700"}}>{props?.data["name"]}</div>
+				<div style={{fontSize:"0.9rem",fontWeight:"500"}}>({props?.data["description"]})</div>
+				<div>{props?.data["mobile"]}</div>
+				<div>{props?.data["mail"]}</div>
 			</div>
 		}
 
 		</div>
-
 
 	return (
 		<div style={{display:"flex",borderBottom:"1px solid black",backgroundColor:bgColor}} onMouseEnter={()=>setBgColor("#dbdbd9")} onMouseLeave={()=>setBgColor("white")}>
@@ -152,7 +153,7 @@ export function RecentUpdateCard(props){
 			<div>{props?.data["title"]}</div>
 			<div style={{paddingTop:"4px",display:"flex",justifyContent:"space-between"}}>
 				<span style={{color:"red",fontWeight:"700"}}>
-					<ModalPopUp activeComponent={<span>Read more...</span>}>
+					<ModalPopUp activeComponent={<span>Edit</span>}>
 						{props?.recentUpdateUpdateUniversityModal ? props?.recentUpdateUpdateUniversityModal : "Not Available"}
 					</ModalPopUp>
 				</span>
@@ -173,7 +174,7 @@ export function MeetingCard(props){
 			<div style={{paddingTop:"4px",display:"flex",justifyContent:"space-between"}}>
 				<span style={{color:"red",fontWeight:"700"}}>
 					<span style={{cursor:"pointer"}} onClick={()=>navigate(`/meeting/${props?.data["id"]}`)}>Read more...</span>
-					{/*<ModalPopUp activeComponent={<span>Read more...</span>}>
+					{/*<ModalPopUp activeComponent={<span>Edit</span>}>
 						{props?.meetingUpdateUniversityModal ? props?.meetingUpdateUniversityModal : "Not Available"}
 					</ModalPopUp>*/}
 				</span>

@@ -64,12 +64,12 @@ export const universityProgramSlice = createSlice({
         temp["Final Degree Name"] = obj?.forign_name ? obj?.forign_name : "Not available"
         temp["Fees"] = obj?.tutionFees ? obj?.tutionFees : "Not available"
         temp["Scholarship"] = obj?.scholarship ? obj?.scholarship : "Not available"
-        temp["Agreements"] = <div>View Details</div>
+        temp["Modal"] = <div>Modal</div>
 
         arr.push(temp)
         ids.push(obj?._id)
       }
-      state.data.data = {data:arr,ids:ids,column:["LPU Degree Name","Final Degree Name","Fees","Scholarship","Agreements"]}
+      state.data.data = {data:arr,ids:ids,column:["LPU Degree Name","Final Degree Name","Fees","Scholarship","Modal"]}
     });
 
     builder.addCase(universityProgramReducer.pending, (state, { payload }) => {

@@ -151,14 +151,12 @@ export const universityGuestVisitSlice = createSlice({
     builder.addCase(universityGuestVisitAddReducer.pending, (state, { payload }) => {
       state.data.loading = true
       state.data.message = "Loading"
-      console.log("pen")
 
     });
     
     builder.addCase(universityGuestVisitAddReducer.rejected, (state, { payload }) => {
       state.data.message = "Failed"
       state.data.loading = false
-      console.log("Failed")
     });
 
 
