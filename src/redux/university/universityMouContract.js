@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 import axios from 'axios'
+import {normalize} from '../normalize'
 
 const initialState = {
   data:{
@@ -15,6 +16,7 @@ const initialState = {
 
 const universityMouContractReducer = createAsyncThunk('universityMouContract/universityMouContractReducer',
   async (data)=>{
+    data = normalize(data)
     return axios.get(`https://sigma-lpu-vsbd9.ondigitalocean.app/api/v2/university/mou/${data?.id}`,{
         headers: {
           'Content-Type': 'application/json',
@@ -27,6 +29,7 @@ const universityMouContractReducer = createAsyncThunk('universityMouContract/uni
 const universityMouContractAddReducer = createAsyncThunk('universityMouContract/universityMouContractAddReducer',
   async (data)=>{
 
+    data = normalize(data)
     var config = {
       method: 'post',
       url: `https://sigma-lpu-vsbd9.ondigitalocean.app/api/v2/university/mou/${data?.id}/add`,
@@ -43,6 +46,7 @@ const universityMouContractAddReducer = createAsyncThunk('universityMouContract/
 
 const universityMouContractUpdateReducer = createAsyncThunk('universityMouContract/universityMouContractUpdateReducer',
   async (data)=>{
+    data = normalize(data)
     return axios.put(`https://sigma-lpu-vsbd9.ondigitalocean.app/api/v2/university/mou/${data?.id}/update`,data?.data,{
         headers: {
           'Content-Type': 'application/json',

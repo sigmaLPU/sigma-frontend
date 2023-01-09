@@ -3,6 +3,9 @@ import axios from 'axios'
 
 import {LOGIN_URL} from '../constants'
 
+import {normalize} from '../normalize'
+
+
 const initialState = {
   data:{
     isAuthenticated : false,
@@ -14,6 +17,7 @@ const initialState = {
 
 const authUserReducer = createAsyncThunk('auth/authUserReducer',
     async (data)=>{
+    // data = normalize(data)
       return axios.post(LOGIN_URL,data,{
           headers: {
             'Content-Type': 'application/json'

@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+import {normalize} from '../normalize'
 
 const initialState = {
   data:{

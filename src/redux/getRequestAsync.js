@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
+import {normalize} from './normalize'
+
 // import {GET_SINGLE_UNIVERSITY_URL,GET_SINGLE_UNIVERSITY_CONTACT_URL} from '../constants'
 
 const initialState = {

@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 import {FORGET_USER_PASSWORD,RESET_PASSWORD} from '../constants'
+import {normalize} from '../normalize'
 
 const initialState = {
   data:{
@@ -12,6 +13,7 @@ const initialState = {
 
 const forgetPasswordReducer = createAsyncThunk('forgetPassword/forgetPasswordReducer',
     async (data)=>{
+    // data = normalize(data)
       return axios.post(FORGET_USER_PASSWORD,data,{
           headers: {
             'Content-Type': 'application/json'
@@ -22,6 +24,7 @@ const forgetPasswordReducer = createAsyncThunk('forgetPassword/forgetPasswordRed
 
 const resetPasswordReducer = createAsyncThunk('forgetPassword/resetPasswordReducer',
     async (data)=>{
+    // data = normalize(data)
       return axios.put(`${RESET_PASSWORD}/${data?.id}`,{"password":data?.password},{
           headers: {
             'Content-Type': 'application/json'

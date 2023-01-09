@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 import {PROFILE_URL} from '../constants'
+import {normalize} from '../normalize'
 
 const initialState = {
   data:{
@@ -14,6 +15,7 @@ const initialState = {
 
 const authenticateTokenReducer = createAsyncThunk('auth/authUserReducer',
     async (data)=>{
+    // data = normalize(data)
       return axios.get("https://sigma-lpu-vsbd9.ondigitalocean.app/api/v2/user/profile",{
         headers:{
           Authorization : "Bearer "+localStorage.getItem('token')

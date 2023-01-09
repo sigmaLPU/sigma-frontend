@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
+import {normalize} from '../normalize'
 
 const initialState = {
   data:{

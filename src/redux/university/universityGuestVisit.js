@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 import axios from 'axios'
+import {normalize} from '../normalize'
 
 const initialState = {
   data:{
@@ -17,6 +18,7 @@ const initialState = {
 
 const universityGuestVisitReducer = createAsyncThunk('universityGuestVisit/universityGuestVisitReducer',
   async (data)=>{
+    data = normalize(data)
     return axios.get(`https://sigma-lpu-vsbd9.ondigitalocean.app/api/v2/guestvisit/${data?.id}/all`,{
         headers: {
           'Content-Type': 'application/json',
@@ -29,6 +31,7 @@ const universityGuestVisitReducer = createAsyncThunk('universityGuestVisit/unive
 const universityGuestVisitAddReducer = createAsyncThunk('universityGuestVisitAdd/universityGuestVisitAddReducer',
   async (data)=>{
 
+    data = normalize(data)
     var config = {
       method: 'post',
       url: `https://sigma-lpu-vsbd9.ondigitalocean.app/api/v2/guestvisit/add`,

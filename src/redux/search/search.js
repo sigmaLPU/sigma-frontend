@@ -2,6 +2,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 import axios from 'axios'
+import {normalize} from '../normalize'
 
 const initialState = {
   data:[],
@@ -10,6 +11,7 @@ const initialState = {
 
 const searchReducer = createAsyncThunk('search/searchReducer',
   async (data)=>{
+    data = normalize(data)
     return axios.get(`https://sigma-lpu-vsbd9.ondigitalocean.app/api/v2/search/all?search=${data?.query}`,{
         headers: {
           'Content-Type': 'application/json',

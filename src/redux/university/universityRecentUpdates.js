@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 import axios from 'axios'
+import {normalize} from '../normalize'
 
 function toDate(timestamp){
   const d = new Date( timestamp );
@@ -21,6 +22,7 @@ const initialState = {
 
 const universityRecentUpdateReducer = createAsyncThunk('universityRecentUpdate/universityRecentUpdateReducer',
   async (data)=>{
+    data = normalize(data)
     return axios.get(`https://sigma-lpu-vsbd9.ondigitalocean.app/api/v2/university/update/${data?.id}`,{
         headers: {
           'Content-Type': 'application/json',
@@ -31,6 +33,7 @@ const universityRecentUpdateReducer = createAsyncThunk('universityRecentUpdate/u
 
 const universityRecentUpdateAddReducer = createAsyncThunk('universityRecentUpdate/universityRecentUpdateAddReducer',
   async (data)=>{
+    data = normalize(data)
     var config = {
       method: 'post',
       url: `https://sigma-lpu-vsbd9.ondigitalocean.app/api/v2/university/update/${data?.id}/add`,
@@ -48,6 +51,7 @@ const universityRecentUpdateAddReducer = createAsyncThunk('universityRecentUpdat
 
 const universityRecentUpdateUpdateReducer = createAsyncThunk('universityRecentUpdate/universityRecentUpdateUpdateReducer',
   async (data)=>{
+    data = normalize(data)
     return axios.put(`https://sigma-lpu-vsbd9.ondigitalocean.app/api/v2/university/update/${data?.id}/update`,data?.data,{
         headers: {
           'Content-Type': 'application/json',

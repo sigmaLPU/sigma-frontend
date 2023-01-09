@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
+import {normalize} from '../normalize'
 
 function redirectTo(url){
   window.loaction.href = url

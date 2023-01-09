@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 import {GET_ALL_UNIVERSITY_URL} from '../constants'
+import {normalize} from '../normalize'
 
 function redirectTo(url){
   window.loaction.href = url
@@ -39,7 +40,7 @@ const universityAddReducer = createAsyncThunk('universityContact/universityAddRe
         'Content-Type': 'application/json',
           Authorization : "Bearer "+localStorage.getItem('token')
       },
-      data : data?.data
+      data : normalize(data?.data)
     };
     return axios(config)
   }

@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 import axios from 'axios'
+import {normalize} from '../normalize'
 
 const initialState = {
   data:{
@@ -32,7 +33,7 @@ const universityApplicationProcessAddReducer = createAsyncThunk('universityRecen
         'Content-Type': 'application/json',
           Authorization : "Bearer "+localStorage.getItem('token')
       },
-      data : data?.data
+      data : normalize(data?.data)
     };
 
     return axios(config)
