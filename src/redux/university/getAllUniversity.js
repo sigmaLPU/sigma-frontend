@@ -83,12 +83,13 @@ export const getAllUniversitySlice = createSlice({
           obj["Name of University"] = x?.name ? x?.name : "---"
           obj["Country"] = x?.country ? x?.country : "---"
           obj["Meetings"] =  x?.meeting ? x?.meeting : "---"
-          obj["Contact Person"] =  x?.contact ? x?.contact[0] : "---"
+          // obj["Contact Person"] =  x?.contact ? x?.contact[0] : "---"
           obj["Agreement"] = x?.agreement ? x?.agreement : "---"
+          obj["createdBy"] = x?.createdBy.name ? x?.createdBy.name : "---"
           obj["Details"] = x?._id;    
           r.push(obj)
         }
-        state.data.data = {rows:r,column:["Name of University","Country","Meetings","Contact Person","Agreement","Details"]}
+        state.data.data = {rows:r,column:["Name of University","Country","Meetings","Agreement","createdBy","Details"]}
       
       }
       state.data.loading = false
