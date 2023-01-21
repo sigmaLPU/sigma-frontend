@@ -80,11 +80,12 @@ export const getAllUniversitySlice = createSlice({
         for(var i=0;i<data.length;i++){
           var x = data[i]
           var obj = {}
+          obj["id"] = x?._id 
           obj["Name of University"] = x?.name ? x?.name : "---"
           obj["Country"] = x?.country ? x?.country : "---"
-          obj["Meetings"] =  x?.meeting ? x?.meeting : "---"
+          // obj["Meetings"] =  x?.meeting ? x?.meeting : "---"
           // obj["Contact Person"] =  x?.contact ? x?.contact[0] : "---"
-          obj["Agreement"] = x?.agreement ? x?.agreement : "---"
+          // obj["Agreement"] = x?.agreement ? x?.agreement : "---"
           obj["createdBy"] = x?.createdBy.name ? x?.createdBy.name : "---"
           obj["Details"] = x?._id;    
           r.push(obj)
@@ -113,11 +114,12 @@ export const getAllUniversitySlice = createSlice({
       }else{
         state.data.message="Fulfilled"
         var obj = {}
+        obj["id"] = x?._id
         obj["Name of University"] = x?.name ? x?.name : "---"
         obj["Country"] = x?.country ? x?.country : "---"
-        obj["Meetings"] =  x?.meeting ? x?.meeting : "---"
+        // obj["Meetings"] =  x?.meeting ? x?.meeting : "---"
         obj["Contact Person"] =  x?.contact ? x?.contact[0] : "---"
-        obj["Agreement"] = x?.agreement ? x?.agreement : "---"
+        // obj["Agreement"] = x?.agreement ? x?.agreement : "---"
         obj["Details"] = x?._id;    
 
         state.data.data.rows = [obj].concat(state.data.data.rows)

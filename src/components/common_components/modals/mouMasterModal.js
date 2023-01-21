@@ -299,6 +299,8 @@ export function AddNewUniversity(props){
 		e.preventDefault()
 		// const id = getUniId(window.location.href)
 		dispatch(universityAddReducer({data:data}))
+
+		
 	}
 
 	const reduxData = useSelector((state)=>state.getAllUniversitySlice.data)
