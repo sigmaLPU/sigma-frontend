@@ -696,7 +696,8 @@ export function ProgramOfColaborationUniversityModal(props){
     "lpu_name":"",
     "forign_name":"",
     "tutionFees":"",
-    "scholarship":""
+    "scholarship":"",
+	"model": "",
 	})
 
 
@@ -732,6 +733,7 @@ export function ProgramOfColaborationUniversityModal(props){
 						<input style={textFeildCSS} onChange={(e)=>setData({...data,forign_name:e.target.value})} value={data.forign_name} type="text" placeholder="Final Degree name"/>
 						<input style={textFeildCSS} onChange={(e)=>setData({...data,tutionFees:e.target.value})} value={data.tutionFees} type="text" placeholder="Fees"/>
 						<input style={textFeildCSS} onChange={(e)=>setData({...data,scholarship:e.target.value})} value={data.scholarship} type="text" placeholder="Scholarship"/>
+						<input style={textFeildCSS} onChange={(e)=>setData({...data,model:e.target.value})} value={data.model} type="text" placeholder="Model"/>
 					</div>
 					<Button submit={submit} buttonText={"Save"}/>
 					

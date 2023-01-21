@@ -67,12 +67,12 @@ export const universityProgramSlice = createSlice({
         temp["Final Degree Name"] = obj?.forign_name ? obj?.forign_name : "Not available"
         temp["Fees"] = obj?.tutionFees ? obj?.tutionFees : "Not available"
         temp["Scholarship"] = obj?.scholarship ? obj?.scholarship : "Not available"
-        temp["Modal"] = <div>Modal</div>
+        temp["Model"] = obj?.model ? obj?.model : "Not available"
 
         arr.push(temp)
         ids.push(obj?._id)
       }
-      state.data.data = {data:arr,ids:ids,column:["LPU Degree Name","Final Degree Name","Fees","Scholarship","Modal"]}
+      state.data.data = {data:arr,ids:ids,column:["LPU Degree Name","Final Degree Name","Fees","Scholarship","Model"]}
     });
 
     builder.addCase(universityProgramReducer.pending, (state, { payload }) => {
@@ -97,9 +97,10 @@ export const universityProgramSlice = createSlice({
       temp["Final Degree Name"] = obj?.forign_name ? obj?.forign_name : "Not available"
       temp["Fees"] = obj?.tutionFees ? obj?.tutionFees : "Not available"
       temp["Scholarship"] = obj?.scholarship ? obj?.scholarship : "Not available"
+      temp["Model"] = obj?.model ? obj?.model : "Not available"
       temp["Agreements"] = <div>View Details</div>
 
-      state.data.data.column = ["LPU Degree Name","Final Degree Name","Fees","Scholarship","Agreements"]
+      state.data.data.column = ["LPU Degree Name","Final Degree Name","Fees","Scholarship","Model","Agreements"]
       state.data.data.ids = [obj?._id].concat(state.data.data.ids)
       state.data.data.data = [temp].concat(state.data.data.data)
       // state.data.data = {data:arr,ids:ids,column:["LPU Degree Name","Final Degree Name","Fees","Scholarship","Agreements"]}
