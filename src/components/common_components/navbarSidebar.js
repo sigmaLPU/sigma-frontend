@@ -145,6 +145,11 @@ export default function NavSideBar(props) {
      localStorage.clear();
   }
 
+
+  React.useEffect(()=>{
+    
+  },[])
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />

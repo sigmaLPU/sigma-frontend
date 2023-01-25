@@ -87,6 +87,7 @@ export const getAllUniversitySlice = createSlice({
           // obj["Contact Person"] =  x?.contact ? x?.contact[0] : "---"
           // obj["Agreement"] = x?.agreement ? x?.agreement : "---"
           obj["createdBy"] = x?.createdBy.name ? x?.createdBy.name : "---"
+          obj["createdAt"] = x?.createdAt ? String(x?.createdAt).split('T')[0] : "---"
           obj["Details"] = x?._id;    
           r.push(obj)
         }
