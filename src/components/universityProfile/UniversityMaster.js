@@ -279,9 +279,17 @@ export default function MouMaster(props) {
                 rows={data?.data?.rows || []}
                 columns={columns}
                 components={{ Toolbar: GridToolbar }}
-                filterMode='server'
-                // pagination
-                // pageSize={10}
+                
+
+
+                checkboxSelection
+
+
+
+
+
+
+                
               />
             </Box>
             <Dialog open={open} onClose={handleClose} 
