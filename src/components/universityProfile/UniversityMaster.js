@@ -190,10 +190,10 @@ export default function MouMaster(props) {
 
   return (
     <div>
-      <NavSideBarLayout childCSS={{ marginTop: '4rem' }}>
+      <NavSideBarLayout childCSS={{ marginTop: '1.5rem' }}>
         <div style={{ display: 'flex' }}>
           {/*Left part*/}
-          <div style={{ borderRight: '1px solid #D9D9D9', maxWidth: '372px' }}>
+          {/* <div style={{ borderRight: '1px solid #D9D9D9', maxWidth: '372px' }}>
             <div>
               <input
                 type="text"
@@ -208,7 +208,7 @@ export default function MouMaster(props) {
 
             <YourTags />
             <PopularTags />
-          </div>
+          </div> */}
           {/*Right Part*/}
           <div style={{ marginLeft: '1rem', width: '100%' }}>
             {/* <Table 
@@ -244,8 +244,8 @@ export default function MouMaster(props) {
             </Box>
 
             <Box
-              m="40px 0 0 0"
-              height="75vh"
+              m="5px 0 0 0"
+              height="85vh"
               sx={{
                 '& .MuiDataGrid-root': {
                   border: 'none',
@@ -279,6 +279,9 @@ export default function MouMaster(props) {
                 rows={data?.data?.rows || []}
                 columns={columns}
                 components={{ Toolbar: GridToolbar }}
+                filterMode='server'
+                // pagination
+                // pageSize={10}
               />
             </Box>
             <Dialog open={open} onClose={handleClose} 
