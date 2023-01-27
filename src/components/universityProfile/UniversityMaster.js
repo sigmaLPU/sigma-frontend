@@ -7,12 +7,12 @@ import {
   Box,
   Button,
   Dialog,
-  DialogActions,
+  // DialogActions,
   DialogContent,
-  DialogContentText,
-  DialogTitle,
-  TextareaAutosize,
-  TextField,
+  // DialogContentText,
+  // DialogTitle,
+  // TextareaAutosize,
+  // TextField,
 } from '@mui/material';
 // component import
 import { NavSideBarLayout } from '../routes';
@@ -22,18 +22,18 @@ import { AddNewUniversity } from '../routes';
 // other imports
 import {
   getAllUniversityReducer,
-  setRedirectFunction,
-  updateViewDetails,
-  activateYourTagChip,
-  deleteYourTagChip,
-  addYourTagChip,
+  // setRedirectFunction,
+  // updateViewDetails,
+  // activateYourTagChip,
+  // deleteYourTagChip,
+  // addYourTagChip,
 } from '../../redux/routes';
 import {
-  getAllMeetingsSlice,
-  getAllUniversityMeetingsReducer,
-  universityMeetingsAddReducer,
-  setRedirectFunctionMeetings,
-  updateViewDetailsMeetings,
+  // getAllMeetingsSlice,
+  // getAllUniversityMeetingsReducer,
+  // universityMeetingsAddReducer,
+  // setRedirectFunctionMeetings,
+  // updateViewDetailsMeetings,
 } from '../../redux/routes';
 import { AddCircle } from '@mui/icons-material';
 
@@ -48,30 +48,30 @@ export default function MouMaster(props) {
   useEffect(() => {
     setData(rawData);
     console.log(data.data.rows);
-  }, [rawData]);
+  }, [rawData, data.data.rows]);
 
-  const replace = [
-    {
-      name: 'Details',
-      value: function (id) {
-        return (
-          <div
-            onClick={() => redirectTo(id)}
-            style={{
-              color: '#F07F1A',
-              width: '100%',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              cursor: 'pointer',
-            }}
-          >
-            Details
-          </div>
-        );
-      },
-    },
-  ];
+  // const replace = [
+  //   {
+  //     name: 'Details',
+  //     value: function (id) {
+  //       return (
+  //         <div
+  //           onClick={() => redirectTo(id)}
+  //           style={{
+  //             color: '#F07F1A',
+  //             width: '100%',
+  //             display: 'flex',
+  //             justifyContent: 'center',
+  //             alignItems: 'center',
+  //             cursor: 'pointer',
+  //           }}
+  //         >
+  //           Details
+  //         </div>
+  //       );
+  //     },
+  //   },
+  // ];
 
   useEffect(() => {
     dispatch(getAllUniversityReducer({}));
@@ -79,7 +79,7 @@ export default function MouMaster(props) {
 
   const navigate = useNavigate();
   // table state
-  const [message, setMessage] = useState('loading the tables');
+  // const [message, setMessage] = useState('loading the tables');
   const [column, setColumn] = useState([
     'Name of University',
     'Country',
@@ -90,50 +90,49 @@ export default function MouMaster(props) {
   ]);
   const [rows, setRows] = useState([]);
 
-  const ChipCSS = {
-    minWidth: '126px',
-    height: '28px',
-    background: '#FFFFFF',
-    border: '1px solid #F07F1A',
-    borderRadius: '7px',
-    margin: '4px',
+  // const ChipCSS = {
+  //   minWidth: '126px',
+  //   height: '28px',
+  //   background: '#FFFFFF',
+  //   border: '1px solid #F07F1A',
+  //   borderRadius: '7px',
+  //   margin: '4px',
+  // };
+  // const CardCSS = {
+  //   minHeight: '418px',
+  //   width: '372px',
+  //   border: '1px solid #F07F1A',
+  //   boxShadow: '0px 0px 14px rgba(0, 0, 0, 0.25)',
+  //   color: 'black',
+  // };
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = (aggrement) => {
+    setOpen(true);
   };
-  const CardCSS = {
-    minHeight: '418px',
-    width: '372px',
-    border: '1px solid #F07F1A',
-    boxShadow: '0px 0px 14px rgba(0, 0, 0, 0.25)',
-    color: 'black',
+
+  const handleClose = () => {
+    setOpen(false);
   };
-    const [open, setOpen] = React.useState(false);
 
+  // function getData() {
+  //   return {
+  //     pagenation_id: '1234',
+  //     column: column,
+  //     rows: rows,
+  //   };
+  // }
 
-    const handleClickOpen = (aggrement) => {
-      setOpen(true);
-    };
+  // function redirectTo(id) {
+  //   const url = `/university/${id}`;
+  //   navigate(url);
+  // }
 
-    const handleClose = () => {
-      setOpen(false);
-    };
-
-  function getData() {
-    return {
-      pagenation_id: '1234',
-      column: column,
-      rows: rows,
-    };
-  }
-
-  function redirectTo(id) {
-    const url = `/university/${id}`;
-    navigate(url);
-  }
-
-  function ToggleChip(array, setArray, id) {
-    var arr = array;
-    arr[id].active = !arr[id].active;
-    setArray(arr);
-  }
+  // function ToggleChip(array, setArray, id) {
+  //   var arr = array;
+  //   arr[id].active = !arr[id].active;
+  //   setArray(arr);
+  // }
 
   useEffect(() => {
     // ToggleChip(yourTags,setYourTags,0)
@@ -168,16 +167,18 @@ export default function MouMaster(props) {
       flex: 0.5,
       renderCell: (cellValue) => {
         return (
-          <Link to={`/university/${cellValue.row.id}`} style={{
-			textDecoration: 'none',
-		  }}>
+          <Link
+            to={`/university/${cellValue.row.id}`}
+            style={{
+              textDecoration: 'none',
+            }}
+          >
             <Button
               variant="outlined"
               sx={{
                 color: '#F07F1A',
                 border: '1px solid #F07F1A',
                 textDecoration: 'none',
-
               }}
             >
               Browse
@@ -279,33 +280,26 @@ export default function MouMaster(props) {
                 rows={data?.data?.rows || []}
                 columns={columns}
                 components={{ Toolbar: GridToolbar }}
-                
-
-
                 checkboxSelection
+                // use multiple filters
+               
 
-
-
-
-
-
-                
               />
             </Box>
-            <Dialog open={open} onClose={handleClose} 
-			fullWidth={true}
-			maxWidth={'md'}
-
-			>
-              <DialogContent sx={{
-				display: 'flex',
-				justifyContent: 'center',
-			  }}>
-               
-				<AddNewUniversity />
-             
+            <Dialog
+              open={open}
+              onClose={handleClose}
+              fullWidth={true}
+              maxWidth={'md'}
+            >
+              <DialogContent
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                }}
+              >
+                <AddNewUniversity />
               </DialogContent>
-            
             </Dialog>
           </div>
         </div>
@@ -314,97 +308,97 @@ export default function MouMaster(props) {
   );
 }
 
-function YourTags(props) {
-  const rawData = useSelector((state) => state.tagsMouMasterSlice.data);
+// function YourTags(props) {
+//   const rawData = useSelector((state) => state.tagsMouMasterSlice.data);
 
-  useEffect(() => {}, []);
+//   useEffect(() => {}, []);
 
-  const ChipCSS = {
-    minWidth: '126px',
-    height: '28px',
-    background: '#FFFFFF',
-    border: '1px solid #F07F1A',
-    borderRadius: '7px',
-    margin: '4px',
-  };
-  const CardCSS = {
-    minHeight: '218px',
-    width: '372px',
-    border: '1px solid #F07F1A',
-    boxShadow: '0px 0px 14px rgba(0, 0, 0, 0.25)',
-    color: 'black',
-  };
+//   const ChipCSS = {
+//     minWidth: '126px',
+//     height: '28px',
+//     background: '#FFFFFF',
+//     border: '1px solid #F07F1A',
+//     borderRadius: '7px',
+//     margin: '4px',
+//   };
+//   const CardCSS = {
+//     minHeight: '218px',
+//     width: '372px',
+//     border: '1px solid #F07F1A',
+//     boxShadow: '0px 0px 14px rgba(0, 0, 0, 0.25)',
+//     color: 'black',
+//   };
 
-  const [yourTags, setYourTags] = useState([
-    { title: 'USA', active: false },
-    { title: 'India', active: false },
-    { title: 'Canada', active: false },
-    { title: 'Bhutan', active: false },
-    { title: 'Nepal', active: true },
-  ]);
+//   const [yourTags, setYourTags] = useState([
+//     { title: 'USA', active: false },
+//     { title: 'India', active: false },
+//     { title: 'Canada', active: false },
+//     { title: 'Bhutan', active: false },
+//     { title: 'Nepal', active: true },
+//   ]);
 
-  return (
-    <Card
-      style={CardCSS}
-      heading={'Your Tags'}
-      styleHeading={{ color: 'black' }}
-    >
-      <div
-        style={{
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          flexWrap: 'wrap',
-        }}
-      >
-        {yourTags.map((item, key) => (
-          <Chip style={ChipCSS} text={item.title} active={item.active} />
-        ))}
-      </div>
-    </Card>
-  );
-}
+//   return (
+//     <Card
+//       style={CardCSS}
+//       heading={'Your Tags'}
+//       styleHeading={{ color: 'black' }}
+//     >
+//       <div
+//         style={{
+//           width: '100%',
+//           height: '100%',
+//           display: 'flex',
+//           flexWrap: 'wrap',
+//         }}
+//       >
+//         {yourTags.map((item, key) => (
+//           <Chip style={ChipCSS} text={item.title} active={item.active} />
+//         ))}
+//       </div>
+//     </Card>
+//   );
+// }
 
-function PopularTags(props) {
-  const ChipCSS = {
-    minWidth: '126px',
-    height: '28px',
-    background: '#FFFFFF',
-    border: '1px solid #F07F1A',
-    borderRadius: '7px',
-    margin: '4px',
-  };
-  const CardCSS = {
-    minHeight: '218px',
-    width: '372px',
-    border: '1px solid #F07F1A',
-    boxShadow: '0px 0px 14px rgba(0, 0, 0, 0.25)',
-    color: 'black',
-  };
+// function PopularTags(props) {
+//   const ChipCSS = {
+//     minWidth: '126px',
+//     height: '28px',
+//     background: '#FFFFFF',
+//     border: '1px solid #F07F1A',
+//     borderRadius: '7px',
+//     margin: '4px',
+//   };
+//   const CardCSS = {
+//     minHeight: '218px',
+//     width: '372px',
+//     border: '1px solid #F07F1A',
+//     boxShadow: '0px 0px 14px rgba(0, 0, 0, 0.25)',
+//     color: 'black',
+//   };
 
-  // tags state
-  const [popularTags, setPopularTags] = useState([
-    { title: 'USA', active: false },
-    { title: 'India', active: false },
-    { title: 'Canada', active: false },
-    { title: 'Bhutan', active: false },
-    { title: 'Nepal', active: true },
-  ]);
+//   // tags state
+//   const [popularTags, setPopularTags] = useState([
+//     { title: 'USA', active: false },
+//     { title: 'India', active: false },
+//     { title: 'Canada', active: false },
+//     { title: 'Bhutan', active: false },
+//     { title: 'Nepal', active: true },
+//   ]);
 
-  return (
-    <Card style={{ ...CardCSS, marginTop: '2rem' }} heading={'Popular Tags'}>
-      <div
-        style={{
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          flexWrap: 'wrap',
-        }}
-      >
-        {popularTags.map((item, key) => (
-          <Chip style={ChipCSS} text={item.title} active={item.active} />
-        ))}
-      </div>
-    </Card>
-  );
-}
+//   return (
+//     <Card style={{ ...CardCSS, marginTop: '2rem' }} heading={'Popular Tags'}>
+//       <div
+//         style={{
+//           width: '100%',
+//           height: '100%',
+//           display: 'flex',
+//           flexWrap: 'wrap',
+//         }}
+//       >
+//         {popularTags.map((item, key) => (
+//           <Chip style={ChipCSS} text={item.title} active={item.active} />
+//         ))}
+//       </div>
+//     </Card>
+//   );
+// }
