@@ -39,7 +39,7 @@ const RegisterUser = () => {
     
   const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = (aggrement) => {
+  const handleClickOpen = () => {
     setOpen(true);
   };
 
@@ -64,6 +64,7 @@ const RegisterUser = () => {
       );
 
       alert(data && data.data.message);
+      setOpen(false)
     } catch (error) {
       alert(error && error.response.data.error);
     }
