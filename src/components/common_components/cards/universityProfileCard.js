@@ -14,20 +14,38 @@ export function ObjectCard(props) {
 	  return string.charAt(0).toUpperCase() + string.slice(1);
 	}
 
+	let toRemove = ["createdBy","createdOn","updatedBy","updatedOn"]
+
+	keys = keys.filter( function( el ) {
+	  return toRemove.indexOf( el ) < 0;
+	} );
+
 
 	return (
-		<div style={{width:"100%",display:"flex",justifyContent:"center",paddingLeft:"1rem"}}>
+		<div style={{width:"100%",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",paddingLeft:"1rem"}}>
 			<table>
 				{
 					keys.map(key=>(
 						<tr style={{}}>
-							<td style={{fontWeight:"800",fontSize:"20px"}}>{capitalizeFirstLetter(key)}</td>
-							<td style={{padding:"4px",fontWeight:"800",fontSize:"20px"}}>:</td>
-							<td style={{fontWeight:"400",fontSize:"20px"}}>{props?.data[key]}</td>
+							<td style={{fontWeight:"800",fontSize:"1.2rem"}}>{capitalizeFirstLetter(key)}</td>
+							<td style={{padding:"4px",fontWeight:"800",fontSize:"1.2rem"}}>:</td>
+							<td style={{fontWeight:"400",fontSize:"1.2rem"}}>{props?.data[key]}</td>
 						</tr>
 					))
-				}
-				
+				}				
+			</table>
+
+			<table>
+					<tr>
+						<td style={{fontWeight:800}}>Created</td>
+						<td>{props?.data["createdBy"]}</td>
+						<td>{props?.data["createdOn"]}</td>
+					</tr>
+					<tr>
+						<td style={{fontWeight:800}}>Updated</td>
+						<td>{props?.data["updatedBy"]}</td>
+						<td>{props?.data["updatedOn"]}</td>
+					</tr>
 			</table>
 		</div>
 	)
