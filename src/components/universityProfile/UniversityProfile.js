@@ -5,7 +5,7 @@ import {NavSideBarLayout} from '../routes'
 import {
 	Card ,
 	BasicDetailsModal, 
-	Table,ObjectCard,
+	NewTable,Table,ObjectCard,
 	FileCard,MeetingCard,
 	ContactCard,RecentUpdateCard,
 	ContactDetailsModal,
@@ -427,10 +427,42 @@ function ProgramOfColaboration(props){
 		dispatch(universityProgramReducer({id}))
 	},[])
 
+	const columns = [
+    {
+      field: 'LPU Degree Name',
+      headerName: 'LPU Degree Name',
+      flex: 1,
+      cellClassName: 'name-column--cell',
+    },
+    {
+      field: 'Final Degree Name',
+      headerName: 'Final Degree Name',
+      flex: 1,
+    },
+    {
+      field: 'Fees',
+      headerName: 'Fees',
+      flex: 1,
+    },
+    {
+      field: 'Scholarship',
+      headerName: 'Scholarship',
+      flex: 1,
+    },
+    {
+      field: 'Model',
+      headerName: 'Model',
+      flex: 1,
+    },
+  ];
+
+
+
+	console.log("Animesh",data)
 
 	return (
 		<>
-			<Table data={data} popup={props?.popup} rows={data.rows} column={data.column} heading={"Program of colaboration"} style={{minHeight:"15rem"}}/>
+            <NewTable title={"Program of colaboration"} popup={props?.popup} rows={data.rows} columns={columns} />
 		</>
 	)
 }

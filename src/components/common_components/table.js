@@ -3,6 +3,34 @@ import {useState,useEffect} from 'react'
 
 import {ModalPopUp} from '../routes'
 
+import {Box,Button,Dialog,DialogContent} from '@mui/material';
+import { AddCircle } from '@mui/icons-material';
+
+
+import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+
+
+function replaceProp(rows,column,props){
+	// rows
+	// console.log("hello ",rows,props?.replace)
+	// let rs = []
+	// let rp = props?.replace
+	// for(let i=0;i<rows.length;i++){
+	// 	let r = rows[i];
+	// 	if(props?.replace){
+	// 		for(let j=0;j<rp.length;j++){
+	// 			let fun = rp[j].value;
+	// 			console.log("hello called ",fun(r[rp[j].name]))
+	// 			r[rp[j].name] = rp[j].value(r[rp[j].name])
+	// 		}
+	// 	}
+	// 	console.log("hello A",r);
+	// }
+
+	return rows;	
+}
+
+
 export default function Table(props){	
 	const [pagenation,setPagenation] = useState("")
 	const [column,setColumn] = useState(["S.No","Name","temp1","temp1","temp1","temp1"])
@@ -12,12 +40,16 @@ export default function Table(props){
 	])
 	const [dataSize,setDataSize] = useState(0)
 
+
+
 	const style = {
 		borderRadius : "8px",
 		border: "1px solid #F07F1A",
 		boxShadow: "0px 0px 14px rgba(0, 0, 0, 0.25)",
 		...props?.style
 	}
+
+
 
 	const headingCSS = {
 		width:"100%",
@@ -60,7 +92,8 @@ export default function Table(props){
 		...props?.rowCSS
 	}
 
-	
+	console.log("hello",replaceProp(rows,column,props))
+
 	useEffect(()=>{
 		if(props?.data){
 			var data = props?.data
@@ -133,5 +166,114 @@ export default function Table(props){
 			</div>
 		</div>
 		</>
+	)
+}
+
+
+
+export function NewTable(props){
+
+	const [open, setOpen] = React.useState(false);
+
+	const handleClickOpen = (aggrement) => {
+	setOpen(true);
+	};
+
+	const handleClose = () => {
+	setOpen(false);
+	};
+
+
+
+	const sx = {
+                '& .MuiDataGrid-root': {
+                  border: 'none',
+                },
+                '& .MuiDataGrid-cell': {
+                  borderBottom: 'none',
+                },
+                '& .name-column--cell': {
+                  color: '#F07F1A',
+                },
+                '& .MuiDataGrid-columnHeaders': {
+                  backgroundColor: '#F07F1A',
+                  borderBottom: 'none',
+                },
+                '& .MuiDataGrid-virtualScroller': {
+                  // backgroundColor: "#F07F1A",
+                },
+                '& .MuiDataGrid-footerContainer': {
+                  borderTop: 'none',
+                  backgroundColor: '#F07F1A',
+                },
+                '& .MuiCheckbox-root': {
+                  color: `#F07F1A !important`,
+                },
+                '& .MuiDataGrid-toolbarContainer .MuiButton-text': {
+                  color: `#F07F1A !important`,
+                },
+              }
+
+
+	return (
+		<div>
+
+
+			<Box
+              display="flex"
+              justifyContent="flex-end"
+              sx={{
+                position: 'relative',
+                bottom: '-30px',
+              }}
+            >
+              <Button
+                sx={{
+                  backgroundColor: '#F07F1A',
+
+                  color: '#000',
+                  fontSize: '14px',
+                  fontWeight: 'bold',
+                  padding: '10px 20px',
+                }}
+                endIcon={<AddCircle />}
+                onClick={handleClickOpen}
+              >
+                Add New
+              </Button>
+            </Box>
+
+			<div style={{width:"100%",fontSize:"1.4rem",}}>{props?.title}</div>
+
+			<Box
+              m="5px 0 0 0"
+				height="85vh"
+              sx={sx}
+            >
+              <DataGrid
+                rows={props?.rows}
+                columns={props?.columns}
+                components={{ Toolbar: GridToolbar }}
+                checkboxSelection
+                // use multiple filters
+              />
+            </Box>
+
+                    <Dialog
+              open={open}
+              onClose={handleClose}
+              fullWidth={true}
+              maxWidth={'md'}
+            >
+              <DialogContent
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                }}
+              >
+                {props?.popup}
+              </DialogContent>
+            </Dialog>
+		</div>
 	)
 }

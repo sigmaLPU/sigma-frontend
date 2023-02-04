@@ -1,17 +1,18 @@
 // react imports
 import React, {useEffect, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, Link} from 'react-router-dom'
 
 // component import
 import {NavSideBarLayout} from '../routes'
-import {Card ,Chip, Table} from '../routes'
+import {Card ,Chip, Table, NewTable} from '../routes'
 import {GuestVisitMasterModal} from '../routes'
 
 // other imports
 import { getAllUniversityReducer,setRedirectFunction, updateViewDetails,activateYourTagChip,deleteYourTagChip,addYourTagChip, } from '../../redux/routes'
 import {basicGuestVisitSlice,getAllGuestVisitReducer,universityMeetingsAddReducer,setRedirectFunctionMeetings,updateViewDetailsMeetings,} from '../../redux/routes'
 
+import {Button}  from '@mui/material';
 
 // function defination
 export default function GuestVisitMaster(props){
@@ -184,17 +185,69 @@ function GuestVisitTable(props) {
 		setArray(arr)
 	}
 
+	const columns = [
+    {
+      field: 'Title',
+      headerName: 'Title',
+      flex: 1,
+      cellClassName: 'name-column--cell',
+    },
+    {
+      field: 'Visit Date',
+      headerName: 'Visit Date',
+      flex: 1,
+    },
+    {
+      field: 'Host',
+      headerName: 'Host',
+      flex: 1,
+    },
+    {
+      field: 'Participants',
+      headerName: 'Participants',
+      flex: 1,
+    },
+    {
+      field: 'Visitors',
+      headerName: 'Visitors',
+      flex: 1,
+    },
+    {
+      field: 'link',
+      headerName: 'Link',
+      flex: 0.5,
+      renderCell: (cellValue) => {
+        return (
+          <Link
+            to={`/guest_visit/${cellValue.row.id}`}
+            style={{
+              textDecoration: 'none',
+            }}
+          >
+            <Button
+              variant="outlined"
+              sx={{
+                color: '#F07F1A',
+                border: '1px solid #F07F1A',
+                textDecoration: 'none',
+              }}
+            >
+              Browse
+            </Button>
+          </Link>
+        );
+      },
+    },
+  ];
+
+
+
 
 	return (
 		<>
-			<Table 
-				data={data}
-				rows = {data?.data?.rows}
-				column = {data?.data?.column}
-				heading={"Guest Visit"}
-				replace = {replace}
-				popup = {props?.popup}
-			/>
+			
+            <NewTable title={"Guest Visit Master"} popup={props?.popup} rows={data?.data?.rows || []} columns={columns} />
+
 		</>
 	)
 }

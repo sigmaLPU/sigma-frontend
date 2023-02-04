@@ -82,6 +82,7 @@ export const getAllMeetingsSlice = createSlice({
           obj["Meeting Time"] =  x?.meetingTime ? x?.meetingTime : "---"
           obj["Participants"] = x?.participants?.length ? x?.participants?.length : "---"
           obj["link"] = x?._id;    
+          obj["id"] = x?._id;    
           r.push(obj)
         }
         state.data.data = {rows:r,column:["Meeting Topic","Meeting Agenda","Meetings","Meeting Time","Participants","link"]}
@@ -114,6 +115,7 @@ export const getAllMeetingsSlice = createSlice({
         obj["Meeting Time"] =  x?.meetingTime ? x?.meetingTime : "---"
         obj["Participants"] = x?.participants?.length ? x?.participants?.length : "---"
         obj["link"] = x?._id;    
+        obj["id"] = x?._id;    
         
         state.data.data.rows = [obj].concat(state.data.data.rows)
 

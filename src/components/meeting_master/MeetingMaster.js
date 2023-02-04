@@ -5,13 +5,17 @@ import {useNavigate} from 'react-router-dom'
 
 // component import
 import {NavSideBarLayout} from '../routes'
-import {Card ,Chip, Table} from '../routes'
+import {Card ,Chip, Table,NewTable} from '../routes'
 import {MeetingMeetingsMasterModal} from '../routes'
 
 // other imports
 import { getAllUniversityReducer,setRedirectFunction, updateViewDetails,activateYourTagChip,deleteYourTagChip,addYourTagChip, } from '../../redux/routes'
 import {getAllMeetingsSlice,getAllUniversityMeetingsReducer,universityMeetingsAddReducer,setRedirectFunctionMeetings,updateViewDetailsMeetings,} from '../../redux/routes'
 
+import {AddNewUniversity} from '../routes';
+
+import { Link } from 'react-router-dom';
+import {Button} from '@mui/material';
 
 // function defination
 export default function MeetingMaster(props){
@@ -154,6 +158,62 @@ function MeetingMasterTable(props) {
 
 	const replace = [{"name":"link","value":function(id){return <div onClick={()=>redirectTo(id)} style={{color:"#F07F1A",width:"100%",display:"flex",justifyContent:"center",alignItems:"center",cursor:"pointer"}}>Link</div>}}]
 
+	const columns = [
+	    {
+	      field: 'Meeting Agenda',
+	      headerName: 'Meeting Agenda',
+	      flex: 1,
+	      cellClassName: 'name-column--cell',
+	    },
+	    {
+	      field: 'Meeting Time',
+	      headerName: 'Meeting Time',
+	      flex: 1,
+	    },
+	    {
+	      field: 'Meeting Topic',
+	      headerName: 'Meeting Topic',
+	      flex: 1,
+	    },
+	    {
+	      field: 'Meetings',
+	      headerName: 'Meetings',
+	      flex: 1,
+	    },
+	    {
+	      field: 'Participants',
+	      headerName: 'Participants',
+	      flex: 1,
+	    },
+	    {
+	      field: 'link',
+	      headerName: 'link',
+	      flex: 0.5,
+	      renderCell: (cellValue) => {
+	        return (
+	          <Link
+	            to={`/meeting/${cellValue.row.id}`}
+	            style={{
+	              textDecoration: 'none',
+	            }}
+	          >
+	            <Button
+	              variant="outlined"
+	              sx={{
+	                color: '#F07F1A',
+	                border: '1px solid #F07F1A',
+	                textDecoration: 'none',
+	              }}
+	            >
+	              Browse
+	            </Button>
+	          </Link>
+	        );
+	      },
+	    },
+  ];
+
+
 
 	useEffect(()=>{
 		// dispatch(getAllUniversityReducer({}))
@@ -185,16 +245,21 @@ function MeetingMasterTable(props) {
 	}
 
 
+	console.log("Animesh ",props)
+
 	return (
 		<>
-			<Table 
-				data={data}
-				rows = {data?.data?.rows}
-				column = {data?.data?.column}
-				heading={"Meeting Master"}
-				replace = {replace}
-				popup = {props?.popup}
-			/>
+			<NewTable title={"Meeting Master"} popup={<div>Add New Meeting</div>} rows={data?.data?.rows || []} columns={columns} />
 		</>
 	)
 }
+
+
+// <Table 
+// 				data={data}
+// 				rows = {data?.data?.rows}
+// 				column = {data?.data?.column}
+// 				heading={"Meeting Master"}
+// 				replace = {replace}
+// 				popup = {props?.popup}
+// 			/>

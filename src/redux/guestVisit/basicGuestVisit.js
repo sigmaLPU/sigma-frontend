@@ -84,6 +84,7 @@ export const basicGuestVisitSlice = createSlice({
           obj["Participants"] = x?.participants?.length ? x?.participants?.length : "---"
           obj["Visitors"] = x?.visitors?.length ? x?.visitors?.length : "---"
           obj["link"] = x?._id;    
+          obj["id"] = x?._id;    
           r.push(obj)
         }
         state.data.data = {rows:r,column:["Title","Visit Date","Host","Participants","Visitors","link"]}
@@ -117,6 +118,7 @@ export const basicGuestVisitSlice = createSlice({
         obj["Participants"] = x?.participants?.length ? x?.participants?.length : "---"
         obj["Visitors"] = x?.visitors?.length ? x?.visitors?.length : "---"
         obj["link"] = x?._id;      
+        obj["id"] = x?._id;    
         
         state.data.data.rows = [obj].concat(state.data.data.rows)
 

@@ -19,6 +19,8 @@ import { NavSideBarLayout } from '../routes';
 import { Card, Chip, Table } from '../routes';
 import { AddNewUniversity } from '../routes';
 
+import {NewTable}  from '../routes.js';
+
 // other imports
 import {
   getAllUniversityReducer,
@@ -32,6 +34,8 @@ import { AddCircle } from '@mui/icons-material';
 // function defination
 export default function MouMaster(props) {
   const dispatch = useDispatch();
+
+
 
   const rawData = useSelector((state) => state.getAllUniversitySlice.data);
 
@@ -118,6 +122,7 @@ export default function MouMaster(props) {
     },
   ];
 
+
   return (
     <div>
       <NavSideBarLayout childCSS={{ marginTop: '1.5rem' }}>
@@ -126,87 +131,8 @@ export default function MouMaster(props) {
      
           <div style={{ marginLeft: '1rem', width: '100%' }}>
        
-            <Box
-              display="flex"
-              justifyContent="flex-end"
-              sx={{
-                position: 'relative',
-                bottom: '-30px',
-              }}
-            >
-              <Button
-                sx={{
-                  backgroundColor: '#F07F1A',
+            <NewTable title={"University Master"} popup={<AddNewUniversity/>} rows={data?.data?.rows || []} columns={columns} />
 
-                  color: '#000',
-                  fontSize: '14px',
-                  fontWeight: 'bold',
-                  padding: '10px 20px',
-                }}
-                endIcon={<AddCircle />}
-                onClick={handleClickOpen}
-              >
-                Add New
-              </Button>
-            </Box>
-
-            <Box
-              m="5px 0 0 0"
-              height="85vh"
-              sx={{
-                '& .MuiDataGrid-root': {
-                  border: 'none',
-                },
-                '& .MuiDataGrid-cell': {
-                  borderBottom: 'none',
-                },
-                '& .name-column--cell': {
-                  color: '#F07F1A',
-                },
-                '& .MuiDataGrid-columnHeaders': {
-                  backgroundColor: '#F07F1A',
-                  borderBottom: 'none',
-                },
-                '& .MuiDataGrid-virtualScroller': {
-                  // backgroundColor: "#F07F1A",
-                },
-                '& .MuiDataGrid-footerContainer': {
-                  borderTop: 'none',
-                  backgroundColor: '#F07F1A',
-                },
-                '& .MuiCheckbox-root': {
-                  color: `#F07F1A !important`,
-                },
-                '& .MuiDataGrid-toolbarContainer .MuiButton-text': {
-                  color: `#F07F1A !important`,
-                },
-              }}
-            >
-              <DataGrid
-                rows={data?.data?.rows || []}
-                columns={columns}
-                components={{ Toolbar: GridToolbar }}
-                checkboxSelection
-                // use multiple filters
-               
-
-              />
-            </Box>
-            <Dialog
-              open={open}
-              onClose={handleClose}
-              fullWidth={true}
-              maxWidth={'md'}
-            >
-              <DialogContent
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                }}
-              >
-                <AddNewUniversity />
-              </DialogContent>
-            </Dialog>
           </div>
         </div>
       </NavSideBarLayout>

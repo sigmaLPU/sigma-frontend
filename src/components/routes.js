@@ -35,7 +35,7 @@ import {Card,ObjectCard,FileCard,ContactCard,RecentUpdateCard,MeetingCard} from 
 // chip 
 import Chip from './common_components/chip'
 // table 
-import Table from './common_components/table'
+import Table,{NewTable} from './common_components/table'
 //modal
 
 import {TeamChart} from './team/routes'
@@ -77,7 +77,7 @@ export {
 	NavSideBarLayout,
 	Card, ObjectCard,FileCard,ContactCard,RecentUpdateCard,MeetingCard,GuestVisitCard,
 	Chip,
-	Table,	
+	Table,NewTable,	
 	BasicDetailsMeetingCard,AttachementCard,
 
 	// modalpop

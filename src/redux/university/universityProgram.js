@@ -68,7 +68,7 @@ export const universityProgramSlice = createSlice({
         temp["Fees"] = obj?.tutionFees ? obj?.tutionFees : "Not available"
         temp["Scholarship"] = obj?.scholarship ? obj?.scholarship : "Not available"
         temp["Model"] = obj?.model ? obj?.model : "Not available"
-
+        temp["id"] = obj?._id
         arr.push(temp)
         ids.push(obj?._id)
       }
@@ -98,6 +98,7 @@ export const universityProgramSlice = createSlice({
       temp["Fees"] = obj?.tutionFees ? obj?.tutionFees : "Not available"
       temp["Scholarship"] = obj?.scholarship ? obj?.scholarship : "Not available"
       temp["Model"] = obj?.model ? obj?.model : "Not available"
+      temp["id"] = obj?._id
 
       state.data.data.column = ["LPU Degree Name","Final Degree Name","Fees","Scholarship","Model"]
       state.data.data.ids = [obj?._id].concat(state.data.data.ids)
