@@ -45,12 +45,9 @@ export default function MeetingMaster(props){
 				<div style={{display:"flex"}}>
 					{/*Left part*/}
 					<div style={{borderRight:"1px solid #D9D9D9",maxWidth:"372px"}}>
-						<div>
-							<input type="text" placeholder="Search" style={{width:"372px",fontSize:"20px",marginBottom:"2rem"}}/>
-						</div>
+					
 
-						<YourTags />
-						<PopularTags/>						
+									
 						
 					
 					</div>
@@ -176,11 +173,6 @@ function MeetingMasterTable(props) {
 	      flex: 1,
 	    },
 	    {
-	      field: 'Meetings',
-	      headerName: 'Meetings',
-	      flex: 1,
-	    },
-	    {
 	      field: 'Participants',
 	      headerName: 'Participants',
 	      flex: 1,
@@ -245,7 +237,6 @@ function MeetingMasterTable(props) {
 	}
 
 
-	console.log("Animesh ",props)
 
 	return (
 		<>

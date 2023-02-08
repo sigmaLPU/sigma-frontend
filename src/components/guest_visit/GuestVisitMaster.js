@@ -42,12 +42,7 @@ export default function GuestVisitMaster(props){
 				<div style={{display:"flex"}}>
 					{/*Left part*/}
 					<div style={{borderRight:"1px solid #D9D9D9",maxWidth:"372px"}}>
-						<div>
-							<input type="text" placeholder="Search" style={{width:"372px",fontSize:"20px",marginBottom:"2rem"}}/>
-						</div>
-
-						<YourTags />
-						<PopularTags/>						
+										
 						
 					
 					</div>
