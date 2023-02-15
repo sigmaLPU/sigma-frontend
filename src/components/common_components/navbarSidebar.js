@@ -211,7 +211,7 @@ export default function NavSideBar(props) {
         icon: (
           <img src={SettingIcon} style={{ height: '34px', width: '34px' }} />
         ),
-        url: '/setting',
+        url: '/userProfile',
       },
     ],
   };

@@ -29,6 +29,7 @@ import {
 } from './redux/users/authenticateToken';
 import { useSelector, useDispatch } from 'react-redux';
 import RegisterUser from './components/registerUser/RegisterUser';
+import UserInfo from './components/profile_page/UserInfo';
 
 function App() {
   return (
@@ -173,10 +174,19 @@ function App() {
             }
           />
           <Route
-            path="registerUser"
+            path="/registerUser"
             element={
               <ProtectedRoute>
                 <RegisterUser />
+              </ProtectedRoute>
+            }
+          />
+
+<Route
+            path="/userProfile"
+            element={
+              <ProtectedRoute>
+                <UserInfo />
               </ProtectedRoute>
             }
           />
