@@ -24,7 +24,9 @@ img {
    
     
   }
-  
+  .user-info{
+    width: 70rem;
+  }
   .card {
     display: flex;
     flex-direction: column;
@@ -41,8 +43,8 @@ img {
   .user-info-left {
     width: 50%;
     text-align: left;
-    justify-content: flex-start;
-    margin-right: 100px;
+    margin-left: 20rem;
+   
 }
 
 .user-info-right {

@@ -5,14 +5,6 @@ import pic from "./profilepic.png";
 import footer from "./footer.svg";
 import { NavSideBarLayout } from '../routes';
 
-
-
-
-
-
-
-
-
 const UserInfo = ({uid,nationality}) => {
   
   
@@ -39,13 +31,13 @@ const UserInfo = ({uid,nationality}) => {
                 <span className='leftdata' style={{width: '40%', fontWeight: "700"}}>UID</span>
                 
                  <span className="colon" style={{width: '10%'}}>:</span>
-                <span style={{width: '50%'}}> {''}</span>
+                <span style={{width: '50%'}}>63682</span>
               </p>
               <p style={{display: 'flex', alignItems: 'center', margin:'10px'}}>
                 <span className='leftdata' style={{width: '40%'}}>Nationality</span>
                 
                  <span className="colon" style={{width: '10%'}}>:</span>
-                <span style={{width: '50%'}}> {nationality}</span>
+                <span style={{width: '50%'}}>Indian</span>
               </p>
               <p style={{display: 'flex', alignItems: 'center', margin:'10px'}}>
                 <span className='leftdata' style={{width: '40%'}}>Gender</span>
@@ -73,46 +65,7 @@ const UserInfo = ({uid,nationality}) => {
               </p>
             </div>
 
-            <div className="user-info-right">
-            <p style={{display: 'flex', alignItems: 'center' , margin:'10px'}}>
-                <span className='leftdata' style={{width: '70%'}}>LPU Joining date</span>
-                
-                 <span className="colon" style={{width: '10%'}}>:</span>
-                <span style={{width: '50%'}}>21-12-2002</span>
-              </p>
-              <p style={{display: 'flex', alignItems: 'center' , margin:'10px'}}>
-                <span className='leftdata' style={{width: '70%'}}>Team Joining Date</span>
-                
-                 <span className="colon" style={{width: '10%'}}>:</span>
-                <span style={{width: '50%'}}>21-12-2002</span>
-              </p>
-              <p style={{display: 'flex', alignItems: 'center', margin:'10px'}}>
-                <span className='leftdata' style={{width: '70%'}}>Phone Assigned date</span>
-                
-                 <span className="colon" style={{width: '10%'}}>:</span>
-                <span style={{width: '50%'}}> 21-12-2002</span>
-              </p>
-              <p style={{display: 'flex', alignItems: 'center', margin:'10px'}}>
-                <span className='leftdata' style={{width: '70%'}}>Phone Model</span>
-                
-                 <span className="colon" style={{width: '10%'}}>:</span>
-                <span style={{width: '50%'}}>POCO X2</span>
-              </p>
-              <p style={{display: 'flex', alignItems: 'center', margin:'10px'}}>
-                <span className='leftdata' style={{width: '70%'}}>Off. Phone number</span>
-                
-                 <span className="colon" style={{width: '10%'}}>:</span>
-                <span style={{width: '50%'}}>9931963208</span>
-              </p>
-              <p style={{display: 'flex', alignItems: 'center', margin:'10px'}}>
-                <span className='leftdata' style={{width: '54%'}}>Official Email id</span>
-                
-                 <span className="colon" style={{width: '7%'}}>:</span>
-                <span style={{width: '0%'}}> Aakashaman9931@gmail.com</span>
-              </p>
-              
-              
-            </div>
+            
           </div>
         </div>
         <div style={{margin:'50px'}}>

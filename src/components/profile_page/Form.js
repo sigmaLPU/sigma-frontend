@@ -65,45 +65,10 @@ function Form({onSubmit}) {
             
             </div>
          
-            <div className="leftside" style={{width: '50%', textAlign: 'left'}}>
-            <label>
-            LPU Joining date  
-              <input type="date" />
-            </label>
-            <br />
-            <br />
-            <label>
-            Team Joining Date
-              <input type="date" />
-            </label>
-            <br />
-            <br />
-            <label>
-            Phone Assigned date
-                <input type = "date"/>
-            </label>
-            <br />
-            <br />
-            <label>
-            Phone Model
-              <input type="number" />
-            </label>
-            <br />
-            <br />
-            <label>
-            Official Phone number 
-              <input type="number" />
-            </label>
-            <br />
-            <br />
-            <label>
-            Official Email id
-              <input type="text " />
-            </label>
-            </div>
+            
           </div>
           <button className="close" onClick={() => setShowForm(false)}>Close</button>
-          <button type="submit">Submit</button>
+          <button className="submit" type="submit">Submit</button>
 
           </form>
         </div>
