@@ -1,0 +1,178 @@
+
+body {
+  overflow: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: -1;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+   
+   
+    
+  }
+  
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 10px;
+    
+    width: 1000px;
+    height: 400px;
+    margin-top: 100px;
+    margin-left: 11rem;
+    box-shadow: 0px 4px 4px #F07F1A, 4px 0px 4px rgba(0, 0, 0, 0.25);
+  }
+ 
+  .user-info-left {
+    width: 50%;
+    text-align: left;
+    justify-content: flex-start;
+  
+   
+}
+
+.user-info-right {
+    width: 50%;
+    text-align: left;
+    justify-content: flex-end;
+    
+}
+.leftdata{
+  display: flex;
+  text-align: left;
+  width: 40px;
+  margin-bottom: 1rem;
+
+}
+.colon{
+  margin-bottom: 1rem;
+}
+.value{
+  margin-bottom: 1rem;
+}
+
+
+
+
+.content {
+    text-align: left;
+}
+.profilepic{
+  height: 140px;
+  width: 140px;
+}
+.username{
+  font-weight: 700;
+  font-size: large;
+}
+
+.editbutton {
+  background-color: #F07F1A;
+  color: black;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+}
+.button-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  width: auto;
+}
+
+.button1 {
+
+  color: #F07F1A;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  margin-right: 30px;
+}
+.button2 {
+  background: rgba(0, 0, 0, 0.25);
+  color: black;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+
+}
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 1px solid black;
+}
+.leftdata{
+  font-weight: 700;
+}
+.line{
+  margin-left: 4rem;
+  margin-right: 2rem;
+
+}
+.cardtitle{
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin-left: 4rem;
+  margin-bottom: 2rem;
+}
+.user-info-row{
+  margin-top: 2.5rem;
+}
+
+
+
+
+
+

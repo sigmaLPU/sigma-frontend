@@ -1,0 +1,71 @@
+.custom-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    max-width: 400px;
+    height: 100vh;
+    width: 50vh;
+    border-right: 2px solid #F07F1A;
+    
+  }
+  
+  .custom-card-image {
+    width: 60%;
+    height: auto;
+    margin-left: 5rem;
+    border-radius: 50%;
+   
+    border: 5px solid  #F07F1A;
+   
+
+  }
+  
+  .custom-card-content {
+    padding: 10px;
+  }
+  
+  .custom-card-title {
+    margin-left: 7rem;
+  }
+  
+  .custom-card-text {
+   margin-left: 8.9rem;
+  }
+  .content{
+    margin-top: 8rem;
+  }
+  .contacts{
+    width: 24.3rem;
+    height: 8rem;
+  }
+  
+ .email{
+    position: absolute;
+width: 2rem;
+height: 2rem;
+top:31rem;
+left:9rem
+
+
+ }
+
+ .whatsapp{
+    position: absolute;
+width: 2rem;
+height: 2rem;
+top:31rem;
+left: 12rem;
+
+ }
+ .call{
+    position: absolute;
+width: 1.7rem;
+height: 1.7rem;
+top:31.2rem;
+left: 15rem;
+
+
+
+ }

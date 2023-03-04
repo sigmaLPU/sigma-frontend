@@ -1,0 +1,189 @@
+
+body {
+  overflow: hidden;
+  font-family: 'Merriweather', serif;
+}
+
+
+
+
+
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .card {
+    position: absolute;
+    width: 1218px;
+    height: 150px;
+    left: 142px;
+    top: 169px;
+    
+    background: #FFFFFF;
+    border: 1px solid #F07F1A;
+    border-radius: 8px;
+  }
+ 
+  .user-info-left {
+    width: 50%;
+    text-align: left;
+    justify-content: flex-start;
+    margin-top: 0.6rem;
+
+  
+  
+   
+}
+
+.innerdata{
+  margin-left: 8rem;
+}
+
+.user-info-right {
+    width: 50%;
+    text-align: left;
+    justify-content: flex-end;
+    margin-top: -1rem;
+    
+}
+.leftdata{
+  display: flex;
+
+
+}
+.colon{
+  margin-bottom: 0.2rem;
+}
+.content {
+    text-align: left;
+}
+.profilepic{
+  margin-left: 2rem;
+}
+.username{
+  font-weight: 700;
+  font-size: large;
+}
+.editbutton {
+  background-color: #F07F1A;
+  color: black;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+}
+.button-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  width: auto;
+}
+
+
+.leftdata{
+  font-weight: 700;
+}
+
+.cardtitle{
+  font-weight: 700;
+  font-size: 1.4rem;
+
+}
+.updatecard{
+  box-sizing: border-box;
+
+position: absolute;
+width: 469px;
+height: 705.91px;
+left: 1405px;
+top: 169.09px;
+
+background: #FFFFFF;
+border: 1px solid #F07F1A;
+box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.25);
+border-radius: 8px;
+}
+
+.processcard{
+  box-sizing: border-box;
+
+position: absolute;
+width: 1218px;
+height: 535px;
+left: 142px;
+top: 340px;
+
+
+background: #FFFFFF;
+border: 1px solid #F07F1A;
+border-radius: 8px;
+}
+
+.profile-button{
+  width: 119px;
+height: 40px;
+background-color: #f07F1A;
+border-radius: 8px;
+border: none;
+margin-bottom: 1rem;
+cursor: pointer;
+
+}
+.profile-button:hover{
+  background-color: #f05601;
+}
+.counsellor-info{
+  margin-right: 7rem;
+  margin-top: 2.7rem;
+}
+.buttondiv{
+ margin-right: 4rem;
+ margin-top: 2rem;
+}
+.heading{
+margin-top: -1.5rem;
+background-color: #F07F1A;
+width: 10rem;
+border-radius: 20px;
+padding: 8px;
+margin-left: 32.5rem;
+font-size: 22px;
+}
+.heading2{
+  margin-top: -1rem;
+  background-color: #F07F1A;
+width: 12rem;
+border-bottom-right-radius: 50% ;
+border-bottom-left-radius: 50%;
+padding-bottom: 10px;
+padding-top: 10px;
+font-size: 22px;
+text-align: center;
+margin-left: 9rem;
+}
+.line{
+  margin-bottom: -0.4rem ;
+}
+button{
+  font-size: 18px;
+  font-weight: 600;
+}
+.name{
+  margin-left: 2.2rem;
+}
+.uid{
+  margin-left: 3.2rem;
+}
+
+
+
+
+

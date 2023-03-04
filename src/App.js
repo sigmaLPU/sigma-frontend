@@ -22,6 +22,9 @@ import { TeamChart } from './components/routes';
 import { Tools } from './components/routes';
 import { CountryProfile } from './components/routes';
 
+
+
+
 // redux
 import {
   authenticateTokenReducer,
@@ -190,6 +193,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+          
 
           {/*When page not found*/}
           <Route path="*" element={<Error404 />} />
