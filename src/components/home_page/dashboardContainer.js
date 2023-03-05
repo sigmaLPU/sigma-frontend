@@ -137,7 +137,7 @@ export default function Dashboard(props) {
   const routes = [
     { name: 'Open Leads', url: '/openLeads', img: openLeadsImg },
     { name: 'Partner University', url: '/mouMaster', img: mouImg },
-    { name: 'Credit Tranfer', url: '/creditTransfer', img: creditTransferImg },
+    { name: 'Credit Tranfer', url: '/student/:id', img: creditTransferImg },
     {
       name: 'Semester Exchange',
       url: '/semesterExchange',
