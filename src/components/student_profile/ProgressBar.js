@@ -16,6 +16,7 @@ const Progress = ({ page, onPageNumberClick }) => {
     stepPercentage = 0;
   }
 
+  
   return (
     <div className="bar">
     

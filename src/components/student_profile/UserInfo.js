@@ -14,6 +14,7 @@ const UserInfo = () => {
     );
   }
   
+  
   return (
     <div className='main'>
       <div className='updatecard'>

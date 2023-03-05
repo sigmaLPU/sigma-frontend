@@ -6,6 +6,7 @@ import UserInfo from './UserInfo'
 
 
 
+
 export default function StudentProfile(props){
 	return (
 		<div>
