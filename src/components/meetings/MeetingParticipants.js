@@ -22,6 +22,7 @@ import TextRow from '../text/TextRow';
 import { AddBoxSharp, DeleteForever } from '@mui/icons-material';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
 
 const MeetingParticipants = ({ data }) => {
   const params = useParams();
@@ -39,6 +40,12 @@ const MeetingParticipants = ({ data }) => {
   const handleClose = () => {
     setOpen(false);
   };
+    const { enqueueSnackbar } = useSnackbar();
+    const handleClickVariant = (variant, message) => () => {
+      // variant could be success, error, warning, info, or default
+      enqueueSnackbar(message, { variant });
+    };
+
 
   const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
 
@@ -65,10 +72,11 @@ const MeetingParticipants = ({ data }) => {
       )
       .then((res) => {
         setOpen(false);
+        handleClickVariant('success', 'Added')();
       })
       .catch((err) => {
         setOpen(false);
-        alert('Error');
+        handleClickVariant('error', 'Error')();
       });
   };
 
@@ -88,10 +96,10 @@ const MeetingParticipants = ({ data }) => {
         }
       )
       .then((res) => {
-        alert('Deleted');
+        handleClickVariant('success', 'Deleted')();
       })
       .catch((err) => {
-        alert('Error');
+        handleClickVariant('error', 'Error')();
       });
   };
 

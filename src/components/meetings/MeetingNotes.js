@@ -18,6 +18,7 @@ import {
 import React from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
 
 const MeetingNotes = ({ data }) => {
   const params = useParams();
@@ -34,6 +35,14 @@ const MeetingNotes = ({ data }) => {
     const handleClose = () => {
       setOpen(false);
     };
+    
+      
+  const { enqueueSnackbar } = useSnackbar();
+  const handleClickVariant = (variant, message) => () => {
+    // variant could be success, error, warning, info, or default
+    enqueueSnackbar(message, { variant });
+  };
+
 
       const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
 
@@ -59,10 +68,11 @@ const MeetingNotes = ({ data }) => {
       )
       .then((res) => {
         setOpen(false);
+        handleClickVariant('success', 'Note Added')()
       })
       .catch((err) => {
         setOpen(false);
-        alert('Error');
+        handleClickVariant('error', 'Error')()
       });
   };
 
@@ -82,10 +92,13 @@ const MeetingNotes = ({ data }) => {
         }
       )
       .then((res) => {
-        alert('Deleted');
+        
+        handleClickVariant('success', 'Note Deleted')()
+        
       })
       .catch((err) => {
-        alert('Error');
+          
+          handleClickVariant('error', 'Error')()
       });
   };
 
