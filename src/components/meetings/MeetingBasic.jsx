@@ -13,8 +13,11 @@ import {
 } from '@mui/material';
 import React, { useEffect } from 'react';
 import TextRow from '../text/TextRow';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 const MeetingBasic = ({ data }) => {
+  const params = useParams();
   const [open, setOpen] = React.useState(false);
 
   const [title, setTitle] = React.useState(data?.title);
@@ -22,6 +25,7 @@ const MeetingBasic = ({ data }) => {
   const [meetingTime, setMeetingTime] = React.useState(data?.meetingTime);
   const [endTime, setEndTime] = React.useState(data?.endTime);
   const [agenda, setAgenda] = React.useState(data?.agenda);
+  const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
 
   useEffect(() => {
     setTitle(data?.title);
@@ -37,6 +41,32 @@ const MeetingBasic = ({ data }) => {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleUpdate = async () => {
+    await axios
+      .put(
+        `${url}/api/v2/meeting/single/${params.id}`,
+        {
+          title,
+          meetingType,
+          meetingTime,
+          endTime,
+          agenda,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      )
+      .then((res) => {
+        setOpen(false);
+      })
+      .catch((err) => {
+        setOpen(false);
+        alert('Error');
+      });
   };
 
   return (
@@ -223,7 +253,7 @@ const MeetingBasic = ({ data }) => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Update</Button>
+          <Button onClick={handleUpdate}>Update</Button>
         </DialogActions>
       </Dialog>
     </>

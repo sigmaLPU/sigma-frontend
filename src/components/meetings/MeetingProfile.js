@@ -3,23 +3,8 @@ import React, { useEffect, useState } from 'react';
 
 // component import
 import { NavSideBarLayout } from '../routes';
-import { Card, Chip, Table } from '../routes';
-import { BasicDetailsMeetingCard, AttachementCard } from '../routes';
-import {
-  BasicDetailsMeetingModal,
-  OutcomeMeetingModal,
-  ActionPlanMeetingModal,
-  MoMNotesMeetingModal,
-  AttachmentMeetingModal,
-  ParticipantsMeetingModal,
-} from '../routes';
 
-// other imports
-import video_icon from './resource/video_icon.png';
-import profile_1 from './resource/profile_1.jpg';
 
-import { useNavigate, useDispatch, useSelector } from 'react-redux';
-import { getMeetingsSlice, getMeetingsReducer } from '../../redux/routes';
 import MeetingBasic from './MeetingBasic';
 import MeetingAttachment from './MeetingAttachment';
 import MeetingOutcome from './MeetingOutcome';

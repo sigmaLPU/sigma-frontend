@@ -16,8 +16,11 @@ import {
   Typography,
 } from '@mui/material';
 import React from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 const MeetingNotes = ({ data }) => {
+  const params = useParams();
   const { momNotes } = data;
 
     const [open, setOpen] = React.useState(false);
@@ -31,6 +34,62 @@ const MeetingNotes = ({ data }) => {
     const handleClose = () => {
       setOpen(false);
     };
+
+      const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
+
+  const handleAddNote = async () => {
+    if (!value) {
+      alert('Please fill all the fields');
+      return;
+    }
+    const updatedNotes = [...momNotes, { value }];
+
+
+    await axios
+      .put(
+        `${url}/api/v2/meeting/single/${params.id}`,
+        {
+          momNotes: updatedNotes,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      )
+      .then((res) => {
+        setOpen(false);
+      })
+      .catch((err) => {
+        setOpen(false);
+        alert('Error');
+      });
+  };
+
+  const handleDeleteNote = async (id) => {
+    const updatedNotes = momNotes.filter((item) => item._id !== id);
+
+    await axios
+      .put(
+        `${url}/api/v2/meeting/single/${params.id}`,
+        {
+          momNotes: updatedNotes,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      )
+      .then((res) => {
+        alert('Deleted');
+      })
+      .catch((err) => {
+        alert('Error');
+      });
+  };
+
+
   return (
     <Box backgroundColor={'#f5f5f5'} p="30px" overflow="auto" gridArea="note">
       <Typography
@@ -65,7 +124,9 @@ const MeetingNotes = ({ data }) => {
               //   onClick={() => handleClickOpen(process)}
             >
               <ListItemText primary={<> {process?.value}</>} />
-              <IconButton sx={{ float: 'right' }}>
+              <IconButton sx={{ float: 'right' }}
+                onClick={() => handleDeleteNote(process._id)}
+              >
                 <DeleteForever color="error" />
               </IconButton>
             </ListItem>
@@ -94,7 +155,7 @@ const MeetingNotes = ({ data }) => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Add</Button>
+          <Button onClick={handleAddNote}>Add</Button>
         </DialogActions>
       </Dialog>
     </Box>

@@ -20,8 +20,11 @@ import {
 import React from 'react';
 import TextRow from '../text/TextRow';
 import { AddBoxSharp, DeleteForever } from '@mui/icons-material';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 const MeetingParticipants = ({ data }) => {
+  const params = useParams();
   const { participants } = data;
   const [open, setOpen] = React.useState(false);
 
@@ -36,6 +39,62 @@ const MeetingParticipants = ({ data }) => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
+
+  const handleAddParticipant = async () => {
+    if (!name || !email || !designation) {
+      alert('Please fill all the fields');
+      return;
+    }
+
+
+    const updatedParticipants = [...participants, { name, email, designation }];
+
+    await axios
+      .put(
+        `${url}/api/v2/meeting/single/${params.id}`,
+        {
+          participants: updatedParticipants,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      )
+      .then((res) => {
+        setOpen(false);
+      })
+      .catch((err) => {
+        setOpen(false);
+        alert('Error');
+      });
+  };
+
+  const handleDeleteParticipant = async (id) => {
+    const updatedParticipants = participants.filter((item) => item._id !== id);
+
+    await axios
+      .put(
+        `${url}/api/v2/meeting/single/${params.id}`,
+        {
+          participants: updatedParticipants,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      )
+      .then((res) => {
+        alert('Deleted');
+      })
+      .catch((err) => {
+        alert('Error');
+      });
+  };
+
   return (
     <Box
       backgroundColor={'#f5f5f5'}
@@ -117,7 +176,10 @@ const MeetingParticipants = ({ data }) => {
                 }
               />
               <Divider />
-              <IconButton sx={{ float: 'right' }}>
+              <IconButton
+                sx={{ float: 'right' }}
+                onClick={() => handleDeleteParticipant(contact._id)}
+              >
                 <DeleteForever color="error" />
               </IconButton>
             </ListItem>
@@ -168,7 +230,7 @@ const MeetingParticipants = ({ data }) => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Add</Button>
+          <Button onClick={handleAddParticipant}>Add</Button>
         </DialogActions>
       </Dialog>
     </Box>
