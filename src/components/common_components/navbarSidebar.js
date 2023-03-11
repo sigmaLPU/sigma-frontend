@@ -28,6 +28,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 
 // icons for side bar
+import WcIcon from '@mui/icons-material/Wc';
 import DashboardIcon from './resource/navbar_icons/dashboard.svg';
 import GuestVisitIcon from './resource/navbar_icons/guest_visit.svg';
 import LinkIcon from './resource/navbar_icons/link.svg';
@@ -37,7 +38,14 @@ import SettingIcon from './resource/navbar_icons/setting.svg';
 import SharedDataIcon from './resource/navbar_icons/shared_data.svg';
 import TeamIcon from './resource/navbar_icons/team.svg';
 import ToolIcon from './resource/navbar_icons/tools.svg';
-import { Logout, PersonAdd, PersonAddAlt, Settings, TollOutlined } from '@mui/icons-material';
+import {
+  BookOnline,
+  Logout,
+  PersonAdd,
+  PersonAddAlt,
+  Settings,
+  TollOutlined,
+} from '@mui/icons-material';
 import { Avatar, Menu, MenuItem, Paper } from '@mui/material';
 
 const drawerWidth = 240;
@@ -133,6 +141,7 @@ export default function NavSideBar(props) {
         ),
         url: '/search',
       },
+
       {
         name: (
           <span style={{ fontSize: '22px', fontWeight: '700' }}>Dashboard</span>
@@ -141,6 +150,19 @@ export default function NavSideBar(props) {
           <img src={DashboardIcon} style={{ height: '34px', width: '34px' }} />
         ),
         url: '/dashboard',
+      },
+      {
+        name: (
+          <span style={{ fontSize: '22px !important', fontWeight: '700' }}>
+            Student Master
+          </span>
+        ),
+        icon: (
+          <IconButton>
+            <WcIcon fontSize="large" />
+          </IconButton>
+        ),
+        url: '/student_master',
       },
       {
         name: <span style={{ fontSize: '22px', fontWeight: '700' }}>Team</span>,
@@ -199,9 +221,7 @@ export default function NavSideBar(props) {
         url: '/registerUser',
       },
     ],
-    bottom: [
-     
-    ],
+    bottom: [],
   };
 
   function logout() {

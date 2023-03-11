@@ -31,6 +31,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import RegisterUser from './components/registerUser/RegisterUser';
 import UserInfo from './components/profile_page/UserInfo';
 import FacultyInfo from './components/profile_page/faculty/FacultyProfile';
+import StudentMaster from './components/students/StudentMaster';
 
 function App() {
   return (
@@ -95,6 +96,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <UniversityProfile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/student_master"
+            element={
+              <ProtectedRoute>
+                <StudentMaster />
               </ProtectedRoute>
             }
           />
