@@ -4,6 +4,8 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import BasicTabs from './BasicTabs.jsx';
+import ProgressBar from './ProgressBar.js';
+
 
 import Form1 from './Form1.jsx';
 import Form2 from './Form2.jsx';
@@ -45,6 +47,7 @@ function a11yProps(index) {
 }
 
 export default function VerticalTabs() {
+  
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {

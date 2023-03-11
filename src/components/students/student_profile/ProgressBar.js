@@ -1,97 +1,53 @@
-import React from "react";
-import "./ProgressBar.css";
-import { ProgressBar, Step } from "react-step-progress-bar";
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+import Button from '@mui/material/Button';
 
-const Progress = ({ page, onPageNumberClick }) => {
-  var stepPercentage = 0;
-  if (page === "pageone") {
-    stepPercentage = 16;
-  } else if (page === "pagetwo") {
-    stepPercentage = 49.5;
-  } else if (page === "pagethree") {
-    stepPercentage = 82.5;
-  } else if (page === "pagefour") {
-    stepPercentage = 100;
-  } else {
-    stepPercentage = 0;
-  }
+const steps = [
+  'Counselling',
+  'Document Verification',
+  'Payment & Approval',
+  'Foreign University Approval',
+  'Visa Approved',
+  'Process Done',
+];
 
-  
+export default function ProgressBar() {
+  const [activeStep, setActiveStep] = React.useState(0);
+
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
   return (
-    <div className="bar">
-    
-    <ProgressBar  percent={stepPercentage}>
-      <Step>
-        {({ accomplished, index }) => (
-          <div
-            className={`indexedStep ${accomplished ? "accomplished" : null}`}
-            onClick={() => onPageNumberClick("1")}
-          >
-            <p className="tick">&#10003;</p>
-            
-            {index + 1}
-          </div>
+    <Box sx={{ width: '100%' }}>
+      <Stepper activeStep={activeStep} alternativeLabel >
+        {steps.map((label) => (
+          <Step key={label}>
+            <StepLabel>{label}</StepLabel>
+          </Step>
+        ))}
+      </Stepper>
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+        {activeStep !== 0 && (
+          <Button onClick={handleBack} sx={{ mr: 1 }}>
+            Back
+          </Button>
         )}
-        
-      </Step>
-      <Step>
-        {({ accomplished, index }) => (
-          <div
-            className={`indexedStep ${accomplished ? "accomplished" : null}`}
-            onClick={() => onPageNumberClick("2")}
-          >
-              <p className="tick">&#10004;</p>
-            {index + 1}
-          </div>
+        {activeStep !== steps.length - 1 ? (
+          <Button onClick={handleNext} variant="contained">
+            Next
+          </Button>
+        ) : (
+          <Button variant="contained">Finish</Button>
         )}
-      </Step>
-      <Step>
-        {({ accomplished, index }) => (
-          <div
-            className={`indexedStep ${accomplished ? "accomplished" : null}`}
-            onClick={() => onPageNumberClick("3")}
-          >
-              <p className="tick">&#10004;</p>
-            {index + 1}
-          </div>
-        )}
-      </Step>
-      <Step>
-        {({ accomplished, index }) => (
-          <div
-            className={`indexedStep ${accomplished ? "accomplished" : null}`}
-            onClick={() => onPageNumberClick("4")}
-          >
-              <p className="tick">&#10004;</p>
-            {index + 1}
-          </div>
-        )}
-      </Step>
-      <Step>
-        {({ accomplished, index }) => (
-          <div
-            className={`indexedStep ${accomplished ? "accomplished" : null}`}
-            onClick={() => onPageNumberClick("2")}
-          >
-              <p className="tick">&#10004;</p>
-            {index + 1}
-          </div>
-        )}
-      </Step>
-      <Step>
-        {({ accomplished, index }) => (
-          <div
-            className={`indexedStep ${accomplished ? "accomplished" : null}`}
-            onClick={() => onPageNumberClick("2")}
-          >
-              <p className="tick">&#10004;</p>
-            {index + 1}
-          </div>
-        )}
-      </Step>
-    </ProgressBar>
-    </div>
+      </Box>
+    </Box>
   );
-};
-
-export default Progress;
+}

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
 function MyForm1() {
+
+ 
   const [formData, setFormData] = useState({
     budget: "",
     studyAbroadOptions: "",
@@ -25,6 +27,8 @@ function MyForm1() {
 
   
   return (
+
+    
     <div style={{ display: "flex", flexDirection: "column" }}>
       <form onSubmit={handleSubmit}>
         <div style={{ display: "flex" }}>
@@ -176,7 +180,10 @@ function MyForm1() {
       </label>
     </div>
     <br />
+    
     <button type="submit">Submit</button>
+   
+
   </form>
 </div>
 );
