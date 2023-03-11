@@ -70,7 +70,7 @@ export default function Form2() {
   
 
   return (
-    <Box sx={{ bgcolor: 'background.paper', width: 1000, marginTop:-2 }}>
+    <Box sx={{ bgcolor: 'background.paper', width: '50vw', marginTop:-2 }}>
       <AppBar position="static"  style={{backgroundColor:'#ffffff'}}>
         <Tabs
           TabIndicatorProps={{style:{background:'#F07F1A'}}}
@@ -92,39 +92,29 @@ export default function Form2() {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction} >
-            <div className='main'>
-        <div className="form-container">
-            <div className='inputfield1'>
-      <label className="form-label" htmlFor="option-select">Type Of Document</label>
-      <select id="option-select" className="form-input1" value={selectedOption} onChange={handleOptionChange}>
-        <option value={'Option 1'}>Aadhar card</option>
-        <option value={'Option 2'}>10th Certificate</option>
-        <option value={'Option 3'}>12th Certificate</option>
-      </select>
+        <div style={{marginLeft: "2rem"}}>
+      <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
+        <div style={{display: "flex", flexDirection: "column"}}>
+          <label style={{marginBottom: "5px", fontWeight: "600"}} htmlFor="option-select">Type Of Document</label>
+          <select id="option-select" style={{width: "40rem", height: "2rem", borderRadius: "8px", border: "1px solid #f07F1A"}} value={selectedOption} onChange={handleOptionChange}>
+            <option value={'Option 1'}>Bank Payment slip</option>
+            <option value={'Option 2'}>current account balance</option>
+            <option value={'Option 3'}>loan Document</option>
+          </select>
+        </div>
+        <div style={{display: "flex", flexDirection: "column", marginLeft: "4rem"}}>
+          <label style={{marginBottom: "5px", fontWeight: "600"}} htmlFor="date-input">Select a date:</label>
+          <input id="date-input" style={{width: "11rem", height: "2rem", borderRadius: "8px", border: "1px solid #f07F1A" }} type="date" value={selectedDate} onChange={(event) => handleDateChange(event.target.value)} />
+        </div>
       </div>
-      <div className='inputfield2'>
-      <label className="form-label" htmlFor="date-input">Select a date:</label>
-      <input id="date-input" className="form-input2" type="date" value={selectedDate} onChange={(event) => handleDateChange(event.target.value)} />
-    </div>
-    </div>
-    <div>
-      <label className='form-label' htmlFor="file-upload">Choose a file:</label>
-      <div className="file-input-container">
-        <input
-        className='form-input3'
-          type="text"
-          id="file-upload"
-          value={selectedFile ? selectedFile.name : ''}
-          placeholder="No file chosen"
-          readOnly
-        />
-       
-       
-          <input className='input-button' type="file" id="file-input" onChange={handleFileChange} />
-        
+      <div>
+        <label style={{margin: "0", padding: "0"}} htmlFor="file-upload">Choose a file:</label>
+        <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
+          <input style={{height: "2rem", borderRadius: "8px", border: "1px solid #f07F1A"}} type="text" id="file-upload" value={selectedFile ? selectedFile.name : ''} placeholder="No file chosen" readOnly />
+          <input style={{marginLeft: "1rem"}} type="file" id="file-input" onChange={handleFileChange} />
+        </div>
       </div>
-    </div>
-    <button className='upload-button'>upload</button>
+      <button style={{marginTop: "3rem", marginLeft: "22rem", width: "160px", height: "44px", backgroundColor: "#f07F1A", borderRadius: "8px", border: "none", cursor: "pointer"}}>upload</button>
     </div>
       
   

@@ -100,9 +100,26 @@ const UserInfo = () => {
         </div>
   
       </div> */}
+
+      
       </div>
  
   );
 };
 
 export default UserInfo;
+
+/* .processcard{
+  box-sizing: border-box;
+
+position: absolute;
+width: 1218px;
+height: 535px;
+left: 142px;
+top: 340px;
+
+
+background: #FFFFFF;
+border: 1px solid #F07F1A;
+border-radius: 8px;
+} */

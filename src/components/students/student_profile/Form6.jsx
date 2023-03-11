@@ -38,7 +38,7 @@ function a11yProps(index) {
   };
 }
 
-export default function BasicTabs() {
+export default function Form6() {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
@@ -52,7 +52,7 @@ export default function BasicTabs() {
 
 
   return (
-    <Box sx={{ bgcolor: 'background.paper', width: 1000, marginTop:-2 , height:2000}}>
+    <Box sx={{ bgcolor: 'background.paper', width: '50vw', marginTop:-2 , }}>
       <AppBar position="static" style={{backgroundColor:'#ffffff'}}>
         <Tabs
           
