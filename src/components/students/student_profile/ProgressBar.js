@@ -36,16 +36,16 @@ export default function ProgressBar() {
       </Stepper>
       <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
         {activeStep !== 0 && (
-          <Button onClick={handleBack} sx={{ mr: 1 }}>
-            Back
+          <Button sx={{right:'70rem',top:"40rem", zIndex:"99"}} onClick={handleBack} sx={{ mr: 1 }}>
+            GO bACK
           </Button>
         )}
         {activeStep !== steps.length - 1 ? (
-          <Button onClick={handleNext} variant="contained">
-            Next
+          <Button sx={{right:'70rem',top:"40rem", zIndex:"99"}} onClick={handleNext} variant="contained">
+            Approve
           </Button>
         ) : (
-          <Button variant="contained">Finish</Button>
+          <Button sx={{right:'70rem',top:"40rem", zIndex:"99"}} variant="contained">Finish</Button>
         )}
       </Box>
     </Box>
