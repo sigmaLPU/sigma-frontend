@@ -42,17 +42,20 @@ function a11yProps(index) {
 
 export default function Form2() {
     const [selectedFile, setSelectedFile] = useState(null);
+    const [selectedOption, setSelectedOption] = useState('');
+    const [selectedDate, handleDateChange] = useState(new Date());
+    const [value, setValue] = React.useState(0);
 
     const handleFileChange = (event) => {
       const file = event.target.files[0];
       setSelectedFile(file);
     };
     
-
+   
 
   
   const theme = useTheme();
-  const [value, setValue] = React.useState(0);
+  
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -61,12 +64,12 @@ export default function Form2() {
   const handleChangeIndex = (index) => {
     setValue(index);
   };
-  const [selectedOption, setSelectedOption] = useState('');
-  const [selectedDate, handleDateChange] = useState(new Date());
+ 
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
   };
+  
   
 
   return (
