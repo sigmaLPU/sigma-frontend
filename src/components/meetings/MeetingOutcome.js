@@ -41,12 +41,11 @@ const MeetingOutcome = ({ data }) => {
   const handleClose = () => {
     setOpen(false);
   };
-    const { enqueueSnackbar } = useSnackbar();
-    const handleClickVariant = (variant, message) => () => {
-      // variant could be success, error, warning, info, or default
-      enqueueSnackbar(message, { variant });
-    };
-
+  const { enqueueSnackbar } = useSnackbar();
+  const handleClickVariant = (variant, message) => () => {
+    // variant could be success, error, warning, info, or default
+    enqueueSnackbar(message, { variant });
+  };
 
   const handleAddOutcome = async () => {
     if (!value) {
@@ -54,7 +53,6 @@ const MeetingOutcome = ({ data }) => {
       return;
     }
     const updatedOutcomes = [...outcome, { value }];
-
 
     await axios
       .put(
@@ -71,6 +69,8 @@ const MeetingOutcome = ({ data }) => {
       .then((res) => {
         setOpen(false);
         handleClickVariant('success', 'Added')();
+        window.location.reload();
+
       })
       .catch((err) => {
         setOpen(false);
@@ -80,8 +80,6 @@ const MeetingOutcome = ({ data }) => {
 
   const handleDeleteOutcome = async (id) => {
     const updatedOutcomes = outcome.filter((item) => item._id !== id);
-
-    console.log(updatedOutcomes);
 
     await axios
       .put(
@@ -97,6 +95,7 @@ const MeetingOutcome = ({ data }) => {
       )
       .then((res) => {
         handleClickVariant('success', 'Deleted')();
+        window.location.reload();
       })
       .catch((err) => {
         handleClickVariant('error', 'Error')();

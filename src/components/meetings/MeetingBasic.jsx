@@ -15,21 +15,17 @@ import React, { useEffect } from 'react';
 import TextRow from '../text/TextRow';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import {  useSnackbar } from 'notistack';
+import { useSnackbar } from 'notistack';
 
 const MeetingBasic = ({ data }) => {
-  
   const params = useParams();
   const [open, setOpen] = React.useState(false);
-  
+
   const { enqueueSnackbar } = useSnackbar();
-  const handleClickVariant = (variant,message) => () => {
+  const handleClickVariant = (variant, message) => () => {
     // variant could be success, error, warning, info, or default
     enqueueSnackbar(message, { variant });
   };
-
-
-
 
   const [title, setTitle] = React.useState(data?.title);
   const [meetingType, setMeetingType] = React.useState(data?.meetingType);
@@ -73,11 +69,12 @@ const MeetingBasic = ({ data }) => {
       )
       .then((res) => {
         setOpen(false);
-        handleClickVariant('success','Meeting Details Updated Successfully')();
+        handleClickVariant('success', 'Meeting Details Updated Successfully')();
+        window.location.reload();
       })
       .catch((err) => {
         setOpen(false);
-        handleClickVariant('error','Error in Updating Meeting Details')();
+        handleClickVariant('error', 'Error in Updating Meeting Details')();
       });
   };
 

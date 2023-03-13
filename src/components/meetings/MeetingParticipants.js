@@ -73,6 +73,8 @@ const MeetingParticipants = ({ data }) => {
       .then((res) => {
         setOpen(false);
         handleClickVariant('success', 'Added')();
+                window.location.reload();
+
       })
       .catch((err) => {
         setOpen(false);
@@ -97,6 +99,8 @@ const MeetingParticipants = ({ data }) => {
       )
       .then((res) => {
         handleClickVariant('success', 'Deleted')();
+                window.location.reload();
+
       })
       .catch((err) => {
         handleClickVariant('error', 'Error')();

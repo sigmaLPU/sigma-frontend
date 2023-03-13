@@ -39,7 +39,6 @@ export default function MeetingProfile(props) {
     fetchMeeting();
   }, [id]);
 
-  console.log(data);
 
   return (
     <div>

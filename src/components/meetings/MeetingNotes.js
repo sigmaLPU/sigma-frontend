@@ -69,6 +69,8 @@ const MeetingNotes = ({ data }) => {
       .then((res) => {
         setOpen(false);
         handleClickVariant('success', 'Note Added')()
+                window.location.reload();
+
       })
       .catch((err) => {
         setOpen(false);
@@ -94,6 +96,8 @@ const MeetingNotes = ({ data }) => {
       .then((res) => {
         
         handleClickVariant('success', 'Note Deleted')()
+                window.location.reload();
+
         
       })
       .catch((err) => {
