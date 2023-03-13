@@ -140,7 +140,7 @@ export default function ProgressBar() {
           width: 15vw;
           padding-bottom: 0.8vh;
           padding-top: 0.8vh;
-          font-size: 1.2rem;
+          font-size: 1vw;
           text-align: center;
           margin-left: 24vw;
           border-radius:18px;
@@ -166,52 +166,52 @@ export default function ProgressBar() {
           <div style={{ marginLeft: '1vw' }}>
             <p className="cardtitle">{user && user.name}</p>
             <p style={{ display: 'flex', alignItems: 'center' }}>
-              <span className="leftdata" style={{ width: '6vw' }}>
+              <span className="leftdata" style={{ width: '6vw', fontSize:'0.8vw'}}>
                 Reg. No.
               </span>
-              <span className="colon" style={{ width: '2vw' }}>
+              <span className="colon" style={{ width: '2vw',fontSize:'0.8vw' }}>
                 :
               </span>
-              <span className="value" style={{ width: '8vw' }}>
+              <span className="value" style={{ width: '8vw',fontSize:'0.8vw' }}>
                 {user && user.regNo}
               </span>
             </p>
             <p style={{ display: 'flex', alignItems: 'center' }}>
-              <span className="leftdata" style={{ width: '6vw' }}>
+              <span className="leftdata" style={{ width: '6vw' ,fontSize:'0.8vw'}}>
                 Email
               </span>
               <span className="colon" style={{ width: '2vw' }}>
                 :
               </span>
-              <span className="value" style={{ width: '8vw' }}>
+              <span className="value" style={{ width: '8vw',fontSize:'0.8vw' }}>
                 {user && user.email}
               </span>
             </p>
             <p style={{ display: 'flex', alignItems: 'center' }}>
-              <span className="leftdata" style={{ width: '6vw' }}>
+              <span className="leftdata" style={{ width: '6vw',fontSize:'0.8vw' }}>
                 Phone No.
               </span>
-              <span className="colon" style={{ width: '2vw' }}>
+              <span className="colon" style={{ width: '2vw' ,fontSize:'0.8vw'}}>
                 :
               </span>
-              <span className="value" style={{ width: '8vw' }}>
+              <span className="value" style={{ width: '8vw',fontSize:'0.8vw' }}>
                 {' '}
                 {user && user.phone}
               </span>
             </p>
             <p style={{ display: 'flex', alignItems: 'center' }}>
-              <span className="leftdata" style={{ width: '6vw' }}>
+              <span className="leftdata" style={{ width: '6vw',fontSize:'0.8vw' }}>
                 Opted for
               </span>
-              <span className="colon" style={{ width: '2vw' }}>
+              <span className="colon" style={{ width: '2vw',fontSize:'0.8vw' }}>
                 :
               </span>
-              <span className="value" style={{ width: '8vw' }}>
+              <span className="value" style={{ width: '8vw',fontSize:'0.8vw' }}>
                 {user && user.studentDetails?.optedFor}
               </span>
             </p>
           </div>
-          <hr style={{ marginLeft: '9.5vw', height: '17vh' }}></hr>
+          <hr style={{ marginLeft: '9.5vw', height: '17vh',fontSize:'0.8vw' }}></hr>
           <div
             style={{
               marginLeft: '8vw',
@@ -222,7 +222,7 @@ export default function ProgressBar() {
           >
             <p
               style={{
-                fontSize: '1.2rem',
+                fontSize: '1vw',
                 fontWeight: '600',
                 marginTop: '1rem',
               }}

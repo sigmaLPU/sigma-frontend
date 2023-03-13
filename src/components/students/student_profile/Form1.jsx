@@ -174,6 +174,7 @@ export default function Form1({ student }) {
               <label className="rightdata">
                  Name:
                 <input
+                 style={{width:'15vw',marginBottom:'2vh'}}
                   type="text"
                   name="firstName"
                   value={formData.name}
@@ -188,6 +189,7 @@ export default function Form1({ student }) {
               >
                 Email:
                 <input
+                  style={{width:'15vw'}}
                   type="email"
                   name="email"
                   value={formData.email}
@@ -200,6 +202,7 @@ export default function Form1({ student }) {
               <label className="rightdata">
                 Registration No.:
                 <input
+                 style={{width:'15vw',marginBottom:'2vh'}}
                   type="text"
                   name="registrationNo"
                   value={formData.registrationNo}
@@ -212,7 +215,9 @@ export default function Form1({ student }) {
                 style={{ marginLeft: '4vw', fontWeight: '600' }}
               >
                 Passport:
+                
                 <input
+                 style={{width:'15vw'}}
                   type="text"
                   name="passport"
                   value={formData.passport}
@@ -225,6 +230,7 @@ export default function Form1({ student }) {
               <label className="rightdata">
                 Phone No.:
                 <input
+                 style={{width:'15vw'}}
                   type="text"
                   name="phoneNo"
                   value={formData.phoneNo}
@@ -238,6 +244,7 @@ export default function Form1({ student }) {
               >
                 Whatsapp No.:
                 <input
+                 style={{width:'15vw'}}
                   type="text"
                   name="whatsappNo"
                   value={formData.whatsappNo}
@@ -250,7 +257,7 @@ export default function Form1({ student }) {
               className="submit2"
               type="submit"
               style={{
-                marginTop: '2vh',
+                marginTop: '4vh',
                 width: '4rem',
                 height: '2rem',
                 backgroundColor: '#f07F1A',
@@ -454,6 +461,7 @@ box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.25);
           <style>{`
         input {
            height: 3vh;
+           width: 15vw;
            box-sizing: border-box;
            border: 1px solid #F07F1A;
 box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.25);
@@ -461,6 +469,7 @@ box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.25);
 
         select {
           height: 3vh;
+          width: 15vw;
           box-sizing: border-box;
           border: 1px solid #F07F1A;
 box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.25);
