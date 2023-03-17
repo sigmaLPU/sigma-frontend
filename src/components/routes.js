@@ -25,6 +25,9 @@ import {
 } from './training_module/routes';
 // student profile
 import StudentProfile from './students/student_profile/StudentProfile';
+
+//staff profile 
+import Staff from './staff_profile/Staff';
 // search page
 import Search from './search/Search';
 // guest visit master
@@ -104,6 +107,7 @@ export {
   ResetRequest,
   MeetingProfile,
   MeetingMaster,
+  Staff,
   StudentProfile,
   Search,
   GuestVisitMaster,

@@ -11,6 +11,7 @@ import { Error404 } from './components/routes'; // default home page
 import { UniversityMaster } from './components/routes'; // mou master
 import { UniversityProfile } from './components/routes'; // UniversityProfile
 import { StudentProfile } from './components/routes'; // StudentProfile
+import {Staff} from './components/routes';
 import { MeetingProfile } from './components/routes'; // MeetingProfile
 import { MeetingMaster } from './components/routes'; // Meeting Master
 import { ResetPassword, ResetRequest } from './components/routes'; // reset password
@@ -205,6 +206,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <FacultyInfo />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/staff"
+            element={
+              <ProtectedRoute>
+                <Staff/>
               </ProtectedRoute>
             }
           />
