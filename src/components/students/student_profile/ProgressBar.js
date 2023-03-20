@@ -202,7 +202,7 @@ export default function ProgressBar() {
               </span>
             </p>
           </div>
-          <hr style={{ marginLeft: '9.5vw', height: '17vh',fontSize:'0.8vw' }}></hr>
+          <hr style={{ marginLeft: '17.5vw', height: '17vh',fontSize:'0.8vw' }}></hr>
           <div
             style={{
               marginLeft: '8vw',
