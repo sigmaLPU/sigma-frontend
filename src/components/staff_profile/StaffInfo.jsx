@@ -67,8 +67,8 @@ export default function Staff(){
     justifyContent: 'center',
     padding: '20px',
     borderRadius: '10px',
-    width: '1000px',
-    height: '400px',
+    width: '55vw',
+    height: '50vh',
     marginLeft: '11rem',
     marginTop:'18rem',
     boxShadow: '0px 4px 4px #F07F1A, 4px 0px 4px rgba(0, 0, 0, 0.25)'

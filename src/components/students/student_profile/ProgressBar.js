@@ -164,48 +164,39 @@ export default function ProgressBar() {
             ></img>
           </div>
           <div style={{ marginLeft: '1vw' }}>
-            <p className="cardtitle">{user && user.name}</p>
+            <p className="cardtitle" style={{fontWeight:'600',fontSize:'1vw' }}>{user && user.name}</p>
             <p style={{ display: 'flex', alignItems: 'center' }}>
-              <span className="leftdata" style={{ width: '6vw', fontSize:'0.8vw'}}>
-                Reg. No.
-              </span>
-              <span className="colon" style={{ width: '2vw',fontSize:'0.8vw' }}>
-                :
-              </span>
-              <span className="value" style={{ width: '8vw',fontSize:'0.8vw' }}>
+            
+        
+              <span className="value" style={{ width: '8vw',fontSize:'0.8vw'}}>
                 {user && user.regNo}
               </span>
             </p>
             <p style={{ display: 'flex', alignItems: 'center' }}>
-              <span className="leftdata" style={{ width: '6vw' ,fontSize:'0.8vw'}}>
-                Email
-              </span>
-              <span className="colon" style={{ width: '2vw' }}>
-                :
-              </span>
+              
               <span className="value" style={{ width: '8vw',fontSize:'0.8vw' }}>
                 {user && user.email}
               </span>
             </p>
             <p style={{ display: 'flex', alignItems: 'center' }}>
-              <span className="leftdata" style={{ width: '6vw',fontSize:'0.8vw' }}>
+              {/* <span className="leftdata" style={{ width: '6vw',fontSize:'0.8vw' }}>
                 Phone No.
               </span>
               <span className="colon" style={{ width: '2vw' ,fontSize:'0.8vw'}}>
                 :
-              </span>
+              </span> */}
               <span className="value" style={{ width: '8vw',fontSize:'0.8vw' }}>
                 {' '}
                 {user && user.phone}
               </span>
             </p>
             <p style={{ display: 'flex', alignItems: 'center' }}>
-              <span className="leftdata" style={{ width: '6vw',fontSize:'0.8vw' }}>
+              {/* <span className="leftdata" style={{ width: '6vw',fontSize:'0.8vw' }}>
                 Opted for
               </span>
               <span className="colon" style={{ width: '2vw',fontSize:'0.8vw' }}>
                 :
-              </span>
+              </span> */}
               <span className="value" style={{ width: '8vw',fontSize:'0.8vw' }}>
                 {user && user.studentDetails?.optedFor}
               </span>
