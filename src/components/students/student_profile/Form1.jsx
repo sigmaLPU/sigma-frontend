@@ -9,6 +9,8 @@ import Box from '@mui/material/Box';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { Button, Select, TextField } from '@mui/material';
+import { width } from '@mui/system';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -136,6 +138,7 @@ export default function Form1({ student }) {
           textColor="inherit"
           variant="fullWidth"
           aria-label="full width tabs example"
+          
         >
           <Tab
             label="Personal Information"
@@ -155,7 +158,9 @@ export default function Form1({ student }) {
               backgroundColor: '#ffffff',
               color: '#000000',
               fontWeight: '600',
+              overflow:"hidden !important"
             }}
+            
           />
         </Tabs>
       </AppBar>
@@ -163,129 +168,73 @@ export default function Form1({ student }) {
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={value}
         onChangeIndex={handleChangeIndex}
+        style={{
+          overflow:'auto'
+        }}
       >
-        <TabPanel value={value} index={0} dir={theme.direction}>
+        <TabPanel value={value} index={0} dir={theme.direction}
+        >
+          <div>
+
           <form
             className="perform"
             onSubmit={handleSubmit}
-            style={{ marginLeft: '1vw', marginTop: '2vh' }}
+            style={{ marginLeft: '1vw', marginTop: '2vh',
+            height:'100%',
+            overflow:"hidden !important"
+          }}
+            
           >
-            <div style={{ display: 'flex' }}>
-              <label className="rightdata">
-                 Name:
-                <input
-                 style={{width:'15vw',marginBottom:'2vh'}}
-                  type="text"
-                  name="firstName"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                />
-              </label>
-             
-              <br />
-              <label
-                className="leftdata1"
-                style={{ marginLeft: '4vw', fontWeight: '600' }}
-              >
-                Email:
-                <input
-                  style={{width:'15vw'}}
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                />
-              </label>
-            </div>
-            <br />
-            <div style={{ display: 'flex' }}>
-              <label className="rightdata">
-                Registration No.:
-                <input
-                 style={{width:'15vw',marginBottom:'2vh'}}
-                  type="text"
-                  name="registrationNo"
-                  value={formData.registrationNo}
-                  onChange={handleInputChange}
-                />
-              </label>
-              <br />
-              <label
-                className="leftdata1"
-                style={{ marginLeft: '4vw', fontWeight: '600' }}
-              >
-                Passport:
-                
-                <input
-                 style={{width:'15vw'}}
-                  type="text"
-                  name="passport"
-                  value={formData.passport}
-                  onChange={handleInputChange}
-                />
-              </label>
-            </div>
-            <br />
-            <div style={{ display: 'flex' }}>
-              <label className="rightdata">
-                Phone No.:
-                <input
-                 style={{width:'15vw'}}
-                  type="text"
-                  name="phoneNo"
-                  value={formData.phoneNo}
-                  onChange={handleInputChange}
-                />
-              </label>
-              <br />
-              <label
-                className="leftdata1"
-                style={{ marginLeft: '4vw', fontWeight: '600' }}
-              >
-                Whatsapp No.:
-                <input
-                 style={{width:'15vw'}}
-                  type="text"
-                  name="whatsappNo"
-                  value={formData.whatsappNo}
-                  onChange={handleInputChange}
-                />
-              </label>
-            </div>
-            <br />
-            <button
-              className="submit2"
-              type="submit"
-              style={{
-                marginTop: '4vh',
-                width: '4rem',
-                height: '2rem',
-                backgroundColor: '#f07F1A',
-                borderRadius: '8px',
-                border: 'none',
-                cursor: 'pointer',
-              }}
-            >
-              Save
-            </button>
-            <style>{`
-        input {
-           height: 3vh;
-           box-sizing: border-box;
-           border: 1px solid #F07F1A;
-box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.25);
-        }
+            <div style={{ display: 'flex',
+            width:"100%",
+            flexWrap:'wrap'
+            
+          }}>
+            <TextField style={{
+              minWidth:"100px",
+              margin:'10px'
+            }} id="outlined-basic" label="Name" variant="outlined"
+            value={formData.name}
+            onChange={handleInputChange}
+            
+            />
 
-        select {
-          height: 3vh;
-          box-sizing: border-box;
-          border: 1px solid #F07F1A;
-box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.25);
-       }
-      `}</style>
+             
+              <TextField style={{
+                minWidth:"100px",
+                margin:'10px'
+              }} id="outlined-basic" label="Email" variant="outlined" />
+
+            <TextField style={{
+              minWidth:"100px",
+              margin:'10px'
+            }} id="outlined-basic" label="Reg No" variant="outlined" />
+            <TextField style={{
+              minWidth:"100px",
+              margin:'10px'
+            }} id="outlined-basic" label="Phone" variant="outlined" />
+
+              <TextField style={{
+                minWidth:"100px",
+                margin:'10px'
+              }} id="outlined-basic" label="Whatsapp" variant="outlined" />
+            </div>
+     
+            <br />
+            <Button variant="contained">Save</Button>
+           
           </form>
+          </div>
+
         </TabPanel>
-        <TabPanel value={value} index={1} dir={theme.direction}>
+        <TabPanel value={value} index={1} dir={theme.direction}
+    
+        >
+          <div
+          style={{
+            height:"250px"
+          }}
+          >
           <form onSubmit={handleSubmit}>
             <div
               style={{
@@ -304,7 +253,8 @@ box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.25);
               >
                 <label>
                   Financial Budget:
-                  <select
+                  <Select
+                    style={{width:'300px', height:'40px'}}
                     name="budget"
                     value={formData.budget}
                     onChange={handleInputChange}
@@ -314,12 +264,14 @@ box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.25);
                     <option value="$10,000 - $20,000">$10,000 - $20,000</option>
                     <option value="$20,000 - $30,000">$20,000 - $30,000</option>
                     <option value="More than $30,000">More than $30,000</option>
-                  </select>
+                  </Select>
                 </label>
 
                 <label>
                   Study Abroad Options:
-                  <select
+                  <Select
+                   style={{width:'300px', height:'40px'}}
+
                     name="studyAbroadOptions"
                     value={formData.studyAbroadOptions}
                     onChange={handleInputChange}
@@ -330,12 +282,13 @@ box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.25);
                     <option value="Diploma/Certificate">
                       Diploma/Certificate
                     </option>
-                  </select>
+                  </Select>
                 </label>
 
                 <label>
                   Current Semester/Year:
-                  <select
+                  <Select
+                   style={{width:'300px', height:'40px'}}
                     name="currentSemester"
                     value={formData.currentSemester}
                     onChange={handleInputChange}
@@ -349,12 +302,13 @@ box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.25);
                     <option value="6th Semester">6th Semester</option>
                     <option value="7th Semester">7th Semester</option>
                     <option value="8th Semester">8th Semester</option>
-                  </select>
+                  </Select>
                 </label>
 
                 <label>
                   Year of Graduation:
-                  <select
+                  <Select
+                   style={{width:'300px', height:'40px'}}
                     name="graduationYear"
                     value={formData.graduationYear}
                     onChange={handleInputChange}
@@ -364,19 +318,16 @@ box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.25);
                     <option value="2023">2023</option>
                     <option value="2024">2024</option>
                     <option value="2025">2025</option>
-                  </select>
+                  </Select>
                 </label>
 
-                <label>
-                  University Programme:
-                  <input
-                    type="text"
-                    name="universityProgramme"
-                    value={formData.universityProgramme}
-                    onChange={handleInputChange}
-                    placeholder="Enter your preferred university programme"
-                  />
-                </label>
+                <TextField style={{
+              minWidth:"100px",
+              margin:'10px',
+              width:'300px', height:'40px'
+            }}
+            
+            id="outlined-basic" label="Univeristy Program" variant="outlined" />
               </div>
 
               <div
@@ -386,19 +337,15 @@ box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.25);
                   gap: '2rem',
                 }}
               >
-                <label>
-                  Current CGPA:
-                  <input
-                    type="text"
-                    name="cgpa"
-                    value={formData.cgpa}
-                    onChange={handleInputChange}
-                    placeholder="Enter your current CGPA"
-                  />
-                </label>
+                 <TextField style={{
+                  width:'300px'
+
+          
+            }} id="outlined-basic" label="CGPA" variant="outlined" />
                 <label>
                   LPU Programme:
-                  <select
+                  <Select
+                  style={{width:'300px', height:'40px'}}
                     name="lpuProgramme"
                     value={formData.lpuProgramme}
                     onChange={handleInputChange}
@@ -410,12 +357,13 @@ box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.25);
                     <option value="MBA">MBA</option>
                     <option value="BCA">BCA</option>
                     <option value="MCA">MCA</option>
-                  </select>
+                  </Select>
                 </label>
 
                 <label>
                   Country:
-                  <select
+                  <Select
+                  style={{width:'300px', height:'40px'}}
                     name="country"
                     value={formData.country}
                     onChange={handleInputChange}
@@ -427,19 +375,14 @@ box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.25);
                     <option value="Australia">Australia</option>
                     <option value="Canada">Canada</option>
                     <option value="New Zealand">New Zealand</option>
-                  </select>
+                  </Select>
                 </label>
 
-                <label>
-                  University:
-                  <input
-                    type="text"
-                    name="university"
-                    value={formData.university}
-                    onChange={handleInputChange}
-                    placeholder="Enter your preferred university"
-                  />
-                </label>
+                <TextField style={{
+              minWidth:"100px",
+              margin:'10px',
+              width:'300px', height:'40px'
+            }} id="outlined-basic" label="University" variant="outlined" />
               </div>
             </div>
             <button
@@ -457,24 +400,8 @@ box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.25);
               Submit
             </button>
           </form>
+          </div>
 
-          <style>{`
-        input {
-           height: 3vh;
-           width: 15vw;
-           box-sizing: border-box;
-           border: 1px solid #F07F1A;
-box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.25);
-        }
-
-        select {
-          height: 3vh;
-          width: 15vw;
-          box-sizing: border-box;
-          border: 1px solid #F07F1A;
-box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.25);
-       }
-      `}</style>
         </TabPanel>
       </SwipeableViews>
     </Box>

@@ -7,6 +7,9 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { Button, ButtonGroup, FormControl, IconButton, InputLabel, MenuItem, Select } from '@mui/material';
+import { Download, DriveFolderUpload, Edit, FileDownload, Upload, UploadFile } from '@mui/icons-material';
+import { width } from '@mui/system';
 
 
 
@@ -45,6 +48,8 @@ export default function Form2() {
     const [selectedOption, setSelectedOption] = useState('');
     const [selectedDate, handleDateChange] = useState(new Date());
     const [value, setValue] = React.useState(0);
+
+    const [passport,setPassport] = useState(false)
 
     const handleFileChange = (event) => {
       const file = event.target.files[0];
@@ -95,7 +100,7 @@ export default function Form2() {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction} >
-        <div style={{marginLeft: "2rem"}}>
+        {/* <div style={{marginLeft: "2rem"}}>
       <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
         <div style={{display: "flex", flexDirection: "column"}}>
           <label style={{marginBottom: "5px", fontWeight: "600"}} htmlFor="option-select">Type Of Document</label>
@@ -118,7 +123,161 @@ export default function Form2() {
         </div>
       </div>
       <button style={{marginTop: "3rem", marginLeft: "22rem", width: "160px", height: "44px", backgroundColor: "#f07F1A", borderRadius: "8px", border: "none", cursor: "pointer"}}>upload</button>
-    </div>
+    </div> */}
+<div>
+<Box
+sx={{
+  display:'flex',
+  alignItems:"center",
+  justifyContent:"space-between"
+}}
+>
+<FormControl fullWidth>
+  <InputLabel id="demo-simple-select-label">Passport</InputLabel>
+  <Select
+    style={{marginBottom:'10px'}}
+    labelId="demo-simple-select-label"
+    id="demo-simple-select"
+    value={passport}
+    label="Passport"
+    onChange={(e)=>setPassport(e.target.value)}
+  >
+    <MenuItem value={true}>Yes</MenuItem>
+    <MenuItem value={false}>No</MenuItem>
+    
+  </Select>
+
+</FormControl>
+
+  <input type="file" name="" id=""
+
+  style={{
+    marginLeft:"20px"
+  }}
+    disabled={!passport}
+  />
+  
+</Box>
+
+<Box
+sx={{
+  display:'flex',
+  alignItems:"center",
+  justifyContent:"space-between"
+}}
+>
+<FormControl fullWidth>
+  <InputLabel id="demo-simple-select-label">Passport</InputLabel>
+  <Select
+    style={{marginBottom:'10px'}}
+    labelId="demo-simple-select-label"
+    id="demo-simple-select"
+    value={passport}
+    label="Passport"
+    onChange={(e)=>setPassport(e.target.value)}
+  >
+    <MenuItem value={true}>Yes</MenuItem>
+    <MenuItem value={false}>No</MenuItem>
+    
+  </Select>
+
+</FormControl>
+
+  <input type="file" name="" id=""
+
+  style={{
+    marginLeft:"20px"
+  }}
+    disabled={!passport}
+  />
+  
+</Box>
+
+<Box
+sx={{
+  display:'flex',
+  alignItems:"center",
+  justifyContent:"space-between"
+}}
+>
+<FormControl fullWidth>
+  <InputLabel id="demo-simple-select-label">Passport</InputLabel>
+  <Select
+    style={{marginBottom:'10px'}}
+    labelId="demo-simple-select-label"
+    id="demo-simple-select"
+    value={passport}
+    label="Passport"
+    onChange={(e)=>setPassport(e.target.value)}
+  >
+    <MenuItem value={true}>Yes</MenuItem>
+    <MenuItem value={false}>No</MenuItem>
+    
+  </Select>
+
+</FormControl>
+
+  <input type="file" name="" id=""
+
+  style={{
+    marginLeft:"20px"
+  }}
+    disabled={!passport}
+  />
+
+<ButtonGroup color='warning' variant="contained" aria-label="outlined primary button group">
+  <Button>
+    <Edit  />
+  </Button>
+ 
+</ButtonGroup>
+  
+  
+</Box>
+
+<Box
+sx={{
+  display:'flex',
+  alignItems:"center",
+  justifyContent:"space-between"
+}}
+>
+<FormControl sx={{
+  width:'300px'
+}}>
+  <InputLabel id="demo-simple-select-label">Passport</InputLabel>
+  <Select
+    style={{marginBottom:'10px'}}
+    labelId="demo-simple-select-label"
+    id="demo-simple-select"
+    value={passport}
+    label="Passport"
+    onChange={(e)=>setPassport(e.target.value)}
+  >
+    <MenuItem value={true}>Yes</MenuItem>
+    <MenuItem value={false}>No</MenuItem>
+    
+  </Select>
+
+</FormControl>
+
+  <input type="file" name="" id=""
+
+  style={{
+    marginLeft:"20px"
+  }}
+    disabled={!passport}
+  />
+<ButtonGroup color='warning' variant="contained" aria-label="outlined primary button group">
+  <Button>
+    <DriveFolderUpload  />
+  </Button>
+ 
+</ButtonGroup>
+  
+</Box>
+</div>
+
       
   
         </TabPanel>
