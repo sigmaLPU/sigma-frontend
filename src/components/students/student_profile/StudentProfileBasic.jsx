@@ -8,6 +8,10 @@ import {
   DialogContentText,
   DialogTitle,
   Divider,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
   TextField,
   TextareaAutosize,
   Typography,
@@ -28,19 +32,24 @@ const StudentProfileBasic = ({ data }) => {
     enqueueSnackbar(message, { variant });
   };
 
-  const [title, setTitle] = React.useState(data?.title);
-  const [meetingType, setMeetingType] = React.useState(data?.meetingType);
-  const [meetingTime, setMeetingTime] = React.useState(data?.meetingTime);
-  const [endTime, setEndTime] = React.useState(data?.endTime);
-  const [agenda, setAgenda] = React.useState(data?.agenda);
   const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
+  // const url = 'http://localhost:5000';
+
+  const [name, setName] = React.useState(data?.name);
+  const [email, setEmail] = React.useState(data?.email);
+  const [phone, setPhone] = React.useState(data?.phone);
+  const [regNo, setRegNo] = React.useState(data?.regNo);
+
+  const [optedFor, setOptedFor] = React.useState(
+    data?.studentDetails?.optedFor
+  );
 
   useEffect(() => {
-    setTitle(data?.title);
-    setMeetingType(data?.meetingType);
-    setMeetingTime(data?.meetingTime);
-    setEndTime(data?.endTime);
-    setAgenda(data?.agenda);
+    setName(data?.name);
+    setEmail(data?.email);
+    setPhone(data?.phone);
+    setRegNo(data?.regNo);
+    setOptedFor(data?.studentDetails?.optedFor);
   }, [data]);
 
   const handleClickOpen = () => {
@@ -54,13 +63,17 @@ const StudentProfileBasic = ({ data }) => {
   const handleUpdate = async () => {
     await axios
       .put(
-        `${url}/api/v2/meeting/single/${params.id}`,
+        `${url}/api/v2/user/student/${params.id}`,
         {
-          title,
-          meetingType,
-          meetingTime,
-          endTime,
-          agenda,
+          name,
+          email,
+          phone,
+          regNo,
+
+          studentDetails: {
+
+            optedFor,
+          },
         },
         {
           headers: {
@@ -70,12 +83,12 @@ const StudentProfileBasic = ({ data }) => {
       )
       .then((res) => {
         setOpen(false);
-        handleClickVariant('success', 'Meeting Details Updated Successfully')();
+        handleClickVariant('success', 'Student Details Updated Successfully')();
         window.location.reload();
       })
       .catch((err) => {
         setOpen(false);
-        handleClickVariant('error', 'Error in Updating Meeting Details')();
+        handleClickVariant('error', 'Error in Updating Student Details')();
       });
   };
 
@@ -139,7 +152,7 @@ const StudentProfileBasic = ({ data }) => {
                 }}
               />
 
-              <Typography variant="h5">{data?.name || 'no name'}</Typography>
+              <Typography variant="h5">{name}</Typography>
             </TextRow>
             <TextRow>
               <Typography
@@ -157,7 +170,7 @@ const StudentProfileBasic = ({ data }) => {
                 }}
               />
 
-              <Typography variant="h5">{data?.email}</Typography>
+              <Typography variant="h5">{email}</Typography>
             </TextRow>
             <TextRow>
               <Typography
@@ -175,7 +188,7 @@ const StudentProfileBasic = ({ data }) => {
                 }}
               />
 
-              <Typography variant="h5">{data?.regNo}</Typography>
+              <Typography variant="h5">{regNo}</Typography>
             </TextRow>
             <TextRow>
               <Typography
@@ -193,7 +206,7 @@ const StudentProfileBasic = ({ data }) => {
                 }}
               />
 
-              <Typography variant="h5">{data?.optedFor}</Typography>
+              <Typography variant="h5">{optedFor}</Typography>
             </TextRow>
 
             <TextRow>
@@ -212,18 +225,11 @@ const StudentProfileBasic = ({ data }) => {
                 }}
               />
 
-              <Typography variant="h5">{data?.phone}</Typography>
+              <Typography variant="h5">{phone}</Typography>
             </TextRow>
           </Box>
-          <Divider
-            orientation="vertical"
-            flexItem
-            sx={{
-              mx: '10px',
-              mt: '30px',
-            }}
-          />
-          <Box
+
+          {/* <Box
             display="flex"
             flexDirection="column"
             alignItems="center"
@@ -236,7 +242,7 @@ const StudentProfileBasic = ({ data }) => {
                   width: '120px',
                 }}
               >
-                <b>Name</b>
+                <b>Counsilor</b>
               </Typography>
               <Divider
                 orientation="vertical"
@@ -248,80 +254,8 @@ const StudentProfileBasic = ({ data }) => {
 
               <Typography variant="h5">{data?.name || 'no name'}</Typography>
             </TextRow>
-            <TextRow>
-              <Typography
-                sx={{
-                  width: '120px',
-                }}
-              >
-                <b>Email</b>
-              </Typography>
-              <Divider
-                orientation="vertical"
-                flexItem
-                sx={{
-                  mx: '10px',
-                }}
-              />
-
-              <Typography variant="h5">{data?.email}</Typography>
-            </TextRow>
-            <TextRow>
-              <Typography
-                sx={{
-                  width: '120px',
-                }}
-              >
-                <b>Reg No</b>
-              </Typography>
-              <Divider
-                orientation="vertical"
-                flexItem
-                sx={{
-                  mx: '10px',
-                }}
-              />
-
-              <Typography variant="h5">{data?.regNo}</Typography>
-            </TextRow>
-            <TextRow>
-              <Typography
-                sx={{
-                  width: '120px',
-                }}
-              >
-                <b>Opted For</b>
-              </Typography>
-              <Divider
-                orientation="vertical"
-                flexItem
-                sx={{
-                  mx: '10px',
-                }}
-              />
-
-              <Typography variant="h5">{data?.optedFor}</Typography>
-            </TextRow>
-
-            <TextRow>
-              <Typography
-                sx={{
-                  width: '120px',
-                }}
-              >
-                <b>Phone</b>
-              </Typography>
-              <Divider
-                orientation="vertical"
-                flexItem
-                sx={{
-                  mx: '10px',
-                }}
-              />
-
-              <Typography variant="h5">{data?.phone}</Typography>
-            </TextRow>
-          </Box>
+          
+          </Box> */}
         </Box>
         <Button
           variant="contained"
@@ -336,59 +270,62 @@ const StudentProfileBasic = ({ data }) => {
         <DialogTitle>Update Basic Details</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To update the meeting details, please enter the details here.
+            To update the student details, please enter the details here.
           </DialogContentText>
           <TextField
             autoFocus
             margin="dense"
             id="name"
-            label="Title"
+            label="Name"
             type="text"
             fullWidth
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
           <TextField
             autoFocus
             margin="dense"
             id="name"
-            label="Meeting Type"
+            label="Email"
             type="text"
             fullWidth
-            value={meetingType}
-            onChange={(e) => setMeetingType(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
             autoFocus
             margin="dense"
             id="name"
-            label="Meeting Time"
+            label="Reg No"
             type="text"
             fullWidth
-            value={meetingTime}
-            onChange={(e) => setMeetingTime(e.target.value)}
+            value={regNo}
+            onChange={(e) => setRegNo(e.target.value)}
           />
+
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Opted For</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={optedFor}
+              label="Age"
+              onChange={(e) => setOptedFor(e.target.value)}
+            >
+              <MenuItem value={'semester-exchange'}>Semester Exchange</MenuItem>
+              <MenuItem value={'credit-transfer'}>Credit Transfer</MenuItem>
+            </Select>
+          </FormControl>
 
           <TextField
             autoFocus
             margin="dense"
             id="name"
-            label="End Time"
-            type="text"
+            label="Phone"
+            type="number"
             fullWidth
-            value={endTime}
-            onChange={(e) => setEndTime(e.target.value)}
-          />
-
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Meeting Agenda"
-            type="text"
-            fullWidth
-            value={agenda}
-            onChange={(e) => setAgenda(e.target.value)}
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
           />
         </DialogContent>
         <DialogActions>

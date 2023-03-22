@@ -8,8 +8,43 @@ import StudentNotes from './StudentNotes';
 import StudentProfileBasic from './StudentProfileBasic';
 import StudentProfileStep from './StudentProfileStep';
 import StudentProfileMain from './StudentProfileMain';
+import { useEffect } from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
 
 export default function StudentProfile(props) {
+  const params = useParams();
+
+  const [student, setStudent] = useState({});
+  const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
+  // const url = 'http://localhost:5000';
+
+  const { enqueueSnackbar } = useSnackbar();
+  const handleClickVariant = (variant, message) => () => {
+    enqueueSnackbar(message, { variant });
+  };
+
+  useEffect(() => {
+    axios
+      .get(
+        `${url}/api/v2/user/student/${params.id}`,
+
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      )
+      .then((res) => {
+        setStudent(res.data.student);
+      })
+      .catch((err) => {
+        handleClickVariant('error', 'Error')();
+      });
+  }, [params.id]);
+
+
   return (
     <div>
       <NavSideBarLayout childCSS={{ marginTop: '4rem' }}>
@@ -26,19 +61,8 @@ export default function StudentProfile(props) {
         `}
         >
           <StudentProfileStep />
-          <StudentProfileBasic data={[]} />
-          <StudentNotes
-            data={[
-              {
-                _id: 1,
-                value: 'Note 1',
-              },
-              {
-                _id: 2,
-                value: 'Note 2',
-              },
-            ]}
-          />
+          <StudentProfileBasic data={student} />
+          <StudentNotes data={student?.studentDetails?.notes} />
           <StudentProfileMain />
         </Box>
       </NavSideBarLayout>
