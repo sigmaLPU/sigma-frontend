@@ -1,168 +1,71 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { NavSideBarLayout } from "../../routes";
-import ProgressBar from "./ProgressBar";
+import { NavSideBarLayout } from '../../routes';
+import ProgressBar from './ProgressBar';
 import arrow from './arrow.svg';
-
-function NoteForm({ onSubmit, onClose }) {
-  const [note, setNote] = useState("");
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    onSubmit(note);
-    setNote("");
-    onClose();
-  };
-
-  const handleNoteChange = (event) => {
-    setNote(event.target.value);
-  };
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Add a note...."
-        value={note}
-        onChange={handleNoteChange}
-      />
-      <button style={{
-                marginTop: '4vh',
-                width: '4rem',
-                height: '2rem',
-                backgroundColor: '#f07F1A',
-                borderRadius: '8px',
-                border: 'none',
-                cursor: 'pointer',
-              }} type="submit">Save</button>
-      <button style={{
-                marginTop: '1vh',
-                width: '4rem',
-                height: '2rem',
-                backgroundColor: '#f07F1A',
-                borderRadius: '8px',
-                border: 'none',
-                cursor: 'pointer',
-              }} onClick={onClose}>Close</button>
-    </form>
-  );
-}
-
-function AddNoteButton({ onClick }) {
-  return (
-    <button style={{ position: "absolute", top: 0, right: 0, border: "none" }} onClick={onClick}>
-      <img src={arrow} />
-    </button>
-  );
-}
-
-
-function NotePopup({ show, onSubmit, onClose }) {
-  if (!show) return null;
-
-  return (
-
-    
-      <div className="popup-content">
-        <NoteForm onSubmit={onSubmit} onClose={onClose} />
-      </div>
-    
-  );
-}
+import { Box } from '@mui/material';
+import StudentNotes from './StudentNotes';
+import StudentProfileBasic from './StudentProfileBasic';
+import StudentProfileStep from './StudentProfileStep';
+import StudentProfileMain from './StudentProfileMain';
+import { useEffect } from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
 
 export default function StudentProfile(props) {
-  const [notes, setNotes] = useState([]);
-  const [showNotePopup, setShowNotePopup] = useState(false);
+  const params = useParams();
 
-  function handleAddNote() {
-    setShowNotePopup(true);
-  }
+  const [student, setStudent] = useState({});
+  const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
+  // const url = 'http://localhost:5000';
 
-  function handleNoteSubmit(newNote) {
-    if (newNote.trim() === "") {
-      return;
-    }
-    setNotes([...notes, newNote]);
-    setShowNotePopup(false);
-  }
+  const { enqueueSnackbar } = useSnackbar();
+  const handleClickVariant = (variant, message) => () => {
+    enqueueSnackbar(message, { variant });
+  };
 
-  function handleNoteClose() {
-    setShowNotePopup(false);
-  }
+  useEffect(() => {
+    axios
+      .get(
+        `${url}/api/v2/user/student/${params.id}`,
+
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      )
+      .then((res) => {
+        setStudent(res.data.student);
+      })
+      .catch((err) => {
+        handleClickVariant('error', 'Error')();
+      });
+  }, [params.id]);
+
 
   return (
     <div>
-      <NavSideBarLayout childCSS={{ marginTop: "4rem" }}>
-        <div className="App">
-          <ProgressBar />
+      <NavSideBarLayout childCSS={{ marginTop: '4rem' }}>
+        <div className="App">{/* <ProgressBar /> */}</div>
 
-          <div
-            style={{
-              boxSizing: "border-box",
-
-              position: "absolute",
-              width: "25vw",
-              height: "74vh",
-              left: "73vw",
-              top: "23vh",
-
-              background: "#FFFFFF",
-              border: "1px solid #F07F1A",
-              boxShadow: "0px 0px 14px rgba(0, 0, 0, 0.25)",
-              borderRadius: "8px",
-            }}
-          >
-            <p className="heading2">Notes</p>
-            <AddNoteButton onClick={handleAddNote} />
-            <ul>
-              {notes.map((note, index) => (
-                <li className="notes" key={index}>{note}</li>
-              ))}
-            </ul>
-            <NotePopup
-              show={showNotePopup}
-              onSubmit={handleNoteSubmit}
-              onClose={handleNoteClose}
-            />
-          </div>
-        </div>
+        <Box
+          display="grid"
+          gap="20px"
+          gridTemplateAreas={`
+          'steps steps steps'
+          'basic basic notes'
+          'main  main   notes'  
+          'main  main  notes'            
+        `}
+        >
+          <StudentProfileStep />
+          <StudentProfileBasic data={student} />
+          <StudentNotes data={student?.studentDetails?.notes} />
+          <StudentProfileMain />
+        </Box>
       </NavSideBarLayout>
-      <style>{`
-        .heading2 {
-          margin-top: -2vh;
-          background-color: #F07F1A;
-          width: 10vw;
-          border-bottom-right-radius: 50%;
-          border-bottom-left-radius: 50%;
-          padding-bottom: 1vh;
-          padding-top: 1vh;
-          font-size: 22px;
-          text-align: center;
-          margin-left: 8vw;
-        }
-
-       
-       
-    
-        .popup-content {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          background: #fff;
-          padding: 20px;
-          border-radius: 5px;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-        }
-    
-  
-    
-        .notes {
-          margin-bottom: 10px;
-          margin-left : 1.5vw;
-        }
-    
-      `}</style>
     </div>
-);
-}   
+  );
+}
