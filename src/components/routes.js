@@ -53,6 +53,7 @@ import Chip from './common_components/chip';
 import Table, { NewTable } from './common_components/table';
 //modal
 
+
 import { TeamChart } from './team/routes';
 
 import {
@@ -95,6 +96,8 @@ import {
 // tools page
 import { Tools } from './tools/routes';
 
+
+
 export {
   //pages
   HomePage,
@@ -128,6 +131,7 @@ export {
   NewTable,
   BasicDetailsMeetingCard,
   AttachementCard,
+  
 
   // modalpop
   BasicDetailsModal,

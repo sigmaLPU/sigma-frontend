@@ -1,4 +1,5 @@
 import { AddAPhoto, AddPhotoAlternate, PhotoCamera } from '@mui/icons-material';
+import { useTheme } from '@mui/material/styles';
 import {
   Box,
   Button,
@@ -19,6 +20,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
 const MeetingAttachment = ({ data }) => {
+  const theme = useTheme();
   const params = useParams();
   const { files } = data;
 
@@ -87,7 +89,7 @@ const MeetingAttachment = ({ data }) => {
 
   return (
     <Box
-      backgroundColor={'#f5f5f5'}
+      backgroundColor={ theme.palette.mode === 'dark' ? '#333' : '#f5f5f5' }
       p="30px"
       overflow="auto"
       gridArea="attachment"

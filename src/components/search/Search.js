@@ -11,7 +11,7 @@ import {Table} from '../routes'
 
 import downArrowImg from './downArrow.png'
 import SearchIcon from '@mui/icons-material/Search';
-import SearchDoodal from './serach_image_doodal.png'
+import SearchDoodal from './search_image_doodal.png'
 import searchButton from './search.png'
 
 export default function Search(props){

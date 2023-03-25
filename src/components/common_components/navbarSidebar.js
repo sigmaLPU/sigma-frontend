@@ -3,6 +3,8 @@ import * as React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 // ui imports
+import PageviewIcon from '@mui/icons-material/Pageview';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box'; // container type box
 import MuiDrawer from '@mui/material/Drawer';
@@ -29,15 +31,20 @@ import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 
 // icons for side bar
 import WcIcon from '@mui/icons-material/Wc';
-import DashboardIcon from './resource/navbar_icons/dashboard.svg';
+// import DashboardIcon from './resource/navbar_icons/dashboard.svg';
 import GuestVisitIcon from './resource/navbar_icons/guest_visit.svg';
-import LinkIcon from './resource/navbar_icons/link.svg';
+// import LinkIcon from './resource/navbar_icons/link.svg';
 import MeetingIcon from './resource/navbar_icons/meeting.svg';
 import SearchIcon from './resource/navbar_icons/search.svg';
 import SettingIcon from './resource/navbar_icons/setting.svg';
 import SharedDataIcon from './resource/navbar_icons/shared_data.svg';
 import TeamIcon from './resource/navbar_icons/team.svg';
 import ToolIcon from './resource/navbar_icons/tools.svg';
+import GroupsIcon from '@mui/icons-material/Groups';
+import CameraFrontIcon from '@mui/icons-material/CameraFront';
+import VideoChatIcon from '@mui/icons-material/VideoChat';
+import FolderSharedIcon from '@mui/icons-material/FolderShared';
+import LinkIcon from '@mui/icons-material/Link';
 import {
   BookOnline,
   Logout,
@@ -47,6 +54,8 @@ import {
   TollOutlined,
 } from '@mui/icons-material';
 import { Avatar, Menu, MenuItem, Paper } from '@mui/material';
+import DarkModeToggle from '../../DarkModeToggle';
+import zIndex from '@mui/material/styles/zIndex';
 
 const drawerWidth = 240;
 
@@ -59,6 +68,8 @@ const openedMixin = (theme) => ({
   }),
   overflowX: 'hidden',
 });
+
+
 
 // when we close side bar
 const closedMixin = (theme) => ({
@@ -84,7 +95,10 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
-})(({ theme, open }) => ({
+})(({ theme, open }) => (
+  
+  {
+    
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(['width', 'margin'], {
     easing: theme.transitions.easing.sharp,
@@ -118,6 +132,12 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 export default function NavSideBar(props) {
+
+  const [darkMode, setDarkMode] = React.useState(false);
+
+  const handleDarkModeToggle = () => {
+    setDarkMode(!darkMode);
+  };
   const history = useNavigate();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -137,7 +157,8 @@ export default function NavSideBar(props) {
           <span style={{ fontSize: '22px', fontWeight: '700' }}>Search</span>
         ),
         icon: (
-          <img src={SearchIcon} style={{ height: '34px', width: '34px' }} />
+          // <img src={SearchIcon} style={{ height: '34px', width: '34px',color:"inherit" }} />
+          <ManageSearchIcon sx={{ fontSize: 40, fontWeight: '800', color: theme.palette.mode === 'dark' ? '#fff' : '#333' }}/>
         ),
         url: '/search',
       },
@@ -147,26 +168,31 @@ export default function NavSideBar(props) {
           <span style={{ fontSize: '22px', fontWeight: '700' }}>Dashboard</span>
         ),
         icon: (
-          <img src={DashboardIcon} style={{ height: '34px', width: '34px' }} />
+          // <img src={DashboardIcon} style={{ height: '34px', width: '34px' }} />
+          <DashboardIcon sx={{ fontSize: 40, fontWeight: '800', color: theme.palette.mode === 'dark' ? '#fff' : '#333' }} />
         ),
         url: '/dashboard',
       },
       {
         name: (
-          <span style={{ fontSize: '22px !important', fontWeight: '700' }}>
-            Student Master
+          <span style={{ fontSize: '22px', fontWeight: '700' }}>
+            Student
           </span>
         ),
         icon: (
-          <IconButton>
-            <WcIcon fontSize="large" />
+          <IconButton sx={{p:0}}>
+            <WcIcon sx={{ fontSize: 40, fontWeight: '800', color: theme.palette.mode === 'dark' ? '#fff' : '#333' }} />
           </IconButton>
         ),
         url: '/student_master',
       },
       {
         name: <span style={{ fontSize: '22px', fontWeight: '700' }}>Team</span>,
-        icon: <img src={TeamIcon} style={{ height: '34px', width: '34px' }} />,
+        icon: (
+       <IconButton  sx={{p:0}}>
+        <GroupsIcon sx={{ fontSize: 40, fontWeight: '800', color: theme.palette.mode === 'dark' ? '#fff' : '#333' }} />
+        </IconButton>
+        ),
         url: '/team',
       },
       {
@@ -176,7 +202,10 @@ export default function NavSideBar(props) {
           </span>
         ),
         icon: (
-          <img src={GuestVisitIcon} style={{ height: '34px', width: '34px' }} />
+          //<img src={GuestVisitIcon} style={{ height: '34px', width: '34px' }} />
+          <IconButton  sx={{p:0}}>
+        <CameraFrontIcon sx={{ fontSize: 40, fontWeight: '800', color: theme.palette.mode === 'dark' ? '#fff' : '#333' }} />
+        </IconButton>
         ),
         url: '/guest_visit',
       },
@@ -185,7 +214,10 @@ export default function NavSideBar(props) {
           <span style={{ fontSize: '22px', fontWeight: '700' }}>Meetings</span>
         ),
         icon: (
-          <img src={MeetingIcon} style={{ height: '34px', width: '34px' }} />
+          // <img src={MeetingIcon} style={{ height: '34px', width: '34px' }} />
+          <IconButton  sx={{p:0}}>
+          <VideoChatIcon sx={{ fontSize: 40, fontWeight: '800', color: theme.palette.mode === 'dark' ? '#fff' : '#333' }} />
+          </IconButton>
         ),
         url: '/meeting',
       },
@@ -196,7 +228,10 @@ export default function NavSideBar(props) {
           </span>
         ),
         icon: (
-          <img src={SharedDataIcon} style={{ height: '34px', width: '34px' }} />
+          // <img src={SharedDataIcon} style={{ height: '34px', width: '34px' }} />
+          <IconButton  sx={{p:0}}>
+          <FolderSharedIcon sx={{ fontSize: 40, fontWeight: '800', color: theme.palette.mode === 'dark' ? '#fff' : '#333' }} />
+          </IconButton>
         ),
         url: '/shared_data',
       },
@@ -204,18 +239,23 @@ export default function NavSideBar(props) {
         name: (
           <span style={{ fontSize: '22px', fontWeight: '700' }}>Links</span>
         ),
-        icon: <img src={LinkIcon} style={{ height: '34px', width: '34px' }} />,
+        icon:(
+          //  <img src={LinkIcon} style={{ height: '34px', width: '34px' }} />,
+          <IconButton  sx={{p:0}}>
+          <LinkIcon sx={{ fontSize: 40, fontWeight: '800', color: theme.palette.mode === 'dark' ? '#fff' : '#333' }} />
+          </IconButton>
+        ),
         url: '/links',
       },
       {
         name: (
-          <span style={{ fontSize: '22px !important', fontWeight: '700' }}>
+          <span style={{ fontSize: '22px', fontWeight: '700' }}>
             Register
           </span>
         ),
         icon: (
-          <IconButton>
-            <PersonAddAlt fontSize="large" />
+          <IconButton  sx={{p:0}}>
+            <PersonAddAlt sx={{ fontSize: 40, fontWeight: '800', color: theme.palette.mode === 'dark' ? '#fff' : '#333' }}  />
           </IconButton>
         ),
         url: '/registerUser',
@@ -242,6 +282,7 @@ export default function NavSideBar(props) {
   const navigate = useNavigate();
   return (
     <Box sx={{ display: 'flex' }}>
+     
       <Menu
         anchorEl={anchorEl}
         id="account-menu"
@@ -290,6 +331,7 @@ export default function NavSideBar(props) {
               color: 'inherit',
             }}
           >
+  
             <MenuItem onClick={handleClose}>
               <Avatar /> <span>Profile</span>
             </MenuItem>
@@ -308,6 +350,18 @@ export default function NavSideBar(props) {
             </ListItemIcon>
             <span>Settings</span>
           </MenuItem>
+
+          {/* <MenuItem
+            onClick={handleClose}
+            style={{
+              marginTop: '10px',
+            }}
+          >
+            <ListItemIcon>
+             <DarkModeToggle/>
+            </ListItemIcon>
+            <span>Settings</span>
+          </MenuItem> */}
           <MenuItem
             onClick={handleClose}
             style={{
@@ -335,10 +389,15 @@ export default function NavSideBar(props) {
       <CssBaseline />
       <AppBar
         position="fixed"
-        style={{ backgroundColor: 'white', color: 'black' }}
+        // className={darkMode ? 'dark-mode' : ''}
+        style={{
+          zIndex:99999 ,
+          background: theme.palette.mode === 'dark' ? '#333' : '#fff',
+         color:  'inherit',
+        }}
         open={open}
       >
-        <Toolbar style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Toolbar style={{ display: 'flex', justifyContent: 'space-between'}}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -349,15 +408,19 @@ export default function NavSideBar(props) {
               ...(open && { display: 'none' }),
             }}
           >
-            <MenuIcon style={{ color: 'black' }} fontSize="large" />
+            <MenuIcon style={{ color: 'inherit' }} fontSize="large" />
           </IconButton>
 
-          <Typography variant="h6" noWrap component="div">
+          <Typography marginLeft={10} variant="h6" noWrap component="div">
             {props?.pageTile
               ? props?.pageTile
               : 'Division of international Affairs'}
           </Typography>
           <div>
+          <IconButton>
+              <DarkModeToggle/>
+            </IconButton>
+
             <IconButton>
               {props?.anyNotification ? (
                 <NotificationsActiveIcon fontSize="large" />
@@ -365,6 +428,7 @@ export default function NavSideBar(props) {
                 <NotificationsNoneIcon fontSize="large" />
               )}
             </IconButton>
+           
 
             <IconButton>
               <PersonIcon onClick={handleClick} fontSize="large" />

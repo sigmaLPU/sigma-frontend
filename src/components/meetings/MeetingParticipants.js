@@ -23,8 +23,10 @@ import { AddBoxSharp, DeleteForever } from '@mui/icons-material';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
+import { useTheme } from '@mui/material/styles';
 
 const MeetingParticipants = ({ data }) => {
+  const theme = useTheme();
   const params = useParams();
   const { participants } = data;
   const [open, setOpen] = React.useState(false);
@@ -109,7 +111,7 @@ const MeetingParticipants = ({ data }) => {
 
   return (
     <Box
-      backgroundColor={'#f5f5f5'}
+    backgroundColor={ theme.palette.mode === 'dark' ? '#333' : '#f5f5f5' }
       p="30px"
       overflow="auto"
       gridArea="participants"
@@ -134,7 +136,7 @@ const MeetingParticipants = ({ data }) => {
               // onClick={() => handleClickOpen(contact)}
               alignItems="flex-start"
               style={{
-                backgroundColor: '#fff',
+                backgroundColor: theme.palette.mode === 'dark' ? '#444' : '#fff',
                 marginTop: '20px',
                 // maxHeight: '100px',
                 overflow: 'auto',

@@ -11,7 +11,7 @@ import {ModalPopUp} from '../routes'
 export default function Card(props){
 
 	const CardCSS = { 
-		backgroundColor: props?.backgroundColor ? props?.backgroundColor : "white", 
+		backgroundColor: props?.backgroundColor ? props?.backgroundColor : "inherit", 
 		borderRadius : props?.borderRadius ? props?.borderRadius : "8px" ,
 		boxShadow: "3px 3px 3px 3px rgba(207, 200, 184, 0.3)",
 		marginTop:"15px",

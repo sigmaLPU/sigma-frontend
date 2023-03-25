@@ -24,8 +24,10 @@ import React from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
+import { useTheme } from '@mui/material/styles';
 
 const MeetingOutcome = ({ data }) => {
+  const theme = useTheme();
   const params = useParams();
   const { outcome } = data;
 
@@ -104,7 +106,7 @@ const MeetingOutcome = ({ data }) => {
 
   return (
     <Box
-      backgroundColor={'#f5f5f5'}
+    backgroundColor={ theme.palette.mode === 'dark' ? '#333' : '#f5f5f5' }
       p="30px"
       overflow="auto"
       gridArea="outcome"
@@ -131,7 +133,7 @@ const MeetingOutcome = ({ data }) => {
                 marginTop: '10px',
                 maxHeight: '100px',
                 overflow: 'auto',
-                backgroundColor: '#fff',
+                backgroundColor: theme.palette.mode === 'dark' ? '#444' : '#fff',
               }}
               //   onClick={() => handleClickOpen(process)}
             >

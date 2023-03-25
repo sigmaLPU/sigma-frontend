@@ -51,12 +51,13 @@ function LinkButton({ url, name }) {
 
 
 function TimeComponent(){
-
+  
   const [timeState, setTimeState] = useState([
     { name: 'Abidjan', time: '12:03', img: sun, timeZone: 'Africa/Abidjan' },
     { name: 'Delhi', time: '12:03', img: moon, timeZone: 'Asia/Kolkata' },
     { name: 'Cairo', time: '12:03', img: sun, timeZone: 'Africa/Cairo' },
     {name: 'Melbourne',time: '12:03',img: moon,timeZone: 'Australia/Melbourne',},
+    { name: 'New York', time: '12:03', img: sun, timeZone: 'America/New_York' },
   ]);
 
   const timeCardCSS = {
@@ -65,9 +66,11 @@ function TimeComponent(){
     minHeight: '5rem',
     boxShadow: '0px 0px 14px rgba(0, 0, 0, 0.25)',
     display: 'flex',
+    paddingTop: '0.5rem',
     paddingLeft: '0.5rem',
     paddingRight: '0.5rem',
     borderRadius: '8px',
+    marginTop: '1rem',
   };
 
   const forceUpdate = useForceUpdate();
@@ -128,7 +131,12 @@ function TimeComponent(){
   )
 }
 
+
+
+
 export default function Dashboard(props) {
+
+  
   const navigate = useNavigate();
   const forceUpdate = useForceUpdate();
 

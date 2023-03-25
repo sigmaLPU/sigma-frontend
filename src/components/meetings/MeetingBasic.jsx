@@ -16,10 +16,12 @@ import TextRow from '../text/TextRow';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
+import { useTheme } from '@mui/material/styles';
 
 const MeetingBasic = ({ data }) => {
   const params = useParams();
   const [open, setOpen] = React.useState(false);
+  const theme = useTheme();
 
   const { enqueueSnackbar } = useSnackbar();
   const handleClickVariant = (variant, message) => () => {
@@ -81,7 +83,7 @@ const MeetingBasic = ({ data }) => {
   return (
     <>
       <Box
-        backgroundColor={'#f5f5f5'}
+         backgroundColor={ theme.palette.mode === 'dark' ? '#333' : '#f5f5f5' }
         p="30px"
         overflow="auto"
         gridArea="basic"

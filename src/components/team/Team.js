@@ -4,6 +4,8 @@ import MessageIcon from '@mui/icons-material/Message';
 import EmailIcon from '@mui/icons-material/Email';
 import React, { Fragment, useEffect, useState } from "react";
 import randomcolor from "randomcolor";
+import Typist from 'react-typist'; // Add this import
+
 // import call from "./icons8-call-50.png";
 // import video from "./icons8-video-24.png";
 // import chat from "./icons8-chat-50.png";
@@ -89,6 +91,8 @@ const renderCircleSvgNode = ({ nodeDatum, toggleNode }) => {
     const textWidth = textLength * fontSize * 0.6; // Approximate width of the text
     return -textWidth / 1.5;
   };
+  
+ 
 
   return (
     <g>
@@ -114,22 +118,13 @@ const renderCircleSvgNode = ({ nodeDatum, toggleNode }) => {
           />
         </pattern>
       </defs>
-      <rect
-        x="-110"
-        y="60"
-        width="220"
-        height="120" // Adjust the height to fit the icons
-        fill="white"
-        stroke="white"
-        rx="5" // Add rounded corners
-        ry="5"
-        filter='url("shadow")'
-        // stroke={getRandomColor()}
+   
+       
+        
+       
+      
         
     
-        strokeWidth="1"
-      />
-
 
 <foreignObject x={centerText(nodeDatum.name, 16)} y="60" width="150" height="30">
         <Typography variant="h5" component="span">
@@ -210,6 +205,8 @@ const orgChart = {
 };
 
 const Chart = () => {
+ 
+
 
   const [translate, setTranslate] = useState({ x: 0, y: 0 });
   const [nodeSize, setNodeSize] = useState({ x: 0, y: 0 });

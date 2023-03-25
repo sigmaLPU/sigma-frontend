@@ -53,7 +53,7 @@ export function ObjectCard(props) {
 
 
 export function FileCard(props) {
-	const [bgColor,setBgColor] = useState("white")
+	const [bgColor,setBgColor] = useState("inherit")
 
 	const [available,setAvailable] = useState("Not Available")
 
@@ -118,7 +118,7 @@ export function FileCard(props) {
 				</table>
 
 	return (
-		<div style={{display:"flex",borderBottom:"1px solid black",backgroundColor:bgColor,justifyContent:"space-between"}} onMouseEnter={()=>setBgColor("#dbdbd9")} onMouseLeave={()=>setBgColor("white")}>
+		<div style={{display:"flex",borderBottom:"1px solid black",backgroundColor:bgColor,justifyContent:"space-between"}} onMouseEnter={()=>setBgColor("#dbdbd9")} onMouseLeave={()=>setBgColor("inherit")}>
 			<div><IconButton><InsertDriveFileIcon sx={{ fontSize: "80px" }}/></IconButton></div>
 			<div>
 				<ModalPopUp activeComponent={activeComponent}>
@@ -137,7 +137,7 @@ export function FileCard(props) {
 }
 
 export function ContactCard(props){
-	const [bgColor,setBgColor] = useState("white")
+	const [bgColor,setBgColor] = useState("inherit")
 
 	const activeComponent = <div style={{paddingLeft:"1rem"}}>
 		{props?.data["name"] && 
@@ -152,7 +152,7 @@ export function ContactCard(props){
 		</div>
 
 	return (
-		<div style={{display:"flex",borderBottom:"1px solid black",backgroundColor:bgColor}} onMouseEnter={()=>setBgColor("#dbdbd9")} onMouseLeave={()=>setBgColor("white")}>
+		<div style={{display:"flex",borderBottom:"1px solid black",backgroundColor:bgColor}} onMouseEnter={()=>setBgColor("#dbdbd9")} onMouseLeave={()=>setBgColor("inherit")}>
 			<div>
 				<ModalPopUp activeComponent={activeComponent}>
 					{props?.contactDetailsUpdateModal ? props?.contactDetailsUpdateModal : "Not Available"}

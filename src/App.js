@@ -1,9 +1,12 @@
 // file imports
 import './App.css';
 
+
+
+
 // react tools import
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 // component imports
 import { HomePage } from './components/routes'; // default home page
 import { LoginPage } from './components/routes'; // default home page
@@ -34,9 +37,13 @@ import UserInfo from './components/profile_page/UserInfo';
 import FacultyInfo from './components/profile_page/faculty/FacultyProfile';
 import StudentMaster from './components/students/StudentMaster';
 
+import DarkModeToggle from './DarkModeToggle';
 function App() {
+  
   return (
     <div>
+  
+    
       <Router>
         <Routes>
           {/**/}
@@ -223,6 +230,9 @@ function App() {
           <Route path="/404" element={<Error404 />} />
         </Routes>
       </Router>
+  
+  
+ 
     </div>
   );
 }

@@ -19,10 +19,12 @@ import React from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
+import { useTheme } from '@mui/material/styles';
 
 const MeetingNotes = ({ data }) => {
   const params = useParams();
   const { momNotes } = data;
+  const theme = useTheme();
 
     const [open, setOpen] = React.useState(false);
 
@@ -106,9 +108,9 @@ const MeetingNotes = ({ data }) => {
       });
   };
 
-
+  
   return (
-    <Box backgroundColor={'#f5f5f5'} p="30px" overflow="auto" gridArea="note">
+    <Box backgroundColor={ theme.palette.mode === 'dark' ? '#333' : '#f5f5f5' } p="30px" overflow="auto" gridArea="note">
       <Typography
         variant="h5"
         fontWeight="600"
@@ -133,7 +135,7 @@ const MeetingNotes = ({ data }) => {
             <ListItem
               alignItems="flex-start"
               style={{
-                backgroundColor: '#fff',
+                backgroundColor: theme.palette.mode === 'dark' ? '#444' : '#fff',
                 marginTop: '10px',
                 maxHeight: '100px',
                 overflow: 'auto',
