@@ -14,6 +14,7 @@ import {
   TextField,
 } from '@mui/material';
 import { Upload } from '@mui/icons-material';
+import Tab1 from './tabs/Tab1';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -77,78 +78,7 @@ function VerticalTabs() {
         <Tab label="Done" {...a11yProps(5)} />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <Box
-          display="flex"
-          flexWrap="wrap"
-          gap="30px"
-          justifyContent="space-between"
-          width="650px"
-        >
-          <TextField
-            sx={{
-              width: '300px',
-            }}
-            id="outlined-basic"
-            label="Outlined"
-            variant="outlined"
-          />
-          <TextField
-            sx={{
-              width: '300px',
-            }}
-            id="outlined-basic"
-            label="Outlined"
-            variant="outlined"
-          />
-          <TextField
-            sx={{
-              width: '300px',
-            }}
-            id="outlined-basic"
-            label="Outlined"
-            variant="outlined"
-          />
-          <TextField
-            sx={{
-              width: '300px',
-            }}
-            id="outlined-basic"
-            label="Outlined"
-            variant="outlined"
-          />
-          <TextField
-            sx={{
-              width: '300px',
-            }}
-            id="outlined-basic"
-            label="Outlined"
-            variant="outlined"
-          />
-          <TextField
-            sx={{
-              width: '300px',
-            }}
-            id="outlined-basic"
-            label="Outlined"
-            variant="outlined"
-          />
-          <TextField
-            sx={{
-              width: '300px',
-            }}
-            id="outlined-basic"
-            label="Outlined"
-            variant="outlined"
-          />
-          <TextField
-            sx={{
-              width: '300px',
-            }}
-            id="outlined-basic"
-            label="Outlined"
-            variant="outlined"
-          />
-        </Box>
+      <Tab1 />
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Box
@@ -188,7 +118,7 @@ function VerticalTabs() {
               minWidth="650px"
               alignItems="center"
             >
-             itelts.jpg
+              itelts.jpg
               <strong
                 style={{
                   marginRight: '250px',
