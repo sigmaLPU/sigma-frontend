@@ -1,10 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import pic from "./ppic.jpg";
 import call from "./call.png";
 import whatsapp from "./whatsapp.png";
 import email from "./email.png";
+import { Box, Button, Modal } from "@mui/material";
+import Form from "./Form";
+import { useState } from "react";
+import axios from "axios";
 
 export default function Staff() {
+  const [open, setOpen] = React.useState(false);
+  const [user, setUser] = useState(null);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
+
+
+  useEffect(() => {
+    axios
+      .get(url + '/api/v2/user/profile', {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      })
+      .then((res) => {
+        setUser(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+
   return (
     <div
       style={{
@@ -77,7 +104,7 @@ export default function Staff() {
                 }}
               />
               <div style={{ marginLeft: "5rem", marginTop: "1rem" }}>
-                <h3 style={{ marginBottom: "0px" }}>AAKASH KUMAR</h3>
+                <h3 style={{ marginBottom: "0px" }}>{user?.name}</h3>
                 <p style={{ marginLeft: "1.1rem" }}>Trainee intern</p>
               </div>
             </div>
@@ -205,7 +232,7 @@ export default function Staff() {
                       fontSize: "0.8vw",
                     }}
                   >
-                    63682
+                    {user?.regNo}
                   </span>
                 </p>
                 <p
@@ -244,7 +271,7 @@ export default function Staff() {
                     }}
                   >
                     {" "}
-                    Indian
+                    {user?.nationality && user?.nationality}
                   </span>
                 </p>
                 <p
@@ -283,7 +310,7 @@ export default function Staff() {
                     }}
                   >
                     {" "}
-                    Male
+                    {user?.gender && user?.gender}
                   </span>
                 </p>
                 <p
@@ -322,7 +349,7 @@ export default function Staff() {
                     }}
                   >
                     {" "}
-                    21-12-2002
+                    {user?.dob && user?.dob}
                   </span>
                 </p>
                 <p
@@ -361,7 +388,7 @@ export default function Staff() {
                     }}
                   >
                     {" "}
-                    9931963208
+                    {user?.phone && user?.phone}
                   </span>
                 </p>
                 <p
@@ -399,7 +426,7 @@ export default function Staff() {
                       fontSize: "0.8vw",
                     }}
                   >
-                    Aakashaman9931@gmail.com
+                   {user?.email}
                   </span>
                 </p>
               </div>
@@ -459,7 +486,7 @@ export default function Staff() {
                       fontSize: "0.8vw",
                     }}
                   >
-                    21-12-2002
+                     {user?.ljoining}
                   </span>
                 </p>
                 <p
@@ -499,7 +526,7 @@ export default function Staff() {
                       fontSize: "0.8vw",
                     }}
                   >
-                    21-12-2002
+                     {user?.tjoining}
                   </span>
                 </p>
                 <p
@@ -539,7 +566,7 @@ export default function Staff() {
                     }}
                   >
                     {" "}
-                    21-12-2002
+                    {user?.phassign}
                   </span>
                 </p>
                 <p
@@ -578,7 +605,7 @@ export default function Staff() {
                       fontSize: "0.8vw",
                     }}
                   >
-                    POCO X2
+                   {user?.phmodel}
                   </span>
                 </p>
                 <p
@@ -616,7 +643,7 @@ export default function Staff() {
                       fontSize: "0.8vw",
                     }}
                   >
-                    9931963208
+                    {user?.offphone}
                   </span>
                 </p>
                 <p
@@ -655,13 +682,48 @@ export default function Staff() {
                     }}
                   >
                     {" "}
-                    Aakashaman9931@gmail.com
+                    {user?.offemail}
                   </span>
                 </p>
               </div>
             </div>
+           
           </div>
-          <div style={{ margin: "50px" }}></div>
+          {/* <div style={{ margin: "50px" }}></div> */}
+          <div style={{ margin: '40px' }}>
+              {/* <Form user={user} setUser={setUser} /> */}
+              <Button onClick={handleOpen}
+                variant="outlined"
+               
+              >Edit Profile</Button>
+          
+            </div>
+            <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: 500,
+            bgcolor: 'background.paper',
+            border: '2px solid #000',
+            boxShadow: 24,
+            p: 4,
+          }}
+        >
+          <h2 id="modal-modal-title" style={{
+            textAlign: 'center',
+            marginBottom: '20px',
+          }}>Edit Profile</h2>
+          <Form user={user} setUser={setUser} />
+        </Box>
+      </Modal>
         
         </div>
       </div>
