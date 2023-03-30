@@ -1,5 +1,5 @@
 import { Upload } from '@mui/icons-material';
-import { Alert, AlertTitle, Box, IconButton } from '@mui/material';
+import { Alert, AlertTitle, Box, Button, IconButton } from '@mui/material';
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
 import React, { useEffect } from 'react';
@@ -7,11 +7,12 @@ import { Link, useParams } from 'react-router-dom';
 
 const Tab3 = () => {
   const params = useParams();
+  const lpuProcessingFeesRef = React.useRef(null);
 
   const [student, setStudent] = React.useState({});
 
   const [passport, setPassport] = React.useState({});
-  const [lpuProcessingFees, setLpuProcessingFees] = React.useState({});
+  const [lpuProcessingFees, setLpuProcessingFees] = React.useState(null);
 
   const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
   const { enqueueSnackbar } = useSnackbar();
@@ -38,6 +39,34 @@ const Tab3 = () => {
       });
   }, [params.id]);
 
+  const handleSubmit = async (e) => {
+
+    e.preventDefault();
+
+    const formData = new FormData();
+
+    formData.append('lpuProcessingFee', lpuProcessingFees);
+
+    try {
+      const res = await axios.put(
+        `${url}/api/v2/user/student/${params.id}`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      )
+
+      
+
+      handleClickVariant('success', 'File Uploaded')();
+      window.location.reload();
+    } catch (err) {
+      handleClickVariant('error', 'Error')();
+    }
+  };
+
   return (
     <div>
       <Box
@@ -56,17 +85,33 @@ const Tab3 = () => {
             minWidth="650px"
             alignItems="center"
           >
-            {student?.studentDetails?.lpuProcessingFees?.file?.f_url ? (
-              <a href={student?.studentDetails?.lpuProcessingFees?.file?.f_url}>
+            {student?.studentDetails?.lpuProcessingFee?.file?.f_url ? (
+              <a href={student?.studentDetails?.lpuProcessingFee?.file?.f_url}>
                 Download Lpu Processing Fees
               </a>
             ) : (
               <p style={{ color: 'red' }}>No File Uploaded</p>
             )}
 
-            <IconButton float="right">
-              <Upload />
-            </IconButton>
+            <form onSubmit={handleSubmit}>
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '10px',
+                }}
+              >
+                <input
+                  type="file"
+                  name=""
+                  id=""
+                  onChange={(e) => setLpuProcessingFees(e.target.files[0])}
+                />
+                <IconButton float="right" type="submit">
+                  <Upload />
+                </IconButton>
+              </div>
+            </form>
           </Box>
         </Alert>
       </Box>

@@ -38,6 +38,32 @@ const Tab2 = () => {
       });
   }, [params.id]);
 
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData();
+
+      formData.append('passport', passport);
+
+      try {
+        const res = await axios.put(
+          `${url}/api/v2/user/student/${params.id}`,
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+          }
+        );
+
+        handleClickVariant('success', 'File Uploaded')();
+        window.location.reload();
+      } catch (err) {
+        handleClickVariant('error', 'Error')();
+      }
+    };
+
   return (
     <div>
       <Box
@@ -62,28 +88,25 @@ const Tab2 = () => {
               </a>
             )}
 
-            <IconButton float="right">
-              <Upload />
-            </IconButton>
-          </Box>
-        </Alert>
-        <Alert severity="success">
-          <AlertTitle>Lpu Processing Fees</AlertTitle>
-          <Box
-            display="flex"
-            justifyContent="space-between"
-            minWidth="650px"
-            alignItems="center"
-          >
-            {student?.studentDetails?.lpuProcessingFees?.file?.f_url && (
-              <a href={student?.studentDetails?.lpuProcessingFees?.file?.f_url}>
-                Download Lpu Processing Fees
-              </a>
-            )}
-
-            <IconButton float="right">
-              <Upload />
-            </IconButton>
+            <form onSubmit={handleSubmit}>
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '10px',
+                }}
+              >
+                <input
+                  type="file"
+                  name=""
+                  id=""
+                  onChange={(e) => setPassport(e.target.files[0])}
+                />
+                <IconButton float="right" type="submit">
+                  <Upload />
+                </IconButton>
+              </div>
+            </form>
           </Box>
         </Alert>
       </Box>

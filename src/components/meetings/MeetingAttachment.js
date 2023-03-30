@@ -67,9 +67,9 @@ const MeetingAttachment = ({ data }) => {
       })
       .then((response) => {
         window.location.reload();
-
-      }).catch((error) => {
-        alert(error.response.data.message,'error')
+      })
+      .catch((error) => {
+        alert(error.response.data.message, 'error');
       });
   };
 
@@ -85,11 +85,9 @@ const MeetingAttachment = ({ data }) => {
     setOpen(false);
   };
 
-
-
   return (
     <Box
-      backgroundColor={ theme.palette.mode === 'dark' ? '#333' : '#f5f5f5' }
+      backgroundColor={theme.palette.mode === 'dark' ? '#333' : '#f5f5f5'}
       p="30px"
       overflow="auto"
       gridArea="attachment"
@@ -140,32 +138,30 @@ const MeetingAttachment = ({ data }) => {
       {/* ------------------------------ */}
       <Dialog open={open} onClose={handleClose}>
         {/* <form onSubmit={handleAddAttachments}> */}
-          <form onSubmit={handleSubmit}>
-        <DialogTitle>Add Attachments</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            To add or update attachments, please select the files you want to
-            add or update.{' '}
-            <span
-              style={{
-                color: 'red',
+        <form onSubmit={handleSubmit}>
+          <DialogTitle>Add Attachments</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              To add or update attachments, please select the files you want to
+              add or update.{' '}
+              <span
+                style={{
+                  color: 'red',
+                }}
+              >
+                Note: everytime you add or update, the previous files will be
+                deleted.
+              </span>
+            </DialogContentText>
+
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-around',
               }}
             >
-              Note: everytime you add or update, the previous files will be
-              deleted.
-            </span>
-          </DialogContentText>
-
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-around',
-            }}
-          >
-           
-          
               <input
                 type="file"
                 name="files"
@@ -173,61 +169,60 @@ const MeetingAttachment = ({ data }) => {
                 onChange={handleFileInputChange}
               />
               {/* <button type="submit">Upload</button> */}
-          </Box>
-          <Box
-            sx={{
-              mt: 2,
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}
-          >
-            {photos?.map((photo) => (
-              <Card
-                sx={{
-                  m: 3,
-                }}
-              >
-                <CardMedia
-                  component="img"
-                  height="40"
-                  width="40"
-                  image={photo?.f_url}
-                  alt="Paella dish"
-                />
-              </Card>
-            ))}
-          </Box>
-          <Box
-            sx={{
-              mt: 2,
-            }}
-          >
-            {imagesPreview.map((file) => (
-              <Card
-                sx={{
-                  m: 3,
-                }}
-              >
-                <CardMedia
-                  component="img"
-                  height="40"
-                  width="40"
-                  image={file}
-                  alt="Paella dish"
-                />
-              </Card>
-            ))}
-          </Box>
-        </DialogContent>
+            </Box>
+            <Box
+              sx={{
+                mt: 2,
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+              }}
+            >
+              {photos?.map((photo) => (
+                <Card
+                  sx={{
+                    m: 3,
+                  }}
+                >
+                  <CardMedia
+                    component="img"
+                    height="40"
+                    width="40"
+                    image={photo?.f_url}
+                    alt="Paella dish"
+                  />
+                </Card>
+              ))}
+            </Box>
+            <Box
+              sx={{
+                mt: 2,
+              }}
+            >
+              {imagesPreview.map((file) => (
+                <Card
+                  sx={{
+                    m: 3,
+                  }}
+                >
+                  <CardMedia
+                    component="img"
+                    height="40"
+                    width="40"
+                    image={file}
+                    alt="Paella dish"
+                  />
+                </Card>
+              ))}
+            </Box>
+          </DialogContent>
 
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button type="submit">Add</Button>
-        </DialogActions>
-                    </form>
+          <DialogActions>
+            <Button onClick={handleClose}>Cancel</Button>
+            <Button type="submit">Add</Button>
+          </DialogActions>
+        </form>
         {/* </form> */}
-
       </Dialog>
     </Box>
   );
