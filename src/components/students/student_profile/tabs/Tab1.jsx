@@ -51,13 +51,11 @@ const Tab1 = ({ value }) => {
       )
       .then((res) => {
         setStudent(res.data.student);
-
-         
       })
       .catch((err) => {
         handleClickVariant('error', 'Error')();
       });
-  }, [params.id, ]);
+  }, [params.id]);
 
   useEffect(() => {
     setNationality(student?.nationality || '');
@@ -66,9 +64,9 @@ const Tab1 = ({ value }) => {
     setWhatsapp(student?.studentDetails?.whatsapp || '');
     setCurrentCourse(student?.studentDetails?.currentCourse || '');
     setCurrentSemester(student?.studentDetails?.currentSemester || '');
-    setCurrentCgpa(student?.studentDetails?.currentCgpa || '');
+    setCurrentCgpa(student?.studentDetails?.currentCGPA || '');
     setAreaOfInterest(student?.studentDetails?.areaOfInterest || '');
-  },[student])
+  }, [student]);
 
   const onSave = async () => {
     await axios
@@ -82,7 +80,7 @@ const Tab1 = ({ value }) => {
             whatsapp,
             currentCourse,
             currentSemester,
-            currentCgpa,
+            currentCGPA: currentCgpa,
             areaOfInterest,
           },
         },
@@ -96,7 +94,7 @@ const Tab1 = ({ value }) => {
         handleClickVariant('success', 'Saved')();
       })
       .catch((err) => {
-        handleClickVariant('error', 'Error')();
+        handleClickVariant('error', 'Error ' + err.message)();
       });
   };
 

@@ -15,6 +15,8 @@ import {
 } from '@mui/material';
 import { Upload } from '@mui/icons-material';
 import Tab1 from './tabs/Tab1';
+import Tab2 from './tabs/Tab2';
+import Tab3 from './tabs/Tab3';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -78,63 +80,13 @@ function VerticalTabs() {
         <Tab label="Done" {...a11yProps(5)} />
       </Tabs>
       <TabPanel value={value} index={0}>
-      <Tab1 />
+        <Tab1 />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Box
-          display="flex"
-          flexWrap="wrap"
-          gap="30px"
-          justifyContent="space-between"
-          flexDirection="column"
-          width="650px"
-        >
-          <Alert severity="error">
-            <AlertTitle>Passport</AlertTitle>
-            <Box
-              display="flex"
-              justifyContent="space-between"
-              minWidth="650px"
-              alignItems="center"
-            >
-              This is an error alert —{' '}
-              <strong
-                style={{
-                  marginRight: '250px',
-                }}
-              >
-                check it out!
-              </strong>
-              <IconButton float="right">
-                <Upload />
-              </IconButton>
-            </Box>
-          </Alert>
-          <Alert severity="success">
-            <AlertTitle>IELTS</AlertTitle>
-            <Box
-              display="flex"
-              justifyContent="space-between"
-              minWidth="650px"
-              alignItems="center"
-            >
-              itelts.jpg
-              <strong
-                style={{
-                  marginRight: '250px',
-                }}
-              >
-                check it out!
-              </strong>
-              <IconButton float="right">
-                <Upload />
-              </IconButton>
-            </Box>
-          </Alert>
-        </Box>
+        <Tab2 />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
+        <Tab3 />
       </TabPanel>
       <TabPanel value={value} index={3}>
         Item Four
