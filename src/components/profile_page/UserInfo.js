@@ -7,14 +7,24 @@ import { NavSideBarLayout } from '../routes';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { Box, Button, Modal } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+
+
+
 
 const UserInfo = () => {
     const [open, setOpen] = React.useState(false);
+    const navigate = useNavigate();
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
   const [user, setUser] = useState(null);
 
   const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
+
+  const handleClick=()=> navigate('/staff');
+    
+   
+ 
 
   useEffect(() => {
     axios
@@ -170,6 +180,10 @@ const UserInfo = () => {
                 variant="outlined"
                
               >Edit Profile</Button>
+               <Button onClick={handleClick}
+                variant="outlined"
+               
+              >More Details</Button>
             </div>
             <img src={footer} className="footer" />
           </div>
