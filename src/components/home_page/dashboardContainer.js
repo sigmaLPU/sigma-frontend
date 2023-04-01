@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import moment from 'moment-timezone';
 // component import
 
 // other imports
@@ -17,6 +18,7 @@ import { Autocomplete, Icon, IconButton, TextField } from '@mui/material';
 import { height } from '@mui/system';
 import { Restore } from '@mui/icons-material';
 
+import ct, { getAllCountries }  from 'countries-and-timezones'
 // function defination
 function checkTime(i) {
   if (i < 10) {
@@ -24,6 +26,7 @@ function checkTime(i) {
   } // add zero in front of numbers < 10
   return i;
 }
+const countries = ct.getAllCountries();
 
 function convertTZ(date, tzString) {
   return new Date(
@@ -54,6 +57,11 @@ function LinkButton({ url, name }) {
 
 
 function TimeComponent({id}){
+
+  const timeZones = moment.tz.names().map((tz) => ({
+    name: tz,
+    timeZone: tz,
+  }));
   
 
   const [selectedCity, setSelectedCity] = useState(() => {
@@ -67,12 +75,70 @@ function TimeComponent({id}){
   const [currentTime, setCurrentTime] = useState('00:00');
   const [currentImage, setCurrentImage] = useState(sun);
 
+
   const cities = [
     { name: 'Abidjan', timeZone: 'Africa/Abidjan' },
     { name: 'Delhi', timeZone: 'Asia/Kolkata' },
     { name: 'Cairo', timeZone: 'Africa/Cairo' },
     { name: 'Melbourne', timeZone: 'Australia/Melbourne' },
     { name: 'New York', timeZone: 'America/New_York' },
+    { name: 'Tokyo', timeZone: 'Asia/Tokyo' },
+    { name: 'London', timeZone: 'Europe/London' },
+    { name: 'Los Angeles', timeZone: 'America/Los_Angeles' },
+    { name: 'Paris', timeZone: 'Europe/Paris' },
+    { name: 'Sydney', timeZone: 'Australia/Sydney' },
+    { name: 'Chicago', timeZone: 'America/Chicago' },
+    { name: 'Dubai', timeZone: 'Asia/Dubai' },
+    { name: 'Toronto', timeZone: 'America/Toronto' },
+    { name: 'Moscow', timeZone: 'Europe/Moscow' },
+    { name: 'Hong Kong', timeZone: 'Asia/Hong_Kong' },
+    { name: 'Rio de Janeiro', timeZone: 'America/Sao_Paulo' },
+    { name: 'Berlin', timeZone: 'Europe/Berlin' },
+    { name: 'Mumbai', timeZone: 'Asia/Kolkata' },
+    { name: 'Madrid', timeZone: 'Europe/Madrid' },
+    { name: 'Seoul', timeZone: 'Asia/Seoul' },
+    { name: 'Rome', timeZone: 'Europe/Rome' },
+    { name: 'Shanghai', timeZone: 'Asia/Shanghai' },
+    { name: 'Singapore', timeZone: 'Asia/Singapore' },
+    { name: 'Istanbul', timeZone: 'Europe/Istanbul' },
+    { name: 'Amsterdam', timeZone: 'Europe/Amsterdam' },
+    { name: 'Bangkok', timeZone: 'Asia/Bangkok' },
+    { name: 'Jakarta', timeZone: 'Asia/Jakarta' },
+    { name: 'Vienna', timeZone: 'Europe/Vienna' },
+    { name: 'Taipei', timeZone: 'Asia/Taipei' },
+    { name: 'Athens', timeZone: 'Europe/Athens' },
+    { name: 'Copenhagen', timeZone: 'Europe/Copenhagen' },
+    { name: 'Dublin', timeZone: 'Europe/Dublin' },
+    { name: 'Auckland', timeZone: 'Pacific/Auckland' },
+    { name: 'Brussels', timeZone: 'Europe/Brussels' },
+    { name: 'Stockholm', timeZone: 'Europe/Stockholm' },
+    { name: 'Oslo', timeZone: 'Europe/Oslo' },
+    { name: 'Helsinki', timeZone: 'Europe/Helsinki' },
+    { name: 'Lisbon', timeZone: 'Europe/Lisbon' },
+    { name: 'Edinburgh', timeZone: 'Europe/London' },
+    { name: 'Wellington', timeZone: 'Pacific/Auckland' },
+    { name: 'Budapest', timeZone: 'Europe/Budapest' },
+    { name: 'Prague', timeZone: 'Europe/Prague' },
+    { name: 'Warsaw', timeZone: 'Europe/Warsaw' },
+    { name: 'Zurich', timeZone: 'Europe/Zurich' },
+    { name: 'Bratislava', timeZone: 'Europe/Bratislava' },
+    { name: 'Belgrade', timeZone: 'Europe/Belgrade' },
+    { name: 'Sofia', timeZone: 'Europe/Sofia' },
+    { name: 'Vilnius', timeZone: 'Europe/Vilnius' },
+    { name: 'Tallinn', timeZone: 'Europe/Tallinn' },
+    { name: 'Riga', timeZone: 'Europe/Riga' },
+    { name: 'Cape Town', timeZone: 'Africa/Johannesburg' },
+    { name: 'Minsk', timeZone: 'Europe/Minsk' },
+    { name: 'Kiev', timeZone: 'Europe/Kiev' },
+    { name: 'Bucharest', timeZone: 'Europe/Bucharest' },
+    { name: 'Santiago', timeZone: 'America/Santiago' },
+    { name: 'San Francisco', timeZone: 'America/Los_Angeles' },
+    { name: 'Montreal', timeZone: 'America/Montreal' },
+    { name: 'Vancouver', timeZone: 'America/Vancouver' },
+    { name: 'Mexico City', timeZone: 'America/Mexico_City' },
+    { name: 'Buenos Aires', timeZone: 'America/Argentina/Buenos_Aires' },
+    { name: 'Sao Paulo', timeZone: 'America/Sao_Paulo' },
+    { name: 'Bogota', timeZone: 'America/Bogota' },
   ];
 
   const timeCardCSS = {
@@ -165,7 +231,7 @@ function TimeComponent({id}){
             <span> <Autocomplete
         disablePortal
         id="combo-box-demo"
-        options={cities}
+        options={timeZones}
         getOptionLabel={(option) => option.name}
         sx={{ width: 300 }}
         onChange={handleCityChange}
