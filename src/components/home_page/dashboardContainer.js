@@ -53,11 +53,12 @@ function LinkButton({ url, name }) {
 }
 
 
-function TimeComponent({ id }){
+function TimeComponent({id}){
+  
 
   const [selectedCity, setSelectedCity] = useState(() => {
     // retrieve previously selected city from localStorage if available
-    const city = localStorage.getItem(`selectedCity_${id}`);
+    const city = localStorage.getItem('selectedCity '+id);
     if (city) {
       return JSON.parse(city);
     }
@@ -85,7 +86,6 @@ function TimeComponent({ id }){
     paddingRight: '0.5rem',
     borderRadius: '8px',
     marginTop: '1rem',
-    marginBottom: '2rem',
    
   };
 
@@ -114,13 +114,13 @@ function TimeComponent({ id }){
   const handleCityChange = (event, newValue) => {
     setSelectedCity(newValue);
     // store selected city in localStorage
-    localStorage.setItem(`selectedCity_${id}`, JSON.stringify(newValue));
+    localStorage.setItem('selectedCity '+id, JSON.stringify(newValue));
   };
 
   const handleResetCity = () => {
     setSelectedCity(null);
     // remove selected city from localStorage
-    localStorage.removeItem(`selectedCity_${id}`);
+    localStorage.removeItem('selectedCity '+id);
   };
   
 
@@ -168,9 +168,7 @@ function TimeComponent({ id }){
         options={cities}
         getOptionLabel={(option) => option.name}
         sx={{ width: 300 }}
-        onChange={(event, newValue) => {
-          setSelectedCity(newValue);
-        }}
+        onChange={handleCityChange}
         renderInput={(params) => <TextField {...params} label="City" />}
       /></span>
           </div>
@@ -179,6 +177,7 @@ function TimeComponent({ id }){
     </div>
   );
 }
+
 
 
 
@@ -204,17 +203,20 @@ export default function Dashboard(props) {
     { name: 'Training Modules', url: '/training', img: trainingModalImg },
   ];
 
+
+  
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '90vh' }}>
       {/*Top part*/}
       <div style={{ height: '15rem' }}>
         <div style={{height:'5rem', display:'flex', justifyContent:'space-around'}}>
 
-        <TimeComponent   id="component1"/>
-        <TimeComponent  id="component2" />
-        <TimeComponent   id="component3"/>
-        <TimeComponent  id="component4"/>
-        <TimeComponent  id="component5" />
+        <TimeComponent id={1}  />
+        <TimeComponent id={2} />
+        <TimeComponent id={3}  />
+        <TimeComponent id={4} />
+        <TimeComponent id={5}  />
         </div>
         
 
@@ -225,7 +227,7 @@ export default function Dashboard(props) {
               width: '100%',
               display: 'flex',
               justifyContent: 'center',
-              marginTop: '2rem',
+              marginTop: '1rem',
             }}
           >
             <span style={{ textAlign: 'center' }}>Hello, {username}</span>
