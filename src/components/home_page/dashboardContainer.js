@@ -227,7 +227,7 @@ export default function Dashboard(props) {
               width: '100%',
               display: 'flex',
               justifyContent: 'center',
-              marginTop: '1rem',
+              marginTop: '2rem',
             }}
           >
             <span style={{ textAlign: 'center' }}>Hello, {username}</span>
