@@ -13,6 +13,9 @@ import mouImg from './resource/mou.png';
 import openLeadsImg from './resource/openLeads.png';
 import templateSectionImg from './resource/templateSection.png';
 import trainingModalImg from './resource/trainingModal.png';
+import { Autocomplete, Icon, IconButton, TextField } from '@mui/material';
+import { height } from '@mui/system';
+import { Restore } from '@mui/icons-material';
 
 // function defination
 function checkTime(i) {
@@ -50,15 +53,26 @@ function LinkButton({ url, name }) {
 }
 
 
-function TimeComponent(){
-  
-  const [timeState, setTimeState] = useState([
-    { name: 'Abidjan', time: '12:03', img: sun, timeZone: 'Africa/Abidjan' },
-    { name: 'Delhi', time: '12:03', img: moon, timeZone: 'Asia/Kolkata' },
-    { name: 'Cairo', time: '12:03', img: sun, timeZone: 'Africa/Cairo' },
-    {name: 'Melbourne',time: '12:03',img: moon,timeZone: 'Australia/Melbourne',},
-    { name: 'New York', time: '12:03', img: sun, timeZone: 'America/New_York' },
-  ]);
+function TimeComponent({ id }){
+
+  const [selectedCity, setSelectedCity] = useState(() => {
+    // retrieve previously selected city from localStorage if available
+    const city = localStorage.getItem(`selectedCity_${id}`);
+    if (city) {
+      return JSON.parse(city);
+    }
+    return null;
+  });
+  const [currentTime, setCurrentTime] = useState('00:00');
+  const [currentImage, setCurrentImage] = useState(sun);
+
+  const cities = [
+    { name: 'Abidjan', timeZone: 'Africa/Abidjan' },
+    { name: 'Delhi', timeZone: 'Asia/Kolkata' },
+    { name: 'Cairo', timeZone: 'Africa/Cairo' },
+    { name: 'Melbourne', timeZone: 'Australia/Melbourne' },
+    { name: 'New York', timeZone: 'America/New_York' },
+  ];
 
   const timeCardCSS = {
     border: '1px solid #F07F1A',
@@ -71,64 +85,99 @@ function TimeComponent(){
     paddingRight: '0.5rem',
     borderRadius: '8px',
     marginTop: '1rem',
+    marginBottom: '2rem',
+   
   };
 
   const forceUpdate = useForceUpdate();
 
   useEffect(() => {
-
-    const intervalId = setInterval(() => {
-      var temp = timeState;
-      for (var obj of temp) {
-        var today = convertTZ(new Date(), obj['timeZone']);
+    if (selectedCity) {
+      const intervalId = setInterval(() => {
+        const today = convertTZ(new Date(), selectedCity.timeZone);
         let h = today.getHours();
         let m = today.getMinutes();
         if (h >= 18 || h <= 6) {
-          obj['img'] = moon;
+          setCurrentImage(moon);
         } else {
-          obj['img'] = sun;
+          setCurrentImage(sun);
         }
         m = checkTime(m);
-        obj['time'] = h + ':' + m;
-      }
-      setTimeState(temp)
-      forceUpdate()
-    },1000)
+        setCurrentTime(h + ':' + m);
+        forceUpdate();
+      }, 1000);
+  
+      return () => clearInterval(intervalId);
+    }
+  }, [selectedCity]);
 
-    return ()=>clearInterval(intervalId)
-  },[])
+  const handleCityChange = (event, newValue) => {
+    setSelectedCity(newValue);
+    // store selected city in localStorage
+    localStorage.setItem(`selectedCity_${id}`, JSON.stringify(newValue));
+  };
+
+  const handleResetCity = () => {
+    setSelectedCity(null);
+    // remove selected city from localStorage
+    localStorage.removeItem(`selectedCity_${id}`);
+  };
+  
 
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
-      }}
-    >
-      {timeState.map((item) => (
-        <div style={timeCardCSS}>
-          <div>
-            <img src={item?.img} style={{ height: '4rem' }} />
-          </div>
+    <div>
+     
+      <div style={timeCardCSS}>
+        {selectedCity ? (
+          <>
+            <div>
+              <img src={currentImage} style={{ height: '4rem' }} />
+            </div>
+            <div
+              style={{
+                fontWeight: '800',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                flexGrow: '1',
+              }}
+            >
+              <span>{currentTime}</span>
+              <span>{selectedCity.name}</span>
+              <IconButton onClick={() => setSelectedCity(null)}>
+                <Restore />
+              </IconButton>
+            </div>
+          </>
+        ) : (
           <div
             style={{
-            fontWeight: '800',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexGrow: '1',
+              fontWeight: '800',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexGrow: '1',
             }}
           >
-            <span>{item?.time}</span>
-            <span>{item?.name}</span>
+            <span> <Autocomplete
+        disablePortal
+        id="combo-box-demo"
+        options={cities}
+        getOptionLabel={(option) => option.name}
+        sx={{ width: 300 }}
+        onChange={(event, newValue) => {
+          setSelectedCity(newValue);
+        }}
+        renderInput={(params) => <TextField {...params} label="City" />}
+      /></span>
           </div>
-          </div>
-      ))}
+        )}
+      </div>
     </div>
-  )
+  );
 }
 
 
@@ -159,8 +208,15 @@ export default function Dashboard(props) {
     <div style={{ display: 'flex', flexDirection: 'column', height: '90vh' }}>
       {/*Top part*/}
       <div style={{ height: '15rem' }}>
+        <div style={{height:'5rem', display:'flex', justifyContent:'space-around'}}>
 
-        <TimeComponent />
+        <TimeComponent   id="component1"/>
+        <TimeComponent  id="component2" />
+        <TimeComponent   id="component3"/>
+        <TimeComponent  id="component4"/>
+        <TimeComponent  id="component5" />
+        </div>
+        
 
         <div>
           <div
@@ -169,7 +225,7 @@ export default function Dashboard(props) {
               width: '100%',
               display: 'flex',
               justifyContent: 'center',
-              marginTop: '1rem',
+              marginTop: '2rem',
             }}
           >
             <span style={{ textAlign: 'center' }}>Hello, {username}</span>
