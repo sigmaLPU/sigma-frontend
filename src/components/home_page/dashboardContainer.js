@@ -17,6 +17,7 @@ import trainingModalImg from './resource/trainingModal.png';
 import { Autocomplete, Icon, IconButton, TextField } from '@mui/material';
 import { height } from '@mui/system';
 import { Restore } from '@mui/icons-material';
+import Quotes from "randomquote-api";
 
 import ct, { getAllCountries }  from 'countries-and-timezones'
 // function defination
@@ -26,6 +27,26 @@ function checkTime(i) {
   } // add zero in front of numbers < 10
   return i;
 }
+const randomquote = Quotes.randomQuote();
+
+const Quote = () => {
+  const [quote, setQuote] = useState("");
+
+  useEffect(() => {
+    fetch("https://api.quotable.io/random")
+      .then((response) => response.json())
+      .then((data) => setQuote(data.content))
+      .catch((error) => console.error(error));
+  }, []);
+
+  return (
+    <div>
+      <p>{quote}</p>
+    </div>
+  );
+};
+
+
 const countries = ct.getAllCountries();
 
 function convertTZ(date, tzString) {
@@ -155,6 +176,10 @@ function TimeComponent({id}){
    
   };
 
+
+ 
+
+
   const forceUpdate = useForceUpdate();
 
   useEffect(() => {
@@ -188,6 +213,9 @@ function TimeComponent({id}){
     // remove selected city from localStorage
     localStorage.removeItem('selectedCity '+id);
   };
+
+
+  
   
 
 
@@ -293,7 +321,7 @@ export default function Dashboard(props) {
               width: '100%',
               display: 'flex',
               justifyContent: 'center',
-              marginTop: '2rem',
+              marginTop: '3rem',
             }}
           >
             <span style={{ textAlign: 'center' }}>Hello, {username}</span>
@@ -309,8 +337,8 @@ export default function Dashboard(props) {
             }}
           >
             <span style={{ textAlign: 'center' }}>
-              “If you only do what you can do, you will never be more than you
-              are now.” ― Master Oogway. t
+            <Quote>
+            </Quote>
             </span>
           </div>
         </div>
