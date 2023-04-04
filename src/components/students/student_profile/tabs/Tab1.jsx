@@ -14,6 +14,129 @@ import axios from 'axios';
 import { useSnackbar } from 'notistack';
 import { useParams } from 'react-router-dom';
 
+const list = [
+  {
+    name: 'B.Tech. (Computer Science & Engineering)',
+  },
+  {
+    name: 'B.Tech. (Mechanical Engineering)',
+  },
+  {
+    name: 'B.Tech. (Civil Engineering)',
+  },
+  {
+    name: 'B. Business Administration',
+  },
+  {
+    name: 'B. Commerce',
+  },
+  {
+    name: 'B. Hotel Mgt & Catering Technology (BHMCT)',
+  },
+  {
+    name: 'B. Design (Fashion)',
+  },
+  {
+    name: 'B. Sc. (Information Technology)',
+  },
+  {
+    name: 'B.Tech. (ME – Mechatronics)',
+  },
+  {
+    name: 'B.Tech. (Biotechnology)',
+  },
+  {
+    name: 'B. A. (Culinary Arts)',
+  },
+  {
+    name: 'B.Tech. (Electronics and Communications Engineering)',
+  },
+  {
+    name: 'B.Tech. (Automobile Engineering)',
+  },
+  {
+    name: 'M. Business Administration',
+  },
+  {
+    name: 'M Tech (Biotechnology)',
+  },
+  {
+    name: 'M Tech (ECE)',
+  },
+  {
+    name: 'B.Tech. (Information Technology)',
+  },
+  {
+    name: 'B.Sc. Agriculture',
+  },
+  {
+    name: 'B. Computer Application',
+  },
+  {
+    name: 'B.Tech. (Food Technology)',
+  },
+  {
+    name: 'B. Tech. (AeroSpace Engineering)',
+  },
+  {
+    name: 'M.Sc. (Information Technology)',
+  },
+  {
+    name: 'B.A. (Psychology)',
+  },
+  {
+    name: 'B. Tech. (Electrical Engineering)',
+  },
+  {
+    name: 'B. Sc. (Airlines, Tourism and Hospitality)',
+  },
+  {
+    name: 'B. Tech. (Biomedical Engineering)',
+  },
+  {
+    name: 'B. Design (Product & Industrial)',
+  },
+  {
+    name: 'B. Design (Interior & Furniture)',
+  },
+  {
+    name: 'B. Tech. (Electrical and Electronics Engineering)',
+  },
+  {
+    name: 'B. Architecture',
+  },
+  {
+    name: 'B. Sc. (Design - Multimedia)',
+  },
+  {
+    name: 'B. Sc. (Computer Science)',
+  },
+  {
+    name: 'B. Design (Graphics)',
+  },
+  {
+    name: 'B. Sc. (Film & TV Production)',
+  },
+  {
+    name: 'B. A. (Journalism & Mass Communication)',
+  },
+  {
+    name: 'B. Tech. (Chemical Engineering)',
+  },
+  {
+    name: 'M. Sc. (Biotechnology)',
+  },
+  {
+    name: 'B.A. (English)',
+  },
+  {
+    name: 'B.A. (Hons)',
+  },
+  {
+    name: 'B. Sc. Food Technology',
+  },
+];
+
 const Tab1 = ({ value }) => {
   const params = useParams();
 
@@ -27,6 +150,8 @@ const Tab1 = ({ value }) => {
   const [currentSemester, setCurrentSemester] = React.useState('');
   const [currentCgpa, setCurrentCgpa] = React.useState('');
   const [areaOfInterest, setAreaOfInterest] = React.useState('');
+  const [interestedCountry, setInterestedCountry] = React.useState('');
+  const [interestedUniversity, setInterestedUniversity] = React.useState('');
 
   const handleChange = (event) => {
     setAreaOfInterest(event.target.value);
@@ -66,6 +191,11 @@ const Tab1 = ({ value }) => {
     setCurrentSemester(student?.studentDetails?.currentSemester || '');
     setCurrentCgpa(student?.studentDetails?.currentCGPA || '');
     setAreaOfInterest(student?.studentDetails?.areaOfInterest || '');
+    setInterestedCountry(student?.studentDetails?.areaOfInterest.split('-')[0]);
+        setInterestedUniversity(
+          student?.studentDetails?.areaOfInterest.split('-')[1]
+        );
+
   }, [student]);
 
   const onSave = async () => {
@@ -81,7 +211,7 @@ const Tab1 = ({ value }) => {
             currentCourse,
             currentSemester,
             currentCGPA: currentCgpa,
-            areaOfInterest,
+            areaOfInterest: interestedCountry + '-' + interestedUniversity,
           },
         },
         {
@@ -155,16 +285,27 @@ const Tab1 = ({ value }) => {
           value={whatsapp}
           onChange={(e) => setWhatsapp(e.target.value)}
         />
-        <TextField
+
+        <FormControl
           sx={{
             width: '300px',
           }}
-          id="outlined-basic"
-          label="Current Course"
-          variant="outlined"
-          value={currentCourse}
-          onChange={(e) => setCurrentCourse(e.target.value)}
-        />
+        >
+          <InputLabel id="demo-simple-select-helper-label">
+            Current Course
+          </InputLabel>
+          <Select
+            labelId="demo-simple-select-helper-label"
+            id="demo-simple-select-helper"
+            value={currentCourse}
+            label="Current Course"
+            onChange={(e) => setCurrentCourse(e.target.value)}
+          >
+            {list.map((item, index) => {
+              return <MenuItem value={item.name}>{item.name}</MenuItem>;
+            })}
+          </Select>
+        </FormControl>
         <TextField
           sx={{
             width: '300px',
@@ -175,39 +316,26 @@ const Tab1 = ({ value }) => {
           value={currentSemester}
           onChange={(e) => setCurrentSemester(e.target.value)}
         />
-
-        <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-helper-label">
-            Area Of Interest
-          </InputLabel>
-          <Select
-            labelId="demo-simple-select-helper-label"
-            id="demo-simple-select-helper"
-            value={areaOfInterest}
-            label="Area Of Interest"
-            onChange={(e) => setAreaOfInterest(e.target.value)}
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={'Canada - BBA - 2+2 University Of Albetra'}>
-              Canada - BBA - 2+2 University Of Albetra{' '}
-            </MenuItem>
-            <MenuItem value={'Canada - BCA - 2+2 University Of Albetra'}>
-              Canada - BBA - 2+2 University Of Albetra{' '}
-            </MenuItem>
-            <MenuItem value={'USA - B.TECH - 2+2 Memorial University'}>
-              Canada - BBA - 2+2 University Of Albetra{' '}
-            </MenuItem>
-            <MenuItem value={'Canada - BBA - 2+2 University Of Albetra'}>
-              Canada - BBA - 2+2 University Of Albetra{' '}
-            </MenuItem>
-          </Select>
-          <FormHelperText>
-            example: Country - model - Stream - Course [Canada - 2+2 BBA
-            University Of Torronto]
-          </FormHelperText>
-        </FormControl>
+        <TextField
+          sx={{
+            width: '300px',
+          }}
+          id="outlined-basic"
+          label="Interested Country"
+          variant="outlined"
+          value={interestedCountry}
+          onChange={(e) => setInterestedCountry(e.target.value)}
+        />
+        <TextField
+          sx={{
+            width: '300px',
+          }}
+          id="outlined-basic"
+          label="Interested University"
+          variant="outlined"
+          value={interestedUniversity}
+          onChange={(e) => setInterestedUniversity(e.target.value)}
+        />
 
         <TextField
           sx={{

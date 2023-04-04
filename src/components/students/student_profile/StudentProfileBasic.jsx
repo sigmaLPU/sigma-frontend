@@ -2,6 +2,7 @@ import {
   Avatar,
   Box,
   Button,
+  Chip,
   Dialog,
   DialogActions,
   DialogContent,
@@ -21,6 +22,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import TextRow from '../../text/TextRow';
+import { Face, Face2, Face3Outlined, Face4, Man } from '@mui/icons-material';
 
 const StudentProfileBasic = ({ data }) => {
   const params = useParams();
@@ -32,13 +34,20 @@ const StudentProfileBasic = ({ data }) => {
     enqueueSnackbar(message, { variant });
   };
 
-  const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
-  // const url = 'http://localhost:5000';
+  // const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
+  const url = 'http://localhost:5000';
+
+  const [allCounsilors, setAllCounsilors] = React.useState([]);
 
   const [name, setName] = React.useState(data?.name);
   const [email, setEmail] = React.useState(data?.email);
   const [phone, setPhone] = React.useState(data?.phone);
   const [regNo, setRegNo] = React.useState(data?.regNo);
+  const [assignedCounsilor, setAssignedCounsilor] = React.useState(
+    data.studentDetails?.assignedCounsilor
+  );
+
+  const [counsilorName, setCounsilorName] = React.useState('');
 
   const [optedFor, setOptedFor] = React.useState(
     data?.studentDetails?.optedFor
@@ -50,8 +59,29 @@ const StudentProfileBasic = ({ data }) => {
     setPhone(data?.phone);
     setRegNo(data?.regNo);
     setOptedFor(data?.studentDetails?.optedFor);
-  }, [data]);
+    setAssignedCounsilor(data?.studentDetails?.assignedCounsilor);
 
+    const fetchCounsilors = async () => {
+      await axios
+        .get(`${url}/api/v2/user/getAllFaculties`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        })
+        .then((res) => {
+          setAllCounsilors(res.data.users);
+        })
+        .catch((err) => {
+          alert(err, 'Error in fetching counsilors');
+        });
+    };
+    fetchCounsilors();
+
+    const name = allCounsilors.filter(
+      (counsilor) => counsilor._id === assignedCounsilor
+    )[0]?.name;
+    setCounsilorName(name);
+  }, [data]);
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -71,8 +101,8 @@ const StudentProfileBasic = ({ data }) => {
           regNo,
 
           studentDetails: {
-
             optedFor,
+            assignedCounsilor,
           },
         },
         {
@@ -121,6 +151,23 @@ const StudentProfileBasic = ({ data }) => {
             }}
             alt="Remy Sharp"
           />
+
+          <Box
+            sx={{
+              float: 'right',
+            }}
+          >
+            <Chip
+              color={assignedCounsilor ? 'success' : 'error'}
+              icon={<Face />}
+              label={
+                allCounsilors.filter(
+                  (counsilor) => counsilor._id === assignedCounsilor
+                )[0]?.name || 'Not assigned'
+              }
+              variant="outlined"
+            />
+          </Box>
         </Box>
 
         <Box
@@ -144,13 +191,6 @@ const StudentProfileBasic = ({ data }) => {
               >
                 <b>Name</b>
               </Typography>
-              <Divider
-                orientation="vertical"
-                flexItem
-                sx={{
-                  mx: '10px',
-                }}
-              />
 
               <Typography variant="h5">{name}</Typography>
             </TextRow>
@@ -162,13 +202,6 @@ const StudentProfileBasic = ({ data }) => {
               >
                 <b>Email</b>
               </Typography>
-              <Divider
-                orientation="vertical"
-                flexItem
-                sx={{
-                  mx: '10px',
-                }}
-              />
 
               <Typography variant="h5">{email}</Typography>
             </TextRow>
@@ -180,13 +213,6 @@ const StudentProfileBasic = ({ data }) => {
               >
                 <b>Reg No</b>
               </Typography>
-              <Divider
-                orientation="vertical"
-                flexItem
-                sx={{
-                  mx: '10px',
-                }}
-              />
 
               <Typography variant="h5">{regNo}</Typography>
             </TextRow>
@@ -198,13 +224,6 @@ const StudentProfileBasic = ({ data }) => {
               >
                 <b>Opted For</b>
               </Typography>
-              <Divider
-                orientation="vertical"
-                flexItem
-                sx={{
-                  mx: '10px',
-                }}
-              />
 
               <Typography variant="h5">{optedFor}</Typography>
             </TextRow>
@@ -217,13 +236,6 @@ const StudentProfileBasic = ({ data }) => {
               >
                 <b>Phone</b>
               </Typography>
-              <Divider
-                orientation="vertical"
-                flexItem
-                sx={{
-                  mx: '10px',
-                }}
-              />
 
               <Typography variant="h5">{phone}</Typography>
             </TextRow>
@@ -244,13 +256,7 @@ const StudentProfileBasic = ({ data }) => {
               >
                 <b>Counsilor</b>
               </Typography>
-              <Divider
-                orientation="vertical"
-                flexItem
-                sx={{
-                  mx: '10px',
-                }}
-              />
+             
 
               <Typography variant="h5">{data?.name || 'no name'}</Typography>
             </TextRow>
@@ -327,6 +333,25 @@ const StudentProfileBasic = ({ data }) => {
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
           />
+
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">
+              Counsilor Assigned
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={assignedCounsilor}
+              label="Age"
+              onChange={(e) => setAssignedCounsilor(e.target.value)}
+            >
+              {allCounsilors.map((counsilor) => (
+                <MenuItem key={counsilor._id} value={counsilor?._id}>
+                  {counsilor.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

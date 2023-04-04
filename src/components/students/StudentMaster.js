@@ -17,7 +17,7 @@ import { display } from '@mui/system';
 import { AddCircle, Delete, Edit, OpenInBrowser } from '@mui/icons-material';
 
 const StudentMaster = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('123456');
@@ -28,20 +28,15 @@ const StudentMaster = () => {
   const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
   const local = 'http://localhost:5000';
 
-
-
   useEffect(() => {
     async function fetchUser() {
       try {
-        const { data } = await axios.get(
-          url + '/api/v2/user/getAllStudents',
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: 'Bearer ' + localStorage.getItem('token'),
-            },
-          }
-        );
+        const { data } = await axios.get(url + '/api/v2/user/getAllStudents', {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
+          },
+        });
 
         setUsers(data && data.students);
       } catch (error) {
@@ -50,7 +45,6 @@ const StudentMaster = () => {
     }
     fetchUser();
   }, []);
-
 
   const [open, setOpen] = React.useState(false);
 
@@ -67,7 +61,7 @@ const StudentMaster = () => {
 
     try {
       const data = await axios.post(
-        url+'/api/v2/user/register',
+        url + '/api/v2/user/register',
 
         {
           name,
@@ -83,7 +77,7 @@ const StudentMaster = () => {
       setOpen(false);
     } catch (error) {
       alert(error && error.response.data.error);
-      console.log(error)
+      console.log(error);
     }
   };
 
@@ -95,14 +89,57 @@ const StudentMaster = () => {
       cellClassName: 'name-column--cell',
     },
     {
+      field: 'regNo',
+      headerName: 'Reg No',
+      flex: 1,
+    },
+    {
       field: 'email',
       headerName: 'Email',
       flex: 1,
     },
     {
-      field: 'regNo',
-      headerName: 'Reg No',
+      field: 'phone',
+      headerName: 'Phone',
       flex: 1,
+      // this is inside the row object
+      renderCell: (cellValue) => {
+        return (
+          <div
+            style={{
+              width: '100%',
+              display: 'flex',
+              justifyContent: 'space-around',
+              alignItems: 'center',
+              height: '100%',
+            }}
+          >
+            <p>{cellValue.row.phone}</p>
+          </div>
+        );
+      },
+    },
+
+    {
+      field: 'optedFor',
+      headerName: 'Opted For',
+      flex: 1,
+      // this is inside the row object
+      renderCell: (cellValue) => {
+        return (
+          <div
+            style={{
+              width: '100%',
+              display: 'flex',
+              justifyContent: 'space-around',
+              alignItems: 'center',
+              height: '100%',
+            }}
+          >
+            <p>{cellValue.row.studentDetails.optedFor}</p>
+          </div>
+        );
+      },
     },
 
     {
@@ -122,7 +159,7 @@ const StudentMaster = () => {
           >
             <IconButton
               onClick={() => {
-                navigate(`/student/${cellValue.row._id}`)
+                navigate(`/student/${cellValue.row._id}`);
               }}
             >
               <OpenInBrowser />
@@ -219,7 +256,9 @@ const StudentMaster = () => {
                 }}
               >
                 <div>
-                  <h3 style={{ textAlign: 'center' }}>Register Student - Admin</h3>
+                  <h3 style={{ textAlign: 'center' }}>
+                    Register Student - Admin
+                  </h3>
                   <div
                     style={{
                       marginTop: '1.5rem',

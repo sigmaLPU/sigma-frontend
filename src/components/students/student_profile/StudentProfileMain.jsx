@@ -73,8 +73,8 @@ function VerticalTabs() {
         sx={{ borderRight: 1, borderColor: 'divider', padding: '20px' }}
       >
         <Tab label="Basic" {...a11yProps(0)} />
-        <Tab label="Document" {...a11yProps(1)} />
-        <Tab label="Payment" {...a11yProps(2)} />
+        <Tab label="Payment" {...a11yProps(1)} />
+        <Tab label="Document" {...a11yProps(2)} />
         <Tab label="Foreign Approval" {...a11yProps(3)} />
         <Tab label="Visa" {...a11yProps(4)} />
         <Tab label="Done" {...a11yProps(5)} />
@@ -83,10 +83,10 @@ function VerticalTabs() {
         <Tab1 />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Tab2 />
+        <Tab3 />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <Tab3 />
+        <Tab2 />
       </TabPanel>
       <TabPanel value={value} index={3}>
         Item Four

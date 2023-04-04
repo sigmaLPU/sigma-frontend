@@ -1,5 +1,15 @@
 import { Upload } from '@mui/icons-material';
-import { Alert, AlertTitle, Box, Button, IconButton } from '@mui/material';
+import {
+  Alert,
+  AlertTitle,
+  Box,
+  Button,
+  Card,
+  CardContent,
+  CardMedia,
+  IconButton,
+  Typography,
+} from '@mui/material';
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
 import React, { useEffect } from 'react';
@@ -40,7 +50,6 @@ const Tab3 = () => {
   }, [params.id]);
 
   const handleSubmit = async (e) => {
-
     e.preventDefault();
 
     const formData = new FormData();
@@ -56,9 +65,7 @@ const Tab3 = () => {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
         }
-      )
-
-      
+      );
 
       handleClickVariant('success', 'File Uploaded')();
       window.location.reload();
@@ -114,6 +121,50 @@ const Tab3 = () => {
             </form>
           </Box>
         </Alert>
+
+        <Card sx={{ display: 'flex', height: '200px',
+        backgroundColor:'rgba(0,0,0,0.1)'
+        
+       }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+            <CardContent sx={{ flex: '1 0 auto' }}>
+              <Typography component="div" variant="h5">
+                Lpu Processing Fees
+              </Typography>
+              <form onSubmit={handleSubmit}>
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px',
+                  }}
+                >
+                  <input
+                    type="file"
+                    name=""
+                    id=""
+                    onChange={(e) => setLpuProcessingFees(e.target.files[0])}
+                  />
+                  <IconButton float="right" type="submit">
+                    <Upload />
+                  </IconButton>
+                </div>
+              </form>
+            </CardContent>
+          </Box>
+          <CardMedia component="div">
+            <iframe
+              src={` https://docs.google.com/gview?url=${student?.studentDetails?.lpuProcessingFee?.file?.f_url}&embedded=true#toolbar=1&navpanes=0&scrollbar=0`}
+              width="100%"
+              height="100%"
+              title="pdf"
+              frameborder="0"
+              style={{
+                overflow: 'hidden',
+              }}
+            ></iframe>
+          </CardMedia>
+        </Card>
       </Box>
     </div>
   );
