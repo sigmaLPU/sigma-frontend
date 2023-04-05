@@ -16,10 +16,12 @@ import templateSectionImg from './resource/templateSection.png';
 import trainingModalImg from './resource/trainingModal.png';
 import { Autocomplete, Icon, IconButton, TextField } from '@mui/material';
 import { height } from '@mui/system';
-import { Restore } from '@mui/icons-material';
+import { BarChart, Restore } from '@mui/icons-material';
 import Quotes from "randomquote-api";
 
 import ct, { getAllCountries }  from 'countries-and-timezones'
+import BarChartCard from './BarChartCard';
+import Categories from './Categories';
 // function defination
 function checkTime(i) {
   if (i < 10) {
@@ -97,73 +99,10 @@ function TimeComponent({id}){
   const [currentImage, setCurrentImage] = useState(sun);
 
 
-  const cities = [
-    { name: 'Abidjan', timeZone: 'Africa/Abidjan' },
-    { name: 'Delhi', timeZone: 'Asia/Kolkata' },
-    { name: 'Cairo', timeZone: 'Africa/Cairo' },
-    { name: 'Melbourne', timeZone: 'Australia/Melbourne' },
-    { name: 'New York', timeZone: 'America/New_York' },
-    { name: 'Tokyo', timeZone: 'Asia/Tokyo' },
-    { name: 'London', timeZone: 'Europe/London' },
-    { name: 'Los Angeles', timeZone: 'America/Los_Angeles' },
-    { name: 'Paris', timeZone: 'Europe/Paris' },
-    { name: 'Sydney', timeZone: 'Australia/Sydney' },
-    { name: 'Chicago', timeZone: 'America/Chicago' },
-    { name: 'Dubai', timeZone: 'Asia/Dubai' },
-    { name: 'Toronto', timeZone: 'America/Toronto' },
-    { name: 'Moscow', timeZone: 'Europe/Moscow' },
-    { name: 'Hong Kong', timeZone: 'Asia/Hong_Kong' },
-    { name: 'Rio de Janeiro', timeZone: 'America/Sao_Paulo' },
-    { name: 'Berlin', timeZone: 'Europe/Berlin' },
-    { name: 'Mumbai', timeZone: 'Asia/Kolkata' },
-    { name: 'Madrid', timeZone: 'Europe/Madrid' },
-    { name: 'Seoul', timeZone: 'Asia/Seoul' },
-    { name: 'Rome', timeZone: 'Europe/Rome' },
-    { name: 'Shanghai', timeZone: 'Asia/Shanghai' },
-    { name: 'Singapore', timeZone: 'Asia/Singapore' },
-    { name: 'Istanbul', timeZone: 'Europe/Istanbul' },
-    { name: 'Amsterdam', timeZone: 'Europe/Amsterdam' },
-    { name: 'Bangkok', timeZone: 'Asia/Bangkok' },
-    { name: 'Jakarta', timeZone: 'Asia/Jakarta' },
-    { name: 'Vienna', timeZone: 'Europe/Vienna' },
-    { name: 'Taipei', timeZone: 'Asia/Taipei' },
-    { name: 'Athens', timeZone: 'Europe/Athens' },
-    { name: 'Copenhagen', timeZone: 'Europe/Copenhagen' },
-    { name: 'Dublin', timeZone: 'Europe/Dublin' },
-    { name: 'Auckland', timeZone: 'Pacific/Auckland' },
-    { name: 'Brussels', timeZone: 'Europe/Brussels' },
-    { name: 'Stockholm', timeZone: 'Europe/Stockholm' },
-    { name: 'Oslo', timeZone: 'Europe/Oslo' },
-    { name: 'Helsinki', timeZone: 'Europe/Helsinki' },
-    { name: 'Lisbon', timeZone: 'Europe/Lisbon' },
-    { name: 'Edinburgh', timeZone: 'Europe/London' },
-    { name: 'Wellington', timeZone: 'Pacific/Auckland' },
-    { name: 'Budapest', timeZone: 'Europe/Budapest' },
-    { name: 'Prague', timeZone: 'Europe/Prague' },
-    { name: 'Warsaw', timeZone: 'Europe/Warsaw' },
-    { name: 'Zurich', timeZone: 'Europe/Zurich' },
-    { name: 'Bratislava', timeZone: 'Europe/Bratislava' },
-    { name: 'Belgrade', timeZone: 'Europe/Belgrade' },
-    { name: 'Sofia', timeZone: 'Europe/Sofia' },
-    { name: 'Vilnius', timeZone: 'Europe/Vilnius' },
-    { name: 'Tallinn', timeZone: 'Europe/Tallinn' },
-    { name: 'Riga', timeZone: 'Europe/Riga' },
-    { name: 'Cape Town', timeZone: 'Africa/Johannesburg' },
-    { name: 'Minsk', timeZone: 'Europe/Minsk' },
-    { name: 'Kiev', timeZone: 'Europe/Kiev' },
-    { name: 'Bucharest', timeZone: 'Europe/Bucharest' },
-    { name: 'Santiago', timeZone: 'America/Santiago' },
-    { name: 'San Francisco', timeZone: 'America/Los_Angeles' },
-    { name: 'Montreal', timeZone: 'America/Montreal' },
-    { name: 'Vancouver', timeZone: 'America/Vancouver' },
-    { name: 'Mexico City', timeZone: 'America/Mexico_City' },
-    { name: 'Buenos Aires', timeZone: 'America/Argentina/Buenos_Aires' },
-    { name: 'Sao Paulo', timeZone: 'America/Sao_Paulo' },
-    { name: 'Bogota', timeZone: 'America/Bogota' },
-  ];
+  
 
   const timeCardCSS = {
-    border: '1px solid #F07F1A',
+    border: '3px solid #F07F1A',
     minWidth: '15rem',
     minHeight: '5rem',
     boxShadow: '0px 0px 14px rgba(0, 0, 0, 0.25)',
@@ -317,7 +256,7 @@ export default function Dashboard(props) {
         <div>
           <div
             style={{
-              fontSize: '4rem',
+              fontSize: '3rem',
               width: '100%',
               display: 'flex',
               justifyContent: 'center',
@@ -325,6 +264,8 @@ export default function Dashboard(props) {
             }}
           >
             <span style={{ textAlign: 'center' }}>Hello, {username}</span>
+
+          
           </div>
           <div
             style={{
@@ -336,6 +277,7 @@ export default function Dashboard(props) {
               fontSize: '1.3rem',
             }}
           >
+            
             <span style={{ textAlign: 'center' }}>
             <Quote>
             </Quote>
@@ -343,16 +285,9 @@ export default function Dashboard(props) {
           </div>
         </div>
       </div>
-      <div
-        style={{
-          marginTop: '1.5rem',
-          borderBottom: '1px solid #F07F1A',
-          filter: 'blur(2px)',
-        }}
-      ></div>
 
-      {/*Bottom part*/}
-      <div
+      
+      {/* <div
         style={{
           flexGrow: '2',
           display: 'flex',
@@ -364,6 +299,8 @@ export default function Dashboard(props) {
           justifyContent: 'center',
         }}
       >
+
+        
         {routes.map((item) => (
           <div
             onClick={() => navigate(item?.url)}
@@ -389,7 +326,22 @@ export default function Dashboard(props) {
             </span>
           </div>
         ))}
-      </div>
+        
+      </div> */}
+      
+      {/* <div
+        style={{
+          marginTop: '1.5rem',
+          borderBottom: '1px solid #F07F1A',
+          filter: 'blur(2px)',
+        }}
+      ></div> */}
+    
+
+      {/*Bottom part*/}
+      <BarChartCard />
+
+      <Categories/>
     </div>
   );
 }

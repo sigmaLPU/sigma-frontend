@@ -47,6 +47,7 @@ import FolderSharedIcon from '@mui/icons-material/FolderShared';
 import LinkIcon from '@mui/icons-material/Link';
 import {
   BookOnline,
+  LabelImportant,
   Logout,
   PersonAdd,
   PersonAddAlt,
@@ -299,7 +300,7 @@ export default function NavSideBar(props) {
               width: 32,
               height: 32,
               ml: -0.5,
-              mr: 1,
+              mr: '1 !important',
             },
             '&:before': {
               content: '""',
