@@ -22,6 +22,8 @@ import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 // react imports
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -149,17 +151,28 @@ const RestaurantItem1 = () => {
 const Categories = () => {
   const navigate = useNavigate();
 
-  const routes = [
-    { name: 'Open Leads', url: '/openLeads' },
-    { name: 'Partner University', url: '/mouMaster' },
-    { name: 'Credit Tranfer', url: '/student_master?dp=ct' },
-    {
-      name: 'Semester Exchange',
-      url: '/student_master?dp=se',
-    },
-    { name: 'Template Section', url: '/templates' },
-    { name: 'Training Modules', url: '/training' },
-  ];
+const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
+const local = 'http://localhost:5000';
+
+const [users, setUsers] = useState([]);
+
+useEffect(() => {
+  async function fetchUser() {
+    try {
+      const { data } = await axios.get(url + '/api/v2/user/getAllStudents', {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + localStorage.getItem('token'),
+        },
+      });
+
+      setUsers(data && data.students);
+    } catch (error) {
+      alert(error && error.response.data.error);
+    }
+  }
+  fetchUser();
+}, []);
   return (
     <div className={useStyles().root}>
       <Card className={useStyles().container}>
@@ -209,7 +222,7 @@ const Categories = () => {
             component="h5"
             style={{ marginLeft: '30px', fontWeight: 'bold' }}
           >
-            100
+            ....
           </Typography>
           <Button
             variant="contained"
@@ -240,7 +253,11 @@ const Categories = () => {
             component="h5"
             style={{ marginLeft: '30px', fontWeight: 'bold' }}
           >
-            50
+            {
+              users.filter(
+                (user) => user.studentDetails.optedFor === 'credit-transfer'
+              ).length
+            }
           </Typography>
           <Button
             onClick={() => navigate('/student_master?dp=credit-transfer')}
@@ -271,7 +288,11 @@ const Categories = () => {
             component="h5"
             style={{ marginLeft: '30px', fontWeight: 'bold' }}
           >
-            75
+            {
+              users.filter(
+                (user) => user.studentDetails.optedFor === 'semester-exchange'
+              ).length
+            }
           </Typography>
           <Button
             onClick={() => navigate('/student_master?dp=semester-exchange')}
