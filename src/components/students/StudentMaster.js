@@ -12,12 +12,22 @@ import {
 } from '@mui/material';
 import axios from 'axios';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
-import { Link, useNavigate } from 'react-router-dom';
+import {
+  Link,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom';
 import { display } from '@mui/system';
 import { AddCircle, Delete, Edit, OpenInBrowser } from '@mui/icons-material';
 
 const StudentMaster = () => {
   const navigate = useNavigate();
+
+  const [searchParams] = useSearchParams();
+
+  const [dp, setDp] = React.useState(searchParams.get('dp'));
+
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('123456');
@@ -44,7 +54,7 @@ const StudentMaster = () => {
       }
     }
     fetchUser();
-  }, []);
+  }, [dp]);
 
   const [open, setOpen] = React.useState(false);
 
@@ -235,7 +245,13 @@ const StudentMaster = () => {
               }}
             >
               <DataGrid
-                rows={users || []}
+                rows={
+                  dp
+                    ? users.filter(
+                        (user) => user.studentDetails.optedFor === dp
+                      ) || []
+                    : users || []
+                }
                 columns={columns}
                 getRowId={(row) => row._id}
                 components={{ Toolbar: GridToolbar }}
