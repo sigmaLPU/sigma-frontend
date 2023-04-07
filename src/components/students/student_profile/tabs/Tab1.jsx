@@ -191,9 +191,9 @@ const Tab1 = ({ value }) => {
     setCurrentSemester(student?.studentDetails?.currentSemester || '');
     setCurrentCgpa(student?.studentDetails?.currentCGPA || '');
     setAreaOfInterest(student?.studentDetails?.areaOfInterest || '');
-    setInterestedCountry(student?.studentDetails?.areaOfInterest.split('-')[0]);
+    setInterestedCountry(student?.studentDetails?.areaOfInterest?.split('-')[0]);
         setInterestedUniversity(
-          student?.studentDetails?.areaOfInterest.split('-')[1]
+          student?.studentDetails?.areaOfInterest?.split('-')[1]
         );
 
   }, [student]);
