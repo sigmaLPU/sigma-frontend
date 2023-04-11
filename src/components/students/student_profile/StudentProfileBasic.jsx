@@ -1,4 +1,5 @@
 import {
+  Alert,
   Avatar,
   Box,
   Button,
@@ -46,6 +47,16 @@ const StudentProfileBasic = ({ data }) => {
   const [assignedCounsilor, setAssignedCounsilor] = React.useState(
     data.studentDetails?.assignedCounsilor
   );
+  const [referedBy, setReferedBy] = React.useState(
+    data?.studentDetails?.referedBy
+  );
+  const [backedOut, setBackedOut] = React.useState(
+    data?.studentDetails?.backedOut
+  );
+
+  const [backedOutReason, setBackedOutReason] = React.useState(
+    data?.studentDetails?.backedOutReason
+  );
 
   const [counsilorName, setCounsilorName] = React.useState('');
 
@@ -60,6 +71,9 @@ const StudentProfileBasic = ({ data }) => {
     setRegNo(data?.regNo);
     setOptedFor(data?.studentDetails?.optedFor);
     setAssignedCounsilor(data?.studentDetails?.assignedCounsilor);
+    setReferedBy(data?.studentDetails?.referedBy);
+    setBackedOut(data?.studentDetails?.backedOut);
+    setBackedOutReason(data?.studentDetails?.backedOutReason);
 
     const fetchCounsilors = async () => {
       await axios
@@ -103,6 +117,9 @@ const StudentProfileBasic = ({ data }) => {
           studentDetails: {
             optedFor,
             assignedCounsilor,
+            referedBy,
+            backedOut,
+            backedOutReason,
           },
         },
         {
@@ -183,6 +200,12 @@ const StudentProfileBasic = ({ data }) => {
             mt="10px"
             width="100%"
           >
+            {backedOut && (
+              <Alert variant="filled" severity="warning">
+                Backed Out; Reason: {backedOutReason}
+              </Alert>
+            )}
+
             <TextRow>
               <Typography
                 sx={{
@@ -238,6 +261,17 @@ const StudentProfileBasic = ({ data }) => {
               </Typography>
 
               <Typography variant="h5">{phone}</Typography>
+            </TextRow>
+            <TextRow>
+              <Typography
+                sx={{
+                  width: '120px',
+                }}
+              >
+                <b>Refered By</b>
+              </Typography>
+
+              <Typography variant="h5">{referedBy}</Typography>
             </TextRow>
           </Box>
 
@@ -352,6 +386,46 @@ const StudentProfileBasic = ({ data }) => {
               ))}
             </Select>
           </FormControl>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Refered By"
+            type="text"
+            fullWidth
+            value={referedBy}
+            onChange={(e) => setReferedBy(e.target.value)}
+          />
+
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Backed Out</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={backedOut}
+              label="Backed Out"
+              onChange={(e) => setBackedOut(e.target.value)}
+            >
+              <MenuItem value={true}>Yes</MenuItem>
+              <MenuItem value={false}>No</MenuItem>
+            </Select>
+          </FormControl>
+
+          <textarea
+            aria-label="minimum height"
+            rowsMin={6}
+            placeholder="Backed Out Reason"
+            value={backedOutReason}
+            onChange={(e) => setBackedOutReason(e.target.value)}
+            style={{
+              width: '100%',
+              marginTop: '10px',
+              border: '1px solid #ccc',
+              padding: '10px',
+              minHeight: '100px',
+            }}
+            disabled={backedOut === false}
+          />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
