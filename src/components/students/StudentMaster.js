@@ -151,6 +151,27 @@ const StudentMaster = () => {
         );
       },
     },
+    {
+      field: 'referedBy',
+      headerName: 'Refered By',
+      flex: 1,
+      renderCell: (cellValue) => {
+        return (
+          <div
+            style={{
+              width: '100%',
+              display: 'flex',
+              justifyContent: 'space-around',
+              alignItems: 'center',
+              height: '100%',
+            }}
+          >
+            <p>{cellValue.row.studentDetails.referedBy}</p>
+          </div>
+        );
+      }
+      
+    },
 
     {
       field: 'details',

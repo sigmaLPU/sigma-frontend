@@ -137,12 +137,17 @@ const StudentNotes = ({ data }) => {
               style={{
                 backgroundColor: '#fff',
                 marginTop: '10px',
-                maxHeight: '100px',
                 overflow: 'auto',
+
               }}
               //   onClick={() => handleClickOpen(process)}
             >
-              <ListItemText primary={<> {process?.note}</>} />
+              <ListItemText
+              style={{
+                height: '100%',
+                lineBreak: 'anywhere',
+              }}
+              primary={<> {process?.note}</>} />
               <IconButton
                 sx={{ float: 'right' }}
                 onClick={() => handleDeleteNote(process._id)}

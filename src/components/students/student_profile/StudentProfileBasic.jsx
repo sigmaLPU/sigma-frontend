@@ -146,7 +146,6 @@ const StudentProfileBasic = ({ data }) => {
         p="30px"
         overflow="auto"
         gridArea="basic"
-        maxHeight="500px"
         minWidth="400px"
       >
         <Typography
