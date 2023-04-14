@@ -23,8 +23,8 @@ const Tab6 = () => {
   const [visa, setVisa] = React.useState(null);
   const [foriegnUniPic, setForiegnUniPic] = React.useState(null);
 
-//   const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
-  const url = 'http://localhost:5000';
+  const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
+//   const url = 'http://localhost:5000';
 
   const { enqueueSnackbar } = useSnackbar();
   const handleClickVariant = (variant, message) => () => {
