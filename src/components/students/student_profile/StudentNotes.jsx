@@ -108,9 +108,6 @@ const StudentNotes = ({ data }) => {
       p="30px"
       overflow="auto"
       gridArea="notes"
-      height="100%"
-      width="100%"
-      minWidth="400px"
     >
       <Typography
         variant="h5"

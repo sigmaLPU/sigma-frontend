@@ -18,6 +18,7 @@ import Tab1 from './tabs/Tab1';
 import Tab2 from './tabs/Tab2';
 import Tab3 from './tabs/Tab3';
 import Tab5 from './tabs/Tab5';
+import Tab6 from './tabs/Tab6';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -96,7 +97,7 @@ function VerticalTabs() {
         <Tab5 />
       </TabPanel>
       <TabPanel value={value} index={5}>
-        Item Six
+       <Tab6 />
       </TabPanel>
     </Box>
   );
