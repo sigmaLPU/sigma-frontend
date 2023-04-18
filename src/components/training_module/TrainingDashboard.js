@@ -33,7 +33,7 @@ export default function TrainingDashboard(props){
 		{text:"Team Ethics",img:ethicsImg,url:"/training/ethics"},
 		{text:"Credit Transfer",img:creditTransferImg,url:"/training/creditTransfer"},
 		{text:"Semester Exchange",img:semesterExchangeImg,url:"/training/semesterExchange"},
-		{text:"Outreach & Mou Team",img:mousImg,url:"/training/semesterExchange"},
+		{text:"Outreach & Mou Team",img:mousImg,url:"/training/outreach"},
 		{text:"Use of Technical Tools",img:technicalImg,url:"/training/technicalTools"},
 	]
 

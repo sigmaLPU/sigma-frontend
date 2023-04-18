@@ -45,6 +45,7 @@ import CameraFrontIcon from '@mui/icons-material/CameraFront';
 import VideoChatIcon from '@mui/icons-material/VideoChat';
 import FolderSharedIcon from '@mui/icons-material/FolderShared';
 import LinkIcon from '@mui/icons-material/Link';
+import AssistantIcon from '@mui/icons-material/Assistant';
 import {
   BookOnline,
   LabelImportant,
@@ -261,6 +262,19 @@ export default function NavSideBar(props) {
         ),
         url: '/registerUser',
       },
+      {
+        name: (
+          <span style={{ fontSize: '22px', fontWeight: '700' }}>Chatgpt</span>
+        ),
+        icon: (
+          // <img src={MeetingIcon} style={{ height: '34px', width: '34px' }} />
+          <IconButton  sx={{p:0}}>
+          <AssistantIcon sx={{ fontSize: 40, fontWeight: '800', color: theme.palette.mode === 'dark' ? '#fff' : '#333' }} />
+          </IconButton>
+        ),
+        url: '/chatgpt',
+      },
+
     ],
     bottom: [],
   };

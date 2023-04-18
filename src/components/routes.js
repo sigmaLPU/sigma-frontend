@@ -22,6 +22,12 @@ import MeetingProfile from './meetings/MeetingProfile';
 import {
   TrainingDashboard,
   CreditTransferTraining,
+  Policy,
+  Ethics,
+  Outreach,
+  Semester,
+  Technical,
+
 } from './training_module/routes';
 // student profile
 import StudentProfile from './students/student_profile/StudentProfile';
@@ -96,7 +102,8 @@ import {
 // tools page
 import { Tools } from './tools/routes';
 
-
+import {Chatgpt} from './Chatgpt/routes';
+import {ChatPage} from './Chatgpt/routes';
 
 export {
   //pages
@@ -116,6 +123,8 @@ export {
   GuestVisitMaster,
   GuestVisitProfile,
   CountryProfile,
+  Chatgpt,
+  ChatPage,
 
   // componets
   NavSideBarLayout,
@@ -162,6 +171,11 @@ export {
   ParticipantsMeetingModal,
   TrainingDashboard,
   CreditTransferTraining,
+  Policy,
+  Ethics,
+  Outreach,
+  Semester,
+  Technical,
   TeamChart,
   Tools,
 };

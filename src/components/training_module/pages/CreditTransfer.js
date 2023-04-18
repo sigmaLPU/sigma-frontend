@@ -32,9 +32,9 @@ export default function CreditTransferTraining(props){
 	}
 
 	const [containers,setContainers] = useState([
-		{text:"Frequently Asked Question",img:frequentlyAskedImg,url:"/training/creditTransfer/faq",active:true,value:<FAQs/>},
+		// {text:"Frequently Asked Question",img:frequentlyAskedImg,url:"/training/creditTransfer/faq",active:true,value:<FAQs/>},
 		{text:"Guidelines of Credit Transfer",img:guidelinesImg,url:"/training/creditTransfer/guidelines",active:false,value:<Guidelines/>},
-		{text:"Policies of Credit Transfer",img:policyImg,url:"/training/creditTransfer/policy",active:false,value:<Policies/>},
+		// {text:"Policies of Credit Transfer",img:policyImg,url:"/training/creditTransfer/policy",active:false,value:<Policies/>},
 		{text:"Counselling Script of Credit Transfer",img:councliningImg,url:"/training/creditTransfer/counselling",active:false,value:<FAQs/>},
 		{text:"Process Details of Credit Transfer",img:processDetailsImg,url:"/training/creditTransfer/processDetails",active:false,value:<FAQs/>},
 	])
@@ -63,7 +63,7 @@ export default function CreditTransferTraining(props){
 					<span style={{fontSize:"4rem",fontWeight:"900"}}>Credit Transfer</span>
 				</div>
 				<div style={{width:"100%"}}>
-					<div style={{width:"100%",display:"flex",justifyContent:"space-around",margin:"1rem 2rem 1rem 2rem",}}>
+					<div style={{width:"100%",display:"flex",justifyContent:"center",gap:"20px" ,margin:"1rem 2rem 1rem 2rem",}}>
 						{
 							containers.map((item,index)=>(
 								<div onClick={(e)=>change(index)} style={item?.active ? {...containersCardCSS,background:"linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2))"} : containersCardCSS }>
@@ -139,19 +139,24 @@ function Guidelines(props){
 	)
 }
 
-function Guideline(props){
-	
-
+function Guideline(props) {
+	const [showPdf, setShowPdf] = React.useState(false);
+  
 	return (
-		<div style={{width:"80%",boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.25)"}}>
-			<div style={{display:"flex",justifyContent:"flex-start",padding:"0.5rem 1rem 0.5rem 1rem",flexDirection:"column"}}>
-				<div style={{width:"100%",display:"flex",justifyContent:"space-between"}}>
-					<a href={props?.data?.item} target="_blank"  style={{fontSize:"1.3rem",textDecoration:"none",cursor:"pointer"}}>{props?.sNo}. {props?.data?.text}</a>
-				</div>
+	  <div style={{ width: "80%", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.25)" }}>
+		<div style={{ display: "flex", justifyContent: "flex-start", padding: "0.5rem 1rem 0.5rem 1rem", flexDirection: "column" }}>
+		  <div style={{ width: "100%", display: "flex", justifyContent: "space-between" }}>
+			<span onClick={() => setShowPdf(!showPdf)} style={{ fontSize: "1.3rem", textDecoration: "none", cursor: "pointer" }}>{props.sNo}. {props.data.text}</span>
+		  </div>
+		  {showPdf && (
+			<div style={{ width: "100%", height: "600px", marginTop: "1rem" }}>
+			  <iframe src={props.data.item} title={props.data.text} width="100%" height="100%" style={{ border: "none" }}></iframe>
 			</div>
+		  )}
 		</div>
-	)
-}
+	  </div>
+	);
+  }
 
 
 function Policies(props){

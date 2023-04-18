@@ -8,7 +8,7 @@ import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 // component imports
-import { HomePage } from './components/routes'; // default home page
+import { Chatgpt, Ethics, HomePage, Outreach, Policy, Semester, Technical } from './components/routes'; // default home page
 import { LoginPage } from './components/routes'; // default home page
 import { Error404 } from './components/routes'; // default home page
 import { UniversityMaster } from './components/routes'; // mou master
@@ -37,11 +37,17 @@ import UserInfo from './components/profile_page/UserInfo';
 import FacultyInfo from './components/profile_page/faculty/FacultyProfile';
 import StudentMaster from './components/students/StudentMaster';
 
+import ChatPage from "./components/Chatgpt/ChatPage";
 import DarkModeToggle from './DarkModeToggle';
 function App() {
   
   return (
     <div>
+
+
+    
+      
+  
   
     
       <Router>
@@ -166,6 +172,51 @@ function App() {
             }
           />
 
+<Route
+            path="/training/policy"
+            element={
+              <ProtectedRoute>
+                <Policy />
+              </ProtectedRoute>
+            }
+          />
+
+<Route
+            path="/training/ethics"
+            element={
+              <ProtectedRoute>
+                <Ethics />
+              </ProtectedRoute>
+            }
+          />
+
+<Route
+            path="/training/semesterExchange"
+            element={
+              <ProtectedRoute>
+                <Semester />
+              </ProtectedRoute>
+            }
+          />
+
+<Route
+            path="/training/TechnicalTools"
+            element={
+              <ProtectedRoute>
+                <Technical />
+              </ProtectedRoute>
+            }
+          />
+
+<Route
+            path="/training/outreach"
+            element={
+              <ProtectedRoute>
+                <Outreach />
+              </ProtectedRoute>
+            }
+          />
+
           <Route
             path="/team"
             element={
@@ -224,11 +275,35 @@ function App() {
               </ProtectedRoute>
             }
           />
+         
+         <Route
+            path="/chatgpt"
+            element={
+              <ProtectedRoute>
+                <Chatgpt/>
+              </ProtectedRoute>
+            }
+          />
+
+<Route
+            path="/chat"
+            element={
+              <ProtectedRoute>
+                <ChatPage/>
+              </ProtectedRoute>
+            }
+          />
+
+
+
 
           {/*When page not found*/}
           <Route path="*" element={<Error404 />} />
           <Route path="/404" element={<Error404 />} />
         </Routes>
+
+        {/* <Route path="/chat" component={ChatPage} /> */}
+
       </Router>
   
   
