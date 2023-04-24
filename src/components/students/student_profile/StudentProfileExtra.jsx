@@ -13,6 +13,7 @@ import axios from 'axios';
 import { useSnackbar } from 'notistack';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { formatDate } from '../../../utils/functions';
 
 const StudentProfileExtra = () => {
   const params = useParams();
@@ -572,6 +573,17 @@ const StudentProfileExtra = () => {
               Submit
             </Button>
           </FormControl>
+
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '5px',
+            }}
+          >
+            <small>{filledCtOnUms.updatedBy}</small>
+            <small>{formatDate(filledCtOnUms.updatedAt)}</small>
+          </div>
         </Box>
         <Box
           style={{
@@ -620,6 +632,16 @@ const StudentProfileExtra = () => {
               Submit
             </Button>
           </FormControl>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '5px',
+            }}
+          >
+            <small>{lpuBankDetailsShared.updatedBy}</small>
+            <small>{formatDate(lpuBankDetailsShared.updatedAt)}</small>
+          </div>
         </Box>
         <Box
           style={{
@@ -668,6 +690,16 @@ const StudentProfileExtra = () => {
               Submit
             </Button>
           </FormControl>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '5px',
+            }}
+          >
+            <small>{feePaidForCtProgram.updatedBy}</small>
+            <small>{formatDate(feePaidForCtProgram.updatedAt)}</small>
+          </div>
         </Box>
         <Box
           style={{
@@ -715,6 +747,16 @@ const StudentProfileExtra = () => {
               Submit
             </Button>
           </FormControl>{' '}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '5px',
+            }}
+          >
+            <small>{receiptSentToStudent.updatedBy}</small>
+            <small>{formatDate(receiptSentToStudent.updatedAt)}</small>
+          </div>
         </Box>
         <Box
           style={{
@@ -762,6 +804,16 @@ const StudentProfileExtra = () => {
               Submit
             </Button>
           </FormControl>{' '}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '5px',
+            }}
+          >
+            <small>{receiptUploadedOnUms.updatedBy}</small>
+            <small>{formatDate(receiptUploadedOnUms.updatedAt)}</small>
+          </div>
         </Box>
         <Box
           style={{
@@ -809,6 +861,16 @@ const StudentProfileExtra = () => {
               Submit
             </Button>
           </FormControl>{' '}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '5px',
+            }}
+          >
+            <small>{facultyInterviewDone.updatedBy}</small>
+            <small>{formatDate(facultyInterviewDone.updatedAt)}</small>
+          </div>
         </Box>
         <Box
           style={{
@@ -856,6 +918,16 @@ const StudentProfileExtra = () => {
               Submit
             </Button>
           </FormControl>{' '}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '5px',
+            }}
+          >
+            <small>{ctHeadInterviewDone.updatedBy}</small>
+            <small>{formatDate(ctHeadInterviewDone.updatedAt)}</small>
+          </div>
         </Box>
 
         <Box
@@ -904,6 +976,16 @@ const StudentProfileExtra = () => {
               Submit
             </Button>
           </FormControl>{' '}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '5px',
+            }}
+          >
+            <small>{nominationToPartnerUniversity.updatedBy}</small>
+            <small>{formatDate(nominationToPartnerUniversity.updatedAt)}</small>
+          </div>
         </Box>
 
         <Box
@@ -952,6 +1034,16 @@ const StudentProfileExtra = () => {
               Submit
             </Button>
           </FormControl>{' '}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '5px',
+            }}
+          >
+            <small>{originalTranscriptsReceived.updatedBy}</small>
+            <small>{formatDate(originalTranscriptsReceived.updatedAt)}</small>
+          </div>
         </Box>
         <Box
           style={{
@@ -999,6 +1091,16 @@ const StudentProfileExtra = () => {
               Submit
             </Button>
           </FormControl>{' '}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '5px',
+            }}
+          >
+            <small>{recommendationLetterGenerated.updatedBy}</small>
+            <small>{formatDate(recommendationLetterGenerated.updatedAt)}</small>
+          </div>
         </Box>
         <Box
           style={{
@@ -1046,6 +1148,16 @@ const StudentProfileExtra = () => {
               Submit
             </Button>
           </FormControl>{' '}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '5px',
+            }}
+          >
+            <small>{conditionalLetterReceived.updatedBy}</small>
+            <small>{formatDate(conditionalLetterReceived.updatedAt)}</small>
+          </div>
         </Box>
         <Box
           style={{
@@ -1093,6 +1205,16 @@ const StudentProfileExtra = () => {
               Submit
             </Button>
           </FormControl>{' '}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '5px',
+            }}
+          >
+            <small>{feePaidForPartnerUniversity.updatedBy}</small>
+            <small>{formatDate(feePaidForPartnerUniversity.updatedAt)}</small>
+          </div>
         </Box>
         <Box
           style={{
@@ -1140,6 +1262,18 @@ const StudentProfileExtra = () => {
               Submit
             </Button>
           </FormControl>{' '}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '5px',
+            }}
+          >
+            <small>{unconditionalOfferLetterReceived.updatedBy}</small>
+            <small>
+              {formatDate(unconditionalOfferLetterReceived.updatedAt)}
+            </small>
+          </div>
         </Box>
         <Box
           style={{
@@ -1187,6 +1321,16 @@ const StudentProfileExtra = () => {
               Submit
             </Button>
           </FormControl>{' '}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '5px',
+            }}
+          >
+            <small>{nocDocumentGenerated.updatedBy}</small>
+            <small>{formatDate(nocDocumentGenerated.updatedAt)}</small>
+          </div>
         </Box>
         <Box
           style={{
@@ -1234,6 +1378,16 @@ const StudentProfileExtra = () => {
               Submit
             </Button>
           </FormControl>{' '}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '5px',
+            }}
+          >
+            <small>{appliedForVisa.updatedBy}</small>
+            <small>{formatDate(appliedForVisa.updatedAt)}</small>
+          </div>
         </Box>
         <Box
           style={{
@@ -1281,6 +1435,16 @@ const StudentProfileExtra = () => {
               Submit
             </Button>
           </FormControl>{' '}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '5px',
+            }}
+          >
+            <small>{visaReceived.updatedBy}</small>
+            <small>{formatDate(visaReceived.updatedAt)}</small>
+          </div>
         </Box>
         <Box
           style={{
@@ -1328,6 +1492,18 @@ const StudentProfileExtra = () => {
               Submit
             </Button>
           </FormControl>{' '}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '5px',
+            }}
+          >
+            <small>{visaAndOfferLetterScannedCopyShared.updatedBy}</small>
+            <small>
+              {formatDate(visaAndOfferLetterScannedCopyShared.updatedAt)}
+            </small>
+          </div>
         </Box>
         <Box
           style={{
@@ -1375,6 +1551,16 @@ const StudentProfileExtra = () => {
               Submit
             </Button>
           </FormControl>{' '}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '5px',
+            }}
+          >
+            <small>{indemnityBondCouriered.updatedBy}</small>
+            <small>{formatDate(indemnityBondCouriered.updatedAt)}</small>
+          </div>
         </Box>
         <Box
           style={{
@@ -1422,6 +1608,16 @@ const StudentProfileExtra = () => {
               Submit
             </Button>
           </FormControl>{' '}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '5px',
+            }}
+          >
+            <small>{originalTranscriptsCouriered.updatedBy}</small>
+            <small>{formatDate(originalTranscriptsCouriered.updatedAt)}</small>
+          </div>
         </Box>
         <Box
           style={{
@@ -1469,6 +1665,16 @@ const StudentProfileExtra = () => {
               Submit
             </Button>
           </FormControl>{' '}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '5px',
+            }}
+          >
+            <small>{studentDetailsSharedWithAcademics.updatedBy}</small>
+            <small>{formatDate(studentDetailsSharedWithAcademics.updatedAt)}</small>
+          </div>
         </Box>
       </Box>
     </Box>
