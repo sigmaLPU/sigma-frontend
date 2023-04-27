@@ -13,6 +13,7 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
 import { useParams } from 'react-router-dom';
+import { formatDate } from '../../../../utils/functions';
 
 const list = [
   {
@@ -265,16 +266,55 @@ const Tab1 = ({ value }) => {
             <MenuItem value="other">Other</MenuItem>
           </Select>
         </FormControl>
-        <TextField
-          sx={{
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '10px',
+            border: '1px solid #ccc',
             width: '300px',
+            borderRadius: '5px',
+            padding: '10px',
+            height: '60px',
+            position: 'relative',
           }}
-          id="outlined-basic"
-          label="DOB"
-          variant="outlined"
-          value={dob}
-          onChange={(e) => setDob(e.target.value)}
-        />
+        >
+            <small
+              id="dobs"
+              style={{
+                position: 'absolute',
+                top: '-10px',
+                left: '10px',
+                background: '#fff',
+              }}
+            >
+             DOB {' '}
+            </small>
+          <small
+            id="dobs"
+            style={{
+              position: 'absolute',
+              top: '-10px',
+              left: '100px',
+              background: '#fff',
+            }}
+          >
+            {formatDate(dob)}
+          </small>
+
+
+          <input
+            sx={{
+              // height: '30px',
+            }}
+            id="dob"
+            label="DOB"
+            type="date"
+            variant="outlined"
+            value={formatDate(dob)}
+            onChange={(e) => setDob(e.target.value)}
+          />
+        </div>
         <TextField
           sx={{
             width: '300px',
