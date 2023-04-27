@@ -45,6 +45,7 @@ export default function StudentProfile(props) {
       });
   }, [params.id]);
 
+  const [status, setStatus] = useState('Filled Ct On Ums');
 
   return (
     <div>
@@ -63,10 +64,14 @@ export default function StudentProfile(props) {
         `}
         >
           <StudentProfileStep />
-          <StudentProfileBasic data={student} />
+          <StudentProfileBasic
+            data={student}
+            status={status}
+            setStatus={setStatus}
+          />
           <StudentNotes data={student?.studentDetails?.notes} />
           <StudentProfileMain />
-          <StudentProfileExtra />
+          <StudentProfileExtra status={status} setStatus={setStatus} />
         </Box>
       </NavSideBarLayout>
     </div>

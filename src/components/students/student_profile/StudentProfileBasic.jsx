@@ -25,7 +25,7 @@ import { useSnackbar } from 'notistack';
 import TextRow from '../../text/TextRow';
 import { Face, Face2, Face3Outlined, Face4, Man } from '@mui/icons-material';
 
-const StudentProfileBasic = ({ data }) => {
+const StudentProfileBasic = ({ data, status }) => {
   const params = useParams();
   const [open, setOpen] = React.useState(false);
 
@@ -202,6 +202,12 @@ const StudentProfileBasic = ({ data }) => {
             {backedOut && (
               <Alert variant="filled" severity="warning">
                 Backed Out; Reason: {backedOutReason}
+              </Alert>
+            )}
+
+            {status && (
+              <Alert variant="filled" severity="info">
+             Pending: {status}
               </Alert>
             )}
 

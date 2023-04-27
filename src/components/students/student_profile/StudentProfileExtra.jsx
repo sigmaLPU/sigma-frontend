@@ -15,7 +15,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { formatDate } from '../../../utils/functions';
 
-const StudentProfileExtra = () => {
+const StudentProfileExtra = ({ status, setStatus }) => {
   const params = useParams();
 
   const [studentStatus, setStudentStatus] = useState({});
@@ -23,6 +23,8 @@ const StudentProfileExtra = () => {
   const [initialized, setInitialized] = useState(false);
 
   // -----------------------  State  -----------------------
+
+  // const [status, setStatus] = useState('Filled CT on UMS');
 
   const [filledCtOnUms, setFilledCtOnUms] = useState({
     status: '',
@@ -482,6 +484,91 @@ const StudentProfileExtra = () => {
         handleClickVariant('error', 'Error ' + err.message)();
       });
   };
+
+  const handleStatus = () => {
+    if (filledCtOnUms.status === 'yes') {
+      setStatus('lpuBankDetailsShared');
+
+      if (lpuBankDetailsShared.status === 'yes') {
+        setStatus('feePaidForCtProgram');
+        if (feePaidForCtProgram.status === 'yes') {
+          setStatus('receiptSentToStudent');
+          if (receiptSentToStudent.status === 'yes') {
+            setStatus('receiptUploadedOnUms');
+            if (receiptUploadedOnUms.status === 'yes') {
+              setStatus('facultyInterviewDone');
+              if (facultyInterviewDone.status === 'yes') {
+                setStatus('ctHeadInterviewDone');
+                if (ctHeadInterviewDone.status === 'yes') {
+                  setStatus('nominationToPartnerUniversity');
+                  if (nominationToPartnerUniversity.status === 'yes') {
+                    setStatus('originalTranscriptsReceived');
+                    if (originalTranscriptsReceived.status === 'yes') {
+                      setStatus('recommendationLetterGenerated');
+                      if (recommendationLetterGenerated.status === 'yes') {
+                        setStatus('conditionalLetterReceived');
+                        if (conditionalLetterReceived.status === 'yes') {
+                          setStatus('feePaidForPartnerUniversity');
+                          if (feePaidForPartnerUniversity.status === 'yes') {
+                            setStatus('unconditionalOfferLetterReceived');
+                            if (
+                              unconditionalOfferLetterReceived.status === 'yes'
+                            ) {
+                              setStatus('nocDocumentGenerated');
+                              if (nocDocumentGenerated.status === 'yes') {
+                                setStatus('appliedForVisa');
+                                if (appliedForVisa.status === 'yes') {
+                                  setStatus('visaReceived');
+                                  if (visaReceived.status === 'yes') {
+                                    setStatus(
+                                      'visaAndOfferLetterScannedCopyShared'
+                                    );
+                                    if (
+                                      visaAndOfferLetterScannedCopyShared.status ===
+                                      'yes'
+                                    ) {
+                                      setStatus('indemnityBondCouriered');
+                                      if (
+                                        indemnityBondCouriered.status === 'yes'
+                                      ) {
+                                        setStatus(
+                                          'originalTranscriptsCouriered'
+                                        );
+                                        if (
+                                          originalTranscriptsCouriered.status ===
+                                          'yes'
+                                        ) {
+                                          setStatus(
+                                            'studentDetailsSharedWithAcademics'
+                                          );
+                                          if (
+                                            studentDetailsSharedWithAcademics.status ===
+                                            'yes'
+                                          ) {
+                                            setStatus('completed');
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  };
+
+  handleStatus();
 
   return (
     <Box
@@ -1673,7 +1760,9 @@ const StudentProfileExtra = () => {
             }}
           >
             <small>{studentDetailsSharedWithAcademics.updatedBy}</small>
-            <small>{formatDate(studentDetailsSharedWithAcademics.updatedAt)}</small>
+            <small>
+              {formatDate(studentDetailsSharedWithAcademics.updatedAt)}
+            </small>
           </div>
         </Box>
       </Box>
