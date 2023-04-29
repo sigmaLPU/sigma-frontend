@@ -112,21 +112,8 @@ const StudentMaster = () => {
       field: 'phone',
       headerName: 'Phone',
       flex: 1,
-      // this is inside the row object
-      renderCell: (cellValue) => {
-        return (
-          <div
-            style={{
-              width: '100%',
-              display: 'flex',
-              justifyContent: 'space-around',
-              alignItems: 'center',
-              height: '100%',
-            }}
-          >
-            <p>{cellValue.row.phone}</p>
-          </div>
-        );
+      valueGetter: (params) => {
+        return params.row.phone;
       },
     },
 
@@ -134,43 +121,26 @@ const StudentMaster = () => {
       field: 'optedFor',
       headerName: 'Opted For',
       flex: 1,
-      // this is inside the row object
-      renderCell: (cellValue) => {
-        return (
-          <div
-            style={{
-              width: '100%',
-              display: 'flex',
-              justifyContent: 'space-around',
-              alignItems: 'center',
-              height: '100%',
-            }}
-          >
-            <p>{cellValue.row.studentDetails.optedFor}</p>
-          </div>
-        );
+
+      valueGetter: (params) => {
+        return params.row.studentDetails.optedFor;
       },
     },
     {
       field: 'referedBy',
       headerName: 'Refered By',
       flex: 1,
-      renderCell: (cellValue) => {
-        return (
-          <div
-            style={{
-              width: '100%',
-              display: 'flex',
-              justifyContent: 'space-around',
-              alignItems: 'center',
-              height: '100%',
-            }}
-          >
-            <p>{cellValue.row.studentDetails.referedBy}</p>
-          </div>
-        );
-      }
-      
+      valueGetter: (params) => {
+        return params.row.studentDetails.referedBy;
+      },
+    },
+    {
+      field: 'assignedTo',
+      headerName: 'Assigned To',
+      flex: 1,
+      valueGetter: (params) => {
+        return params.row.studentDetails.assignedCounsilor;
+      },
     },
 
     {

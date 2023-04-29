@@ -39,7 +39,7 @@ const StudentProfileBasic = ({ data, status }) => {
   // const url = 'http://localhost:5000';
 
   const [allCounsilors, setAllCounsilors] = React.useState([]);
-
+  const [photo, setPhoto] = React.useState('');
   const [name, setName] = React.useState(data?.name);
   const [email, setEmail] = React.useState(data?.email);
   const [phone, setPhone] = React.useState(data?.phone);
@@ -96,6 +96,8 @@ const StudentProfileBasic = ({ data, status }) => {
     )[0]?.name;
     setCounsilorName(name);
   }, [data]);
+
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -166,6 +168,9 @@ const StudentProfileBasic = ({ data, status }) => {
               mt: '10px',
             }}
             alt="Remy Sharp"
+            src={
+              'https://ums.lpu.in/lpuums/DisplayImageForPowerBi.aspx?id=c2e08c92-ce42-4137-ad3c-a7c435175ddc'
+            }
           />
 
           <Box
@@ -207,7 +212,7 @@ const StudentProfileBasic = ({ data, status }) => {
 
             {status && (
               <Alert variant="filled" severity="info">
-             Pending: {status}
+                Pending: {status}
               </Alert>
             )}
 
