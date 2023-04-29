@@ -97,7 +97,6 @@ const StudentProfileBasic = ({ data, status }) => {
     setCounsilorName(name);
   }, [data]);
 
-
   const handleClickOpen = () => {
     setOpen(true);
   };

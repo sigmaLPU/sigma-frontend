@@ -223,6 +223,7 @@ const Tab1 = ({ value }) => {
       )
       .then((res) => {
         handleClickVariant('success', 'Saved')();
+        window.location.reload();
       })
       .catch((err) => {
         handleClickVariant('error', 'Error ' + err.message)();

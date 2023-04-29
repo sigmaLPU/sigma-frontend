@@ -363,6 +363,8 @@ const StudentProfileExtra = ({ status, setStatus }) => {
       .catch((err) => {
         handleClickVariant('error', 'Error ' + err.message)();
       });
+
+    window.location.reload();
   };
 
   const handleForm = async (field) => {
@@ -479,73 +481,75 @@ const StudentProfileExtra = ({ status, setStatus }) => {
       .then((res) => {
         console.log(res.data);
         handleClickVariant('success', 'Status Updated')();
+        window.location.reload();
       })
       .catch((err) => {
         handleClickVariant('error', 'Error ' + err.message)();
       });
+
   };
 
   const handleStatus = () => {
     if (filledCtOnUms.status === 'yes') {
-      setStatus('lpuBankDetailsShared');
+      setStatus('Lpu Bank Details Shared');
 
       if (lpuBankDetailsShared.status === 'yes') {
-        setStatus('feePaidForCtProgram');
+        setStatus('Fee Paid For Ct Program');
         if (feePaidForCtProgram.status === 'yes') {
-          setStatus('receiptSentToStudent');
+          setStatus('Receipt Sent To Student');
           if (receiptSentToStudent.status === 'yes') {
-            setStatus('receiptUploadedOnUms');
+            setStatus('Receipt Uploaded On Ums');
             if (receiptUploadedOnUms.status === 'yes') {
-              setStatus('facultyInterviewDone');
+              setStatus('Faculty Interview Done');
               if (facultyInterviewDone.status === 'yes') {
-                setStatus('ctHeadInterviewDone');
+                setStatus('Ct Head Interview Done');
                 if (ctHeadInterviewDone.status === 'yes') {
-                  setStatus('nominationToPartnerUniversity');
+                  setStatus('Nomination To Partner University');
                   if (nominationToPartnerUniversity.status === 'yes') {
-                    setStatus('originalTranscriptsReceived');
+                    setStatus('Orginal Transcripts Received');
                     if (originalTranscriptsReceived.status === 'yes') {
-                      setStatus('recommendationLetterGenerated');
+                      setStatus('Recommendation Letter Generated');
                       if (recommendationLetterGenerated.status === 'yes') {
-                        setStatus('conditionalLetterReceived');
+                        setStatus('Conditional Letter Received');
                         if (conditionalLetterReceived.status === 'yes') {
-                          setStatus('feePaidForPartnerUniversity');
+                          setStatus('Fee Paid For Partner University');
                           if (feePaidForPartnerUniversity.status === 'yes') {
-                            setStatus('unconditionalOfferLetterReceived');
+                            setStatus('Unconditional Offer Letter Received');
                             if (
                               unconditionalOfferLetterReceived.status === 'yes'
                             ) {
-                              setStatus('nocDocumentGenerated');
+                              setStatus('Noc Document Generated');
                               if (nocDocumentGenerated.status === 'yes') {
-                                setStatus('appliedForVisa');
+                                setStatus('Applied For Visa');
                                 if (appliedForVisa.status === 'yes') {
-                                  setStatus('visaReceived');
+                                  setStatus('Visa Received');
                                   if (visaReceived.status === 'yes') {
                                     setStatus(
-                                      'visaAndOfferLetterScannedCopyShared'
+                                      'Visa And Offer Letter Scanned Copy Shared'
                                     );
                                     if (
                                       visaAndOfferLetterScannedCopyShared.status ===
                                       'yes'
                                     ) {
-                                      setStatus('indemnityBondCouriered');
+                                      setStatus('Indemnity Bond Couriered');
                                       if (
                                         indemnityBondCouriered.status === 'yes'
                                       ) {
                                         setStatus(
-                                          'originalTranscriptsCouriered'
+                                          'Original Transcripts Couriered'
                                         );
                                         if (
                                           originalTranscriptsCouriered.status ===
                                           'yes'
                                         ) {
                                           setStatus(
-                                            'studentDetailsSharedWithAcademics'
+                                            'Student Details Shared With Academics'
                                           );
                                           if (
                                             studentDetailsSharedWithAcademics.status ===
                                             'yes'
                                           ) {
-                                            setStatus('completed');
+                                            setStatus('Completed');
                                           }
                                         }
                                       }
