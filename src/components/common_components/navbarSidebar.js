@@ -235,20 +235,20 @@ export default function NavSideBar(props) {
           <FolderSharedIcon sx={{ fontSize: 40, fontWeight: '800', color: theme.palette.mode === 'dark' ? '#fff' : '#333' }} />
           </IconButton>
         ),
-        url: '/shared_data',
+        url: '/shared',
       },
-      {
-        name: (
-          <span style={{ fontSize: '22px', fontWeight: '700' }}>Links</span>
-        ),
-        icon:(
-          //  <img src={LinkIcon} style={{ height: '34px', width: '34px' }} />,
-          <IconButton  sx={{p:0}}>
-          <LinkIcon sx={{ fontSize: 40, fontWeight: '800', color: theme.palette.mode === 'dark' ? '#fff' : '#333' }} />
-          </IconButton>
-        ),
-        url: '/links',
-      },
+      // {
+      //   name: (
+      //     <span style={{ fontSize: '22px', fontWeight: '700' }}>Links</span>
+      //   ),
+      //   icon:(
+      //     //  <img src={LinkIcon} style={{ height: '34px', width: '34px' }} />,
+      //     <IconButton  sx={{p:0}}>
+      //     <LinkIcon sx={{ fontSize: 40, fontWeight: '800', color: theme.palette.mode === 'dark' ? '#fff' : '#333' }} />
+      //     </IconButton>
+      //   ),
+      //   url: '/links',
+      // },
       {
         name: (
           <span style={{ fontSize: '22px', fontWeight: '700' }}>

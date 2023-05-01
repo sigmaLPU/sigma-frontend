@@ -1,0 +1,47 @@
+[{
+    "name": "Karanveer",
+    "attributes": {
+      "department": "Project head",
+      "phone": "9931963208",
+      "reporting": "John Doe"
+    },
+    "children": [
+      {
+        "name": "Aakash",
+        "attributes": {
+          "department": "Intern",
+          "phone": "1234569870",
+          "reporting": "Karanveer"
+        },
+        "children": [
+          {
+            "name": "Animesh",
+            "attributes": {
+              "department": "Manager",
+              "phone": "1234569870",
+              "reporting": "aakash"
+            },
+            "children": [
+              {
+                "name": "xyz"
+              }
+            ]
+          },
+          {
+            "name": "Syket",
+            "attributes": {
+              "department": "Intern",
+              "reporting": "Karanveer"
+            },
+            "children": [
+              {
+                "name": "xyz"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
+

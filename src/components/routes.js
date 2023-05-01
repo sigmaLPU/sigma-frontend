@@ -18,6 +18,8 @@ import {
 } from './universityProfile/routes';
 // meeting profile
 import MeetingProfile from './meetings/MeetingProfile';
+
+import Shared from './shared_folder/Shared';
 // Training modules
 import {
   TrainingDashboard,
@@ -125,6 +127,7 @@ export {
   CountryProfile,
   Chatgpt,
   ChatPage,
+  Shared,
 
   // componets
   NavSideBarLayout,

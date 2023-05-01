@@ -8,7 +8,7 @@ import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 // component imports
-import { Chatgpt, Ethics, HomePage, Outreach, Policy, Semester, Technical } from './components/routes'; // default home page
+import { Chatgpt, Ethics, HomePage, Outreach, Policy, Semester, Shared, Technical } from './components/routes'; // default home page
 import { LoginPage } from './components/routes'; // default home page
 import { Error404 } from './components/routes'; // default home page
 import { UniversityMaster } from './components/routes'; // mou master
@@ -281,6 +281,15 @@ function App() {
             element={
               <ProtectedRoute>
                 <Chatgpt/>
+              </ProtectedRoute>
+            }
+          />
+
+<Route
+            path="/shared"
+            element={
+              <ProtectedRoute>
+                <Shared/>
               </ProtectedRoute>
             }
           />
