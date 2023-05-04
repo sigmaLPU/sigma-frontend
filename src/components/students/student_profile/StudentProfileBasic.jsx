@@ -211,7 +211,7 @@ const StudentProfileBasic = ({ data, status }) => {
 
             {status && (
               <Alert variant="filled" severity="info">
-                Pending: {status}
+                {status}
               </Alert>
             )}
 

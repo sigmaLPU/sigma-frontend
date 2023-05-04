@@ -49,4 +49,10 @@ export const store = configureStore({
     basicGuestVisitSlice:basicGuestVisitSlice,
     getMeetingsSlice:getMeetingsSlice,
   },
+
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
+    
 });

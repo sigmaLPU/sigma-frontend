@@ -486,64 +486,87 @@ const StudentProfileExtra = ({ status, setStatus }) => {
       .catch((err) => {
         handleClickVariant('error', 'Error ' + err.message)();
       });
-
   };
 
   const handleStatus = () => {
     if (filledCtOnUms.status === 'yes') {
-      setStatus('Lpu Bank Details Shared');
+      setStatus('Lpu Bank Details Shared With Student');
 
       if (lpuBankDetailsShared.status === 'yes') {
-        setStatus('Fee Paid For Ct Program');
+        setStatus(
+          'Lpu Bank Details Shared With Student -->  Fee pending for CT Program'
+        );
         if (feePaidForCtProgram.status === 'yes') {
-          setStatus('Receipt Sent To Student');
+          setStatus('Fee paid for CT Program --> Fee receipt sent to student');
           if (receiptSentToStudent.status === 'yes') {
-            setStatus('Receipt Uploaded On Ums');
+            setStatus('Fee receipt sent to student --> Upload Receipt On Ums');
             if (receiptUploadedOnUms.status === 'yes') {
-              setStatus('Faculty Interview Done');
+              setStatus('Receipt Uploaded On Ums --> Interview with Faculty');
               if (facultyInterviewDone.status === 'yes') {
-                setStatus('Ct Head Interview Done');
+                setStatus(
+                  'Interview with Faculty Done --> Interview with CT Head'
+                );
                 if (ctHeadInterviewDone.status === 'yes') {
-                  setStatus('Nomination To Partner University');
+                  setStatus(
+                    'Interview with CT Head Done --> Nomination To Partner University'
+                  );
                   if (nominationToPartnerUniversity.status === 'yes') {
-                    setStatus('Orginal Transcripts Received');
+                    setStatus(
+                      ' Nomination To Partner University Done  --> Orginal Transcripts Pending'
+                    );
                     if (originalTranscriptsReceived.status === 'yes') {
-                      setStatus('Recommendation Letter Generated');
+                      setStatus(
+                        'Orginal Transcripts Received --> Recommendation Letter Generated'
+                      );
                       if (recommendationLetterGenerated.status === 'yes') {
-                        setStatus('Conditional Letter Received');
+                        setStatus(
+                          'Recommendation Letter Generated --> Conditional Letter Received'
+                        );
                         if (conditionalLetterReceived.status === 'yes') {
-                          setStatus('Fee Paid For Partner University');
+                          setStatus(
+                            'Conditional Letter Received --> Fee Pending For Partner University'
+                          );
                           if (feePaidForPartnerUniversity.status === 'yes') {
-                            setStatus('Unconditional Offer Letter Received');
+                            setStatus(
+                              'Fee Pending For Partner University --> Unconditional Offer Letter Received'
+                            );
                             if (
                               unconditionalOfferLetterReceived.status === 'yes'
                             ) {
-                              setStatus('Noc Document Generated');
+                              setStatus(
+                                'Unconditional Offer Letter Received --> Noc Document Generated'
+                              );
                               if (nocDocumentGenerated.status === 'yes') {
-                                setStatus('Applied For Visa');
+                                setStatus(
+                                  'Noc Document Generated --> Student will apply VISA'
+                                );
                                 if (appliedForVisa.status === 'yes') {
-                                  setStatus('Visa Received');
+                                  setStatus(
+                                    'Student will apply VISA --> Visa Pending'
+                                  );
                                   if (visaReceived.status === 'yes') {
                                     setStatus(
-                                      'Visa And Offer Letter Scanned Copy Shared'
+                                      'Visa Done --> Visa And Offer Letter Scanned Copy Shared'
                                     );
                                     if (
                                       visaAndOfferLetterScannedCopyShared.status ===
                                       'yes'
                                     ) {
-                                      setStatus('Indemnity Bond Couriered');
+                                      setStatus(
+                                        'Visa And Offer Letter Scanned Copy Shared --> Indemnity Bond Couriered'
+                                      );
                                       if (
                                         indemnityBondCouriered.status === 'yes'
                                       ) {
                                         setStatus(
-                                          'Original Transcripts Couriered'
+                                          'Indemnity Bond Couriered --> Original Transcripts Couriered'
                                         );
                                         if (
                                           originalTranscriptsCouriered.status ===
                                           'yes'
                                         ) {
                                           setStatus(
-                                            'Student Details Shared With Academics'
+                                            'Original Transcripts Couriered --> Student Details Shared With Academics'
                                           );
                                           if (
                                             studentDetailsSharedWithAcademics.status ===

@@ -5,8 +5,12 @@ import {
   Button,
   Dialog,
   DialogContent,
+  FormControl,
   FormControlLabel,
   IconButton,
+  InputLabel,
+  MenuItem,
+  Select,
   Switch,
   TextField,
 } from '@mui/material';
@@ -32,11 +36,13 @@ const StudentMaster = () => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('123456');
   const [regNo, setRegNo] = React.useState('');
+  const [phone, setPhone] = React.useState('');
+  const [optedFor, setOptedFor] = React.useState('');
 
   const [users, setUsers] = React.useState([]);
 
   const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
-  const local = 'http://localhost:5000';
+  // const url = 'http://localhost:5000';
 
   useEffect(() => {
     async function fetchUser() {
@@ -54,6 +60,13 @@ const StudentMaster = () => {
       }
     }
     fetchUser();
+
+    if (dp && dp === 'credit-transfer') {
+      setOptedFor('credit-transfer');
+    }
+    else if(dp && dp === 'semester-exchange') {
+      setOptedFor('semester-exchange');
+    }
   }, [dp]);
 
   const [open, setOpen] = React.useState(false);
@@ -80,11 +93,14 @@ const StudentMaster = () => {
           password,
           isFaculty: false,
           authorization: 'student',
+          phone,
+          optedFor,
         }
       );
 
       alert(data && data.data.message);
       setOpen(false);
+      window.location.reload();
     } catch (error) {
       alert(error && error.response.data.error);
       console.log(error);
@@ -284,31 +300,70 @@ const StudentMaster = () => {
                       }}
                     >
                       <TextField
+                      fullWidth
                         label="Enter Name"
                         variant="outlined"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                       />
                       <TextField
+                      fullWidth
                         label="Enter Email"
                         variant="outlined"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                       />
                       <TextField
+                      fullWidth
                         type="number"
                         label="UID / Reg No"
                         variant="outlined"
                         value={regNo}
                         onChange={(e) => setRegNo(e.target.value)}
                       />{' '}
+                           <TextField
+                      fullWidth
+                        type="number"
+                        label="Phone"
+                        variant="outlined"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                      />{' '}
+                      <FormControl
+                      disabled={dp ? true : false}
+                      fullWidth
+                        variant="outlined"
+                        label="Opted For"
+                        >
+                        <InputLabel id="demo-simple-select-outlined-label">
+                          Opted For
+                        </InputLabel>
+                        <Select
+                          labelId="demo-simple-select-outlined-label"
+                          id="demo-simple-select-outlined"
+                          value={optedFor}
+                          onChange={(e) => setOptedFor(e.target.value)}
+                          label="Opted For"
+                        >
+                          <MenuItem value="">
+                            <em>None</em> 
+                          </MenuItem>
+                          <MenuItem value="semester-exchange">Semester Exchange</MenuItem>
+                          <MenuItem value="credit-transfer">Credit Transfer</MenuItem>
+                          </Select>
+
+                        </FormControl>
                       <TextField
+                      fullWidth
                         label="Password"
                         variant="outlined"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                       />
-                      <Button type="submit" variant="contained" color="primary">
+
+                      <Button
+                        fullWidth
+                      type="submit" variant="contained" color="primary">
                         Register
                       </Button>
                     </form>
