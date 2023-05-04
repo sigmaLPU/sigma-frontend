@@ -57,13 +57,14 @@ const StudentProfileStep = () => {
       });
     if (studentStatus?.feePaidForCtProgram?.status === 'yes') {
       setActiveStep(0);
-    } else if (studentStatus?.ctHeadInterviewDone?.status === 'yes') {
+    }
+    if (studentStatus?.ctHeadInterviewDone?.status === 'yes') {
       setActiveStep(1);
-    } else if (
-      studentStatus?.unconditionalOfferLetterReceived?.status === 'yes'
-    ) {
+    }
+    if (studentStatus?.unconditionalOfferLetterReceived?.status === 'yes') {
       setActiveStep(2);
-    } else if (studentStatus?.visaRecieved?.status === 'yes') {
+    }
+    if (studentStatus?.visaRecieved?.status === 'yes') {
       setActiveStep(3);
     }
   }, [
