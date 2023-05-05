@@ -226,10 +226,14 @@ export default function Dashboard(props) {
   const routes = [
     { name: 'Open Leads', url: '/openLeads', img: openLeadsImg },
     { name: 'Partner University', url: '/mouMaster', img: mouImg },
-    { name: 'Credit Tranfer', url: '/student/:id', img: creditTransferImg },
+    {
+      name: 'Credit Tranfer',
+      url: '/student_master?dep=ct',
+      img: creditTransferImg,
+    },
     {
       name: 'Semester Exchange',
-      url: '/semesterExchange',
+      url: '/student_master?dp=se',
       img: semesterExchangeImg,
     },
     { name: 'Template Section', url: '/templates', img: templateSectionImg },

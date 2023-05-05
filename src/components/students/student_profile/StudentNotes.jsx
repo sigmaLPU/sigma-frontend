@@ -108,9 +108,7 @@ const StudentNotes = ({ data }) => {
       p="30px"
       overflow="auto"
       gridArea="notes"
-      height="100%"
-      width="100%"
-      minWidth="400px"
+      minWidth="300px"
     >
       <Typography
         variant="h5"
@@ -133,16 +131,22 @@ const StudentNotes = ({ data }) => {
         <List sx={{ width: '100%', overflow: 'auto' }}>
           {data?.map((process) => (
             <ListItem
+              key={process._id}
               alignItems="flex-start"
               style={{
                 backgroundColor: '#fff',
                 marginTop: '10px',
-                maxHeight: '100px',
                 overflow: 'auto',
+
               }}
               //   onClick={() => handleClickOpen(process)}
             >
-              <ListItemText primary={<> {process?.note}</>} />
+              <ListItemText
+              style={{
+                height: '100%',
+                lineBreak: 'anywhere',
+              }}
+              primary={<> {process?.note}</>} />
               <IconButton
                 sx={{ float: 'right' }}
                 onClick={() => handleDeleteNote(process._id)}

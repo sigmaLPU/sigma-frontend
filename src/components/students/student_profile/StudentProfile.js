@@ -12,6 +12,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
+import StudentProfileExtra from './StudentProfileExtra';
 
 export default function StudentProfile(props) {
   const params = useParams();
@@ -44,6 +45,7 @@ export default function StudentProfile(props) {
       });
   }, [params.id]);
 
+  const [status, setStatus] = useState('Filled Ct On Ums');
 
   return (
     <div>
@@ -57,13 +59,19 @@ export default function StudentProfile(props) {
           'steps steps steps'
           'basic basic notes'
           'main  main   notes'  
-          'main  main  notes'            
+          'main  main  notes'  
+          'extra extra extra'          
         `}
         >
           <StudentProfileStep />
-          <StudentProfileBasic data={student} />
+          <StudentProfileBasic
+            data={student}
+            status={status}
+            setStatus={setStatus}
+          />
           <StudentNotes data={student?.studentDetails?.notes} />
           <StudentProfileMain />
+          <StudentProfileExtra status={status} setStatus={setStatus} />
         </Box>
       </NavSideBarLayout>
     </div>

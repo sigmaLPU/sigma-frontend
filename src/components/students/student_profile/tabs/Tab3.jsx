@@ -1,5 +1,15 @@
 import { Upload } from '@mui/icons-material';
-import { Alert, AlertTitle, Box, Button, IconButton } from '@mui/material';
+import {
+  Alert,
+  AlertTitle,
+  Box,
+  Button,
+  Card,
+  CardContent,
+  CardMedia,
+  IconButton,
+  Typography,
+} from '@mui/material';
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
 import React, { useEffect } from 'react';
@@ -40,7 +50,6 @@ const Tab3 = () => {
   }, [params.id]);
 
   const handleSubmit = async (e) => {
-
     e.preventDefault();
 
     const formData = new FormData();
@@ -56,9 +65,7 @@ const Tab3 = () => {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
         }
-      )
-
-      
+      );
 
       handleClickVariant('success', 'File Uploaded')();
       window.location.reload();
@@ -114,6 +121,8 @@ const Tab3 = () => {
             </form>
           </Box>
         </Alert>
+
+  
       </Box>
     </div>
   );

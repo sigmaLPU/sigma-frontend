@@ -1,7 +1,9 @@
 import {
+  Alert,
   Avatar,
   Box,
   Button,
+  Chip,
   Dialog,
   DialogActions,
   DialogContent,
@@ -21,8 +23,9 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import TextRow from '../../text/TextRow';
+import { Face, Face2, Face3Outlined, Face4, Man } from '@mui/icons-material';
 
-const StudentProfileBasic = ({ data }) => {
+const StudentProfileBasic = ({ data, status }) => {
   const params = useParams();
   const [open, setOpen] = React.useState(false);
 
@@ -35,10 +38,27 @@ const StudentProfileBasic = ({ data }) => {
   const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
   // const url = 'http://localhost:5000';
 
+  const [allCounsilors, setAllCounsilors] = React.useState([]);
+  const [photo, setPhoto] = React.useState('');
   const [name, setName] = React.useState(data?.name);
   const [email, setEmail] = React.useState(data?.email);
   const [phone, setPhone] = React.useState(data?.phone);
   const [regNo, setRegNo] = React.useState(data?.regNo);
+  const [assignedCounsilor, setAssignedCounsilor] = React.useState(
+    data.studentDetails?.assignedCounsilor
+  );
+  const [referedBy, setReferedBy] = React.useState(
+    data?.studentDetails?.referedBy
+  );
+  const [backedOut, setBackedOut] = React.useState(
+    data?.studentDetails?.backedOut
+  );
+
+  const [backedOutReason, setBackedOutReason] = React.useState(
+    data?.studentDetails?.backedOutReason
+  );
+
+  const [counsilorName, setCounsilorName] = React.useState('');
 
   const [optedFor, setOptedFor] = React.useState(
     data?.studentDetails?.optedFor
@@ -50,6 +70,31 @@ const StudentProfileBasic = ({ data }) => {
     setPhone(data?.phone);
     setRegNo(data?.regNo);
     setOptedFor(data?.studentDetails?.optedFor);
+    setAssignedCounsilor(data?.studentDetails?.assignedCounsilor);
+    setReferedBy(data?.studentDetails?.referedBy);
+    setBackedOut(data?.studentDetails?.backedOut);
+    setBackedOutReason(data?.studentDetails?.backedOutReason);
+
+    const fetchCounsilors = async () => {
+      await axios
+        .get(`${url}/api/v2/user/getAllFaculties`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        })
+        .then((res) => {
+          setAllCounsilors(res.data.users);
+        })
+        .catch((err) => {
+          alert(err, 'Error in fetching counsilors');
+        });
+    };
+    fetchCounsilors();
+
+    const name = allCounsilors.filter(
+      (counsilor) => counsilor._id === assignedCounsilor
+    )[0]?.name;
+    setCounsilorName(name);
   }, [data]);
 
   const handleClickOpen = () => {
@@ -71,8 +116,11 @@ const StudentProfileBasic = ({ data }) => {
           regNo,
 
           studentDetails: {
-
             optedFor,
+            assignedCounsilor,
+            referedBy,
+            backedOut,
+            backedOutReason,
           },
         },
         {
@@ -99,8 +147,7 @@ const StudentProfileBasic = ({ data }) => {
         p="30px"
         overflow="auto"
         gridArea="basic"
-        maxHeight="500px"
-        minWidth="400px"
+        minWidth="60vw"
       >
         <Typography
           variant="h5"
@@ -120,7 +167,27 @@ const StudentProfileBasic = ({ data }) => {
               mt: '10px',
             }}
             alt="Remy Sharp"
+            src={
+              'https://ums.lpu.in/lpuums/DisplayImageForPowerBi.aspx?id=c2e08c92-ce42-4137-ad3c-a7c435175ddc'
+            }
           />
+
+          <Box
+            sx={{
+              float: 'right',
+            }}
+          >
+            <Chip
+              color={assignedCounsilor ? 'success' : 'error'}
+              icon={<Face />}
+              label={
+                allCounsilors.filter(
+                  (counsilor) => counsilor._id === assignedCounsilor
+                )[0]?.name || 'Not assigned'
+              }
+              variant="outlined"
+            />
+          </Box>
         </Box>
 
         <Box
@@ -136,6 +203,18 @@ const StudentProfileBasic = ({ data }) => {
             mt="10px"
             width="100%"
           >
+            {backedOut && (
+              <Alert variant="filled" severity="warning">
+                Backed Out; Reason: {backedOutReason}
+              </Alert>
+            )}
+
+            {status && (
+              <Alert variant="filled" severity="info">
+                {status}
+              </Alert>
+            )}
+
             <TextRow>
               <Typography
                 sx={{
@@ -144,13 +223,6 @@ const StudentProfileBasic = ({ data }) => {
               >
                 <b>Name</b>
               </Typography>
-              <Divider
-                orientation="vertical"
-                flexItem
-                sx={{
-                  mx: '10px',
-                }}
-              />
 
               <Typography variant="h5">{name}</Typography>
             </TextRow>
@@ -162,13 +234,6 @@ const StudentProfileBasic = ({ data }) => {
               >
                 <b>Email</b>
               </Typography>
-              <Divider
-                orientation="vertical"
-                flexItem
-                sx={{
-                  mx: '10px',
-                }}
-              />
 
               <Typography variant="h5">{email}</Typography>
             </TextRow>
@@ -180,13 +245,6 @@ const StudentProfileBasic = ({ data }) => {
               >
                 <b>Reg No</b>
               </Typography>
-              <Divider
-                orientation="vertical"
-                flexItem
-                sx={{
-                  mx: '10px',
-                }}
-              />
 
               <Typography variant="h5">{regNo}</Typography>
             </TextRow>
@@ -198,13 +256,6 @@ const StudentProfileBasic = ({ data }) => {
               >
                 <b>Opted For</b>
               </Typography>
-              <Divider
-                orientation="vertical"
-                flexItem
-                sx={{
-                  mx: '10px',
-                }}
-              />
 
               <Typography variant="h5">{optedFor}</Typography>
             </TextRow>
@@ -217,15 +268,19 @@ const StudentProfileBasic = ({ data }) => {
               >
                 <b>Phone</b>
               </Typography>
-              <Divider
-                orientation="vertical"
-                flexItem
-                sx={{
-                  mx: '10px',
-                }}
-              />
 
               <Typography variant="h5">{phone}</Typography>
+            </TextRow>
+            <TextRow>
+              <Typography
+                sx={{
+                  width: '120px',
+                }}
+              >
+                <b>Refered By</b>
+              </Typography>
+
+              <Typography variant="h5">{referedBy}</Typography>
             </TextRow>
           </Box>
 
@@ -244,13 +299,7 @@ const StudentProfileBasic = ({ data }) => {
               >
                 <b>Counsilor</b>
               </Typography>
-              <Divider
-                orientation="vertical"
-                flexItem
-                sx={{
-                  mx: '10px',
-                }}
-              />
+             
 
               <Typography variant="h5">{data?.name || 'no name'}</Typography>
             </TextRow>
@@ -326,6 +375,65 @@ const StudentProfileBasic = ({ data }) => {
             fullWidth
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
+          />
+
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">
+              Counsilor Assigned
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={assignedCounsilor}
+              label="Age"
+              onChange={(e) => setAssignedCounsilor(e.target.value)}
+            >
+              {allCounsilors.map((counsilor) => (
+                <MenuItem key={counsilor._id} value={counsilor?._id}>
+                  {counsilor.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Refered By"
+            type="text"
+            fullWidth
+            value={referedBy}
+            onChange={(e) => setReferedBy(e.target.value)}
+          />
+
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Backed Out</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={backedOut}
+              label="Backed Out"
+              onChange={(e) => setBackedOut(e.target.value)}
+            >
+              <MenuItem value={true}>Yes</MenuItem>
+              <MenuItem value={false}>No</MenuItem>
+            </Select>
+          </FormControl>
+
+          <textarea
+            aria-label="minimum height"
+            rowsMin={6}
+            placeholder="Backed Out Reason"
+            value={backedOutReason}
+            onChange={(e) => setBackedOutReason(e.target.value)}
+            style={{
+              width: '100%',
+              marginTop: '10px',
+              border: '1px solid #ccc',
+              padding: '10px',
+              minHeight: '100px',
+            }}
+            disabled={backedOut === false}
           />
         </DialogContent>
         <DialogActions>

@@ -5,43 +5,54 @@ import {
   Button,
   Dialog,
   DialogContent,
+  FormControl,
   FormControlLabel,
   IconButton,
+  InputLabel,
+  MenuItem,
+  Select,
   Switch,
   TextField,
 } from '@mui/material';
 import axios from 'axios';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
-import { Link, useNavigate } from 'react-router-dom';
+import {
+  Link,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom';
 import { display } from '@mui/system';
 import { AddCircle, Delete, Edit, OpenInBrowser } from '@mui/icons-material';
 
 const StudentMaster = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
+  const [searchParams] = useSearchParams();
+
+  const [dp, setDp] = React.useState(searchParams.get('dp'));
+
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('123456');
   const [regNo, setRegNo] = React.useState('');
+  const [phone, setPhone] = React.useState('');
+  const [optedFor, setOptedFor] = React.useState('');
 
   const [users, setUsers] = React.useState([]);
 
   const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
-  const local = 'http://localhost:5000';
-
-
+  // const url = 'http://localhost:5000';
 
   useEffect(() => {
     async function fetchUser() {
       try {
-        const { data } = await axios.get(
-          url + '/api/v2/user/getAllStudents',
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: 'Bearer ' + localStorage.getItem('token'),
-            },
-          }
-        );
+        const { data } = await axios.get(url + '/api/v2/user/getAllStudents', {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
+          },
+        });
 
         setUsers(data && data.students);
       } catch (error) {
@@ -49,8 +60,14 @@ const StudentMaster = () => {
       }
     }
     fetchUser();
-  }, []);
 
+    if (dp && dp === 'credit-transfer') {
+      setOptedFor('credit-transfer');
+    }
+    else if(dp && dp === 'semester-exchange') {
+      setOptedFor('semester-exchange');
+    }
+  }, [dp]);
 
   const [open, setOpen] = React.useState(false);
 
@@ -67,7 +84,7 @@ const StudentMaster = () => {
 
     try {
       const data = await axios.post(
-        url+'/api/v2/user/register',
+        url + '/api/v2/user/register',
 
         {
           name,
@@ -76,14 +93,17 @@ const StudentMaster = () => {
           password,
           isFaculty: false,
           authorization: 'student',
+          phone,
+          optedFor,
         }
       );
 
       alert(data && data.data.message);
       setOpen(false);
+      window.location.reload();
     } catch (error) {
       alert(error && error.response.data.error);
-      console.log(error)
+      console.log(error);
     }
   };
 
@@ -95,14 +115,48 @@ const StudentMaster = () => {
       cellClassName: 'name-column--cell',
     },
     {
+      field: 'regNo',
+      headerName: 'Reg No',
+      flex: 1,
+    },
+    {
       field: 'email',
       headerName: 'Email',
       flex: 1,
     },
     {
-      field: 'regNo',
-      headerName: 'Reg No',
+      field: 'phone',
+      headerName: 'Phone',
       flex: 1,
+      valueGetter: (params) => {
+        return params.row.phone;
+      },
+    },
+
+    {
+      field: 'optedFor',
+      headerName: 'Opted For',
+      flex: 1,
+
+      valueGetter: (params) => {
+        return params.row.studentDetails.optedFor;
+      },
+    },
+    {
+      field: 'referedBy',
+      headerName: 'Refered By',
+      flex: 1,
+      valueGetter: (params) => {
+        return params.row.studentDetails.referedBy;
+      },
+    },
+    {
+      field: 'assignedTo',
+      headerName: 'Assigned To',
+      flex: 1,
+      valueGetter: (params) => {
+        return params.row.studentDetails.assignedCounsilor;
+      },
     },
 
     {
@@ -122,7 +176,7 @@ const StudentMaster = () => {
           >
             <IconButton
               onClick={() => {
-                navigate(`/student/${cellValue.row._id}`)
+                navigate(`/student/${cellValue.row._id}`);
               }}
             >
               <OpenInBrowser />
@@ -198,7 +252,13 @@ const StudentMaster = () => {
               }}
             >
               <DataGrid
-                rows={users || []}
+                rows={
+                  dp
+                    ? users.filter(
+                        (user) => user.studentDetails.optedFor === dp
+                      ) || []
+                    : users || []
+                }
                 columns={columns}
                 getRowId={(row) => row._id}
                 components={{ Toolbar: GridToolbar }}
@@ -219,7 +279,9 @@ const StudentMaster = () => {
                 }}
               >
                 <div>
-                  <h3 style={{ textAlign: 'center' }}>Register Student - Admin</h3>
+                  <h3 style={{ textAlign: 'center' }}>
+                    Register Student - Admin
+                  </h3>
                   <div
                     style={{
                       marginTop: '1.5rem',
@@ -238,31 +300,70 @@ const StudentMaster = () => {
                       }}
                     >
                       <TextField
+                      fullWidth
                         label="Enter Name"
                         variant="outlined"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                       />
                       <TextField
+                      fullWidth
                         label="Enter Email"
                         variant="outlined"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                       />
                       <TextField
+                      fullWidth
                         type="number"
                         label="UID / Reg No"
                         variant="outlined"
                         value={regNo}
                         onChange={(e) => setRegNo(e.target.value)}
                       />{' '}
+                           <TextField
+                      fullWidth
+                        type="number"
+                        label="Phone"
+                        variant="outlined"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                      />{' '}
+                      <FormControl
+                      disabled={dp ? true : false}
+                      fullWidth
+                        variant="outlined"
+                        label="Opted For"
+                        >
+                        <InputLabel id="demo-simple-select-outlined-label">
+                          Opted For
+                        </InputLabel>
+                        <Select
+                          labelId="demo-simple-select-outlined-label"
+                          id="demo-simple-select-outlined"
+                          value={optedFor}
+                          onChange={(e) => setOptedFor(e.target.value)}
+                          label="Opted For"
+                        >
+                          <MenuItem value="">
+                            <em>None</em> 
+                          </MenuItem>
+                          <MenuItem value="semester-exchange">Semester Exchange</MenuItem>
+                          <MenuItem value="credit-transfer">Credit Transfer</MenuItem>
+                          </Select>
+
+                        </FormControl>
                       <TextField
+                      fullWidth
                         label="Password"
                         variant="outlined"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                       />
-                      <Button type="submit" variant="contained" color="primary">
+
+                      <Button
+                        fullWidth
+                      type="submit" variant="contained" color="primary">
                         Register
                       </Button>
                     </form>

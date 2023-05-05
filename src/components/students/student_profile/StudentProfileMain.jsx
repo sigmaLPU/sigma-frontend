@@ -17,6 +17,8 @@ import { Upload } from '@mui/icons-material';
 import Tab1 from './tabs/Tab1';
 import Tab2 from './tabs/Tab2';
 import Tab3 from './tabs/Tab3';
+import Tab5 from './tabs/Tab5';
+import Tab6 from './tabs/Tab6';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -73,8 +75,8 @@ function VerticalTabs() {
         sx={{ borderRight: 1, borderColor: 'divider', padding: '20px' }}
       >
         <Tab label="Basic" {...a11yProps(0)} />
-        <Tab label="Document" {...a11yProps(1)} />
-        <Tab label="Payment" {...a11yProps(2)} />
+        <Tab label="Payment" {...a11yProps(1)} />
+        <Tab label="Document" {...a11yProps(2)} />
         <Tab label="Foreign Approval" {...a11yProps(3)} />
         <Tab label="Visa" {...a11yProps(4)} />
         <Tab label="Done" {...a11yProps(5)} />
@@ -83,19 +85,19 @@ function VerticalTabs() {
         <Tab1 />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Tab2 />
+        <Tab3 />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <Tab3 />
+        <Tab2 />
       </TabPanel>
       <TabPanel value={value} index={3}>
         Item Four
       </TabPanel>
       <TabPanel value={value} index={4}>
-        Item Five
+        <Tab5 />
       </TabPanel>
       <TabPanel value={value} index={5}>
-        Item Six
+       <Tab6 />
       </TabPanel>
     </Box>
   );
