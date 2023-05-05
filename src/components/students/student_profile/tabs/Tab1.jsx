@@ -3,17 +3,21 @@ import {
   Button,
   FormControl,
   FormHelperText,
+  IconButton,
   InputLabel,
   MenuItem,
   Select,
   TextField,
 } from '@mui/material';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 // import Multiselect from 'multiselect-react-dropdown';
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
 import { useParams } from 'react-router-dom';
 import { formatDate } from '../../../../utils/functions';
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllUniversityReducer } from '../../../../redux/routes';
 
 const list = [
   {
@@ -139,7 +143,21 @@ const list = [
 ];
 
 const Tab1 = ({ value }) => {
+  const dispatch = useDispatch();
   const params = useParams();
+  const rawData = useSelector((state) => state.getAllUniversitySlice.data);
+
+  const [data, setData] = useState(rawData);
+
+  useEffect(() => {
+    setData(rawData);
+    console.log(data.data.rows);
+  }, [rawData, data.data.rows]);
+
+
+  useEffect(() => {
+  dispatch(getAllUniversityReducer({}));
+}, []);
 
   const [student, setStudent] = React.useState({});
 
@@ -192,11 +210,12 @@ const Tab1 = ({ value }) => {
     setCurrentSemester(student?.studentDetails?.currentSemester || '');
     setCurrentCgpa(student?.studentDetails?.currentCGPA || '');
     setAreaOfInterest(student?.studentDetails?.areaOfInterest || '');
-    setInterestedCountry(student?.studentDetails?.areaOfInterest?.split('-')[0]);
-        setInterestedUniversity(
-          student?.studentDetails?.areaOfInterest?.split('-')[1]
-        );
-
+    setInterestedCountry(
+      student?.studentDetails?.areaOfInterest?.split('-')[0]
+    );
+    setInterestedUniversity(
+      student?.studentDetails?.areaOfInterest?.split('-')[1]
+    );
   }, [student]);
 
   const onSave = async () => {
@@ -239,7 +258,7 @@ const Tab1 = ({ value }) => {
         justifyContent="space-between"
         width="650px"
       >
-        <TextField
+        {/* <TextField
           sx={{
             width: '300px',
           }}
@@ -248,7 +267,32 @@ const Tab1 = ({ value }) => {
           variant="outlined"
           value={nationality}
           onChange={(e) => setNationality(e.target.value)}
-        />
+        /> */}
+        <FormControl
+          sx={{
+            width: '300px',
+          }}
+        >
+          <InputLabel id="demo-simple-select-helper-labels">
+            Nationality
+          </InputLabel>
+          <Select
+            labelId="demo-simple-select-helper-labels"
+            id="demo-simple-select-helpers"
+            value={nationality}
+            onChange={(e) => setNationality(e.target.value)}
+          >
+            <MenuItem value="">Null</MenuItem>
+            <MenuItem value="indian">Indian</MenuItem>
+            <MenuItem value="bangldesh">Bangladesh</MenuItem>
+            <MenuItem value="nepal">Nepal</MenuItem>
+            <MenuItem value="bhutan">Bhutan</MenuItem>
+            <MenuItem value="Ghana">ghana</MenuItem>
+            <MenuItem value="liberia">Liberia</MenuItem>
+            <MenuItem value="zimbabwe">Zimbabwe</MenuItem>
+          </Select>
+        </FormControl>
+
         <FormControl
           sx={{
             width: '300px',
@@ -280,17 +324,17 @@ const Tab1 = ({ value }) => {
             position: 'relative',
           }}
         >
-            <small
-              id="dobs"
-              style={{
-                position: 'absolute',
-                top: '-10px',
-                left: '10px',
-                background: '#fff',
-              }}
-            >
-             DOB {' '}
-            </small>
+          <small
+            id="dobs"
+            style={{
+              position: 'absolute',
+              top: '-10px',
+              left: '10px',
+              background: '#fff',
+            }}
+          >
+            DOB{' '}
+          </small>
           <small
             id="dobs"
             style={{
@@ -303,15 +347,14 @@ const Tab1 = ({ value }) => {
             {formatDate(dob)}
           </small>
 
-
           <input
-            sx={{
-              // height: '30px',
+            style={{
+              width: '10%',
+              height: '100%',
             }}
             id="dob"
             label="DOB"
             type="date"
-            variant="outlined"
             value={formatDate(dob)}
             onChange={(e) => setDob(e.target.value)}
           />
@@ -347,7 +390,7 @@ const Tab1 = ({ value }) => {
             })}
           </Select>
         </FormControl>
-        <TextField
+        {/* <TextField
           sx={{
             width: '300px',
           }}
@@ -356,8 +399,33 @@ const Tab1 = ({ value }) => {
           variant="outlined"
           value={currentSemester}
           onChange={(e) => setCurrentSemester(e.target.value)}
-        />
+        /> */}
+        <FormControl
+          sx={{
+            width: '300px',
+          }}
+        >
+          <InputLabel id="demo-simple-select-helper-labels">
+            Current Semester
+          </InputLabel>
+          <Select
+            labelId="demo-simple-select-helper-labels"
+            id="demo-simple-select-helpers"
+            value={currentSemester}
+            onChange={(e) => setCurrentSemester(e.target.value)}
+          >
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item, index) => {
+              return (
+                <MenuItem key={index} value={item}>
+                  {item}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
+
         <TextField
+        disabled
           sx={{
             width: '300px',
           }}
@@ -368,6 +436,7 @@ const Tab1 = ({ value }) => {
           onChange={(e) => setInterestedCountry(e.target.value)}
         />
         <TextField
+        disabled
           sx={{
             width: '300px',
           }}
@@ -388,6 +457,28 @@ const Tab1 = ({ value }) => {
           value={currentCgpa}
           onChange={(e) => setCurrentCgpa(e.target.value)}
         />
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-helper-labels">
+            University & Country - 
+          </InputLabel>
+          <Select
+            labelId="demo-simple-select-helper-labels"
+            id="demo-simple-select-helpers"
+          >
+            {data && data?.data?.rows?.map((item, index) => {
+              return (
+                <MenuItem
+                  onClick={() => {
+                    setInterestedCountry(item.Country);
+                    setInterestedUniversity(item['Name of University']);
+                  }}
+                key={index} value={item.name}>
+                  {item.Country} - {item['Name of University']}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
 
         <Button
           sx={{

@@ -43,7 +43,6 @@ export default function MouMaster(props) {
 
   useEffect(() => {
     setData(rawData);
-    console.log(data.data.rows);
   }, [rawData, data.data.rows]);
 
 
