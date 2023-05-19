@@ -8,7 +8,7 @@ import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 // component imports
-import { Chatgpt, Ethics, HomePage, Outreach, Policy, Semester, Shared, Technical } from './components/routes'; // default home page
+import { Chatgpt, CountryMaster, Ethics, HomePage, Outreach, Policy, Semester, Shared, Technical } from './components/routes'; // default home page
 import { LoginPage } from './components/routes'; // default home page
 import { Error404 } from './components/routes'; // default home page
 import { UniversityMaster } from './components/routes'; // mou master
@@ -36,6 +36,7 @@ import RegisterUser from './components/registerUser/RegisterUser';
 import UserInfo from './components/profile_page/UserInfo';
 import FacultyInfo from './components/profile_page/faculty/FacultyProfile';
 import StudentMaster from './components/students/StudentMaster';
+
 
 import ChatPage from "./components/Chatgpt/ChatPage";
 import DarkModeToggle from './DarkModeToggle';
@@ -303,6 +304,14 @@ function App() {
             }
           />
 
+<Route
+            path="/countrymaster"
+            element={
+              <ProtectedRoute>
+                <CountryMaster/>
+              </ProtectedRoute>
+            }
+          />
 
 
 

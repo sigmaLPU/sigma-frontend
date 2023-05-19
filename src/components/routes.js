@@ -63,7 +63,7 @@ import Table, { NewTable } from './common_components/table';
 
 
 import { TeamChart } from './team/routes';
-
+import CountryMaster from './countryProfile/CountryMaster';
 import {
   ModalPopUp,
   BasicDetailsModal,
@@ -129,6 +129,7 @@ export {
   ChatPage,
   Shared,
 
+
   // componets
   NavSideBarLayout,
   Card,
@@ -142,8 +143,7 @@ export {
   Table,
   NewTable,
   BasicDetailsMeetingCard,
-  AttachementCard,
-  
+  AttachementCard,  
 
   // modalpop
   BasicDetailsModal,
@@ -181,4 +181,5 @@ export {
   Technical,
   TeamChart,
   Tools,
+  CountryMaster,
 };
