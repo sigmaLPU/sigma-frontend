@@ -148,16 +148,34 @@ const Tab1 = ({ value }) => {
   const rawData = useSelector((state) => state.getAllUniversitySlice.data);
 
   const [data, setData] = useState(rawData);
+  const [mous, setMous] = useState([]);
 
   useEffect(() => {
     setData(rawData);
     console.log(data.data.rows);
   }, [rawData, data.data.rows]);
 
+  const fetchdata = async (id) => {
+    await axios
+      .get(
+        `https://sigma-lpu-vsbd9.ondigitalocean.app/api/v2/university/mou/${data?.id}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
+          },
+        }
+      )
+      .then((res) => {
+        setMous(res.data.data);
+      });
+  };
+ ;
+
 
   useEffect(() => {
-  dispatch(getAllUniversityReducer({}));
-}, []);
+    dispatch(getAllUniversityReducer({}));
+  }, []);
 
   const [student, setStudent] = React.useState({});
 
@@ -390,16 +408,7 @@ const Tab1 = ({ value }) => {
             })}
           </Select>
         </FormControl>
-        {/* <TextField
-          sx={{
-            width: '300px',
-          }}
-          id="outlined-basic"
-          label="Current Semester"
-          variant="outlined"
-          value={currentSemester}
-          onChange={(e) => setCurrentSemester(e.target.value)}
-        /> */}
+
         <FormControl
           sx={{
             width: '300px',
@@ -425,7 +434,7 @@ const Tab1 = ({ value }) => {
         </FormControl>
 
         <TextField
-        disabled
+          disabled
           sx={{
             width: '300px',
           }}
@@ -435,17 +444,38 @@ const Tab1 = ({ value }) => {
           value={interestedCountry}
           onChange={(e) => setInterestedCountry(e.target.value)}
         />
-        <TextField
-        disabled
+
+        <FormControl
           sx={{
             width: '300px',
           }}
-          id="outlined-basic"
-          label="Interested University"
-          variant="outlined"
-          value={interestedUniversity}
-          onChange={(e) => setInterestedUniversity(e.target.value)}
-        />
+        >
+          <InputLabel id="demo-simple-select-helper-labels">
+            University
+          </InputLabel>
+          <Select
+            labelId="demo-simple-select-helper-labels"
+            id="demo-simple-select-helpers"
+            onChange={(e) => setInterestedUniversity(e.target.value)}
+            value={interestedUniversity}
+          >
+            {data &&
+              data?.data?.rows?.map((item, index) => {
+                return (
+                  <MenuItem
+                    onClick={() => {
+                      setInterestedCountry(item.Country);
+                      setInterestedUniversity(item['Name of University']);
+                    }}
+                    key={index}
+                    value={item['Name of University']}
+                  >
+                    {item.Country} - {item['Name of University']}
+                  </MenuItem>
+                );
+              })}
+          </Select>
+        </FormControl>
 
         <TextField
           sx={{
@@ -457,7 +487,7 @@ const Tab1 = ({ value }) => {
           value={currentCgpa}
           onChange={(e) => setCurrentCgpa(e.target.value)}
         />
-        <FormControl fullWidth>
+        {/* <FormControl fullWidth>
           <InputLabel id="demo-simple-select-helper-labels">
             University & Country - 
           </InputLabel>
@@ -478,7 +508,7 @@ const Tab1 = ({ value }) => {
               );
             })}
           </Select>
-        </FormControl>
+        </FormControl> */}
 
         <Button
           sx={{
