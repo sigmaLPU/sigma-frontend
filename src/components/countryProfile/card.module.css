@@ -1,0 +1,75 @@
+.card {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2rem;
+  }
+  
+  .infoCard {
+    border-radius: 20px;
+ 
+    display: flex;
+    flex-direction: row;
+  
+    justify-content: space-between;
+    min-height: 8vh;
+    min-width: 14vw;
+    position: relative; 
+    margin-bottom: 40px;
+    
+  }
+
+  .totalRevenues {
+    background-color:rgb(221, 239, 224);
+  
+    
+  }
+  
+  .totalTransactions {
+    background-color: rgba(244, 236, 221);
+    
+  }
+  .totalLikes {
+    background-color: rgb(239, 218, 218);
+  }
+  
+  .totalUsers {
+    background-color: rgb(222, 224, 239);
+  }
+
+
+  
+  .iconContainer {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .iconContainer img {
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+  }
+  
+  
+  .content {
+    padding: 20px;
+  }
+  
+  .content h3 {
+    font-family: 'Lato'; 
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    margin-top: 20px;
+  }
+  .content p {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    margin: 10px 0;
+    
+  
+  }
+ 
+  
