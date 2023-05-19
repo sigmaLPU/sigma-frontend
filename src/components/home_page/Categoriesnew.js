@@ -152,10 +152,9 @@ export default function Categoriesnew() {
         </Card>
 
         <Card style={{ minWidth: 250, minHeight: 200 }}>
-        
         <div style={{ display: "flex", flexDirection: "row",justifyContent:"space-between",  marginRight: "30px" }}>
-        <div style={{ backgroundColor: "#F07F1A", padding: "10px",height:55,width:55}}>
-      <SchoolIcon fontSize="large" />
+  <div style={{ backgroundColor: "#F07F1A", padding: "10px",height:55,width:55}}>
+      <SchoolIcon  fontSize="large" />
     </div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <Typography
@@ -163,7 +162,47 @@ export default function Categoriesnew() {
             component="h2"
             style={{ marginLeft: '20px', marginTop: '20px' }}
           >
-            template section
+            Sem. Exchange
+          </Typography>
+          <Typography
+            align="center"
+            variant="h3"
+            component="h5"
+            style={{ marginLeft: '30px', fontWeight: 'bold' }}
+          >
+            {
+              users.filter(
+                (user) => user.studentDetails.optedFor === 'semester-exchange'
+              ).length
+            }
+          </Typography>
+          <Button
+            onClick={() => navigate('/student_master?dp=semester-exchange')}
+            variant="contained"
+            color="primary"
+            style={{ marginLeft: '20px', marginTop: '20px' }}
+          >
+            <Typography variant="h6" component="h2">
+              View All
+            </Typography>
+          </Button>
+        </div>
+        </div>
+        </Card>
+
+        <Card style={{ minWidth: 250, minHeight: 200 }}>
+        
+        <div style={{ display: "flex", flexDirection: "row",justifyContent:"space-between",  marginRight: "30px" }}>
+        <div style={{ backgroundColor: "#F07F1A", padding: "10px",height:55,width:55}}>
+      <RateReviewIcon fontSize="large" />
+    </div>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <Typography
+            variant="h6"
+            component="h2"
+            style={{ marginLeft: '20px', marginTop: '20px' }}
+          >
+            Country Master
           </Typography>
           <Typography
             align="center"
@@ -174,7 +213,7 @@ export default function Categoriesnew() {
             125
           </Typography>
           <Button
-            onClick={() => navigate('/templates')}
+            onClick={() => navigate('/countrymaster')}
             variant="contained"
             color="primary"
             style={{ marginLeft: '20px', marginTop: '20px' }}
@@ -190,7 +229,7 @@ export default function Categoriesnew() {
         
         <div style={{ display: "flex", flexDirection: "row",justifyContent:"space-between",  marginRight: "30px" }}>
         <div style={{ backgroundColor: "#F07F1A", padding: "10px",height:55,width:55}}>
-      <RateReviewIcon fontSize="large"/>
+      <ModelTrainingIcon fontSize="large"/>
     </div>
        <div style={{ display: 'flex', flexDirection: 'column' }}>
           <Typography
