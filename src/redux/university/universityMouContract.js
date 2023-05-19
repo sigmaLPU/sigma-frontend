@@ -90,6 +90,7 @@ const universityMouContractSlice = createSlice({
           temp["endDate"] = obj?.endDate
           temp["file"] = obj?.file?.f_url
           temp["file_k"] = obj?.file?.f_key
+          temp["university"] = obj?.university?._id
 
           arr.push(temp)
           ids.push(obj?._id)
@@ -129,6 +130,7 @@ const universityMouContractSlice = createSlice({
       temp["endDate"] = obj?.endDate
       temp["file"] = obj?.file?.f_url
       temp["file_k"] = obj?.file?.f_key
+      temp["university"] = obj?.university?._id
 
       state.data.data.data = [temp].concat(state.data.data.data)
       state.data.data.ids = [obj?._id].concat(state.data.data.ids)
@@ -159,6 +161,8 @@ const universityMouContractSlice = createSlice({
       temp["startDate"] = obj?.startDate
       temp["endDate"] = obj?.endDate
       temp["file"] = obj?.file
+      temp["file_k"] = obj?.file_k
+      temp["university"] = obj?.university?._id
 
       var id = obj?._id
       var index = -1

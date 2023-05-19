@@ -1,20 +1,27 @@
 // file imports
 import './App.css';
 
-
-
-
 // react tools import
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 // component imports
-import { Chatgpt, CountryMaster, Ethics, HomePage, Outreach, Policy, Semester, Shared, Technical } from './components/routes'; // default home page
+import {
+  Chatgpt,
+  CountryMaster,
+  Ethics,
+  HomePage,
+  Outreach,
+  Policy,
+  Semester,
+  Shared,
+  Technical,
+} from './components/routes'; // default home page
 import { LoginPage } from './components/routes'; // default home page
 import { Error404 } from './components/routes'; // default home page
 import { UniversityMaster } from './components/routes'; // mou master
 import { UniversityProfile } from './components/routes'; // UniversityProfile
 import { StudentProfile } from './components/routes'; // StudentProfile
-import {Staff} from './components/routes';
+import { Staff } from './components/routes';
 import { MeetingProfile } from './components/routes'; // MeetingProfile
 import { MeetingMaster } from './components/routes'; // Meeting Master
 import { ResetPassword, ResetRequest } from './components/routes'; // reset password
@@ -37,20 +44,11 @@ import UserInfo from './components/profile_page/UserInfo';
 import FacultyInfo from './components/profile_page/faculty/FacultyProfile';
 import StudentMaster from './components/students/StudentMaster';
 
-
-import ChatPage from "./components/Chatgpt/ChatPage";
+import ChatPage from './components/Chatgpt/ChatPage';
 import DarkModeToggle from './DarkModeToggle';
 function App() {
-  
   return (
     <div>
-
-
-    
-      
-  
-  
-    
       <Router>
         <Routes>
           {/**/}
@@ -173,7 +171,7 @@ function App() {
             }
           />
 
-<Route
+          <Route
             path="/training/policy"
             element={
               <ProtectedRoute>
@@ -182,7 +180,7 @@ function App() {
             }
           />
 
-<Route
+          <Route
             path="/training/ethics"
             element={
               <ProtectedRoute>
@@ -191,7 +189,7 @@ function App() {
             }
           />
 
-<Route
+          <Route
             path="/training/semesterExchange"
             element={
               <ProtectedRoute>
@@ -200,7 +198,7 @@ function App() {
             }
           />
 
-<Route
+          <Route
             path="/training/TechnicalTools"
             element={
               <ProtectedRoute>
@@ -209,7 +207,7 @@ function App() {
             }
           />
 
-<Route
+          <Route
             path="/training/outreach"
             element={
               <ProtectedRoute>
@@ -236,7 +234,7 @@ function App() {
           />
 
           <Route
-            path="/semesterExchange"
+            path="/country/:id"
             element={
               <ProtectedRoute>
                 <CountryProfile />
@@ -272,48 +270,46 @@ function App() {
             path="/staff"
             element={
               <ProtectedRoute>
-                <Staff/>
+                <Staff />
               </ProtectedRoute>
             }
           />
-         
-         <Route
+
+          <Route
             path="/chatgpt"
             element={
               <ProtectedRoute>
-                <Chatgpt/>
+                <Chatgpt />
               </ProtectedRoute>
             }
           />
 
-<Route
+          <Route
             path="/shared"
             element={
               <ProtectedRoute>
-                <Shared/>
+                <Shared />
               </ProtectedRoute>
             }
           />
 
-<Route
+          <Route
             path="/chat"
             element={
               <ProtectedRoute>
-                <ChatPage/>
+                <ChatPage />
               </ProtectedRoute>
             }
           />
 
-<Route
+          <Route
             path="/countrymaster"
             element={
               <ProtectedRoute>
-                <CountryMaster/>
+                <CountryMaster />
               </ProtectedRoute>
             }
           />
-
-
 
           {/*When page not found*/}
           <Route path="*" element={<Error404 />} />
@@ -321,11 +317,7 @@ function App() {
         </Routes>
 
         {/* <Route path="/chat" component={ChatPage} /> */}
-
       </Router>
-  
-  
- 
     </div>
   );
 }

@@ -22,54 +22,38 @@ import {
   useParams,
   useSearchParams,
 } from 'react-router-dom';
-import { display } from '@mui/system';
 import { AddCircle, Delete, Edit, OpenInBrowser } from '@mui/icons-material';
 
 const CountryMaster = () => {
   const navigate = useNavigate();
 
-  const [searchParams] = useSearchParams();
-
-  const [dp, setDp] = React.useState(searchParams.get('dp'));
+  const [countries, setCountries] = React.useState([]);
 
   const [name, setName] = React.useState('');
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('123456');
-  const [regNo, setRegNo] = React.useState('');
-  const [phone, setPhone] = React.useState('');
-  const [optedFor, setOptedFor] = React.useState('');
+  const [code, setCode] = React.useState('');
 
-  const [users, setUsers] = React.useState([]);
+    const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
+  // const url = 'http://localhost:5000';
 
-//   const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
-  const url = 'http://localhost:5000';
+  const [open, setOpen] = React.useState(false);
 
   useEffect(() => {
-    async function fetchUser() {
+    const fetchCountries = async () => {
       try {
-        const { data } = await axios.get(url + '/api/v2/user/getAllStudents', {
+        const data = await axios.get(url + '/api/v2/country/all', {
           headers: {
             'Content-Type': 'application/json',
             Authorization: 'Bearer ' + localStorage.getItem('token'),
           },
         });
 
-        setUsers(data && data.students);
+        setCountries(data.data.countries);
       } catch (error) {
-        alert(error && error.response.data.error);
+        console.log(error);
       }
-    }
-    fetchUser();
-
-    if (dp && dp === 'credit-transfer') {
-      setOptedFor('credit-transfer');
-    }
-    else if(dp && dp === 'semester-exchange') {
-      setOptedFor('semester-exchange');
-    }
-  }, [dp]);
-
-  const [open, setOpen] = React.useState(false);
+    };
+    fetchCountries();
+  }, []);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -84,80 +68,67 @@ const CountryMaster = () => {
 
     try {
       const data = await axios.post(
-        url + '/api/v2/user/register',
+        url + '/api/v2/country/add',
 
         {
           name,
-          email,
-          regNo,
-          password,
-          isFaculty: false,
-          authorization: 'student',
-          phone,
-          optedFor,
+          code,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
+          },
         }
       );
 
-      alert(data && data.data.message);
+      alert('Country Added Successfully');
       setOpen(false);
       window.location.reload();
     } catch (error) {
-      alert(error && error.response.data.error);
+      alert(error.response.data.message);
       console.log(error);
     }
   };
 
   const columns = [
-   
     {
-      field: 'Country',
+      field: 'name',
       headerName: 'Country',
+
       flex: 1,
     },
     {
-        field: 'No. of Partners',
-        headerName: 'No. of Partners',
-        flex: 1,
-      },
-
-   
-    
-    {
-      field: 'assignedTo',
-      headerName: 'Assigned To',
+      field: 'code',
+      headerName: 'Country Code',
       flex: 1,
-      valueGetter: (params) => {
-        return params.row.studentDetails.assignedCounsilor;
-      },
+    },
+    {
+      field: 'No. of Partners',
+      headerName: 'No. of Partners',
+      flex: 1,
     },
 
     {
-      field: 'details',
-      headerName: 'Actions',
-      flex: 0.5,
-      renderCell: (cellValue) => {
-        return (
-          <div
+      field: 'action',
+      headerName: 'Details',
+      flex: 1,
+      renderCell: (params) => (
+        <strong>
+          <Link
+            to={`/country/${params.row._id}`}
             style={{
-              width: '100%',
+              textDecoration: 'none',
+              color: '#F07F1A',
               display: 'flex',
-              justifyContent: 'space-around',
+              justifyContent: 'center',
               alignItems: 'center',
-              height: '100%',
             }}
           >
-            <IconButton
-              onClick={() => {
-                navigate(`/student/${cellValue.row._id}`);
-              }}
-            >
-              <OpenInBrowser />
-            </IconButton>
-
-            <FormControlLabel control={<Switch defaultChecked />} />
-          </div>
-        );
-      },
+            <OpenInBrowser />
+          </Link>
+        </strong>
+      ),
     },
   ];
 
@@ -175,7 +146,6 @@ const CountryMaster = () => {
               }}
             >
               <Button
-                disabled={users?.length === 0}
                 sx={{
                   backgroundColor: '#F07F1A',
 
@@ -224,13 +194,7 @@ const CountryMaster = () => {
               }}
             >
               <DataGrid
-                rows={
-                  dp
-                    ? users.filter(
-                        (user) => user.studentDetails.optedFor === dp
-                      ) || []
-                    : users || []
-                }
+                rows={countries || []}
                 columns={columns}
                 getRowId={(row) => row._id}
                 components={{ Toolbar: GridToolbar }}
@@ -251,9 +215,7 @@ const CountryMaster = () => {
                 }}
               >
                 <div>
-                  <h3 style={{ textAlign: 'center' }}>
-                    Register Student - Admin
-                  </h3>
+                  <h3 style={{ textAlign: 'center' }}>Add Country - Admin</h3>
                   <div
                     style={{
                       marginTop: '1.5rem',
@@ -272,71 +234,28 @@ const CountryMaster = () => {
                       }}
                     >
                       <TextField
-                      fullWidth
+                        fullWidth
                         label="Enter Name"
                         variant="outlined"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                       />
                       <TextField
-                      fullWidth
-                        label="Enter Email"
-                        variant="outlined"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                      />
-                      <TextField
-                      fullWidth
+                        fullWidth
+                        label="Enter Country Code"
                         type="number"
-                        label="UID / Reg No"
                         variant="outlined"
-                        value={regNo}
-                        onChange={(e) => setRegNo(e.target.value)}
-                      />{' '}
-                           <TextField
-                      fullWidth
-                        type="number"
-                        label="Phone"
-                        variant="outlined"
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                      />{' '}
-                      <FormControl
-                      disabled={dp ? true : false}
-                      fullWidth
-                        variant="outlined"
-                        label="Opted For"
-                        >
-                        <InputLabel id="demo-simple-select-outlined-label">
-                          Opted For
-                        </InputLabel>
-                        <Select
-                          labelId="demo-simple-select-outlined-label"
-                          id="demo-simple-select-outlined"
-                          value={optedFor}
-                          onChange={(e) => setOptedFor(e.target.value)}
-                          label="Opted For"
-                        >
-                          <MenuItem value="">
-                            <em>None</em> 
-                          </MenuItem>
-                          <MenuItem value="semester-exchange">Semester Exchange</MenuItem>
-                          <MenuItem value="credit-transfer">Credit Transfer</MenuItem>
-                          </Select>
-
-                        </FormControl>
-                      <TextField
-                      fullWidth
-                        label="Password"
-                        variant="outlined"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        value={code}
+                        onChange={(e) => setCode(e.target.value)}
                       />
 
                       <Button
                         fullWidth
-                      type="submit" variant="contained" color="primary">
-                        Register
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                      >
+                        Create
                       </Button>
                     </form>
                   </div>
