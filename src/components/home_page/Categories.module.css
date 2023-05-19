@@ -1,0 +1,56 @@
+.root {
+    display: flex;
+    justify-content: center;
+    height: 30vh;
+    width: 100%;
+    margin-top: 2rem;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-around;
+    margin: 10px;
+    height: 200px;
+    width: 260px;
+   
+  }
+  
+  .card {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+  }
+  
+  .creditCard {
+    background-color: #F07F1A;
+  }
+  
+  .shoppingCart {
+    background-color: #F07F1A;
+  }
+  
+  .flight {
+    background-color: #F07F1A;
+  }
+  
+  .hotel {
+    background-color: #F07F1A;
+  }
+  
+  .restaurant {
+    background-color: #F07F1A;
+  }
+  
+  .icon {
+    font-size: 2.5rem;
+    color: #fff;
+  }
+  
+  .label {
+    color: #fff;
+    font-weight: bold;
+  }
+  

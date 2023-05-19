@@ -22,6 +22,7 @@ import Quotes from "randomquote-api";
 import ct, { getAllCountries }  from 'countries-and-timezones'
 import BarChartCard from './BarChartCard';
 import Categories from './Categories';
+import Categoriesnew from './Categoriesnew';
 // function defination
 function checkTime(i) {
   if (i < 10) {
@@ -343,9 +344,11 @@ export default function Dashboard(props) {
     
 
       {/*Bottom part*/}
-      <BarChartCard />
 
-      <Categories/>
+      <BarChartCard />
+     
+
+      <Categoriesnew/>
     </div>
   );
 }
