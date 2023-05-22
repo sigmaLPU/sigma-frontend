@@ -215,6 +215,12 @@ export default function CountryProfile(props) {
               </div>
             </div>
           </div>
+          <div style={{ marginLeft: '4rem', width: '92%' }}>
+      
+       
+       
+      <NewTable title={"Collaborated University"} popup={<AddNewUniversity/>} rows={data?.data?.rows || []} columns={columns} />
+      </div>
           <div className={style.main2}>
             <div className={style.graph}>
               <div className={style.linegraph}>
@@ -226,12 +232,7 @@ export default function CountryProfile(props) {
             </div>
           </div>
           
-          <div style={{ marginLeft: '4rem', width: '92%' }}>
-      
-       
-       
-          <NewTable title={"Collaborated University"} popup={<AddNewUniversity/>} rows={data?.data?.rows || []} columns={columns} />
-          </div>
+         
 
         </div>
       </NavSideBarLayout>
