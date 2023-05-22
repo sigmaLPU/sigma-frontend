@@ -54,16 +54,16 @@ const Linechart = () => {
     <div style={{ position: 'relative', padding: '16px', borderRadius: '20px', backgroundColor: 'white' }}>
       <p
         style={{
-          marginTop: '-2rem',
+          marginTop: '-3.5vh',
           backgroundColor: '#F07F1A',
-          width: '12rem',
+          width: '20%',
           borderBottomRightRadius: '50%',
           borderBottomLeftRadius: '50%',
           paddingBottom: '10px',
           paddingTop: '10px',
           fontSize: '22px',
           textAlign: 'center',
-          marginLeft: '35rem',
+          marginLeft: '45%',
         }}
       >
         Activities
