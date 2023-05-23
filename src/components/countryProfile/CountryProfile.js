@@ -25,20 +25,67 @@ export default function CountryProfile(props) {
 
   const [data, setData] = useState(rawData);
 
+  const [universities, setUniversities] = useState([]);
   const [country, setCountry] = React.useState({});
+  const [filteredData, setFilteredData] = useState([]);
+
+  const [unis, setUnis] = useState([]);
+
   const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
 
   // const url = 'http://localhost:5000';
 
   useEffect(() => {
-    const fetchCountries = async () => {
+    const fetchUniversities = async () => {
       try {
-        const data = await axios.get(url + `/api/v2/country/single/${params.id}`, {
+        const data = await axios.get(url + `/api/v2/university/all`, {
           headers: {
             'Content-Type': 'application/json',
             Authorization: 'Bearer ' + localStorage.getItem('token'),
           },
         });
+
+        setUniversities(data.data.universities);
+
+        if (universities.length > 0) {
+          setFilteredData(
+            universities.filter(
+              (university) => university.country === country.name
+            )
+          );
+
+          let uniss = filteredData.map((uni) => {
+            return {
+              id: uni._id,
+              name: uni.name,
+              country: uni.country,
+              createdBy: uni.createdBy.name,
+              createdAt: uni.createdAt,
+              details: uni._id,
+            };
+          });
+
+          setUnis(uniss);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchUniversities();
+  }, [universities, country]);
+
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try {
+        const data = await axios.get(
+          url + `/api/v2/country/single/${params.id}`,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+          }
+        );
 
         setCountry(data.data.country);
       } catch (error) {
@@ -48,42 +95,17 @@ export default function CountryProfile(props) {
     fetchCountries();
   }, []);
 
-  console.log(country);
-
-  useEffect(() => {
-    const filteredData = rawData?.data?.rows?.filter(
-      (row) => row.Country === country.name
-    );
-    setData({ ...rawData, data: { ...rawData.data, rows: filteredData } });
-  }, [rawData]);
-
-  useEffect(() => {
-    dispatch(getAllUniversityReducer({}));
-  }, []);
-
   const navigate = useNavigate();
-
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = (aggrement) => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  useEffect(() => {}, []);
 
   const columns = [
     {
-      field: 'Name of University',
+      field: 'name',
       headerName: 'Name',
       flex: 1,
       cellClassName: 'name-column--cell',
     },
     {
-      field: 'Country',
+      field: 'country',
       headerName: 'Country',
       flex: 1,
     },
@@ -111,7 +133,7 @@ export default function CountryProfile(props) {
               border: '1px solid #F07F1A',
               textDecoration: 'none',
             }}
-            onClick={() => navigate(`/university/${cellValue.row.id}`)}
+            onClick={() => navigate(`/university/${cellValue.row._id}`)}
           >
             Browse
           </Button>
@@ -138,8 +160,8 @@ export default function CountryProfile(props) {
           <div style={{ marginLeft: '4rem', width: '92%' }}>
             <NewTable
               title={'Collaborated University'}
-              popup={<AddNewUniversity />}
-              rows={data?.data?.rows || []}
+              // popup={<AddNewUniversity />}
+              rows={unis || []}
               columns={columns}
             />
           </div>
