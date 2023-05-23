@@ -101,9 +101,10 @@ export function AddNewUniversity(props){
 					<div style={{display:"flex",flexDirection:"column",rowGap:"1rem"}}>
 						<input style={textFeildCSS} onChange={(e)=>setData({...data,name:e.target.value})} value={data.name} type="text" placeholder="University name"/>
 						<select style={textFeildCSS} value={data?.country} onChange={(e)=>setData({...data,country:e.target.value})}>
+						<option value="" disabled selected hidden>Country</option>
 						{
 							countryList.map(item=>(
-								<option value={item._id} >{item.name}</option>
+								<option key={item._id} value={item.name} >{item.name}</option>
 							))
 						}
 						</select>

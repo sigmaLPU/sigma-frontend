@@ -31,11 +31,13 @@ const CountryMaster = () => {
 
   const [name, setName] = React.useState('');
   const [code, setCode] = React.useState('');
+  
+  const [open, setOpen] = React.useState(false);
 
+  
     const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
   // const url = 'http://localhost:5000';
 
-  const [open, setOpen] = React.useState(false);
 
   useEffect(() => {
     const fetchCountries = async () => {
