@@ -106,7 +106,7 @@ import { Tools } from './tools/routes';
 
 import {Chatgpt} from './Chatgpt/routes';
 import {ChatPage} from './Chatgpt/routes';
-
+import OpenLeads from './openleads/OpenLeads';
 export {
   //pages
   HomePage,
@@ -182,4 +182,5 @@ export {
   TeamChart,
   Tools,
   CountryMaster,
+  OpenLeads,
 };

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { NavSideBarLayout } from '../routes';
+
 import {
   Box,
   Button,
@@ -28,6 +29,20 @@ const CountryMaster = () => {
   const navigate = useNavigate();
 
   const [countries, setCountries] = React.useState([]);
+  const [formcountries, formsetCountries] = React.useState([]);
+  const [selectedCountry, setSelectedCountry] = React.useState(null);
+
+  const handleNameChange = (event) => {
+    const selectedCountryName = event.target.value;
+    const selectedCountry = formcountries.find(
+      (country) => country.name === selectedCountryName
+    );
+    setSelectedCountry(selectedCountry);
+    setName(selectedCountryName);
+    setCode(selectedCountry ? selectedCountry.dial_code : '');
+  };
+  
+  
 
   const [name, setName] = React.useState('');
   const [code, setCode] = React.useState('');
@@ -37,6 +52,21 @@ const CountryMaster = () => {
   
     const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
   // const url = 'http://localhost:5000';
+
+
+  useEffect(() => {
+    // Fetch countries data from JSON file
+    fetch('/data/CountryCodes.json')
+      .then(response => response.json())
+      .then(data => {
+        // Extract country names from the JSON data
+        const countryNames = data.map(country => country);
+        formsetCountries(countryNames);
+      })
+      .catch(error => {
+        console.error('Error fetching countries:', error);
+      });
+  }, []);
 
 
   useEffect(() => {
@@ -235,21 +265,42 @@ const CountryMaster = () => {
                         width: '607px',
                       }}
                     >
-                      <TextField
-                        fullWidth
-                        label="Enter Name"
-                        variant="outlined"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                      />
-                      <TextField
-                        fullWidth
-                        label="Enter Country Code"
-                        type="number"
-                        variant="outlined"
-                        value={code}
-                        onChange={(e) => setCode(e.target.value)}
-                      />
+                      <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">Enter Name</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={name}
+          label="Enter Name"
+          onChange={handleNameChange}{...e => setName(e.target.value)}
+        >
+          {formcountries.map((country, index) => (
+            <MenuItem key={index} value={country.name}>
+              {country.name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+
+      <FormControl fullWidth>
+  <InputLabel id="demo-simple-select-label">Enter Code</InputLabel>
+  <Select
+    labelId="demo-simple-select-label"
+    id="demo-simple-select"
+    value={code}
+    label="Enter Code"
+    onChange={(e) => setCode(e.target.value)}
+  >
+    {selectedCountry && (
+      <MenuItem value={selectedCountry.dial_code}>
+        {selectedCountry.dial_code}
+      </MenuItem>
+    )}
+  </Select>
+</FormControl>
+
+                      
+                      
 
                       <Button
                         fullWidth
