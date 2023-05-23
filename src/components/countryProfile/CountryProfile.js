@@ -133,7 +133,7 @@ export default function CountryProfile(props) {
               border: '1px solid #F07F1A',
               textDecoration: 'none',
             }}
-            onClick={() => navigate(`/university/${cellValue.row._id}`)}
+            onClick={() => navigate(`/university/${cellValue.row.id}`)}
           >
             Browse
           </Button>
