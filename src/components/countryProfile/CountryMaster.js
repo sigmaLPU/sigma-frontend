@@ -283,8 +283,8 @@ const CountryMaster = () => {
       </FormControl>
 
       <FormControl fullWidth>
-  <InputLabel id="demo-simple-select-label">Enter Code</InputLabel>
-  <Select
+ 
+  {/* <Select
     labelId="demo-simple-select-label"
     id="demo-simple-select"
     value={code}
@@ -296,7 +296,18 @@ const CountryMaster = () => {
         {selectedCountry.dial_code}
       </MenuItem>
     )}
-  </Select>
+  </Select> */}
+
+  <InputLabel htmlFor="enter-code"></InputLabel>
+  <TextField
+    id="enter-code"
+    value={code}
+    label="Enter Code"
+    onChange={(e) => setCode(e.target.value)}
+    InputProps={{
+      readOnly: true,
+    }}
+  />
 </FormControl>
 
                       
