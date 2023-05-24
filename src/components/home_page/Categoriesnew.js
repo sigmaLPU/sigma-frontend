@@ -62,7 +62,7 @@ export default function Categoriesnew() {
         100
       </Typography>
       <Button
-        onClick={() => navigate("/openLeads")}
+        onClick={() => navigate("/openleads")}
         variant="contained"
         color="primary"
         style={{ marginLeft: "20px", marginTop: "20px",minWidth:100, minHeight: 40 }}

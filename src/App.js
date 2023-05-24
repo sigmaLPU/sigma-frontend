@@ -10,6 +10,7 @@ import {
   CountryMaster,
   Ethics,
   HomePage,
+  OpenLeads,
   Outreach,
   Policy,
   Semester,
@@ -307,6 +308,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <CountryMaster />
+              </ProtectedRoute>
+            }
+          />
+           <Route
+            path="/openleads"
+            element={
+              <ProtectedRoute>
+                <OpenLeads/>
               </ProtectedRoute>
             }
           />
