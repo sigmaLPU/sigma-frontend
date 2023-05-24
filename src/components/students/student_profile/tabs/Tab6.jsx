@@ -20,7 +20,6 @@ const Tab6 = () => {
 
   const [student, setStudent] = React.useState({});
 
-  const [visa, setVisa] = React.useState(null);
   const [foriegnUniPic, setForiegnUniPic] = React.useState(null);
 
   const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
@@ -118,7 +117,12 @@ const Tab6 = () => {
               </form>
 
               {student?.studentDetails?.foriegnUniPic?.file?.f_url ? (
-                <p style={{ color: 'green' }}>File Uploaded</p>
+                <p style={{ color: 'green' }}>
+                  File Uploaded{' '}
+                  <a
+                    href={student?.studentDetails?.foriegnUniPic?.file?.f_url}
+                  >Download</a>
+                </p>
               ) : (
                 <p style={{ color: 'red' }}>No File Uploaded</p>
               )}
@@ -126,18 +130,17 @@ const Tab6 = () => {
           </Box>
           <CardMedia component="div">
             {student?.studentDetails?.foriegnUniPic?.file?.f_url ? (
-                <img
-                    src={student?.studentDetails?.foriegnUniPic?.file?.f_url}
-                    alt="foriegnUniPic"
-                    style={{ width: '100%', height: '100%' }}
-                />
+              <img
+                src={student?.studentDetails?.foriegnUniPic?.file?.f_url}
+                alt="foriegnUniPic"
+                style={{ width: '100%', height: '100%' }}
+              />
             ) : (
-                <Alert severity="error">
-                    <AlertTitle>Error</AlertTitle>
-                    No File Uploaded
-                </Alert>
+              <Alert severity="error">
+                <AlertTitle>Error</AlertTitle>
+                No File Uploaded
+              </Alert>
             )}
-          
           </CardMedia>
         </Card>
       </Box>
