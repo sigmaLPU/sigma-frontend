@@ -84,8 +84,6 @@ const Tab5 = () => {
         flexDirection="column"
         width="650px"
       >
-    
-
         <Card
           sx={{
             display: 'flex',
@@ -119,11 +117,13 @@ const Tab5 = () => {
               </form>
 
               {student?.studentDetails?.visa?.file?.f_url ? (
-            <p style={{ color: 'green' }}>File Uploaded</p>
+                <p style={{ color: 'green' }}>
+                  File Uploaded{' '}
+                  <a href={student?.studentDetails?.visa?.file?.f_url}>Download</a>
+                </p>
               ) : (
                 <p style={{ color: 'red' }}>No File Uploaded</p>
-              )    
-            }
+              )}
             </CardContent>
           </Box>
           <CardMedia component="div">
