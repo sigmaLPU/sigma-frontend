@@ -55,7 +55,7 @@ import {
   Settings,
   TollOutlined,
 } from '@mui/icons-material';
-import { Avatar, Menu, MenuItem, Paper } from '@mui/material';
+import { Avatar, Menu, MenuItem, Paper, Tooltip } from '@mui/material';
 import DarkModeToggle from '../../DarkModeToggle';
 import zIndex from '@mui/material/styles/zIndex';
 
@@ -159,8 +159,11 @@ export default function NavSideBar(props) {
           <span style={{ fontSize: '22px', fontWeight: '700' }}>Search</span>
         ),
         icon: (
-          // <img src={SearchIcon} style={{ height: '34px', width: '34px',color:"inherit" }} />
+         
+          //<img src={SearchIcon} style={{ height: '34px', width: '34px',color:"inherit" }} />
+          <Tooltip title="Search">
           <ManageSearchIcon sx={{ fontSize: 40, fontWeight: '800', color: theme.palette.mode === 'dark' ? '#fff' : '#333' }}/>
+          </Tooltip>
         ),
         url: '/search',
       },
@@ -171,7 +174,9 @@ export default function NavSideBar(props) {
         ),
         icon: (
           // <img src={DashboardIcon} style={{ height: '34px', width: '34px' }} />
-          <DashboardIcon sx={{ fontSize: 40, fontWeight: '800', color: theme.palette.mode === 'dark' ? '#fff' : '#333' }} />
+          <Tooltip title="Dashboard">
+          <DashboardIcon sx={{ fontSize: 40, fontWeight: '800', color: theme.palette.mode === 'dark' ? '#fff' : '#333',  }} />
+          </Tooltip>
         ),
         url: '/dashboard',
       },
@@ -182,18 +187,26 @@ export default function NavSideBar(props) {
           </span>
         ),
         icon: (
+          
           <IconButton sx={{p:0}}>
+            <Tooltip title="Student">
             <WcIcon sx={{ fontSize: 40, fontWeight: '800', color: theme.palette.mode === 'dark' ? '#fff' : '#333' }} />
+            </Tooltip>
           </IconButton>
+         
         ),
         url: '/student_master',
       },
       {
         name: <span style={{ fontSize: '22px', fontWeight: '700' }}>Team</span>,
         icon: (
+          
        <IconButton  sx={{p:0}}>
+        <Tooltip title="Team">
         <GroupsIcon sx={{ fontSize: 40, fontWeight: '800', color: theme.palette.mode === 'dark' ? '#fff' : '#333' }} />
+        </Tooltip>
         </IconButton>
+        
         ),
         url: '/team',
       },
@@ -204,10 +217,14 @@ export default function NavSideBar(props) {
           </span>
         ),
         icon: (
+          
           //<img src={GuestVisitIcon} style={{ height: '34px', width: '34px' }} />
           <IconButton  sx={{p:0}}>
+            <Tooltip title="Guest Visit">
         <CameraFrontIcon sx={{ fontSize: 40, fontWeight: '800', color: theme.palette.mode === 'dark' ? '#fff' : '#333' }} />
+        </Tooltip>
         </IconButton>
+      
         ),
         url: '/guest_visit',
       },
@@ -216,10 +233,15 @@ export default function NavSideBar(props) {
           <span style={{ fontSize: '22px', fontWeight: '700' }}>Meetings</span>
         ),
         icon: (
+         
           // <img src={MeetingIcon} style={{ height: '34px', width: '34px' }} />
+
           <IconButton  sx={{p:0}}>
+             <Tooltip title="Meetings">
           <VideoChatIcon sx={{ fontSize: 40, fontWeight: '800', color: theme.palette.mode === 'dark' ? '#fff' : '#333' }} />
+          </Tooltip>
           </IconButton>
+         
         ),
         url: '/meeting',
       },
@@ -231,9 +253,13 @@ export default function NavSideBar(props) {
         ),
         icon: (
           // <img src={SharedDataIcon} style={{ height: '34px', width: '34px' }} />
+          
           <IconButton  sx={{p:0}}>
+            <Tooltip title="Shared Data">
           <FolderSharedIcon sx={{ fontSize: 40, fontWeight: '800', color: theme.palette.mode === 'dark' ? '#fff' : '#333' }} />
+          </Tooltip>
           </IconButton>
+         
         ),
         url: '/shared',
       },
@@ -256,9 +282,13 @@ export default function NavSideBar(props) {
           </span>
         ),
         icon: (
+          
           <IconButton  sx={{p:0}}>
+            <Tooltip title="Register User">
             <PersonAddAlt sx={{ fontSize: 40, fontWeight: '800', color: theme.palette.mode === 'dark' ? '#fff' : '#333' }}  />
+            </Tooltip>
           </IconButton>
+         
         ),
         url: '/registerUser',
       },
@@ -267,10 +297,14 @@ export default function NavSideBar(props) {
           <span style={{ fontSize: '22px', fontWeight: '700' }}>Chatgpt</span>
         ),
         icon: (
+          
           // <img src={MeetingIcon} style={{ height: '34px', width: '34px' }} />
           <IconButton  sx={{p:0}}>
+            <Tooltip title="Chatgpt">
           <AssistantIcon sx={{ fontSize: 40, fontWeight: '800', color: theme.palette.mode === 'dark' ? '#fff' : '#333' }} />
+          </Tooltip>
           </IconButton>
+        
         ),
         url: '/chatgpt',
       },
