@@ -170,9 +170,6 @@ const Tab1 = ({ value }) => {
         setMous(res.data.data);
       });
   };
- ;
-
-
   useEffect(() => {
     dispatch(getAllUniversityReducer({}));
   }, []);
@@ -433,18 +430,6 @@ const Tab1 = ({ value }) => {
           </Select>
         </FormControl>
 
-        <TextField
-          disabled
-          sx={{
-            width: '300px',
-          }}
-          id="outlined-basic"
-          label="Interested Country"
-          variant="outlined"
-          value={interestedCountry}
-          onChange={(e) => setInterestedCountry(e.target.value)}
-        />
-
         <FormControl
           sx={{
             width: '300px',
@@ -476,6 +461,18 @@ const Tab1 = ({ value }) => {
               })}
           </Select>
         </FormControl>
+
+        <TextField
+          disabled
+          sx={{
+            width: '300px',
+          }}
+          id="outlined-basic"
+          label="Interested Country"
+          variant="outlined"
+          value={interestedCountry}
+          onChange={(e) => setInterestedCountry(e.target.value)}
+        />
 
         <TextField
           sx={{

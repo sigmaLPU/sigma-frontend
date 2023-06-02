@@ -113,6 +113,41 @@ const StudentMaster = () => {
       headerName: 'Name',
       flex: 1,
       cellClassName: 'name-column--cell',
+      renderCell: (cellValue) => {
+        return (
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '1rem',
+            }}
+          >
+            <img
+              src={
+                cellValue.row.profilePic ||
+                'https://www.gravatar.com/avatar/'+cellValue.row.name+'?d=mp'
+              }
+              alt="profile"
+              style={{
+                height: '2rem',
+                width: '2rem',
+                borderRadius: '50%',
+                objectFit: 'cover',
+              }}
+            />
+            <Link
+              style={{
+                textDecoration: 'none',
+                color: '#F07F1A',
+                fontWeight: 'bold',
+              }}
+              to={`/student/${cellValue.row._id}`}
+            >
+              {cellValue.row.name}
+            </Link>
+          </div>
+        );
+      }
     },
     {
       field: 'regNo',
@@ -179,10 +214,11 @@ const StudentMaster = () => {
                 navigate(`/student/${cellValue.row._id}`);
               }}
             >
-              <OpenInBrowser />
+              
+              <OpenInBrowser /> 
             </IconButton>
 
-            <FormControlLabel control={<Switch defaultChecked />} />
+            {/* <FormControlLabel control={<Switch defaultChecked />} /> */}
           </div>
         );
       },
