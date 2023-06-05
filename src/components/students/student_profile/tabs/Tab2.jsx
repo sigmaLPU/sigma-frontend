@@ -15,8 +15,11 @@ const Tab2 = () => {
   const [provitionalTranscript, setProvitionalTranscript] = React.useState({});
   const [tenthCertificate, setTenthCertificate] = React.useState({});
   const [twelfthCertificate, setTwelfthCertificate] = React.useState({});
+  const [originalTranscript, setOriginalTranscript] = React.useState({});
 
   const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
+  // const url = 'http://localhost:5000';
+
   const { enqueueSnackbar } = useSnackbar();
   const handleClickVariant = (variant, message) => () => {
     enqueueSnackbar(message, { variant });
@@ -51,6 +54,8 @@ const Tab2 = () => {
     formData.append('provitionalTranscript', provitionalTranscript);
     formData.append('tenthCertificate', tenthCertificate);
     formData.append('twelfthCertificate', twelfthCertificate);
+    formData.append('originalTranscript', originalTranscript);
+
 
     try {
       const res = await axios.put(
@@ -255,6 +260,44 @@ const Tab2 = () => {
                   name=""
                   id=""
                   onChange={(e) => setTwelfthCertificate(e.target.files[0])}
+                />
+                <IconButton float="right" type="submit">
+                  <Upload />
+                </IconButton>
+              </div>
+            </form>
+          </Box>
+        </Alert>
+
+        <Alert severity="error">
+          <AlertTitle>Original Transcript</AlertTitle>
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            minWidth="650px"
+            alignItems="center"
+          >
+            {student?.studentDetails?.originalTranscript?.file?.f_url && (
+              <a
+                href={student?.studentDetails?.originalTranscript?.file?.f_url}
+              >
+                Download Original Transcript
+              </a>
+            )}
+
+            <form onSubmit={handleSubmit}>
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '10px',
+                }}
+              >
+                <input
+                  type="file"
+                  name=""
+                  id=""
+                  onChange={(e) => setOriginalTranscript(e.target.files[0])}
                 />
                 <IconButton float="right" type="submit">
                   <Upload />

@@ -35,8 +35,8 @@ const StudentProfileBasic = ({ data, status }) => {
     enqueueSnackbar(message, { variant });
   };
 
-  const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
-  // const url = 'http://localhost:5000';
+  // const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
+  const url = 'http://localhost:5000';
 
   const [allCounsilors, setAllCounsilors] = React.useState([]);
   const [photo, setPhoto] = React.useState('');
@@ -64,6 +64,12 @@ const StudentProfileBasic = ({ data, status }) => {
     data?.studentDetails?.optedFor
   );
 
+  const [ictp, setIctp] = React.useState(data?.studentDetails?.ictp);
+  const [payment, setPayment] = React.useState({
+    amount: data?.studentDetails?.payment?.amount,
+    currency: data?.studentDetails?.payment?.currency,
+  });
+
   useEffect(() => {
     setName(data?.name);
     setEmail(data?.email);
@@ -72,6 +78,11 @@ const StudentProfileBasic = ({ data, status }) => {
     setOptedFor(data?.studentDetails?.optedFor);
     setAssignedCounsilor(data?.studentDetails?.assignedCounsilor);
     setReferedBy(data?.studentDetails?.referedBy);
+    setIctp(data?.studentDetails?.ictp);
+    setPayment({
+      amount: data?.studentDetails?.payment?.amount,
+      currency: data?.studentDetails?.payment?.currency,
+    });
     setBackedOut(data?.studentDetails?.backedOut);
     setBackedOutReason(data?.studentDetails?.backedOutReason);
 
@@ -97,6 +108,15 @@ const StudentProfileBasic = ({ data, status }) => {
     setCounsilorName(name);
   }, [data]);
 
+  useEffect(()=>{
+    if(ictp === true){
+      setPayment({
+        amount: 15000,
+        currency: 'INR',
+      })
+    }
+  },[ictp])
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -121,6 +141,8 @@ const StudentProfileBasic = ({ data, status }) => {
             referedBy,
             backedOut,
             backedOutReason,
+            ictp,
+            payment,
           },
         },
         {
@@ -282,6 +304,32 @@ const StudentProfileBasic = ({ data, status }) => {
 
               <Typography variant="h5">{referedBy}</Typography>
             </TextRow>
+
+            <TextRow>
+              <Typography
+                sx={{
+                  width: '120px',
+                }}
+              >
+                <b>ICTP Student</b>
+              </Typography>
+
+              <Typography variant="h5">{ictp ? 'Yes': 'No'}</Typography>
+            </TextRow>
+
+            <TextRow>
+              <Typography
+                sx={{
+                  width: '120px',
+                }}
+              >
+                <b>Payment</b>
+              </Typography>
+
+              <Typography variant="h5">
+                {payment.currency} - {payment.amount}
+              </Typography>
+            </TextRow>
           </Box>
 
           {/* <Box
@@ -404,6 +452,31 @@ const StudentProfileBasic = ({ data, status }) => {
             fullWidth
             value={referedBy}
             onChange={(e) => setReferedBy(e.target.value)}
+          />
+
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">ICTP Student</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={ictp}
+              label="ICTP Student"
+              onChange={(e) => setIctp(e.target.value)}
+            >
+              <MenuItem value={''}>Null</MenuItem>
+              <MenuItem value={true}>Yes</MenuItem>
+              <MenuItem value={false}>No</MenuItem>
+            </Select>
+          </FormControl>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Payment Amount"
+            type="number"
+            fullWidth
+            value={payment.amount}
+            onChange={(e) => setPayment({ ...payment, amount: e.target.value })}
           />
 
           <FormControl fullWidth>
