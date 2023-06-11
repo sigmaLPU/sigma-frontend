@@ -35,8 +35,8 @@ const StudentProfileBasic = ({ data, status }) => {
     enqueueSnackbar(message, { variant });
   };
 
-  // const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
-  const url = 'http://localhost:5000';
+  const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
+  // const url = 'http://localhost:5000';
 
   const [allCounsilors, setAllCounsilors] = React.useState([]);
   const [photo, setPhoto] = React.useState('');
