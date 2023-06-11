@@ -140,6 +140,7 @@ const GeoMap = () => {
 
   const [selectedDataId, setSelectedDataId] = useState('credit_transfer');
   const [selectedData, setSelectedData] = useState(Credit_transfer);
+  const [selectedCountry, setSelectedCountry] = useState(null);
 
   const handleDataIdChange = (event) => {
     setSelectedDataId(event.target.value);
@@ -159,6 +160,11 @@ const GeoMap = () => {
     }
   };
 
+  const handleCountryClick = (countryIndex) => {
+    console.log('Clicked on country: ', selectedData[countryIndex]);
+    setSelectedCountry(selectedData[countryIndex]);
+  };
+
   return (
     <div>
      <div style={{ marginBottom: '10px' }}>
@@ -167,6 +173,7 @@ const GeoMap = () => {
     onChange={handleDataChange}
     style={{
       marginTop: '10px',
+      marginRight:'10px',
       padding: '5px',
       fontSize: '16px',
       borderRadius: '4px',
@@ -178,6 +185,24 @@ const GeoMap = () => {
     <option value="Credit_transfer">Credit Transfer</option>
     <option value="Semester_Exchange">Semester Exchange</option>
     <option value="University">University</option>
+  </select>
+
+  <select
+    id="data-selector"
+    onChange={handleCountryClick}
+    style={{
+      marginTop: '10px',
+      padding: '5px',
+      fontSize: '16px',
+      borderRadius: '4px',
+      border: '1px solid #ccc',
+      backgroundColor: '#f2f2f2',
+      color: '#333',
+    }}
+  >
+    <option value="intake">september</option>
+    <option value="Semester_Exchange">january</option>
+    <option value="University">december</option>
   </select>
 </div>
 
