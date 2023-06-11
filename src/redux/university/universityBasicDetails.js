@@ -73,6 +73,10 @@ export const universityBasicDetailsSlice = createSlice({
           website: payload?.data?.university?.website
             ? payload?.data?.university?.website
             : 'Not available',
+
+          creditTransfer: payload?.data?.university?.creditTransfer,
+          semesterExchange: payload?.data?.university?.semesterExchange,
+
           createdBy: payload?.data?.university?.createdBy?.name
             ? payload?.data?.university?.createdBy?.name
             : 'Not available',
@@ -133,6 +137,10 @@ export const universityBasicDetailsSlice = createSlice({
           website: payload?.data?.university?.website
             ? payload?.data?.university?.website
             : 'Not available',
+
+          creditTransfer: payload?.data?.university?.creditTransfer,
+
+          semesterExchange: payload?.data?.university?.semesterExchange,
         };
       }
     );

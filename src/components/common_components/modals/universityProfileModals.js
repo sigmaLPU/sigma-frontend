@@ -100,6 +100,8 @@ export function BasicDetailsModal(props) {
     country: '',
     address: '',
     website: '',
+    creditTransfer: '',
+    semesterExchange: '',
   });
 
   useEffect(() => {
@@ -181,8 +183,52 @@ export function BasicDetailsModal(props) {
               type="text"
               placeholder="Website"
             />
+
+            <div>
+              <h3>Credit Transfer</h3>
+              <select
+                style={textFeildCSS}
+                onChange={(e) =>
+                  setData({ ...data, creditTransfer: e.target.value })
+                }
+
+                value={data.creditTransfer}
+              >
+                <option value="" disabled selected>
+                  Select your option
+                </option>
+
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+
+              </select>
+            </div>
+
+            <div>
+
+              <h3>Semester Exchange</h3>
+
+              <select
+                style={textFeildCSS}
+                onChange={(e) =>
+                  setData({ ...data, semesterExchange: e.target.value })
+                }
+              >
+                <option value="" disabled selected>
+                  Select your option
+                </option>
+
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+
+            </div>
+
           </div>
-          <Button submit={submit} buttonText={'Save'} />
+          <Button submit={submit} buttonText={'Save'} style={{
+            padding: '0.5rem 0',
+            width: '100%',
+          }} />
         </form>
       </div>
     </div>
@@ -1078,6 +1124,8 @@ export function ProgramOfColaborationUniversityModal(props) {
     tutionFees: '',
     scholarship: '',
     model: '',
+    creditTransfer: '',
+    semesterExchange: '',
   });
 
   useEffect(() => {}, []);
@@ -1252,14 +1300,17 @@ export function ProgramOfColaborationUniversityModal(props) {
               type="text"
               placeholder="LPU Degree name"
             /> */}
-			<select style={textFeildCSS} onChange={(e) => setData({ ...data, lpu_name: e.target.value })}>
-        <option value="">Select LPU Degree</option>
-        {list.map((item, index) => (
-          <option key={index} value={item.name}>
-            {item.name}
-          </option>
-        ))}
-      </select>
+            <select
+              style={textFeildCSS}
+              onChange={(e) => setData({ ...data, lpu_name: e.target.value })}
+            >
+              <option value="">Select LPU Degree</option>
+              {list.map((item, index) => (
+                <option key={index} value={item.name}>
+                  {item.name}
+                </option>
+              ))}
+            </select>
             <input
               style={textFeildCSS}
               onChange={(e) =>
@@ -1292,8 +1343,38 @@ export function ProgramOfColaborationUniversityModal(props) {
               type="text"
               placeholder="Model"
             />
+
+            <select
+              style={textFeildCSS}
+              onChange={(e) =>
+                setData({ ...data, creditTransfer: e.target.value })
+              }
+            >
+              <option value="">Credit Transfer</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+
+            <select
+              style={textFeildCSS}
+              onChange={(e) =>
+                setData({ ...data, semesterExchange: e.target.value })
+              }
+            >
+              <option value="">Semester Exchange</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
           </div>
-          <Button submit={submit} buttonText={'Save'} />
+          <Button
+            style={{
+              marginBottom: '1rem',
+              padding: '0.5rem 1rem',
+              width: '100%',
+            }}
+            submit={submit}
+            buttonText={'Save'}
+          />
         </form>
       </div>
     </div>

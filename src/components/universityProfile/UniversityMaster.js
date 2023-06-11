@@ -83,6 +83,17 @@ export default function MouMaster(props) {
       flex: 1,
     },
     {
+      field:"Credit Transfer",
+      headerName:"Credit Transfer",
+
+      
+    },{
+      field:"Semester Exchange",
+
+      headerName:"Semester Exchange",
+   
+    },
+    {
       field: 'createdBy',
       headerName: 'Created By',
       flex: 1,
