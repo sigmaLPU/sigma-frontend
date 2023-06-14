@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import banner from "./banner2.gif";
+import world from "../home_page/resource/world.jpg";
 import {
   Box,
   TextField,
@@ -15,10 +16,13 @@ export default function LeadForm() {
     name: "",
     registrationNumber: "",
     email: "",
+    phoneNumber: "",
+    whatsAppNumber: "",
     studyAbroadOption: "",
     currentCourse: "",
     currentSemester: "",
     passingOutYear: "",
+
   });
 
   const handleFormSubmit = (event) => {
@@ -35,7 +39,30 @@ export default function LeadForm() {
   };
 
   return (
-    <div>
+    <div
+     
+    >
+      <div
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          zIndex: -1,
+        }}
+      >
+        <img
+          src={world}
+          alt="Background"
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            filter: "blur(3px)",
+          }}
+        />
+      </div>
       <Box
         sx={{
           display: "flex",
@@ -55,16 +82,18 @@ export default function LeadForm() {
                 width: 86% !important;
               }
             }
-            
           `}
         </style>
         <img
           src={banner}
           style={{
+            position: "sticky",
             height: "auto",
-            width: "50vw",
+            width: "45vw",
             maxWidth: "100%",
             maxHeight: "30vh",
+            borderRadius: "10px",
+            boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.2)",
           }}
           alt="Banner"
         />
@@ -80,6 +109,7 @@ export default function LeadForm() {
       >
         <form style={{ width: "100%" }} onSubmit={handleFormSubmit}>
           <TextField
+            
             className="field"
             label="Name"
             variant="outlined"
@@ -109,6 +139,28 @@ export default function LeadForm() {
             value={formData.email}
             onChange={handleChange}
           />
+          <TextField
+            className="field"
+            label="Phone Number"
+            variant="outlined"
+            margin="normal"
+            style={{ width: "45%" }}
+            name="phoneNumber"
+            value={formData.phoneNumber}
+            onChange={handleChange}
+          />
+
+          <TextField
+            className="field"
+            label="WhatsApp Number"
+            variant="outlined"
+            margin="normal"
+            style={{ width: "45%" }}
+            name="whatsAppNumber"
+            value={formData.whatsAppNumber}
+            onChange={handleChange}
+          />
+
           <FormControl
             className="field"
             variant="outlined"
@@ -122,12 +174,13 @@ export default function LeadForm() {
               value={formData.studyAbroadOption}
               onChange={handleChange}
             >
-              <MenuItem value="option1">semester Exchange</MenuItem>
-              <MenuItem value="option2">credit Transfer</MenuItem>
+              <MenuItem value="Semester Exchange">semester Exchange</MenuItem>
+              <MenuItem value="Credit Transfer">credit Transfer</MenuItem>
             </Select>
           </FormControl>
           <TextField
-            className="field"
+            fontweight="bold"
+            className="field "
             label="Current Course"
             variant="outlined"
             margin="normal"
@@ -159,9 +212,15 @@ export default function LeadForm() {
           <Button
             className="field"
             variant="contained"
-            color="primary"
+            //color="primary"
             size="large"
-            style={{ width: "45%", marginTop: "20px" }}
+            style={{
+              width: "45%",
+              marginTop: "20px",
+              backgroundColor: "orange",
+              borderRadius: "10px",
+              boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.2)",
+            }}
             type="submit"
           >
             Submit
