@@ -107,6 +107,8 @@ import { Tools } from './tools/routes';
 import {Chatgpt} from './Chatgpt/routes';
 import {ChatPage} from './Chatgpt/routes';
 import OpenLeads from './openleads/OpenLeads';
+
+import LeadForm from './StudentForm/LeadForm';
 export {
   //pages
   HomePage,
@@ -128,6 +130,8 @@ export {
   Chatgpt,
   ChatPage,
   Shared,
+  LeadForm,
+
 
 
   // componets

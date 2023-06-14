@@ -10,6 +10,7 @@ import {
   CountryMaster,
   Ethics,
   HomePage,
+  LeadForm,
   OpenLeads,
   Outreach,
   Policy,
@@ -311,11 +312,19 @@ function App() {
               </ProtectedRoute>
             }
           />
-           <Route
+          <Route
             path="/openleads"
             element={
               <ProtectedRoute>
-                <OpenLeads/>
+                <OpenLeads />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/leadform"
+            element={
+              <ProtectedRoute>
+                <LeadForm/>
               </ProtectedRoute>
             }
           />
