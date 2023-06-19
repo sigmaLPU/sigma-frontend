@@ -29,7 +29,6 @@ const universityMouContractReducer = createAsyncThunk('universityMouContract/uni
 const universityMouContractAddReducer = createAsyncThunk('universityMouContract/universityMouContractAddReducer',
   async (data)=>{
 
-    data = normalize(data)
     var config = {
       method: 'post',
       url: `https://sigma-lpu-vsbd9.ondigitalocean.app/api/v2/university/mou/${data?.id}/add`,

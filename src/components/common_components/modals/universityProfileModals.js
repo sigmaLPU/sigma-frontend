@@ -191,7 +191,6 @@ export function BasicDetailsModal(props) {
                 onChange={(e) =>
                   setData({ ...data, creditTransfer: e.target.value })
                 }
-
                 value={data.creditTransfer}
               >
                 <option value="" disabled selected>
@@ -200,12 +199,10 @@ export function BasicDetailsModal(props) {
 
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
-
               </select>
             </div>
 
             <div>
-
               <h3>Semester Exchange</h3>
 
               <select
@@ -221,14 +218,16 @@ export function BasicDetailsModal(props) {
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
               </select>
-
             </div>
-
           </div>
-          <Button submit={submit} buttonText={'Save'} style={{
-            padding: '0.5rem 0',
-            width: '100%',
-          }} />
+          <Button
+            submit={submit}
+            buttonText={'Save'}
+            style={{
+              padding: '0.5rem 0',
+              width: '100%',
+            }}
+          />
         </form>
       </div>
     </div>
@@ -1565,9 +1564,6 @@ export function MouContractAddUniversityModal(props) {
     title: '',
   });
 
-  const [file, setFile] = useState({});
-  const [fileName, setFileName] = useState('');
-
   const options = [
     'general',
     'articulation_aggrement',
@@ -1604,9 +1600,10 @@ export function MouContractAddUniversityModal(props) {
   }
 
   function handleFile(e) {
-    // setFile(e.target?.files[0]);
-    // setFileName(e.target?.files[0]?.name);
-    setData({ ...data, file: e.target?.files[0] });
+    const file = e.target.files[0];
+    setData({ ...data, file });
+
+    console.log(data);
   }
 
   const textFeildCSS = {
@@ -1716,11 +1713,7 @@ export function MouContractAddUniversityModal(props) {
               }}
             >
               <span>Upload File</span>
-              <input
-                type="file"
-                style={textFeildCSS}
-                onChange={(e) => handleFile(e)}
-              />
+              <input type="file" style={textFeildCSS} onChange={handleFile} />
             </div>
           </div>
           <Button submit={onSubmit} buttonText={'Save'} />
