@@ -21,7 +21,6 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import { render } from "react-dom";
 
 const LeadStudentDashboard = () => {
   const theme = useTheme();
@@ -125,14 +124,13 @@ const LeadStudentDashboard = () => {
       width: 200,
     },
     {
-        field: "createdAt",
-        headerName: "Registered At",
-        width: 200,
-        valueGetter: (params) => {
-          return params.row.createdAt ? params.row.createdAt.split("T")[0] : "";
-        },
-     
+      field: "createdAt",
+      headerName: "Registered At",
+      width: 200,
+      valueGetter: (params) => {
+        return params.row.createdAt ? params.row.createdAt.split("T")[0] : "";
       },
+    },
     {
       field: "assignedTo",
       headerName: "Assigned To",
@@ -192,7 +190,7 @@ const LeadStudentDashboard = () => {
           backgroundColor={theme.palette.mode === "dark" ? "#333" : "#f5f5f5"}
           p="30px"
           height={"350px"}
-          minWidth={"600px"}
+          minWidth={"50vw"}
         >
           <Typography variant="h6" gutterBottom>
             Student Registered By Date
