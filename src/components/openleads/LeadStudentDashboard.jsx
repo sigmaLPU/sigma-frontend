@@ -1,13 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { NewTable } from "../routes";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import {
   Box,
+  Button,
   Chip,
-  Divider,
-  IconButton,
-  Paper,
+  Dialog,
+  DialogContent,
   Typography,
   useTheme,
 } from "@mui/material";
@@ -27,7 +26,17 @@ const LeadStudentDashboard = () => {
   const theme = useTheme();
 
   const [interestedStudents, setInterestedStudents] = useState([]);
+  const [open, setOpen] = React.useState(false);
 
+  const [selectedStudent, setSelectedStudent] = useState({});
+
+  const handleClickOpen = (student) => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   //   const url = "http://localhost:5000";
   const url = "https://sigma-lpu-vsbd9.ondigitalocean.app";
 
@@ -73,13 +82,11 @@ const LeadStudentDashboard = () => {
     {
       field: "name",
       headerName: "Name",
-
       width: 200,
-
       cellClassName: "name-column--cell",
       valueGetter: (params) => {
         return params.row.name ? params.row.name : "none";
-        },
+      },
       renderCell: (params) => {
         return (
           <div
@@ -105,8 +112,14 @@ const LeadStudentDashboard = () => {
     {
       field: "phone",
       headerName: "Phone Number",
+      valueGetter: (params) => {
+        return params.row.phone ? params.row.phone : "none";
+      },
 
       width: 200,
+      renderCell: (params) => {
+        return <a href={`tel:${params.row.phone}`}>{params.row.phone}</a>;
+      },
     },
     {
       field: "whatsapp",
@@ -114,6 +127,17 @@ const LeadStudentDashboard = () => {
       headerName: "Whatsapp Number",
 
       width: 200,
+      valueGetter: (params) => {
+        return params.row.whatsapp ? params.row.whatsapp : "none";
+      },
+
+      renderCell: (params) => {
+        return (
+          <a href={`http://wa.me/${params.row.whatsapp}`}>
+            {params.row.whatsapp}
+          </a>
+        );
+      },
     },
     {
       field: "gender",
@@ -187,6 +211,42 @@ const LeadStudentDashboard = () => {
             }}
             value={params.row.remarks}
           />
+        );
+      },
+    },
+    {
+      field: "action",
+      headerName: "Action",
+      width: 200,
+      renderCell: (params) => {
+        return (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "10px",
+            }}
+          >
+            <Button
+              variant="outlined"
+              color="primary"
+              onClick={() => {
+                handleClickOpen(params.row);
+              }}
+            >
+              Update
+            </Button>
+            <Button
+              variant="contained"
+              color="error"
+              onClick={() => {
+                alert("Not have enough permission to delete");
+              }}
+            >
+              Delete
+            </Button>
+          </div>
         );
       },
     },
@@ -321,6 +381,20 @@ const LeadStudentDashboard = () => {
           />
         </Box>
       </div>
+
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        fullWidth={true}
+        maxWidth={"md"}
+      >
+        <DialogContent
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        ></DialogContent>
+      </Dialog>
     </div>
   );
 };

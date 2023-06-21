@@ -31,7 +31,7 @@ export default function Table(props) {
       borderBottom: 'none',
     },
     '& .MuiDataGrid-virtualScroller': {
-      // backgroundColor: "#F07F1A",
+      backgroundColor: "#F07F1A",
     },
     '& .MuiDataGrid-footerContainer': {
       borderTop: 'none',
