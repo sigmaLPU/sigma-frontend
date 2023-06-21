@@ -13,27 +13,36 @@ import {
   DialogTitle,
 } from "@material-ui/core";
 import { DialogActions, DialogContent, DialogContentText } from "@mui/material";
+import axios from "axios";
 
 export default function LeadForm() {
   const [showPopup, setShowPopup] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
-    registrationNumber: "",
     email: "",
+    regNo: "",
     gender: "",
     nationality: "",
-    phoneNumber: "",
-    whatsAppNumber: "",
-    studyAbroadOption: "",
+    phone: "",
+    whatsapp: "",
+    optedFor: "",
     currentCourse: "",
     currentSemester: "",
-    passingOutYear: "",
+    currentCGPA: "",
   });
 
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formData);
-    setShowPopup(true);
+    const url = "http://localhost:5000";
+
+    const data = await axios
+      .post(url + "/api/v2/interestedStudent/add", formData)
+      .then((res) => {
+        alert("Your response has been recorded");
+      })
+      .catch((err) => {
+        alert(err.response.data.message || "Something went wrong");
+      });
   };
 
   const handleChange = (event) => {
@@ -129,8 +138,8 @@ export default function LeadForm() {
               variant="outlined"
               margin="normal"
               style={{ width: "45%" }}
-              name="registrationNumber"
-              value={formData.registrationNumber}
+              name="regNo"
+              value={formData.regNo}
               onChange={handleChange}
             />
             <TextField
@@ -178,8 +187,8 @@ export default function LeadForm() {
               variant="outlined"
               margin="normal"
               style={{ width: "45%" }}
-              name="phoneNumber"
-              value={formData.phoneNumber}
+              name="phone"
+              value={formData.phone}
               onChange={handleChange}
             />
             <TextField
@@ -188,8 +197,8 @@ export default function LeadForm() {
               variant="outlined"
               margin="normal"
               style={{ width: "45%" }}
-              name="whatsAppNumber"
-              value={formData.whatsAppNumber}
+              name="whatsapp"
+              value={formData.whatsapp}
               onChange={handleChange}
             />
             <FormControl
@@ -201,8 +210,8 @@ export default function LeadForm() {
               <InputLabel>Study Abroad Option</InputLabel>
               <Select
                 label="Study Abroad Option"
-                name="studyAbroadOption"
-                value={formData.studyAbroadOption}
+                name="optedFor"
+                value={formData.optedFor}
                 onChange={handleChange}
               >
                 <MenuItem value="Semester Exchange">semester Exchange</MenuItem>
@@ -230,16 +239,7 @@ export default function LeadForm() {
               value={formData.currentSemester}
               onChange={handleChange}
             />
-            <TextField
-              className="field"
-              label="Passing Out Year"
-              variant="outlined"
-              margin="normal"
-              style={{ width: "45%" }}
-              name="passingOutYear"
-              value={formData.passingOutYear}
-              onChange={handleChange}
-            />
+
             <Button
               className="field"
               variant="contained"

@@ -1,9 +1,9 @@
 // file imports
-import './App.css';
+import "./App.css";
 
 // react tools import
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { useEffect, useState } from "react";
 // component imports
 import {
   Chatgpt,
@@ -17,37 +17,37 @@ import {
   Semester,
   Shared,
   Technical,
-} from './components/routes'; // default home page
-import { LoginPage } from './components/routes'; // default home page
-import { Error404 } from './components/routes'; // default home page
-import { UniversityMaster } from './components/routes'; // mou master
-import { UniversityProfile } from './components/routes'; // UniversityProfile
-import { StudentProfile } from './components/routes'; // StudentProfile
-import { Staff } from './components/routes';
-import { MeetingProfile } from './components/routes'; // MeetingProfile
-import { MeetingMaster } from './components/routes'; // Meeting Master
-import { ResetPassword, ResetRequest } from './components/routes'; // reset password
-import ProtectedRoute, { ProtectedRouteResetPassword } from './ProtectedRoute';
-import { TrainingDashboard, CreditTransferTraining } from './components/routes';
-import { Search } from './components/routes';
-import { GuestVisitMaster, GuestVisitProfile } from './components/routes';
-import { TeamChart } from './components/routes';
-import { Tools } from './components/routes';
-import { CountryProfile } from './components/routes';
+} from "./components/routes"; // default home page
+import { LoginPage } from "./components/routes"; // default home page
+import { Error404 } from "./components/routes"; // default home page
+import { UniversityMaster } from "./components/routes"; // mou master
+import { UniversityProfile } from "./components/routes"; // UniversityProfile
+import { StudentProfile } from "./components/routes"; // StudentProfile
+import { Staff } from "./components/routes";
+import { MeetingProfile } from "./components/routes"; // MeetingProfile
+import { MeetingMaster } from "./components/routes"; // Meeting Master
+import { ResetPassword, ResetRequest } from "./components/routes"; // reset password
+import ProtectedRoute, { ProtectedRouteResetPassword } from "./ProtectedRoute";
+import { TrainingDashboard, CreditTransferTraining } from "./components/routes";
+import { Search } from "./components/routes";
+import { GuestVisitMaster, GuestVisitProfile } from "./components/routes";
+import { TeamChart } from "./components/routes";
+import { Tools } from "./components/routes";
+import { CountryProfile } from "./components/routes";
 
 // redux
 import {
   authenticateTokenReducer,
   authUserReducer,
-} from './redux/users/authenticateToken';
-import { useSelector, useDispatch } from 'react-redux';
-import RegisterUser from './components/registerUser/RegisterUser';
-import UserInfo from './components/profile_page/UserInfo';
-import FacultyInfo from './components/profile_page/faculty/FacultyProfile';
-import StudentMaster from './components/students/StudentMaster';
+} from "./redux/users/authenticateToken";
+import { useSelector, useDispatch } from "react-redux";
+import RegisterUser from "./components/registerUser/RegisterUser";
+import UserInfo from "./components/profile_page/UserInfo";
+import FacultyInfo from "./components/profile_page/faculty/FacultyProfile";
+import StudentMaster from "./components/students/StudentMaster";
 
-import ChatPage from './components/Chatgpt/ChatPage';
-import DarkModeToggle from './DarkModeToggle';
+import ChatPage from "./components/Chatgpt/ChatPage";
+import DarkModeToggle from "./DarkModeToggle";
 function App() {
   return (
     <div>
@@ -320,14 +320,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route
-            path="/leadform"
-            element={
-              <ProtectedRoute>
-                <LeadForm/>
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/study-abroad" element={<LeadForm />} />
 
           {/*When page not found*/}
           <Route path="*" element={<Error404 />} />
