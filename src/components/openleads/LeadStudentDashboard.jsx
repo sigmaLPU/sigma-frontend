@@ -4,6 +4,7 @@ import { NewTable } from "../routes";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import {
   Box,
+  Chip,
   Divider,
   IconButton,
   Paper,
@@ -76,6 +77,24 @@ const LeadStudentDashboard = () => {
       width: 200,
 
       cellClassName: "name-column--cell",
+      valueGetter: (params) => {
+        return params.row.name ? params.row.name : "none";
+        },
+      renderCell: (params) => {
+        return (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              flexWrap: "wrap",
+            }}
+          >
+            <b>{params.row.name}</b>
+            <Chip label={params.row.status} color="primary" />
+          </div>
+        );
+      },
     },
     {
       field: "email",
