@@ -25,6 +25,10 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
+  LineChart,
+  Line,
+  Area,
+  AreaChart,
 } from "recharts";
 
 const LeadStudentDashboard = () => {
@@ -127,6 +131,23 @@ const LeadStudentDashboard = () => {
     count: transformedData[date],
   }));
 
+  const transformedDataByMonth = interestedStudents.reduce((acc, student) => {
+    const createdAt = student.createdAt.split("T")[0]; // Extract the date portion from createdAt
+    const month = createdAt.split("-")[1] + "-" + createdAt.split("-")[0];
+    if (acc[month]) {
+      acc[month] += 1; // Increment the count for the date if it already exists
+    } else {
+      acc[month] = 1; // Initialize the count for the date if it doesn't exist
+    }
+    return acc;
+  }, {});
+
+  const chartDataByMonth = Object.keys(transformedDataByMonth).map((month) => ({
+    month,
+    count: transformedDataByMonth[month],
+    }));
+
+
   const [columns, setColumns] = useState([
     {
       field: "name",
@@ -148,9 +169,18 @@ const LeadStudentDashboard = () => {
             }}
           >
             <b>{params.row.name}</b>
-            <Chip label={params.row.status} color={
-                params.row.status === "approved" ? "success" : params.row.status === "Not Interested" ? "error" : params.row.status === "pending" ? "warning" : "info"
-            } />
+            <Chip
+              label={params.row.status}
+              color={
+                params.row.status === "approved"
+                  ? "success"
+                  : params.row.status === "Not Interested"
+                  ? "error"
+                  : params.row.status === "pending"
+                  ? "warning"
+                  : "info"
+              }
+            />
           </div>
         );
       },
@@ -332,14 +362,14 @@ const LeadStudentDashboard = () => {
           backgroundColor={theme.palette.mode === "dark" ? "#333" : "#f5f5f5"}
           p="30px"
           height={"350px"}
-          minWidth={"50vw"}
+          minWidth={"40vw"}
         >
           <Typography variant="h6" gutterBottom>
             Student Registered By Date
           </Typography>
 
           <ResponsiveContainer width="100%" height="90%">
-            <BarChart
+            <AreaChart
               width={500}
               height={300}
               data={chartData}
@@ -352,16 +382,57 @@ const LeadStudentDashboard = () => {
             >
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="date" />
-              <YAxis />
+              <YAxis type="number" />
               <Tooltip />
               <Legend />
-              <Bar dataKey="count" fill="#8884d8" />
+              <Area
+                type="monotone"
+                dataKey="count"
+                fill="#8884d8"
+                stroke="#8884d8"
+              />
+            </AreaChart>
+          </ResponsiveContainer>
+        </Box>
+        <Box
+          backgroundColor={theme.palette.mode === "dark" ? "#333" : "#f5f5f5"}
+          p="30px"
+          height={"350px"}
+          minWidth={"40vw"}
+        >
+          <Typography variant="h6" gutterBottom>
+            Student Registered By Month
+          </Typography>
+
+          <ResponsiveContainer width="100%" height="90%">
+            <BarChart
+              width={500}
+              height={300}
+              data={chartDataByMonth}
+              margin={{
+                top: 5,
+                right: 30,
+                left: 20,
+                bottom: 5,
+              }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="month" />
+              <YAxis type="number" />
+              <Tooltip />
+              <Legend />
+              <Bar
+                type="monotone"
+                dataKey="count"
+                fill="#8884d8"
+                stroke="#8884d8"
+              />
             </BarChart>
           </ResponsiveContainer>
         </Box>
       </div>
 
-      <div>
+      <div style={{}}>
         <Box
           style={{ height: 800, width: "100%", margin: "50px 0" }}
           sx={{
