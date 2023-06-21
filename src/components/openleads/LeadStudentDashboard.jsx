@@ -10,8 +10,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { render } from "react-dom";
-import { AddBoxSharp } from "@mui/icons-material";
+
 import {
   BarChart,
   Bar,
@@ -22,15 +21,15 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { render } from "react-dom";
 
 const LeadStudentDashboard = () => {
   const theme = useTheme();
 
   const [interestedStudents, setInterestedStudents] = useState([]);
 
-//   const url = "http://localhost:5000";
-  const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
-
+  //   const url = "http://localhost:5000";
+  const url = "https://sigma-lpu-vsbd9.ondigitalocean.app";
 
   useEffect(() => {
     const getInterestedStudents = async () => {
@@ -70,13 +69,12 @@ const LeadStudentDashboard = () => {
     count: transformedData[date],
   }));
 
-
   const [columns, setColumns] = useState([
     {
       field: "name",
       headerName: "Name",
 
-      flex: 1,
+      width: 200,
 
       cellClassName: "name-column--cell",
     },
@@ -84,20 +82,20 @@ const LeadStudentDashboard = () => {
       field: "email",
       headerName: "Email",
 
-      flex: 1,
+      width: 200,
     },
     {
       field: "phone",
       headerName: "Phone Number",
 
-      flex: 1,
+      width: 200,
     },
     {
       field: "whatsapp",
 
       headerName: "Whatsapp Number",
 
-      flex: 1,
+      width: 200,
     },
     {
       field: "gender",
@@ -107,29 +105,38 @@ const LeadStudentDashboard = () => {
       field: "nationality",
       headerName: "Nationality",
 
-      flex: 1,
+      width: 200,
     },
 
     {
       field: "optedFor",
       headerName: "Opted For",
 
-      flex: 1,
+      width: 200,
     },
     {
       field: "currentCourse",
       headerName: "Course",
-      flex: 1,
+      width: 200,
     },
     {
       field: "currentSemester",
       headerName: "Semester",
-      flex: 1,
+      width: 200,
     },
+    {
+        field: "createdAt",
+        headerName: "Registered At",
+        width: 200,
+        valueGetter: (params) => {
+          return params.row.createdAt ? params.row.createdAt.split("T")[0] : "";
+        },
+     
+      },
     {
       field: "assignedTo",
       headerName: "Assigned To",
-      flex: 1,
+      width: 200,
       valueGetter: (params) => {
         return params.row.assignedTo ? params.row.assignedTo : "none";
       },
@@ -137,15 +144,16 @@ const LeadStudentDashboard = () => {
     {
       field: "status",
       headerName: "Status",
-      flex: 1,
+      width: 200,
       valueGetter: (params) => {
         return params.row.status ? params.row.status : "none";
       },
     },
+
     {
       field: "remarks",
       headerName: "Remarks",
-      flex: 2,
+      width: 250,
 
       valueGetter: (params) => {
         return params.row.remarks ? params.row.remarks : "none";
@@ -186,37 +194,36 @@ const LeadStudentDashboard = () => {
           height={"350px"}
           minWidth={"600px"}
         >
-            <Typography variant="h6" gutterBottom>
-                Student Registered By Date 
-            </Typography>
-            
-      <ResponsiveContainer width="100%" height="90%">
-        <BarChart
-          width={500}
-          height={300}
-          data={chartData}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="count" fill="#8884d8" />
-        </BarChart>
-      </ResponsiveContainer>
-            
+          <Typography variant="h6" gutterBottom>
+            Student Registered By Date
+          </Typography>
+
+          <ResponsiveContainer width="100%" height="90%">
+            <BarChart
+              width={500}
+              height={300}
+              data={chartData}
+              margin={{
+                top: 5,
+                right: 30,
+                left: 20,
+                bottom: 5,
+              }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="date" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="count" fill="#8884d8" />
+            </BarChart>
+          </ResponsiveContainer>
         </Box>
       </div>
 
       <div>
         <Box
-          style={{ height: 400, width: "100%", marginTop: "50px" }}
+          style={{ height: 800, width: "100%", margin: "50px 0" }}
           sx={{
             "& .MuiDataGrid-row": {
               cursor: "pointer",
@@ -290,7 +297,6 @@ const LeadStudentDashboard = () => {
             pageSize={5}
             rowsPerPageOptions={[5]}
             getRowId={(row) => row._id}
-            autoHeight
             rowHeight={150}
             components={{
               Toolbar: GridToolbar,
