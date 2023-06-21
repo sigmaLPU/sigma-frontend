@@ -7,6 +7,11 @@ import {
   Chip,
   Dialog,
   DialogContent,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
   Typography,
   useTheme,
 } from "@mui/material";
@@ -26,6 +31,7 @@ const LeadStudentDashboard = () => {
   const theme = useTheme();
 
   const [interestedStudents, setInterestedStudents] = useState([]);
+  const [faculties, setFaculties] = useState([]);
   const [open, setOpen] = React.useState(false);
 
   const [selectedStudent, setSelectedStudent] = useState({});
@@ -61,6 +67,49 @@ const LeadStudentDashboard = () => {
     getInterestedStudents();
   }, []);
 
+  useEffect(() => {
+    const getFaculties = async () => {
+      try {
+        const response = await axios.get(
+          `${url}/api/v2/interestedStudent/getAllFaculty`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          }
+        );
+        setFaculties(response.data);
+      } catch (error) {
+        alert(error.message || "Something went wrong");
+      }
+    };
+
+    getFaculties();
+  }, []);
+
+  const handleUpdate = async () => {
+    try {
+      const response = await axios.put(
+        `${url}/api/v2/interestedStudent/single/${selectedStudent._id}`,
+        {
+          assignedTo: selectedStudent.assignedTo,
+          status: selectedStudent.status,
+          remarks: selectedStudent.remarks,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
+      alert("Updated Successfully");
+      window.location.reload();
+    } catch (error) {}
+  };
+
   // Transform the data to count the number of students created on each date
   const transformedData = interestedStudents.reduce((acc, student) => {
     const createdAt = student.createdAt.split("T")[0]; // Extract the date portion from createdAt
@@ -95,10 +144,13 @@ const LeadStudentDashboard = () => {
               alignItems: "center",
               gap: "10px",
               flexWrap: "wrap",
+              justifyContent: "center",
             }}
           >
             <b>{params.row.name}</b>
-            <Chip label={params.row.status} color="primary" />
+            <Chip label={params.row.status} color={
+                params.row.status === "approved" ? "success" : params.row.status === "Not Interested" ? "error" : params.row.status === "pending" ? "warning" : "info"
+            } />
           </div>
         );
       },
@@ -106,6 +158,14 @@ const LeadStudentDashboard = () => {
     {
       field: "email",
       headerName: "Email",
+
+      valueGetter: (params) => {
+        return params.row.email ? params.row.email : "none";
+      },
+
+      renderCell: (params) => {
+        return <a href={`mailto:${params.row.email}`}>{params.row.email}</a>;
+      },
 
       width: 200,
     },
@@ -179,7 +239,7 @@ const LeadStudentDashboard = () => {
       headerName: "Assigned To",
       width: 200,
       valueGetter: (params) => {
-        return params.row.assignedTo ? params.row.assignedTo : "none";
+        return params.row.assignedTo ? params.row.assignedTo.name : "none";
       },
     },
     {
@@ -208,7 +268,9 @@ const LeadStudentDashboard = () => {
               border: "none",
               resize: "none",
               overflow: "hidden",
+              padding: "10px",
             }}
+            disabled
             value={params.row.remarks}
           />
         );
@@ -232,7 +294,8 @@ const LeadStudentDashboard = () => {
               variant="outlined"
               color="primary"
               onClick={() => {
-                handleClickOpen(params.row);
+                setSelectedStudent(params.row);
+                handleClickOpen();
               }}
             >
               Update
@@ -393,7 +456,96 @@ const LeadStudentDashboard = () => {
             display: "flex",
             justifyContent: "center",
           }}
-        ></DialogContent>
+        >
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "column",
+              gap: "20px",
+            }}
+          >
+            <Typography variant="h6" gutterBottom>
+              Update Student Status
+            </Typography>
+
+            <FormControl variant="outlined" sx={{ minWidth: 300 }} fullWidth>
+              <InputLabel id="demo-simple-select-outlined-label">
+                Assigned To
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-outlined-label"
+                id="demo-simple-select-outlined"
+                value={selectedStudent?.assignedTo}
+                onChange={(e) =>
+                  setSelectedStudent({
+                    ...selectedStudent,
+                    assignedTo: e.target.value,
+                  })
+                }
+                label="Assigned To"
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                {faculties.map((faculty) => (
+                  <MenuItem value={faculty._id}>{faculty.name}</MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <FormControl variant="outlined" sx={{ minWidth: 300 }} fullWidth>
+              <InputLabel id="demo-simple-select-outlined-label">
+                Status
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-outlined-label"
+                id="demo-simple-select-outlined"
+                value={selectedStudent?.status}
+                onChange={(e) =>
+                  setSelectedStudent({
+                    ...selectedStudent,
+                    status: e.target.value,
+                  })
+                }
+                label="Status"
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value={"pending"}>Pending</MenuItem>
+                <MenuItem value={"approved"}>Approved</MenuItem>
+                <MenuItem value={"interested"}>Interested</MenuItem>
+                <MenuItem value={"not interested"}>Not Interested</MenuItem>
+                <MenuItem value={"unreached"}>Un Reached</MenuItem>
+              </Select>
+            </FormControl>
+            <TextField
+              fullWidth
+              id="outlined-multiline-static"
+              label="Remarks"
+              multiline
+              rows={4}
+              variant="outlined"
+              sx={{ minWidth: 300 }}
+              value={selectedStudent?.remarks}
+              onChange={(e) =>
+                setSelectedStudent({
+                  ...selectedStudent,
+                  remarks: e.target.value,
+                })
+              }
+            />
+            <Button
+              fullWidth
+              variant="contained"
+              color="primary"
+              onClick={handleUpdate}
+            >
+              Update
+            </Button>
+          </Box>
+        </DialogContent>
       </Dialog>
     </div>
   );
