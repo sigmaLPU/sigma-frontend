@@ -33,7 +33,9 @@ export default function LeadForm() {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    const url = "http://localhost:5000";
+    // const url = "http://localhost:5000";
+    const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
+
 
     const data = await axios
       .post(url + "/api/v2/interestedStudent/add", formData)
@@ -41,7 +43,7 @@ export default function LeadForm() {
         alert("Your response has been recorded");
       })
       .catch((err) => {
-        alert(err.response.data.message || "Something went wrong");
+        alert(err?.response?.data?.message || "Something went wrong");
       });
   };
 
