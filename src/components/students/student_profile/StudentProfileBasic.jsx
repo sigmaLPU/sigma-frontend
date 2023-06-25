@@ -111,7 +111,7 @@ const StudentProfileBasic = ({ data, status }) => {
   useEffect(()=>{
     if(ictp === true){
       setPayment({
-        amount: 15000,
+        amount: 150000,
         currency: 'INR',
       })
     }
