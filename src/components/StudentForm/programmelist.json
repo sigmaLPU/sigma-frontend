@@ -1,0 +1,1010 @@
+[
+ {
+  "Name": "B.Tech. (Electronics & Communication Engineering)",
+  "code": "P135"
+ },
+ {
+  "Name": "B Tech (ECE)  [ 2+2 with international credit transfer option]",
+  "code": "P135-Y"
+ },
+ {
+  "Name": "B.Tech (ECE - IOT)",
+  "code": "P135-NN1"
+ },
+ {
+  "Name": "B.Tech. (Computer Science & Engineering)",
+  "code": "P132"
+ },
+ {
+  "Name": "B Tech (CSE) [ 2+2 with international credit transfer option]",
+  "code": "P132-Y"
+ },
+ {
+  "Name": "B.Tech. CSE -  Data Science with ML",
+  "code": "P132-NNM"
+ },
+ {
+  "Name": "B.Tech. CSE - DevOps (Software Development and IT Operations)",
+  "code": "P132-NNN"
+ },
+ {
+  "Name": "B.Tech. (CSE - AI and Data Engineering) ",
+  "code": "P132-NNK"
+ },
+ {
+  "Name": "B.Tech. (CSE - Software Product Engineering)",
+  "code": "P132-NNL"
+ },
+ {
+  "Name": "B.Tech. (CSE - Decision Science & Machine Learning) ",
+  "code": "P132-NNO"
+ },
+ {
+  "Name": "B.Tech (CSE - Big Data Analytics)",
+  "code": "P132-NNJ"
+ },
+ {
+  "Name": "B.Tech (CSE - Cloud Computing)",
+  "code": "P132-NN7"
+ },
+ {
+  "Name": "B.Tech. (Hons.) (CSE- Data Science & Data Engineering)",
+  "code": "P132-HNF"
+ },
+ {
+  "Name": "B.Tech. (Hons.) (CSE- Cyber Security and Block Chain) ",
+  "code": "P132-HNG"
+ },
+ {
+  "Name": "B.Tech. (Hons.) (CSE- Full Stack Software Development)",
+  "code": "P132-HNH"
+ },
+ {
+  "Name": "B.Tech. (Information Technology)",
+  "code": "P133"
+ },
+ {
+  "Name": "B.Tech. (Mechanical Engineering)",
+  "code": "P138"
+ },
+ {
+  "Name": "B Tech (ME)  [2+2 with international credit transfer option]",
+  "code": "P138-Y"
+ },
+ {
+  "Name": "B.Tech. (ME - Mechatronics)",
+  "code": "P138-NN1"
+ },
+ {
+  "Name": "B.Tech. (ME - Mechatronics) [2+2 with international credit transfer option]",
+  "code": "P138-YN1"
+ },
+ {
+  "Name": "B.Tech. (Aerospace Engineering)",
+  "code": "P13E"
+ },
+ {
+  "Name": "B.Tech. (Civil Engineering)",
+  "code": "P137"
+ },
+ {
+  "Name": "B Tech (CE)  [ 2+2 with international credit transfer option]",
+  "code": "P137-Y"
+ },
+ {
+  "Name": "B.Tech. (Electrical Engineering)",
+  "code": "P136"
+ },
+ {
+  "Name": "B.Tech. (Electrical and Electronics Engineering)",
+  "code": "P13A"
+ },
+ {
+  "Name": "B.Tech. (Robotics and Automation)",
+  "code": "P13AF"
+ },
+ {
+  "Name": "B.Tech. (Biotechnology)",
+  "code": "P131"
+ },
+ {
+  "Name": "B Tech (Biotechnology)  [ 2+2 with international credit transfer option]",
+  "code": "P131-Y"
+ },
+ {
+  "Name": "B.Tech. (Food Technology)",
+  "code": "P13Q"
+ },
+ {
+  "Name": "B.Tech. (Biomedical Engineering)",
+  "code": "P13O"
+ },
+ {
+  "Name": "B.Tech. (Automobile Engineering)",
+  "code": "P139"
+ },
+ {
+  "Name": "B.Tech. (Automobile Engineering) [ 2+2 with international credit transfer option]",
+  "code": "P139-Y"
+ },
+ {
+  "Name": "B.Tech. (AE - Electric Vehicle Design)",
+  "code": "P139-NN1"
+ },
+ {
+  "Name": "B.Tech. (Chemical Engineering)",
+  "code": "P13C"
+ },
+ {
+  "Name": "BCA",
+  "code": "P124"
+ },
+ {
+  "Name": "BCA (Hons.)",
+  "code": "P124-H"
+ },
+ {
+  "Name": "BCA (Big Data Analytics)",
+  "code": "P124-NN5"
+ },
+ {
+  "Name": "BCA (Augmented Reality and Virtual Reality)",
+  "code": "P124-NN6"
+ },
+ {
+  "Name": "B.Sc. (Hons.) Computer Science",
+  "code": "P22A-HN3"
+ },
+ {
+  "Name": "B.Sc. (Information Technology)",
+  "code": "P123"
+ },
+ {
+  "Name": "B Sc (IT)  [2+2 with international credit transfer option]",
+  "code": "P123-Y"
+ },
+ {
+  "Name": "B.Sc. (Hons.) Agriculture",
+  "code": "P24B-H"
+ },
+ {
+  "Name": "B.Sc. (Hons.) Food Technology",
+  "code": "P224-H"
+ },
+ {
+  "Name": "B.Sc. (Nutrition & Dietetics)",
+  "code": "P225"
+ },
+ {
+  "Name": "B.Sc. (Hons.) Biotechnology",
+  "code": "P220-H"
+ },
+ {
+  "Name": "B.Sc. (Hons.) Microbiology",
+  "code": "P223-H"
+ },
+ {
+  "Name": "B.Sc. (Forensic Sciences)",
+  "code": "P22G"
+ },
+ {
+  "Name": "B.Sc. (Hons.) Botany",
+  "code": "P22A-HN4"
+ },
+ {
+  "Name": "B.Sc. (Hons.) Zoology",
+  "code": "P22A-HN5"
+ },
+ {
+  "Name": "B.Sc. (Hons.) Physics",
+  "code": "P22A-HN7"
+ },
+ {
+  "Name": "B.Sc. (Hons.) Chemistry",
+  "code": "P22A-HN6"
+ },
+ {
+  "Name": "B.Sc. (Hons.) Mathematics",
+  "code": "P22A-HN8"
+ },
+ {
+  "Name": "B.Sc. (Hons.) Statistics",
+  "code": "P22K-H"
+ },
+ {
+  "Name": "BBA",
+  "code": "P321"
+ },
+ {
+  "Name": "BBA  [ 2+2 with international credit transfer option]",
+  "code": "P321-Y"
+ },
+ {
+  "Name": "Integrated BBA - MBA",
+  "code": "P391-NE"
+ },
+ {
+  "Name": "BBA (Hons.)",
+  "code": "P320-H"
+ },
+ {
+  "Name": "BBA (Financial Markets)",
+  "code": "P320-NN6"
+ },
+ {
+  "Name": "BBA (Information Technology )",
+  "code": "P320-NN1"
+ },
+ {
+  "Name": "BBA (International Finance)",
+  "code": "P320-NNG"
+ },
+ {
+  "Name": "BBA (Blockchain)",
+  "code": "P320-NNS"
+ },
+ {
+  "Name": "BBA (Business Analytics)",
+  "code": "P320-NNB"
+ },
+ {
+  "Name": "B.Com.",
+  "code": "P322"
+ },
+ {
+  "Name": "B.Com  [ 2+2 with international credit transfer option]",
+  "code": "P322-Y"
+ },
+ {
+  "Name": "B.Com. (Hons.)",
+  "code": "P322-H"
+ },
+ {
+  "Name": "B.Com. (Management Accounting and International Finance)",
+  "code": "P322-NN2"
+ },
+ {
+  "Name": "B.Com (Financial Process Automation)",
+  "code": "P322-NN3"
+ },
+ {
+  "Name": "B.Sc. (Hons.) Economics",
+  "code": "P323-H"
+ },
+ {
+  "Name": "B.A., LL.B.(Hons.)\n{No exit\/discontinue option after B.A.}",
+  "code": "P490-HH"
+ },
+ {
+  "Name": "BBA, LL.B. (Hons.)\n{No exit\/discontinue option after BBA}",
+  "code": "P391-HH"
+ },
+ {
+  "Name": "B.Sc. (Airlines, Tourism & Hospitality)",
+  "code": "P325"
+ },
+ {
+  "Name": "BBA (Tourism & Hospitality)",
+  "code": "P320-NN4"
+ },
+ {
+  "Name": "BBA (Airlines and Airport Management)",
+  "code": "P320-NNM"
+ },
+ {
+  "Name": "B.Sc. (Hotel Management)",
+  "code": "P324"
+ },
+ {
+  "Name": "Bachelor of Hotel Mgt & Catering Technology (BHMCT)",
+  "code": "P344"
+ },
+ {
+  "Name": "Bachelor of Hotel Mgt & Catering Technology (BHMCT)  [ 2+2 with international credit transfer option]",
+  "code": "P344-Y"
+ },
+ {
+  "Name": "B.A. (Culinary Arts)",
+  "code": "P324-NN4"
+ },
+ {
+  "Name": "B.A. (Culinary Arts) [ 2+2 with international credit transfer option]",
+  "code": "P324-YN4"
+ },
+ {
+  "Name": "B. Arch.",
+  "code": "P741"
+ },
+ {
+  "Name": "B. Plan.",
+  "code": "P743"
+ },
+ {
+  "Name": "B.Sc. (Design - Interior & Furniture)",
+  "code": "P722-NN1"
+ },
+ {
+  "Name": "B.Design (Interior & Furniture)",
+  "code": "P742-NN1"
+ },
+ {
+  "Name": "B.Design (Product & Industrial)",
+  "code": "P742-NN2"
+ },
+ {
+  "Name": "B.Design (User Experience)",
+  "code": "P742-NN9"
+ },
+ {
+  "Name": "B.Sc. (Design - Fashion)",
+  "code": "P722-NN3"
+ },
+ {
+  "Name": "B.Design (Fashion)",
+  "code": "P742-NN3"
+ },
+ {
+  "Name": "B Design (Fashion)  [ 2+2 with international credit transfer option]",
+  "code": "P742-YN3"
+ },
+ {
+  "Name": "B.Sc. (Design - Multimedia)",
+  "code": "P722-NN7"
+ },
+ {
+  "Name": "B.Design (Multimedia)",
+  "code": "P742-NN7"
+ },
+ {
+  "Name": "B.Sc. (Design - Gaming)",
+  "code": "P722-NN8"
+ },
+ {
+  "Name": "B.Design (Gaming)",
+  "code": "P742-NN8"
+ },
+ {
+  "Name": "B.Sc. (Design - Graphics)",
+  "code": "P722-NN5"
+ },
+ {
+  "Name": "B.Design (Graphics)",
+  "code": "P742-NN5"
+ },
+ {
+  "Name": "B.A. (Fine Arts)",
+  "code": "P421"
+ },
+ {
+  "Name": "Bachelor of Fine Arts (BFA)",
+  "code": "P441"
+ },
+ {
+  "Name": "B.A. (Journalism & Mass Communication)",
+  "code": "P724"
+ },
+ {
+  "Name": "B.Sc. (Film & TV Production)",
+  "code": "P727"
+ },
+ {
+  "Name": "Diploma in Library & Information Sciences (D. Lib.I.Sc.)",
+  "code": "P41B"
+ },
+ {
+  "Name": "B.Design (Film & TV Production)",
+  "code": "P742-NN6"
+ },
+ {
+  "Name": "B.A. (Music Vocal)",
+  "code": "P422-NN5"
+ },
+ {
+  "Name": "B.A. (Theatre)",
+  "code": "P422-NN7"
+ },
+ {
+  "Name": "BPA (Music Vocal)",
+  "code": "P442-NN5"
+ },
+ {
+  "Name": "BPA (Theatre)",
+  "code": "P442-NN7"
+ },
+ {
+  "Name": "Bachelor of Arts (B.A.)",
+  "code": "P420"
+ },
+ {
+  "Name": "B.A. (Hons.)\nEnglish\nPolitical Science\nHistory\nSociology\nGeography\nPsychology\nPunjabi\nPublic Administration ",
+  "code": "P420-H"
+ },
+ {
+  "Name": "B.Sc. (Health and Physical Education)",
+  "code": "P622"
+ },
+ {
+  "Name": "Bachelor of Physical Education & Sports (BPES)",
+  "code": "P625"
+ },
+ {
+  "Name": "Integrated B.A. - B.Ed.",
+  "code": "P490-NK"
+ },
+ {
+  "Name": "Integrated B.Sc. - B.Ed.",
+  "code": "P29A-NK"
+ },
+ {
+  "Name": "B.Pharm.",
+  "code": "P540-NNN-D"
+ },
+ {
+  "Name": "Bachelor of Physiotherapy (BPT)",
+  "code": "P542"
+ },
+ {
+  "Name": "B.Pharm. (Ayurveda)",
+  "code": "P543"
+ },
+ {
+  "Name": "B.Sc. (Medical Laboratory Technology)",
+  "code": "P521"
+ },
+ {
+  "Name": "Diploma (Engg.) Electronics & Comm. Engg. (ECE) [Lateral Entry]",
+  "code": "P105-L"
+ },
+ {
+  "Name": "Diploma (Engg.) Computer Sc. & Engg. (CSE) [Lateral Entry]",
+  "code": "P102-L"
+ },
+ {
+  "Name": "Diploma (Engg.) Mechanical Engg. (ME) [Lateral Entry]",
+  "code": "P108-L"
+ },
+ {
+  "Name": "Diploma (Engg.) Civil Engg. (CE) [Lateral Entry]",
+  "code": "P107-L"
+ },
+ {
+  "Name": "Diploma (Engg.)  Electrical Engg. (EE) [Lateral Entry]",
+  "code": "P106-L"
+ },
+ {
+  "Name": "B.Tech. (Electronics & Communication Engineering) [Lateral Entry]",
+  "code": "P135-L"
+ },
+ {
+  "Name": "B.Tech. (Computer Science & Engineering) [Lateral Entry]",
+  "code": "P132-L"
+ },
+ {
+  "Name": "B.Tech. (Information Technology) [Lateral Entry]",
+  "code": "P133-L"
+ },
+ {
+  "Name": "B.Tech. (Mechanical Engineering) [Lateral Entry]",
+  "code": "P138-L"
+ },
+ {
+  "Name": "B.Tech. (ME - Mechatronics) [Lateral Entry]",
+  "code": "P138-LN1"
+ },
+ {
+  "Name": "B.Tech. (Civil Engineering) [Lateral Entry]",
+  "code": "P137-L"
+ },
+ {
+  "Name": "B.Tech. (Construction Technology) [Lateral Entry]  [To be offered to only L & T diploma holders)",
+  "code": "P137-LN1"
+ },
+ {
+  "Name": "B.Tech. (Electrical Engineering) [Lateral Entry]",
+  "code": "P136-L"
+ },
+ {
+  "Name": "B.Tech. (Electrical and Electronics Engineering) [Lateral Entry]",
+  "code": "P13A-L"
+ },
+ {
+  "Name": "B.Tech. (Robotics and Automation) [Lateral Entry]",
+  "code": "P13AF-L"
+ },
+ {
+  "Name": "B.Tech. (Biotechnology) [Lateral Entry]",
+  "code": "P131-L"
+ },
+ {
+  "Name": "B.Tech. (Food Technology) [Lateral Entry]",
+  "code": "P13Q-L"
+ },
+ {
+  "Name": "B.Tech. (Automobile Engineering) [Lateral Entry]",
+  "code": "P139-L"
+ },
+ {
+  "Name": "B.Tech. (Aerospace Engineering) [Lateral Entry]",
+  "code": "P13E-L"
+ },
+ {
+  "Name": "B.Tech. (Chemical Engineering) [Lateral Entry]",
+  "code": "P13C-L"
+ },
+ {
+  "Name": "B.Tech. (Biomedical Engineering) [Lateral Entry]",
+  "code": "P13O-L"
+ },
+ {
+  "Name": "BCA [Lateral Entry]",
+  "code": "P124-L"
+ },
+ {
+  "Name": "B.Sc. (Information Technology) [Lateral Entry]",
+  "code": "P123-L"
+ },
+ {
+  "Name": "BBA [Lateral Entry]",
+  "code": "P321-L"
+ },
+ {
+  "Name": "B.Com. [Lateral Entry]",
+  "code": "P322-L"
+ },
+ {
+  "Name": "B.Sc. (Hotel Management) [Lateral Entry]",
+  "code": "P324-L"
+ },
+ {
+  "Name": "Bachelor of Hotel Mgt & Catering Technology (BHMCT) [Lateral Entry]",
+  "code": "P344-L"
+ },
+ {
+  "Name": "B.Sc. (Airlines, Tourism & Hospitality) [Lateral Entry]",
+  "code": "P325-L"
+ },
+ {
+  "Name": "Diploma in Architectural Assistantship [Lateral Entry]",
+  "code": "P701-L"
+ },
+ {
+  "Name": "B.Sc. (Design - Interior & Furniture) [Lateral Entry]",
+  "code": "P722-LN1"
+ },
+ {
+  "Name": "B.Design (Interior & Furniture) [Lateral Entry]",
+  "code": "P742-LN1"
+ },
+ {
+  "Name": "B.Design (Product & Industrial) [Lateral Entry]",
+  "code": "P742-LN2"
+ },
+ {
+  "Name": "B.Sc. (Design - Fashion) [Lateral Entry]",
+  "code": "P722-LN3"
+ },
+ {
+  "Name": "B.Design (Fashion) [Lateral Entry]",
+  "code": "P742-LN3"
+ },
+ {
+  "Name": "B.Pharm. [Lateral Entry]",
+  "code": "P540-LNN-D"
+ },
+ {
+  "Name": "Bachelor of Physiotherapy (BPT) [Lateral Entry]",
+  "code": "P542-L"
+ },
+ {
+  "Name": "B.Sc. (Medical Laboratory Technology) [Lateral Entry]",
+  "code": "P521-L"
+ },
+ {
+  "Name": "MBA",
+  "code": "P371-NNAF"
+ },
+ {
+  "Name": "MBA  [ 1+1 with international credit transfer option]",
+  "code": "P371-YNAF"
+ },
+ {
+  "Name": "MBA (International Business)",
+  "code": "P370-NN2F"
+ },
+ {
+  "Name": "MBA (Hospital & Healthcare Management)",
+  "code": "P370-NN3F"
+ },
+ {
+  "Name": "MBA (Business Analytics)",
+  "code": "P370-NNBF"
+ },
+ {
+  "Name": "MBA (Supply Chain & Logistics)",
+  "code": "P370-NN7F"
+ },
+ {
+  "Name": "MBA (Financial Markets)",
+  "code": "P370-NN6F"
+ },
+ {
+  "Name": "MBA (Process Automation & Blockchain)",
+  "code": "P370-NNRF"
+ },
+ {
+  "Name": "M.Com.",
+  "code": "P362"
+ },
+ {
+  "Name": "M.Sc. (Hons.) Economics",
+  "code": "P363-H"
+ },
+ {
+  "Name": "LL.B.",
+  "code": "P4AE"
+ },
+ {
+  "Name": "LL.M.",
+  "code": "P4BE-NN1"
+ },
+ {
+  "Name": "MBA (Tourism and Hospitality)",
+  "code": "P370-NN4"
+ },
+ {
+  "Name": "M.Sc. (Hotel Management)",
+  "code": "P364"
+ },
+ {
+  "Name": "M.Arch. (Executive)",
+  "code": "P771-T"
+ },
+ {
+  "Name": "M. Plan.",
+  "code": "P773"
+ },
+ {
+  "Name": "M.Sc. (Design -Interior & Furniture)",
+  "code": "P762-NN1"
+ },
+ {
+  "Name": "M.Design (Interior & Furniture)",
+  "code": "P772-NN1"
+ },
+ {
+  "Name": "M.Design (Product & Industrial)",
+  "code": "P772-NN2"
+ },
+ {
+  "Name": "M.Design (User Experience)",
+  "code": "P772-NN9"
+ },
+ {
+  "Name": "M.Design (Fashion)",
+  "code": "P772-NN3"
+ },
+ {
+  "Name": "M.Sc. (Design - Fashion)",
+  "code": "P762-NN3"
+ },
+ {
+  "Name": "M.Design (Multimedia)",
+  "code": "P772-NN7"
+ },
+ {
+  "Name": "M.Sc. (Design - Multimedia)",
+  "code": "P762-NN7"
+ },
+ {
+  "Name": "Master of Fine Arts (MFA)",
+  "code": "P471"
+ },
+ {
+  "Name": "M.A. (Journalism & Mass Communication)",
+  "code": "P764"
+ },
+ {
+  "Name": "M.Sc. (Film and TV Production)",
+  "code": "P767"
+ },
+ {
+  "Name": "Master of Performing Arts (MPA)",
+  "code": "P472"
+ },
+ {
+  "Name": "M.A. (Acting)",
+  "code": "P462-NNC"
+ },
+ {
+  "Name": "M.A. (History)",
+  "code": "P466"
+ },
+ {
+  "Name": "M.A. (Psychology)",
+  "code": "P46A"
+ },
+ {
+  "Name": "M.A. (Clinical Psychology)",
+  "code": "P46G"
+ },
+ {
+  "Name": "M.Sc. (Forensic Psychology)",
+  "code": "P46A-NN2"
+ },
+ {
+  "Name": "M.A. (Sociology)",
+  "code": "P467"
+ },
+ {
+  "Name": "Master of Social Work (MSW)",
+  "code": "P46K"
+ },
+ {
+  "Name": "M.A. (Political Science)",
+  "code": "P468"
+ },
+ {
+  "Name": "M.A. (Public Administration)",
+  "code": "P46F"
+ },
+ {
+  "Name": "M.Sc. (Geography)",
+  "code": "P469-NN1"
+ },
+ {
+  "Name": "M.A. (English)",
+  "code": "P463"
+ },
+ {
+  "Name": "Bachelor of Library & Information Sciences (B. Lib. I.Sc.)",
+  "code": "P4AB"
+ },
+ {
+  "Name": "Master of Library & Information Sciences (M. Lib. I. Sc.)",
+  "code": "P4BB"
+ },
+ {
+  "Name": "M.A. (Hindi)",
+  "code": "P465"
+ },
+ {
+  "Name": "M.A. (Punjabi)",
+  "code": "P464"
+ },
+ {
+  "Name": "B.Ed.",
+  "code": "P6A1"
+ },
+ {
+  "Name": "M.Ed.",
+  "code": "P6B1"
+ },
+ {
+  "Name": "Integrated B.Ed.-M.Ed.",
+  "code": "P6F1-NM"
+ },
+ {
+  "Name": "M.A. (Education)",
+  "code": "P661"
+ },
+ {
+  "Name": "B.P.Ed.",
+  "code": "P6A2"
+ },
+ {
+  "Name": "M.P.Ed.",
+  "code": "P6B2"
+ },
+ {
+  "Name": "M.Tech. (VLSI Design)",
+  "code": "P17F"
+ },
+ {
+  "Name": "M.Tech. (Computer Science and Engineering)",
+  "code": "P172"
+ },
+ {
+  "Name": "M.Tech. (Machine Learning and Artificial Intelligence)",
+  "code": "P17X"
+ },
+ {
+  "Name": "M.Tech. (Data Science and Analytics)",
+  "code": "P17AC"
+ },
+ {
+  "Name": "M.Tech. (Information Security and Cyber Forensics)",
+  "code": "P17AD"
+ },
+ {
+  "Name": "M.Tech. (Thermal Engineering)",
+  "code": "P17K"
+ },
+ {
+  "Name": "M.Tech. (Automobile Engineering)",
+  "code": "P179"
+ },
+ {
+  "Name": "M.Tech. (Aerospace Engineering)",
+  "code": "P17E"
+ },
+ {
+  "Name": "M.Tech. (Robotics)",
+  "code": "P17T"
+ },
+ {
+  "Name": "M.Tech. (Structural Engineering) ",
+  "code": "P17N"
+ },
+ {
+  "Name": "M.Tech. (Transportation Engineering)",
+  "code": "P17M"
+ },
+ {
+  "Name": "M.Tech. (Construction Management)",
+  "code": "P17R"
+ },
+ {
+  "Name": "M.Tech. (Power Systems) ",
+  "code": "P17J"
+ },
+ {
+  "Name": "M.Tech. (Food Technology)",
+  "code": "P17Q"
+ },
+ {
+  "Name": "M.Tech. (Biotechnology)",
+  "code": "P171"
+ },
+ {
+  "Name": "M Tech (Biotechnology)  [ 1+1 with international credit transfer option]",
+  "code": "P171-Y"
+ },
+ {
+  "Name": "MCA",
+  "code": "P164-NN1"
+ },
+ {
+  "Name": "MCA (Hons.)",
+  "code": "P164-HN1"
+ },
+ {
+  "Name": "MCA (Hons.) (Machine Learning and Artificial Intelligence)",
+  "code": "P164-HN7"
+ },
+ {
+  "Name": "M.Sc. (Information Technology)",
+  "code": "P163"
+ },
+ {
+  "Name": "M.Sc. Ag. (Agronomy)",
+  "code": "P26B-NN1"
+ },
+ {
+  "Name": "M.Sc. Ag. (Soil Science and Agriculture Chemistry)",
+  "code": "P26B-NN2"
+ },
+ {
+  "Name": "M.Sc. Ag. (Genetics & Plant Breeding)",
+  "code": "P26B-NN3"
+ },
+ {
+  "Name": "M.Sc. Ag. (Entomology)",
+  "code": "P26B-NN5"
+ },
+ {
+  "Name": "M.Sc. Ag. (Plant Pathology)",
+  "code": "P26B-NN6"
+ },
+ {
+  "Name": "M.Sc. Ag. Horticulture (Vegetable Science)",
+  "code": "P26E"
+ },
+ {
+  "Name": "M.Sc. Ag. Horticulture (Fruit Science)",
+  "code": "P26C"
+ },
+ {
+  "Name": "M.Sc. Ag. Horticulture (Floriculture and Landscaping)",
+  "code": "P26F-NN1"
+ },
+ {
+  "Name": "M.Sc. (Food Science & Technology)",
+  "code": "P264"
+ },
+ {
+  "Name": "M.Sc. (Nutrition & Dietetics)",
+  "code": "P265"
+ },
+ {
+  "Name": "M.Sc. (Hons.) Biotechnology",
+  "code": "P260-H"
+ },
+ {
+  "Name": "M.Sc. (Hons.) Microbiology",
+  "code": "P263-H"
+ },
+ {
+  "Name": "M.Sc. (Forensic Sciences)",
+  "code": "P26G"
+ },
+ {
+  "Name": "M.Sc. (Hons.) Botany",
+  "code": "P261-H"
+ },
+ {
+  "Name": "M.Sc. (Hons.) Zoology",
+  "code": "P262-H"
+ },
+ {
+  "Name": "M.Sc. (Hons.) Physics",
+  "code": "P268-H"
+ },
+ {
+  "Name": "M.Sc. (Hons.) Chemistry",
+  "code": "P266-H"
+ },
+ {
+  "Name": "M.Sc. (Hons.) Mathematics",
+  "code": "P269-H"
+ },
+ {
+  "Name": "M.Sc. (Statistics and Data Analytics)",
+  "code": "P26J"
+ },
+ {
+  "Name": "M.Pharm. (Pharmaceutics)",
+  "code": "P570-NN1-D"
+ },
+ {
+  "Name": "M.Pharm. (Pharmacology)",
+  "code": "P570-NN2-D"
+ },
+ {
+  "Name": "M.Pharm. (Pharmaceutical Analysis)",
+  "code": "P570-NNB-D"
+ },
+ {
+  "Name": "M.Pharm. (Pharmaceutical Chemistry)",
+  "code": "P570-NN3-D"
+ },
+ {
+  "Name": "M.Pharm. (Pharmacy Practice)",
+  "code": "P570-NND-D"
+ },
+ {
+  "Name": "M.Pharm. (Ayurveda)",
+  "code": "P570-NN7"
+ },
+ {
+  "Name": "MPT (Orthopedics)",
+  "code": "P572-NN1"
+ },
+ {
+  "Name": "MPT (Neurology)",
+  "code": "P572-NN2"
+ },
+ {
+  "Name": "M.Sc. (Clinical Microbiology)",
+  "code": "P564"
+ },
+ {
+  "Name": "M.Sc. (Clinical Biochemistry)",
+  "code": "P565"
+ },
+ {
+  "Name": "M.Sc. (Clinical Embryology)",
+  "code": "P568"
+ },
+ {
+  "Name": "D.Litt.",
+  "code": "P8G"
+ },
+ {
+  "Name": "D.Sc.",
+  "code": "P8H"
+ },
+ {
+  "Name": "LL.D",
+  "code": "P8J"
+ }
+]

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import banner from "./banner2.gif";
 import world from "../home_page/resource/world.jpg";
+import country from "./CountryCodes.json";
+import programme from './programmelist.json';
 import {
   Box,
   TextField,
@@ -30,6 +32,19 @@ export default function LeadForm() {
     currentSemester: "",
     currentCGPA: "",
   });
+
+  const [semesters, setSemesters] = useState([
+    "1st Semester",
+    "2nd Semester",
+    "3rd Semester",
+    "4th Semester",
+    "5th Semester",
+    "6th Semester",
+    "7th Semester",
+    "8th Semester",
+    "9th Semester",
+    "10th Semester",
+  ]);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -173,16 +188,26 @@ export default function LeadForm() {
                 <MenuItem value="Other">Other</MenuItem>
               </Select>
             </FormControl>
-            <TextField
+            <FormControl
               className="field"
-              label="Nationality"
               variant="outlined"
               margin="normal"
               style={{ width: "45%" }}
-              name="nationality"
-              value={formData.nationality}
-              onChange={handleChange}
-            />
+            >
+              <InputLabel>Nationality</InputLabel>
+              <Select
+                label="Nationality"
+                name="nationality"
+                value={formData.nationality}
+                onChange={handleChange}
+              >
+                {country.map((country) => (
+                  <MenuItem key={country.code} value={country.name}>
+                    {country.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
             <TextField
               className="field"
               label="Phone Number"
@@ -220,27 +245,46 @@ export default function LeadForm() {
                 <MenuItem value="Credit Transfer">credit Transfer</MenuItem>
               </Select>
             </FormControl>
-            <TextField
-              fontweight="bold"
-              className="field "
-              label="Current Course"
-              variant="outlined"
-              margin="normal"
-              style={{ width: "45%" }}
-              name="currentCourse"
-              value={formData.currentCourse}
-              onChange={handleChange}
-            />
-            <TextField
+            <FormControl
               className="field"
-              label="Current Semester"
               variant="outlined"
               margin="normal"
               style={{ width: "45%" }}
-              name="currentSemester"
-              value={formData.currentSemester}
-              onChange={handleChange}
-            />
+            >
+              <InputLabel>Current Course</InputLabel>
+              <Select
+                label="Current Course"
+                name="currentCourse"
+                value={formData.currentCourse}
+                onChange={handleChange}
+              >
+                {programme.map((programme) => (
+                  <MenuItem key={programme.code} value={programme.Name}>
+                    {programme.Name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <FormControl
+              className="field"
+              variant="outlined"
+              margin="normal"
+              style={{ width: "45%" }}
+            >
+              <InputLabel>Current Semester</InputLabel>
+              <Select
+                label="Current Semester"
+                name="currentSemester"
+                value={formData.currentSemester}
+                onChange={handleChange}
+              >
+                {semesters.map((semester) => (
+                  <MenuItem key={semester} value={semester}>
+                    {semester}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
 
             <Button
               className="field"
