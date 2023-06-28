@@ -1,6 +1,6 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import {
   Box,
   Button,
@@ -14,7 +14,7 @@ import {
   TextField,
   Typography,
   useTheme,
-} from "@mui/material";
+} from '@mui/material';
 
 import {
   BarChart,
@@ -29,7 +29,7 @@ import {
   Line,
   Area,
   AreaChart,
-} from "recharts";
+} from 'recharts';
 
 const LeadStudentDashboard = () => {
   const theme = useTheme();
@@ -48,26 +48,22 @@ const LeadStudentDashboard = () => {
     setOpen(false);
   };
   //   const url = "http://localhost:5000";
-  const url = "https://sigma-lpu-vsbd9.ondigitalocean.app";
+  const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
 
+  const getInterestedStudents = async () => {
+    try {
+      const response = await axios.get(`${url}/api/v2/interestedStudent/all`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + localStorage.getItem('token'),
+        },
+      });
+      setInterestedStudents(response.data);
+    } catch (error) {
+      alert(error.message || 'Something went wrong');
+    }
+  };
   useEffect(() => {
-    const getInterestedStudents = async () => {
-      try {
-        const response = await axios.get(
-          `${url}/api/v2/interestedStudent/all`,
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-          }
-        );
-        setInterestedStudents(response.data);
-      } catch (error) {
-        alert(error.message || "Something went wrong");
-      }
-    };
-
     getInterestedStudents();
   }, []);
 
@@ -78,14 +74,14 @@ const LeadStudentDashboard = () => {
           `${url}/api/v2/interestedStudent/getAllFaculty`,
           {
             headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
             },
           }
         );
         setFaculties(response.data);
       } catch (error) {
-        alert(error.message || "Something went wrong");
+        alert(error.message || 'Something went wrong');
       }
     };
 
@@ -103,20 +99,20 @@ const LeadStudentDashboard = () => {
         },
         {
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
 
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
           },
         }
       );
-      alert("Updated Successfully");
+      alert('Updated Successfully');
       window.location.reload();
     } catch (error) {}
   };
 
   // Transform the data to count the number of students created on each date
   const transformedData = interestedStudents.reduce((acc, student) => {
-    const createdAt = student.createdAt.split("T")[0]; // Extract the date portion from createdAt
+    const createdAt = student.createdAt.split('T')[0]; // Extract the date portion from createdAt
     if (acc[createdAt]) {
       acc[createdAt] += 1; // Increment the count for the date if it already exists
     } else {
@@ -132,8 +128,8 @@ const LeadStudentDashboard = () => {
   }));
 
   const transformedDataByMonth = interestedStudents.reduce((acc, student) => {
-    const createdAt = student.createdAt.split("T")[0]; // Extract the date portion from createdAt
-    const month = createdAt.split("-")[1] + "-" + createdAt.split("-")[0];
+    const createdAt = student.createdAt.split('T')[0]; // Extract the date portion from createdAt
+    const month = createdAt.split('-')[1] + '-' + createdAt.split('-')[0];
     if (acc[month]) {
       acc[month] += 1; // Increment the count for the date if it already exists
     } else {
@@ -145,40 +141,39 @@ const LeadStudentDashboard = () => {
   const chartDataByMonth = Object.keys(transformedDataByMonth).map((month) => ({
     month,
     count: transformedDataByMonth[month],
-    }));
-
+  }));
 
   const [columns, setColumns] = useState([
     {
-      field: "name",
-      headerName: "Name",
+      field: 'name',
+      headerName: 'Name',
       width: 200,
-      cellClassName: "name-column--cell",
+      cellClassName: 'name-column--cell',
       valueGetter: (params) => {
-        return params.row.name ? params.row.name : "none";
+        return params.row.name ? params.row.name : 'none';
       },
       renderCell: (params) => {
         return (
           <div
             style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "10px",
-              flexWrap: "wrap",
-              justifyContent: "center",
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
             }}
           >
             <b>{params.row.name}</b>
             <Chip
               label={params.row.status}
               color={
-                params.row.status === "approved"
-                  ? "success"
-                  : params.row.status === "Not Interested"
-                  ? "error"
-                  : params.row.status === "pending"
-                  ? "warning"
-                  : "info"
+                params.row.status === 'approved'
+                  ? 'success'
+                  : params.row.status === 'Not Interested'
+                  ? 'error'
+                  : params.row.status === 'pending'
+                  ? 'warning'
+                  : 'info'
               }
             />
           </div>
@@ -186,11 +181,11 @@ const LeadStudentDashboard = () => {
       },
     },
     {
-      field: "email",
-      headerName: "Email",
+      field: 'email',
+      headerName: 'Email',
 
       valueGetter: (params) => {
-        return params.row.email ? params.row.email : "none";
+        return params.row.email ? params.row.email : 'none';
       },
 
       renderCell: (params) => {
@@ -200,10 +195,10 @@ const LeadStudentDashboard = () => {
       width: 200,
     },
     {
-      field: "phone",
-      headerName: "Phone Number",
+      field: 'phone',
+      headerName: 'Phone Number',
       valueGetter: (params) => {
-        return params.row.phone ? params.row.phone : "none";
+        return params.row.phone ? params.row.phone : 'none';
       },
 
       width: 200,
@@ -212,13 +207,13 @@ const LeadStudentDashboard = () => {
       },
     },
     {
-      field: "whatsapp",
+      field: 'whatsapp',
 
-      headerName: "Whatsapp Number",
+      headerName: 'Whatsapp Number',
 
       width: 200,
       valueGetter: (params) => {
-        return params.row.whatsapp ? params.row.whatsapp : "none";
+        return params.row.whatsapp ? params.row.whatsapp : 'none';
       },
 
       renderCell: (params) => {
@@ -230,75 +225,75 @@ const LeadStudentDashboard = () => {
       },
     },
     {
-      field: "gender",
-      headerName: "Gender",
+      field: 'gender',
+      headerName: 'Gender',
     },
     {
-      field: "nationality",
-      headerName: "Nationality",
+      field: 'nationality',
+      headerName: 'Nationality',
 
       width: 200,
     },
 
     {
-      field: "optedFor",
-      headerName: "Opted For",
+      field: 'optedFor',
+      headerName: 'Opted For',
 
       width: 200,
     },
     {
-      field: "currentCourse",
-      headerName: "Course",
+      field: 'currentCourse',
+      headerName: 'Course',
       width: 200,
     },
     {
-      field: "currentSemester",
-      headerName: "Semester",
+      field: 'currentSemester',
+      headerName: 'Semester',
       width: 200,
     },
     {
-      field: "createdAt",
-      headerName: "Registered At",
+      field: 'createdAt',
+      headerName: 'Registered At',
       width: 200,
       valueGetter: (params) => {
-        return params.row.createdAt ? params.row.createdAt.split("T")[0] : "";
+        return params.row.createdAt ? params.row.createdAt.split('T')[0] : '';
       },
     },
     {
-      field: "assignedTo",
-      headerName: "Assigned To",
+      field: 'assignedTo',
+      headerName: 'Assigned To',
       width: 200,
       valueGetter: (params) => {
-        return params.row.assignedTo ? params.row.assignedTo.name : "none";
+        return params.row.assignedTo ? params.row.assignedTo.name : 'none';
       },
     },
     {
-      field: "status",
-      headerName: "Status",
+      field: 'status',
+      headerName: 'Status',
       width: 200,
       valueGetter: (params) => {
-        return params.row.status ? params.row.status : "none";
+        return params.row.status ? params.row.status : 'none';
       },
     },
 
     {
-      field: "remarks",
-      headerName: "Remarks",
+      field: 'remarks',
+      headerName: 'Remarks',
       width: 250,
 
       valueGetter: (params) => {
-        return params.row.remarks ? params.row.remarks : "none";
+        return params.row.remarks ? params.row.remarks : 'none';
       },
       renderCell: (params) => {
         return (
           <textarea
             style={{
-              minWidth: "100%",
-              height: "100%",
-              border: "none",
-              resize: "none",
-              overflow: "hidden",
-              padding: "10px",
+              minWidth: '100%',
+              height: '100%',
+              border: 'none',
+              resize: 'none',
+              overflow: 'hidden',
+              padding: '10px',
             }}
             disabled
             value={params.row.remarks}
@@ -307,17 +302,17 @@ const LeadStudentDashboard = () => {
       },
     },
     {
-      field: "action",
-      headerName: "Action",
+      field: 'action',
+      headerName: 'Action',
       width: 200,
       renderCell: (params) => {
         return (
           <div
             style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: "10px",
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              gap: '10px',
             }}
           >
             <Button
@@ -334,7 +329,7 @@ const LeadStudentDashboard = () => {
               variant="contained"
               color="error"
               onClick={() => {
-                alert("Not have enough permission to delete");
+                alert('Not have enough permission to delete');
               }}
             >
               Delete
@@ -345,24 +340,26 @@ const LeadStudentDashboard = () => {
     },
   ]);
 
+  console.log(interestedStudents);
+
   return (
     <div>
       <h1>Lead Student Dashboard</h1>
 
       <div
         style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          width: "100%",
-          marginTop: "20px",
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          width: '100%',
+          marginTop: '20px',
         }}
       >
         <Box
-          backgroundColor={theme.palette.mode === "dark" ? "#333" : "#f5f5f5"}
+          backgroundColor={theme.palette.mode === 'dark' ? '#333' : '#f5f5f5'}
           p="30px"
-          height={"350px"}
-          minWidth={"40vw"}
+          height={'350px'}
+          minWidth={'40vw'}
         >
           <Typography variant="h6" gutterBottom>
             Student Registered By Date
@@ -395,10 +392,10 @@ const LeadStudentDashboard = () => {
           </ResponsiveContainer>
         </Box>
         <Box
-          backgroundColor={theme.palette.mode === "dark" ? "#333" : "#f5f5f5"}
+          backgroundColor={theme.palette.mode === 'dark' ? '#333' : '#f5f5f5'}
           p="30px"
-          height={"350px"}
-          minWidth={"40vw"}
+          height={'350px'}
+          minWidth={'40vw'}
         >
           <Typography variant="h6" gutterBottom>
             Student Registered By Month
@@ -434,74 +431,118 @@ const LeadStudentDashboard = () => {
 
       <div style={{}}>
         <Box
-          style={{ height: 800, width: "100%", margin: "50px 0" }}
+          style={{ height: 800, width: '100%', margin: '50px 0' }}
           sx={{
-            "& .MuiDataGrid-row": {
-              cursor: "pointer",
+            '& .MuiDataGrid-row': {
+              cursor: 'pointer',
             },
 
-            "& .MuiDataGrid-row:hover": {
-              backgroundColor: "rgb(245, 248, 250)",
+            '& .MuiDataGrid-row:hover': {
+              backgroundColor: 'rgb(245, 248, 250)',
             },
 
-            "& .MuiDataGrid-columnsContainer": {
-              backgroundColor: "rgb(245, 248, 250)",
+            '& .MuiDataGrid-columnsContainer': {
+              backgroundColor: 'rgb(245, 248, 250)',
             },
 
-            "& .MuiDataGrid-iconSeparator": {
-              display: "none",
+            '& .MuiDataGrid-iconSeparator': {
+              display: 'none',
             },
 
-            "& .MuiDataGrid-columnHeaderTitle": {
+            '& .MuiDataGrid-columnHeaderTitle': {
               fontWeight: 600,
-              fontSize: "1rem",
+              fontSize: '1rem',
             },
 
-            "& .MuiDataGrid-columnHeader, .MuiDataGrid-cell": {
-              borderRight: "1px solid rgba(224, 224, 224, 1)",
+            '& .MuiDataGrid-columnHeader, .MuiDataGrid-cell': {
+              borderRight: '1px solid rgba(224, 224, 224, 1)',
             },
 
-            "& .MuiDataGrid-columnsContainer, .MuiDataGrid-cell": {
-              borderBottom: "1px solid rgba(224, 224, 224, 1)",
+            '& .MuiDataGrid-columnsContainer, .MuiDataGrid-cell': {
+              borderBottom: '1px solid rgba(224, 224, 224, 1)',
             },
 
-            "& .MuiDataGrid-cell": {
-              color: "#1a3e72",
+            '& .MuiDataGrid-cell': {
+              color: '#1a3e72',
             },
 
-            "& .MuiPaginationItem-root": {
+            '& .MuiPaginationItem-root': {
               borderRadius: 0,
             },
 
-            "& .MuiDataGrid-root": {
-              boxShadow: "none",
+            '& .MuiDataGrid-root': {
+              boxShadow: 'none',
             },
 
-            "& .MuiDataGrid-toolbar": {},
+            '& .MuiDataGrid-toolbar': {},
 
-            "& .MuiDataGrid-selectedRowCount": {
-              display: "none",
+            '& .MuiDataGrid-selectedRowCount': {
+              display: 'none',
             },
 
-            "& .MuiDataGrid-toolbarContainer": {},
+            '& .MuiDataGrid-toolbarContainer': {},
 
-            "& .MuiToolbar-root": {},
+            '& .MuiToolbar-root': {},
 
-            "& .MuiDataGrid-cell:focus-within": {
-              outline: "none",
+            '& .MuiDataGrid-cell:focus-within': {
+              outline: 'none',
             },
 
-            "& .MuiDataGrid-columnHeader:focus-within": {
-              outline: "none",
+            '& .MuiDataGrid-columnHeader:focus-within': {
+              outline: 'none',
             },
             // in grid toolbar columns the switch and the name merge together so this is to fix that
-            "& .MuiDataGrid-columnHeaderTitleContainer": {
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
+            '& .MuiDataGrid-columnHeaderTitleContainer': {
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
             },
           }}
         >
+          <div
+            style={{
+              display: 'flex',
+              marginRight: '15px',
+              alignItems: 'center',
+              gap: '15px',
+            }}
+          >
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => {
+                setInterestedStudents(
+                  interestedStudents.filter(
+                    (student) => student.optedFor === 'Semester Exchange'
+                  )
+                );
+              }}
+            >
+              Semester Exchange Students
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={() => {
+                setInterestedStudents(
+                  interestedStudents.filter(
+                    (student) => student.optedFor === 'Credit Transfer'
+                  )
+                );
+              }}
+            >
+              Credit Transfer Students
+            </Button>
+            <Button
+              variant="contained"
+              color="error"
+              onClick={() => {
+                getInterestedStudents();
+              }}
+            >
+              Clear Filter
+            </Button>
+          </div>
           <DataGrid
             rows={interestedStudents}
             columns={columns}
@@ -520,21 +561,21 @@ const LeadStudentDashboard = () => {
         open={open}
         onClose={handleClose}
         fullWidth={true}
-        maxWidth={"md"}
+        maxWidth={'md'}
       >
         <DialogContent
           sx={{
-            display: "flex",
-            justifyContent: "center",
+            display: 'flex',
+            justifyContent: 'center',
           }}
         >
           <Box
             sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "column",
-              gap: "20px",
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexDirection: 'column',
+              gap: '20px',
             }}
           >
             <Typography variant="h6" gutterBottom>
@@ -584,11 +625,11 @@ const LeadStudentDashboard = () => {
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                <MenuItem value={"pending"}>Pending</MenuItem>
-                <MenuItem value={"approved"}>Approved</MenuItem>
-                <MenuItem value={"interested"}>Interested</MenuItem>
-                <MenuItem value={"not interested"}>Not Interested</MenuItem>
-                <MenuItem value={"unreached"}>Un Reached</MenuItem>
+                <MenuItem value={'pending'}>Pending</MenuItem>
+                <MenuItem value={'approved'}>Approved</MenuItem>
+                <MenuItem value={'interested'}>Interested</MenuItem>
+                <MenuItem value={'not interested'}>Not Interested</MenuItem>
+                <MenuItem value={'unreached'}>Un Reached</MenuItem>
               </Select>
             </FormControl>
             <TextField
