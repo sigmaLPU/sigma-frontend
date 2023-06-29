@@ -47,7 +47,7 @@ const LeadStudentDashboard = () => {
   const handleClose = () => {
     setOpen(false);
   };
-  //   const url = "http://localhost:5000";
+  // const url = 'http://localhost:5000';
   const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
 
   const getInterestedStudents = async () => {
@@ -81,7 +81,9 @@ const LeadStudentDashboard = () => {
         );
         setFaculties(response.data);
       } catch (error) {
-        alert(error.message || 'Something went wrong');
+        alert(
+          error.response.data.message || error.message || 'Something went wrong'
+        );
       }
     };
 
@@ -105,9 +107,13 @@ const LeadStudentDashboard = () => {
           },
         }
       );
-      alert('Updated Successfully');
+      alert(response.data.message || 'Student Updated Successfully');
       window.location.reload();
-    } catch (error) {}
+    } catch (error) {
+      alert(
+        error.response.data.message || error.message || 'Something went wrong'
+      );
+    }
   };
 
   // Transform the data to count the number of students created on each date

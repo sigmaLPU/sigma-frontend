@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import banner from "./banner2.gif";
-import world from "../home_page/resource/world.jpg";
-import country from "./CountryCodes.json";
+import React, { useState } from 'react';
+import banner from './banner2.gif';
+import world from '../home_page/resource/world.jpg';
+import country from './CountryCodes.json';
 import programme from './programmelist.json';
 import {
   Box,
@@ -13,52 +13,40 @@ import {
   MenuItem,
   Dialog,
   DialogTitle,
-} from "@material-ui/core";
-import { DialogActions, DialogContent, DialogContentText } from "@mui/material";
-import axios from "axios";
+} from '@material-ui/core';
+import { DialogActions, DialogContent, DialogContentText } from '@mui/material';
+import axios from 'axios';
 
 export default function LeadForm() {
   const [showPopup, setShowPopup] = useState(false);
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    regNo: "",
-    gender: "",
-    nationality: "",
-    phone: "",
-    whatsapp: "",
-    optedFor: "",
-    currentCourse: "",
-    currentSemester: "",
-    currentCGPA: "",
+    name: '',
+    email: '',
+    regNo: '',
+    gender: '',
+    nationality: '',
+    phone: '',
+    whatsapp: '',
+    optedFor: '',
+    currentCourse: '',
+    currentSemester: '',
+    currentCGPA: '',
   });
 
-  const [semesters, setSemesters] = useState([
-    "1st Semester",
-    "2nd Semester",
-    "3rd Semester",
-    "4th Semester",
-    "5th Semester",
-    "6th Semester",
-    "7th Semester",
-    "8th Semester",
-    "9th Semester",
-    "10th Semester",
-  ]);
+  const [semesters, setSemesters] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    // const url = "http://localhost:5000";
-    const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
-
+    const url = "http://localhost:5000";
+    // const url = 'https://sigma-lpu-vsbd9.ondigitalocean.app';
 
     const data = await axios
-      .post(url + "/api/v2/interestedStudent/add", formData)
+      .post(url + '/api/v2/interestedStudent/add', formData)
       .then((res) => {
-        alert("Your response has been recorded");
+        alert('Your response has been recorded');
       })
       .catch((err) => {
-        alert(err?.response?.data?.message || "Something went wrong");
+        alert(err?.response?.data?.message || 'Something went wrong');
       });
   };
 
@@ -78,24 +66,24 @@ export default function LeadForm() {
     <div>
       <div
         style={{
-          position: "fixed",
+          position: 'fixed',
           top: 0,
           left: 0,
-          width: "100%",
-          height: "100%",
+          width: '100%',
+          height: '100%',
           zIndex: -1,
           backgroundImage: `url(${world})`,
-          backgroundSize: "cover",
-          filter: "blur(3px)",
+          backgroundSize: 'cover',
+          filter: 'blur(3px)',
         }}
       ></div>
 
-      <div style={{ position: "relative", zIndex: 1 }}>
+      <div style={{ position: 'relative', zIndex: 1 }}>
         <Box
           sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           <style>
@@ -115,36 +103,36 @@ export default function LeadForm() {
           <img
             src={banner}
             style={{
-              position: "sticky",
-              height: "auto",
-              width: "45vw",
-              maxWidth: "100%",
-              maxHeight: "30vh",
-              borderRadius: "10px",
-              boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.2)",
+              position: 'sticky',
+              height: 'auto',
+              width: '45vw',
+              maxWidth: '100%',
+              maxHeight: '30vh',
+              borderRadius: '10px',
+              boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.2)',
             }}
             alt="Banner"
           />
         </Box>
         <Box
           sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-            marginTop: "20px",
-            backgroundColor: "rgba(255, 255, 255, 0.8)",
-            borderRadius: "10px",
-            padding: "20px",
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'column',
+            marginTop: '20px',
+            backgroundColor: 'rgba(255, 255, 255, 0.8)',
+            borderRadius: '10px',
+            padding: '20px',
           }}
         >
-          <form style={{ width: "100%" }} onSubmit={handleFormSubmit}>
+          <form style={{ width: '100%' }} onSubmit={handleFormSubmit}>
             <TextField
               className="field"
               label="Name"
               variant="outlined"
               margin="normal"
-              style={{ width: "45%" }}
+              style={{ width: '45%' }}
               name="name"
               value={formData.name}
               onChange={handleChange}
@@ -154,7 +142,7 @@ export default function LeadForm() {
               label="Registration Number"
               variant="outlined"
               margin="normal"
-              style={{ width: "45%" }}
+              style={{ width: '45%' }}
               name="regNo"
               value={formData.regNo}
               onChange={handleChange}
@@ -164,7 +152,7 @@ export default function LeadForm() {
               label="Email ID"
               variant="outlined"
               margin="normal"
-              style={{ width: "45%" }}
+              style={{ width: '45%' }}
               name="email"
               value={formData.email}
               onChange={handleChange}
@@ -174,7 +162,7 @@ export default function LeadForm() {
               className="field"
               variant="outlined"
               margin="normal"
-              style={{ width: "45%" }}
+              style={{ width: '45%' }}
             >
               <InputLabel>Gender</InputLabel>
               <Select
@@ -183,16 +171,16 @@ export default function LeadForm() {
                 value={formData.gender}
                 onChange={handleChange}
               >
-                <MenuItem value="Male">Male</MenuItem>
-                <MenuItem value="Female">Female</MenuItem>
-                <MenuItem value="Other">Other</MenuItem>
+                <MenuItem value="male">Male</MenuItem>
+                <MenuItem value="female">Female</MenuItem>
+                <MenuItem value="other">Other</MenuItem>
               </Select>
             </FormControl>
             <FormControl
               className="field"
               variant="outlined"
               margin="normal"
-              style={{ width: "45%" }}
+              style={{ width: '45%' }}
             >
               <InputLabel>Nationality</InputLabel>
               <Select
@@ -209,21 +197,23 @@ export default function LeadForm() {
               </Select>
             </FormControl>
             <TextField
+              type="number"
               className="field"
               label="Phone Number"
               variant="outlined"
               margin="normal"
-              style={{ width: "45%" }}
+              style={{ width: '45%' }}
               name="phone"
               value={formData.phone}
               onChange={handleChange}
             />
             <TextField
+              type="number"
               className="field"
               label="WhatsApp Number"
               variant="outlined"
               margin="normal"
-              style={{ width: "45%" }}
+              style={{ width: '45%' }}
               name="whatsapp"
               value={formData.whatsapp}
               onChange={handleChange}
@@ -232,7 +222,7 @@ export default function LeadForm() {
               className="field"
               variant="outlined"
               margin="normal"
-              style={{ width: "45%" }}
+              style={{ width: '45%' }}
             >
               <InputLabel>Study Abroad Option</InputLabel>
               <Select
@@ -241,15 +231,15 @@ export default function LeadForm() {
                 value={formData.optedFor}
                 onChange={handleChange}
               >
-                <MenuItem value="Semester Exchange">semester Exchange</MenuItem>
-                <MenuItem value="Credit Transfer">credit Transfer</MenuItem>
+                <MenuItem value="semester-exchange">semester Exchange</MenuItem>
+                <MenuItem value="credit-transfer">credit Transfer</MenuItem>
               </Select>
             </FormControl>
             <FormControl
               className="field"
               variant="outlined"
               margin="normal"
-              style={{ width: "45%" }}
+              style={{ width: '45%' }}
             >
               <InputLabel>Current Course</InputLabel>
               <Select
@@ -269,7 +259,7 @@ export default function LeadForm() {
               className="field"
               variant="outlined"
               margin="normal"
-              style={{ width: "45%" }}
+              style={{ width: '45%' }}
             >
               <InputLabel>Current Semester</InputLabel>
               <Select
@@ -277,9 +267,10 @@ export default function LeadForm() {
                 name="currentSemester"
                 value={formData.currentSemester}
                 onChange={handleChange}
+                type='number'
               >
                 {semesters.map((semester) => (
-                  <MenuItem key={semester} value={semester}>
+                  <MenuItem key={semester} value={Number(semester)}>
                     {semester}
                   </MenuItem>
                 ))}
@@ -291,11 +282,11 @@ export default function LeadForm() {
               variant="contained"
               size="large"
               style={{
-                width: "45%",
-                marginTop: "20px",
-                backgroundColor: "orange",
-                borderRadius: "10px",
-                boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.2)",
+                width: '45%',
+                marginTop: '20px',
+                backgroundColor: 'orange',
+                borderRadius: '10px',
+                boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.2)',
               }}
               type="submit"
             >
